@@ -1,0 +1,80 @@
+tree_id,node_id,entry_id,definition_id,spell_id,talent_name,max_ranks,effect_index,effect_type,effect_aura,effect_misc_0,effect_misc_1,text_hints,preliminary_category,confidence,review_status
+1082,104724,129384,134185,408521,Riptide,1,0,10,0,0,0,no_textual_hint,unclassified,none,map_enum_and_review
+1082,104724,129384,134185,408521,Riptide,1,1,6,8,0,0,no_textual_hint,unclassified,none,map_enum_and_review
+1082,104724,129384,134185,408521,Riptide,1,2,6,4,0,0,no_textual_hint,unclassified,none,map_enum_and_review
+1082,104725,129385,134186,16178,Purification,5,0,6,108,0,0,damage_or_healing_candidate,text_hint_only,low,map_enum_and_review
+1082,104725,129385,134186,16178,Purification,5,1,6,108,22,0,damage_or_healing_candidate,text_hint_only,low,map_enum_and_review
+1082,104726,129386,134187,16188,Nature's Swiftness,1,0,6,108,10,0,ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104727,129387,134188,29206,Healing Way,3,0,6,108,0,0,damage_or_healing_candidate,text_hint_only,low,map_enum_and_review
+1082,104728,129388,134189,16190,Mana Tide Totem,1,0,28,0,10467,82,resource_candidate,text_hint_only,low,map_enum_and_review
+1082,104729,129389,134190,16173,Totemic Focus,5,0,6,108,14,0,resource_candidate,text_hint_only,low,map_enum_and_review
+1082,104730,129390,134191,16187,Restorative Totems,5,0,6,108,8,0,damage_or_healing_candidate;resource_candidate,text_hint_only,low,map_enum_and_review
+1082,104730,129390,134191,16187,Restorative Totems,5,1,6,108,8,0,damage_or_healing_candidate;resource_candidate,text_hint_only,low,map_enum_and_review
+1082,104731,129391,134192,16176,Ancestral Healing,3,0,6,4,0,0,direct_stat_candidate;damage_or_healing_candidate,text_hint_only,low,map_enum_and_review
+1082,104732,129392,134193,408510,Water Shield,1,0,6,42,0,0,damage_or_healing_candidate;resource_candidate,text_hint_only,low,map_enum_and_review
+1082,104732,129392,134193,408510,Water Shield,1,1,6,4,0,0,damage_or_healing_candidate;resource_candidate,text_hint_only,low,map_enum_and_review
+1082,104733,129393,134194,16181,Healing Focus,3,0,6,108,9,0,damage_or_healing_candidate;resource_candidate;ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104734,129394,134195,1223033,Mindfulness,3,0,6,134,0,0,resource_candidate,text_hint_only,low,map_enum_and_review
+1082,104735,129395,134196,16179,Tidal Focus,5,0,6,108,14,0,damage_or_healing_candidate;resource_candidate;ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104735,129395,134196,16179,Tidal Focus,5,1,6,54,0,0,damage_or_healing_candidate;resource_candidate;ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104735,129395,134196,16179,Tidal Focus,5,2,6,55,0,0,damage_or_healing_candidate;resource_candidate;ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104736,129396,134197,29187,Natural Grace,3,0,6,10,126,0,no_textual_hint,unclassified,none,map_enum_and_review
+1082,104737,129397,134198,16184,Improved Reincarnation,2,0,6,107,11,0,resource_candidate;ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104737,129397,134198,16184,Improved Reincarnation,2,1,6,133,1,0,resource_candidate;ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104737,129397,134198,16184,Improved Reincarnation,2,2,6,107,8,0,resource_candidate;ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104738,129398,134199,16194,Tidal Mastery,5,0,6,107,7,0,direct_stat_candidate;damage_or_healing_candidate,text_hint_only,low,map_enum_and_review
+1082,104739,129399,134200,16182,Improved Healing Wave,5,0,6,107,10,0,damage_or_healing_candidate;ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104740,129400,134201,425336,Rage of the Farseer,1,0,6,342,0,0,resource_candidate,text_hint_only,low,map_enum_and_review
+1082,104740,129400,134201,425336,Rage of the Farseer,1,1,6,61,0,0,resource_candidate,text_hint_only,low,map_enum_and_review
+1082,104741,129401,134202,408498,Maelstrom Weapon,5,0,6,4,0,0,damage_or_healing_candidate;resource_candidate;ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104741,129401,134202,408498,Maelstrom Weapon,5,1,6,4,0,0,damage_or_healing_candidate;resource_candidate;ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104741,129401,134202,408498,Maelstrom Weapon,5,2,6,4,0,0,damage_or_healing_candidate;resource_candidate;ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104742,129402,134203,1223031,Improved Stormstrike,2,0,6,4,0,0,direct_stat_candidate;resource_candidate;ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104742,129402,134203,1223031,Improved Stormstrike,2,1,6,4,0,0,direct_stat_candidate;resource_candidate;ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104742,129402,134203,1223031,Improved Stormstrike,2,2,6,4,0,0,direct_stat_candidate;resource_candidate;ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104743,129403,134204,17364,Stormstrike,1,0,121,0,0,0,damage_or_healing_candidate,text_hint_only,low,map_enum_and_review
+1082,104743,129403,134204,17364,Stormstrike,1,1,6,271,0,0,damage_or_healing_candidate,text_hint_only,low,map_enum_and_review
+1082,104744,129404,134205,30812,Mental Quickness,2,0,6,175,3,0,direct_stat_candidate;damage_or_healing_candidate,text_hint_only,low,map_enum_and_review
+1082,104744,129404,134205,30812,Mental Quickness,2,1,6,174,126,3,direct_stat_candidate;damage_or_healing_candidate,text_hint_only,low,map_enum_and_review
+1082,104745,129405,134206,16268,Spirit Weapons,1,0,6,10,127,0,direct_stat_candidate;ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104745,129405,134206,16268,Spirit Weapons,1,1,6,107,12,0,direct_stat_candidate;ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104745,129405,134206,16268,Spirit Weapons,1,2,6,4,0,0,direct_stat_candidate;ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104746,129406,134207,16252,Toughness,5,0,6,137,0,4,direct_stat_candidate,text_hint_only,low,map_enum_and_review
+1082,104747,129407,134208,16256,Flurry,5,0,6,4,0,0,direct_stat_candidate,text_hint_only,low,map_enum_and_review
+1082,104748,129408,134209,16254,Anticipation,3,0,6,49,0,0,direct_stat_candidate;ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104749,129409,134210,1223030,Shamanistic Focus,1,0,6,108,14,0,resource_candidate,text_hint_only,low,map_enum_and_review
+1082,104750,129410,134211,16266,Elemental Weapons,3,0,6,108,3,0,direct_stat_candidate;damage_or_healing_candidate,text_hint_only,low,map_enum_and_review
+1082,104750,129410,134211,16266,Elemental Weapons,3,1,6,108,0,0,direct_stat_candidate;damage_or_healing_candidate,text_hint_only,low,map_enum_and_review
+1082,104750,129410,134211,16266,Elemental Weapons,3,2,6,108,3,0,direct_stat_candidate;damage_or_healing_candidate,text_hint_only,low,map_enum_and_review
+1082,104751,129411,134212,16261,Improved Lightning Shield,3,0,6,108,0,0,damage_or_healing_candidate,text_hint_only,low,map_enum_and_review
+1082,104752,129412,134213,16262,Improved Ghost Wolf,2,0,6,107,10,0,ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104752,129412,134213,16262,Improved Ghost Wolf,2,1,6,332,2645,0,ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104752,129412,134213,16262,Improved Ghost Wolf,2,2,6,332,1271481,0,ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104753,129413,134214,16255,Thundering Strikes,5,0,6,290,0,0,direct_stat_candidate;ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104754,129414,134215,16258,Guardian Totems,2,0,6,108,3,0,damage_or_healing_candidate;ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104754,129414,134215,16258,Guardian Totems,2,1,6,107,11,0,damage_or_healing_candidate;ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104755,129415,134216,415140,Mental Dexterity,3,0,6,598,3,0,direct_stat_candidate,text_hint_only,low,map_enum_and_review
+1082,104755,129415,134216,415140,Mental Dexterity,3,1,6,4,0,0,direct_stat_candidate,text_hint_only,low,map_enum_and_review
+1082,104756,129416,134217,17485,Ancestral Knowledge,5,0,6,137,0,8,direct_stat_candidate,text_hint_only,low,map_enum_and_review
+1082,104757,129417,134218,16043,Earth's Grasp,2,0,6,108,8,0,no_textual_hint,unclassified,none,map_enum_and_review
+1082,104757,129417,134218,16043,Earth's Grasp,2,1,6,108,6,0,no_textual_hint,unclassified,none,map_enum_and_review
+1082,104758,129418,134219,408490,Lava Burst,1,0,2,0,0,0,damage_or_healing_candidate,text_hint_only,low,map_enum_and_review
+1082,104758,129418,134219,408490,Lava Burst,1,1,3,0,0,0,damage_or_healing_candidate,text_hint_only,low,map_enum_and_review
+1082,104759,129419,134220,408438,Lightning Overload,3,0,6,4,0,0,damage_or_healing_candidate;ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104760,129420,134221,1222988,Earthbound,1,0,6,4,0,0,no_textual_hint,unclassified,none,map_enum_and_review
+1082,104761,129421,134222,28999,Elemental Reach,2,0,6,107,5,0,ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104761,129421,134222,28999,Elemental Reach,2,1,6,107,5,0,ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104762,129422,134223,16120,Call of Thunder,1,0,6,107,7,0,direct_stat_candidate,text_hint_only,low,map_enum_and_review
+1082,104763,129423,134224,29062,Eye of the Storm,3,0,6,108,9,0,no_textual_hint,unclassified,none,map_enum_and_review
+1082,104764,129424,134225,16086,Improved Fire Nova,2,0,6,108,0,0,damage_or_healing_candidate;ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104764,129424,134225,16086,Improved Fire Nova,2,1,6,107,11,0,damage_or_healing_candidate;ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104765,129425,134226,16578,Elemental Alacrity,3,0,6,107,10,0,ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104766,129426,134227,16089,Elemental Fury,5,0,6,108,15,0,direct_stat_candidate;damage_or_healing_candidate,text_hint_only,low,map_enum_and_review
+1082,104767,129427,134228,16040,Reverberation,5,0,6,107,11,0,ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104768,129428,134229,16164,Elemental Focus,1,0,6,42,0,0,damage_or_healing_candidate;resource_candidate;ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104769,129429,134230,30160,Elemental Devastation,3,0,6,4,0,0,direct_stat_candidate;ability_or_rotation_candidate,text_hint_only,low,map_enum_and_review
+1082,104770,129430,134231,16038,Call of Flame,3,0,6,108,0,0,damage_or_healing_candidate,text_hint_only,low,map_enum_and_review
+1082,104770,129430,134231,16038,Call of Flame,3,1,6,108,22,0,damage_or_healing_candidate,text_hint_only,low,map_enum_and_review
+1082,104771,129431,134232,28996,Elemental Warding,3,0,6,87,28,0,damage_or_healing_candidate,text_hint_only,low,map_enum_and_review
+1082,104772,129432,134233,16035,Concussion,5,0,6,108,0,0,damage_or_healing_candidate,text_hint_only,low,map_enum_and_review
+1082,104773,129433,134234,16039,Convection,5,0,6,108,14,0,resource_candidate,text_hint_only,low,map_enum_and_review

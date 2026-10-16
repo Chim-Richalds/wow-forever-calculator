@@ -1,0 +1,46 @@
+PURIFICATION CURVE AUDIT
+Talent: Purification
+TraitDefinitionID: 134186
+Output file: data/processed/purification-curve-audit.txt
+
+=== SUMMARY ===
+CurvePoint rows in dataset: 38956
+Talent effect-point rows: 644
+Purification scaling references: 2
+Unique nonzero referenced curves: 2
+Matching curve-point rows: 10
+Referenced curves with no points: 0
+
+================================================================================
+CURVEPOINT SCHEMA AND SAMPLE ROWS
+================================================================================
+{'columns': ['Pos_0', 'Pos_1', 'PosPreSquish_0', 'PosPreSquish_1', 'ID', 'CurveID', 'OrderIndex']}
+{'Pos_0': '0', 'Pos_1': '0', 'PosPreSquish_0': '0', 'PosPreSquish_1': '0', 'ID': '527', 'CurveID': '104', 'OrderIndex': '0'}
+{'Pos_0': '0', 'Pos_1': '1', 'PosPreSquish_0': '0', 'PosPreSquish_1': '0', 'ID': '528', 'CurveID': '105', 'OrderIndex': '0'}
+{'Pos_0': '0', 'Pos_1': '0', 'PosPreSquish_0': '0', 'PosPreSquish_1': '0', 'ID': '529', 'CurveID': '106', 'OrderIndex': '0'}
+{'Pos_0': '1', 'Pos_1': '1', 'PosPreSquish_0': '0', 'PosPreSquish_1': '0', 'ID': '530', 'CurveID': '106', 'OrderIndex': '1'}
+{'Pos_0': '0', 'Pos_1': '1', 'PosPreSquish_0': '0', 'PosPreSquish_1': '1', 'ID': '4780', 'CurveID': '1344', 'OrderIndex': '0'}
+
+================================================================================
+PURIFICATION SCALING REFERENCES
+================================================================================
+{'ID': '23745', 'TraitDefinitionID': '134186', 'EffectIndex': '0', 'OperationType': '0', 'CurveID': '85323'}
+{'ID': '23818', 'TraitDefinitionID': '134186', 'EffectIndex': '1', 'OperationType': '0', 'CurveID': '87379'}
+
+================================================================================
+CURVE ID 85323 — 5 POINTS
+================================================================================
+{'Pos_0': '1', 'Pos_1': '2', 'PosPreSquish_0': '0', 'PosPreSquish_1': '0', 'ID': '251429', 'CurveID': '85323', 'OrderIndex': '0'}
+{'Pos_0': '2', 'Pos_1': '4', 'PosPreSquish_0': '0', 'PosPreSquish_1': '0', 'ID': '251430', 'CurveID': '85323', 'OrderIndex': '1'}
+{'Pos_0': '3', 'Pos_1': '6', 'PosPreSquish_0': '0', 'PosPreSquish_1': '0', 'ID': '251431', 'CurveID': '85323', 'OrderIndex': '2'}
+{'Pos_0': '4', 'Pos_1': '8', 'PosPreSquish_0': '0', 'PosPreSquish_1': '0', 'ID': '251432', 'CurveID': '85323', 'OrderIndex': '3'}
+{'Pos_0': '5', 'Pos_1': '10', 'PosPreSquish_0': '0', 'PosPreSquish_1': '0', 'ID': '251433', 'CurveID': '85323', 'OrderIndex': '4'}
+
+================================================================================
+CURVE ID 87379 — 5 POINTS
+================================================================================
+{'Pos_0': '1', 'Pos_1': '2', 'PosPreSquish_0': '0', 'PosPreSquish_1': '0', 'ID': '258387', 'CurveID': '87379', 'OrderIndex': '0'}
+{'Pos_0': '2', 'Pos_1': '4', 'PosPreSquish_0': '0', 'PosPreSquish_1': '0', 'ID': '258388', 'CurveID': '87379', 'OrderIndex': '1'}
+{'Pos_0': '3', 'Pos_1': '6', 'PosPreSquish_0': '0', 'PosPreSquish_1': '0', 'ID': '258389', 'CurveID': '87379', 'OrderIndex': '2'}
+{'Pos_0': '4', 'Pos_1': '8', 'PosPreSquish_0': '0', 'PosPreSquish_1': '0', 'ID': '258390', 'CurveID': '87379', 'OrderIndex': '3'}
+{'Pos_0': '5', 'Pos_1': '10', 'PosPreSquish_0': '0', 'PosPreSquish_1': '0', 'ID': '258391', 'CurveID': '87379', 'OrderIndex': '4'}

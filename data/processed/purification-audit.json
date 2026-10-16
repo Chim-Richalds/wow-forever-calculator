@@ -1,0 +1,139 @@
+{
+  "talent": "Purification",
+  "spell_id": 16178,
+  "definitions": [
+    {
+      "OverrideName_lang": "",
+      "OverrideSubtext_lang": "",
+      "OverrideDescription_lang": "",
+      "ID": "134186",
+      "SpellID": "16178",
+      "OverrideIcon": "0",
+      "OverridesSpellID": "0",
+      "VisibleSpellID": "0"
+    }
+  ],
+  "spell_records": [
+    {
+      "ID": "16178",
+      "NameSubtext_lang": "",
+      "Description_lang": "Increases the effectiveness of your healing spells by $m1%.",
+      "AuraDescription_lang": ""
+    }
+  ],
+  "effects": [
+    {
+      "ID": "693066",
+      "EffectAura": "108",
+      "DifficultyID": "0",
+      "EffectIndex": "0",
+      "Effect": "6",
+      "EffectAmplitude": "0",
+      "EffectAttributes": "0",
+      "EffectAuraPeriod": "0",
+      "EffectBonusCoefficient": "0",
+      "EffectChainAmplitude": "1",
+      "EffectChainTargets": "0",
+      "EffectItemType": "0",
+      "EffectMechanic": "0",
+      "EffectPointsPerResource": "0",
+      "EffectPos_facing": "0",
+      "EffectRealPointsPerLevel": "0",
+      "EffectTriggerSpell": "0",
+      "BonusCoefficientFromAP": "0",
+      "PvpMultiplier": "1",
+      "Coefficient": "0",
+      "Variance": "0",
+      "ResourceCoefficient": "0",
+      "GroupSizeBasePointsCoefficient": "1",
+      "EffectBasePointsF": "10",
+      "ScalingClass": "0",
+      "Node__Field_12_0_0_63534_001": "0",
+      "EffectMiscValue_0": "0",
+      "EffectMiscValue_1": "0",
+      "EffectRadiusIndex_0": "0",
+      "EffectRadiusIndex_1": "0",
+      "EffectSpellClassMask_0": "448",
+      "EffectSpellClassMask_1": "0",
+      "EffectSpellClassMask_2": "16",
+      "EffectSpellClassMask_3": "0",
+      "ImplicitTarget_0": "1",
+      "ImplicitTarget_1": "0",
+      "SpellID": "16178"
+    },
+    {
+      "ID": "1197174",
+      "EffectAura": "108",
+      "DifficultyID": "0",
+      "EffectIndex": "1",
+      "Effect": "6",
+      "EffectAmplitude": "0",
+      "EffectAttributes": "0",
+      "EffectAuraPeriod": "0",
+      "EffectBonusCoefficient": "0",
+      "EffectChainAmplitude": "1",
+      "EffectChainTargets": "0",
+      "EffectItemType": "0",
+      "EffectMechanic": "0",
+      "EffectPointsPerResource": "0",
+      "EffectPos_facing": "0",
+      "EffectRealPointsPerLevel": "0",
+      "EffectTriggerSpell": "0",
+      "BonusCoefficientFromAP": "0",
+      "PvpMultiplier": "1",
+      "Coefficient": "0",
+      "Variance": "0",
+      "ResourceCoefficient": "0",
+      "GroupSizeBasePointsCoefficient": "1",
+      "EffectBasePointsF": "10",
+      "ScalingClass": "0",
+      "Node__Field_12_0_0_63534_001": "0",
+      "EffectMiscValue_0": "22",
+      "EffectMiscValue_1": "0",
+      "EffectRadiusIndex_0": "0",
+      "EffectRadiusIndex_1": "0",
+      "EffectSpellClassMask_0": "0",
+      "EffectSpellClassMask_1": "0",
+      "EffectSpellClassMask_2": "16",
+      "EffectSpellClassMask_3": "0",
+      "ImplicitTarget_0": "1",
+      "ImplicitTarget_1": "0",
+      "SpellID": "16178"
+    }
+  ],
+  "entries": [
+    {
+      "ID": "129385",
+      "TraitDefinitionID": "134186",
+      "MaxRanks": "5",
+      "NodeEntryType": "1",
+      "TraitSubTreeID": "0"
+    }
+  ],
+  "mappings": [
+    {
+      "ID": "126852",
+      "TraitNodeID": "104725",
+      "TraitNodeEntryID": "129385",
+      "_Index": "100"
+    }
+  ],
+  "nodes": [
+    {
+      "ID": "104725",
+      "TraitTreeID": "1082",
+      "PosX": "10280",
+      "PosY": "5130",
+      "Type": "0",
+      "Flags": "0",
+      "TraitSubTreeID": "0"
+    }
+  ],
+  "effect_count": 2,
+  "verification": {
+    "description_found": true,
+    "definition_found": true,
+    "has_effect_rows": true,
+    "mechanics_verified_for_forever": false
+  }
+}

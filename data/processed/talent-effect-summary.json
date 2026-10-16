@@ -1,0 +1,309 @@
+{
+  "data_directory": "data/raw/1.60.1.70338",
+  "selected_tree_ids": [
+    "1082"
+  ],
+  "effect_row_count": 79,
+  "category_counts": {
+    "unclassified": 8,
+    "text_hint_only": 71
+  },
+  "unresolved_counts": {},
+  "most_common_effect_signatures": [
+    {
+      "effect_type": "6",
+      "effect_aura": "4",
+      "misc_0": "0",
+      "misc_1": "0",
+      "count": 15
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "108",
+      "misc_0": "0",
+      "misc_1": "0",
+      "count": 7
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "108",
+      "misc_0": "14",
+      "misc_1": "0",
+      "count": 4
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "107",
+      "misc_0": "11",
+      "misc_1": "0",
+      "count": 4
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "108",
+      "misc_0": "8",
+      "misc_1": "0",
+      "count": 3
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "107",
+      "misc_0": "10",
+      "misc_1": "0",
+      "count": 3
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "108",
+      "misc_0": "3",
+      "misc_1": "0",
+      "count": 3
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "108",
+      "misc_0": "22",
+      "misc_1": "0",
+      "count": 2
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "42",
+      "misc_0": "0",
+      "misc_1": "0",
+      "count": 2
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "108",
+      "misc_0": "9",
+      "misc_1": "0",
+      "count": 2
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "107",
+      "misc_0": "7",
+      "misc_1": "0",
+      "count": 2
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "107",
+      "misc_0": "5",
+      "misc_1": "0",
+      "count": 2
+    },
+    {
+      "effect_type": "10",
+      "effect_aura": "0",
+      "misc_0": "0",
+      "misc_1": "0",
+      "count": 1
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "8",
+      "misc_0": "0",
+      "misc_1": "0",
+      "count": 1
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "108",
+      "misc_0": "10",
+      "misc_1": "0",
+      "count": 1
+    },
+    {
+      "effect_type": "28",
+      "effect_aura": "0",
+      "misc_0": "10467",
+      "misc_1": "82",
+      "count": 1
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "134",
+      "misc_0": "0",
+      "misc_1": "0",
+      "count": 1
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "54",
+      "misc_0": "0",
+      "misc_1": "0",
+      "count": 1
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "55",
+      "misc_0": "0",
+      "misc_1": "0",
+      "count": 1
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "10",
+      "misc_0": "126",
+      "misc_1": "0",
+      "count": 1
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "133",
+      "misc_0": "1",
+      "misc_1": "0",
+      "count": 1
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "107",
+      "misc_0": "8",
+      "misc_1": "0",
+      "count": 1
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "342",
+      "misc_0": "0",
+      "misc_1": "0",
+      "count": 1
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "61",
+      "misc_0": "0",
+      "misc_1": "0",
+      "count": 1
+    },
+    {
+      "effect_type": "121",
+      "effect_aura": "0",
+      "misc_0": "0",
+      "misc_1": "0",
+      "count": 1
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "271",
+      "misc_0": "0",
+      "misc_1": "0",
+      "count": 1
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "175",
+      "misc_0": "3",
+      "misc_1": "0",
+      "count": 1
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "174",
+      "misc_0": "126",
+      "misc_1": "3",
+      "count": 1
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "10",
+      "misc_0": "127",
+      "misc_1": "0",
+      "count": 1
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "107",
+      "misc_0": "12",
+      "misc_1": "0",
+      "count": 1
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "137",
+      "misc_0": "0",
+      "misc_1": "4",
+      "count": 1
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "49",
+      "misc_0": "0",
+      "misc_1": "0",
+      "count": 1
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "332",
+      "misc_0": "2645",
+      "misc_1": "0",
+      "count": 1
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "332",
+      "misc_0": "1271481",
+      "misc_1": "0",
+      "count": 1
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "290",
+      "misc_0": "0",
+      "misc_1": "0",
+      "count": 1
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "598",
+      "misc_0": "3",
+      "misc_1": "0",
+      "count": 1
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "137",
+      "misc_0": "0",
+      "misc_1": "8",
+      "count": 1
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "108",
+      "misc_0": "6",
+      "misc_1": "0",
+      "count": 1
+    },
+    {
+      "effect_type": "2",
+      "effect_aura": "0",
+      "misc_0": "0",
+      "misc_1": "0",
+      "count": 1
+    },
+    {
+      "effect_type": "3",
+      "effect_aura": "0",
+      "misc_0": "0",
+      "misc_1": "0",
+      "count": 1
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "108",
+      "misc_0": "15",
+      "misc_1": "0",
+      "count": 1
+    },
+    {
+      "effect_type": "6",
+      "effect_aura": "87",
+      "misc_0": "28",
+      "misc_1": "0",
+      "count": 1
+    }
+  ],
+  "classification_policy": "Text matching supplies discovery hints only. Numeric effect enums must be mapped to the exact client version before assigning mechanical meaning."
+}
