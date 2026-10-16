@@ -30,6 +30,7 @@ Incremental: Unsupported mechanics must be marked explicitly rather than guessed
 Testable: Calculation rules must be testable independently of the UI.
 Extensible: The stat engine must support a future combat simulator without requiring a rewrite.
 Reproducible: The same configuration and data revision must produce the same results.
+Updatable: New client builds must be ingestible through a repeatable, validated pipeline, with changes reviewable before activation and reversible after it.
 3. Scope of version 1
 3.1 Character configuration
 Nine classes, subject to validation against the target build.
@@ -89,6 +90,18 @@ Delta = Stat with talent - Stat without talent
 Later versions may calculate normalised stat values and combat performance under explicit assumptions.
 
 A universal talent score will not be introduced until its assumptions and weighting methodology are defined.
+3.5 Data updates
+
+Version 1 will include a one-click update flow in the UI:
+
+Detect when a newer client build than the active dataset is available.
+Fetch and process the new build's data using the same pipeline used for the initial dataset.
+Show a summary of what changed before applying it.
+Apply the update on user confirmation, with no manual file handling.
+Allow rollback to the previous dataset.
+Keep every previously installed dataset available for build-to-build comparison.
+
+The update flow must never apply a dataset that fails validation.
 
 4. Research and data sources
 Primary source: Forever client data
@@ -123,3 +136,54 @@ Derived stats
 Talent effects
 Racial modifiers
 Rounding and modifier ordering
+
+5. Data update pipeline
+
+5.1 Dataset as a versioned artefact
+Each client build produces one self-contained dataset package: raw tables, processed tables, a manifest (build number, source, retrieval time, per-file SHA-256), and a validation report. Packages are immutable once created. The application reads from exactly one active package at a time. The existing scripts/extract_db2.py and validation scripts become stages of this pipeline rather than one-off tools, and must be parameterised by build rather than hard-coded to 1.60.1.70338 or tree 1082.
+
+5.2 Pipeline stages
+1. Detect: determine the latest available build and compare it with the active package.
+2. Fetch: download the required tables for the new build into a staging area, never into the active package.
+3. Validate: run the structural validation (required columns, row counts, foreign keys, tree integrity, edge validity) and compare against the previous build's baseline.
+4. Diff: produce a structured change report (see 5.3).
+5. Process: regenerate derived data (tree inventory, effect classification, rule tables).
+6. Review: present the diff and validation result in the UI.
+7. Activate: on confirmation, atomically switch the active package pointer.
+8. Rollback: switching back to any retained package is a pointer change, not a rebuild.
+
+5.3 Change report
+The diff between builds must cover:
+Talents added, removed, or moved (node position, tree, prerequisites).
+Rank counts changed.
+Talent spell text or effect values changed.
+Effect classifications that changed (new effect type or aura signatures).
+Rows that appear in or disappear from the foreign-key orphan list.
+Curve data changes for any talent effect that uses scaling.
+Schema changes (columns added, removed, or renamed).
+
+5.4 Safety gates
+An update is blocked, not just warned about, when:
+Any expected table is missing or fails its hash check.
+A required column has disappeared or been renamed.
+Row counts drop sharply against the previous build (threshold to be defined).
+Tree integrity validation reports errors on a tree that was clean in the previous build.
+Warnings (such as new orphaned spell IDs) are shown in the review step and require acknowledgement but do not block.
+
+5.5 Interaction with verification status
+Effect rules carry a verification status (pending, verified, and so on). When an update changes the underlying data for a verified rule, that rule reverts to "needs re-verification" and is flagged in the UI. Verified status is never carried across builds silently. Rules whose underlying data is unchanged keep their status, with the build in which they were verified recorded.
+
+5.6 Build selection
+Users can choose which retained build to calculate against, and the active build is always visible in the UI. Saved builds (talent configurations) record the dataset version they were created under. When loaded under a different dataset, any talents or ranks that no longer exist are reported rather than dropped silently.
+
+5.7 Architecture constraint
+The data source (Wago.Tools) may not allow direct browser requests, and the DB2 exports are several megabytes per build. The fetch and processing steps therefore run server-side, either in a small backend service or a scheduled job, and the browser only triggers, reviews, and activates. The deployment model (hosted vs local) decides which of these applies and must be settled before implementation of this section begins. See Open questions.
+
+Open questions
+
+Deployment model: hosted web service, or locally run tool? This determines where the fetch and processing steps execute and how "one click" is implemented.
+Build detection: what is a reliable source for the list of available builds (Wago.Tools, the client patch feed, or manual entry)? Needs verification before design is finalised.
+Wago.Tools terms and rate limits: confirm that automated fetching at this volume is acceptable, and add caching or throttling accordingly.
+Update authority: can any user trigger an update, or only an administrator? In a multi-user deployment, one user's update should not change another user's results mid-session.
+Retention: how many past datasets are kept, and how long.
+Failure threshold values for the safety gates in 5.4.

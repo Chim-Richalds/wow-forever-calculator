@@ -1,0 +1,347 @@
+"""Fetch stage: download one build's DB2 tables from Wago.Tools into staging.
+
+Disk states for a build, all under `data_dir`:
+
+    staging/<v>.partial/        download in progress (or crashed; discarded next run)
+    staging/<v>/                every table downloaded and structurally checked, with
+                                a manifest.json. NOT yet validated, NOT installed.
+    raw/<v>/ + manifests/<v>.json
+                                installed. Reached only through promote_staged().
+
+Nothing under raw/ changes until promote_staged(). A failed or interrupted fetch
+never touches installed data, and one bad table discards the whole download.
+
+CLI (PYTHONPATH=src):
+    python -m wowcalc.fetch                 fetch the latest build (detected)
+    python -m wowcalc.fetch 1.60.1.70374    fetch a specific build
+    python -m wowcalc.fetch --promote       ...and install it (see warning below)
+"""
+
+from __future__ import annotations
+
+import argparse
+import csv
+import hashlib
+import io
+import json
+import os
+import shutil
+import urllib.error
+from collections import Counter
+from dataclasses import dataclass, field
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Callable
+
+from . import transport
+from .builds import BuildInfo, Config, Status, check_for_updates
+
+WAGO_TABLE_URL = "https://wago.tools/db2/{table}/csv?build={version}"
+SOURCE = "Wago.Tools DB2 CSV exports"
+DOWNLOAD_TIMEOUT = 60.0
+
+TABLES: tuple[str, ...] = (
+    "TraitTree",
+    "TraitNode",
+    "TraitNodeEntry",
+    "TraitNodeXTraitNodeEntry",
+    "TraitDefinition",
+    "TraitDefinitionEffectPoints",
+    "TraitEdge",
+    "CurvePoint",
+    "SpellName",
+    "Spell",
+    "SpellEffect",
+    "ChrClasses",
+    "ChrRaces",
+)
+
+FetchBytes = Callable[[str], transport.Response]
+Progress = Callable[[str, str], None]
+
+
+class FetchError(Exception):
+    """The fetch or promote could not proceed (as opposed to a table failing)."""
+
+
+@dataclass(frozen=True)
+class FetchResult:
+    version: str
+    ok: bool
+    staged_dir: Path | None
+    manifest: dict
+    failures: tuple[dict, ...] = field(default_factory=tuple)
+
+
+def _default_fetch_bytes(url: str) -> transport.Response:
+    return transport.get(url, timeout=DOWNLOAD_TIMEOUT, retries=1)
+
+
+# --------------------------------------------------------------------------
+# Per-table validation
+# --------------------------------------------------------------------------
+
+def validate_csv(content: bytes) -> dict:
+    """Structural check of one downloaded table. Raises ValueError if unusable.
+
+    Returns facts for the manifest. Malformed rows and duplicate headers are
+    reported, not rejected: judging them is the validation stage's job.
+    """
+    if not content:
+        raise ValueError("empty response")
+    if content[:500].lstrip().startswith(b"<"):
+        raise ValueError("response looks like HTML, not CSV")
+
+    text = content.decode("utf-8-sig")  # UnicodeDecodeError is a ValueError
+    try:
+        # newline="" so quoted fields containing line breaks stay one record
+        reader = csv.reader(io.StringIO(text, newline=""))
+        header = next(reader, None)
+        if not header or len(header) < 2:
+            raise ValueError("missing or invalid CSV header")
+        rows = 0
+        malformed = 0
+        for row in reader:
+            if not any(cell.strip() for cell in row):
+                continue
+            rows += 1
+            if len(row) != len(header):
+                malformed += 1
+    except csv.Error as exc:
+        raise ValueError(f"CSV parse error: {exc}") from exc
+
+    if rows == 0:
+        raise ValueError("no data rows")
+
+    counts = Counter(header)
+    return {
+        "columns": header,
+        "rows": rows,
+        "malformedRows": malformed,
+        "duplicateHeaders": sorted(name for name, n in counts.items() if n > 1),
+    }
+
+
+def _sha256_bytes(content: bytes) -> str:
+    return hashlib.sha256(content).hexdigest()
+
+
+def _sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+# --------------------------------------------------------------------------
+# Fetch
+# --------------------------------------------------------------------------
+
+def fetch_build(
+    version: str,
+    config: Config,
+    data_dir: Path,
+    fetch: FetchBytes = _default_fetch_bytes,
+    tables: tuple[str, ...] = TABLES,
+    overwrite: bool = False,
+    now: datetime | None = None,
+    progress: Progress | None = None,
+) -> FetchResult:
+    """Download every table for `version` into staging.
+
+    Returns ok=True with the staged directory only if every table downloaded and
+    passed validate_csv. Otherwise returns ok=False, nothing is left on disk, and
+    `failures` lists every table that failed (all tables are attempted so one run
+    reports everything wrong). Raises FetchError if the build is already
+    installed or staged, and ValueError for a malformed version string.
+    """
+    BuildInfo.from_version(version)  # raises ValueError if malformed
+    data_dir = Path(data_dir)
+    installed = data_dir / "raw" / version
+    staging_root = data_dir / "staging"
+    staged = staging_root / version
+    partial = staging_root / f"{version}.partial"
+
+    if installed.exists():
+        raise FetchError(f"Build {version} is already installed ({installed}).")
+    if staged.exists():
+        if not overwrite:
+            raise FetchError(
+                f"Build {version} is already staged ({staged}). "
+                "Promote it, or fetch again with overwrite."
+            )
+        shutil.rmtree(staged)
+    if partial.exists():
+        shutil.rmtree(partial)  # left by an interrupted run
+    partial.mkdir(parents=True)
+
+    when = now or datetime.now(timezone.utc)
+    manifest: dict = {
+        "product": config.product,
+        "build": version,
+        "retrievedAt": when.isoformat(),
+        "source": SOURCE,
+        "tables": {},
+    }
+    failures: list[dict] = []
+
+    try:
+        for table in tables:
+            url = WAGO_TABLE_URL.format(table=table, version=version)
+            try:
+                response = fetch(url)
+                facts = validate_csv(response.body)
+            except urllib.error.HTTPError as exc:  # must precede OSError (subclass)
+                exc.close()
+                error = f"HTTP {exc.code} {exc.reason}"
+            except (OSError, ValueError) as exc:
+                error = str(exc) or type(exc).__name__
+            else:
+                (partial / f"{table}.csv").write_bytes(response.body)
+                manifest["tables"][table] = {
+                    "url": url,
+                    "file": (Path(data_dir.name) / "raw" / version / f"{table}.csv").as_posix(),
+                    "sha256": _sha256_bytes(response.body),
+                    "bytes": len(response.body),
+                    **facts,
+                    "contentType": response.content_type,
+                    "status": "downloaded-needs-validation",
+                }
+                if progress:
+                    progress(table, f"{facts['rows']:,} rows")
+                continue
+
+            failures.append({"table": table, "error": error})
+            manifest["tables"][table] = {"url": url, "status": "failed", "error": error}
+            if progress:
+                progress(table, f"FAILED: {error}")
+
+        manifest["failures"] = failures
+        if failures:
+            return FetchResult(version, False, None, manifest, tuple(failures))
+
+        (partial / "manifest.json").write_text(
+            json.dumps(manifest, indent=2) + "\n", encoding="utf-8"
+        )
+        os.replace(partial, staged)  # commit: the package appears all at once
+        return FetchResult(version, True, staged, manifest, ())
+    finally:
+        if partial.exists():  # failure, or an exception mid-download
+            shutil.rmtree(partial, ignore_errors=True)
+
+
+# --------------------------------------------------------------------------
+# Promote
+# --------------------------------------------------------------------------
+
+def promote_staged(version: str, data_dir: Path) -> Path:
+    """Move a staged build into raw/ and publish its manifest.
+
+    Re-hashes every staged file against the manifest first, so a file altered or
+    truncated since download blocks installation. Callers are expected to run
+    the validation gates before this; this function checks integrity only.
+    Order is crash-safe: the manifest is published first (an orphan manifest is
+    harmless), then the directory is renamed in one step.
+    """
+    BuildInfo.from_version(version)
+    data_dir = Path(data_dir)
+    staged = data_dir / "staging" / version
+    final = data_dir / "raw" / version
+
+    if not staged.is_dir():
+        raise FetchError(f"Build {version} is not staged ({staged}).")
+    if final.exists():
+        raise FetchError(f"Build {version} is already installed ({final}).")
+
+    manifest_file = staged / "manifest.json"
+    try:
+        manifest = json.loads(manifest_file.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        raise FetchError(f"Staged manifest unreadable: {exc}") from exc
+
+    entries = manifest.get("tables") or {}
+    if not entries:
+        raise FetchError("Staged manifest lists no tables.")
+    problems: list[str] = []
+    for table, entry in entries.items():
+        path = staged / f"{table}.csv"
+        if entry.get("status") == "failed":
+            problems.append(f"{table}: recorded as failed")
+        elif not path.is_file():
+            problems.append(f"{table}: file missing")
+        elif _sha256_file(path) != entry.get("sha256"):
+            problems.append(f"{table}: hash mismatch")
+    if problems:
+        raise FetchError("Staged data failed integrity check: " + "; ".join(problems))
+
+    manifests_dir = data_dir / "manifests"
+    manifests_dir.mkdir(parents=True, exist_ok=True)
+    final.parent.mkdir(parents=True, exist_ok=True)
+    os.replace(manifest_file, manifests_dir / f"{version}.json")
+    os.replace(staged, final)
+    return final
+
+
+# --------------------------------------------------------------------------
+# CLI
+# --------------------------------------------------------------------------
+
+def main() -> int:
+    repo_root = Path(__file__).resolve().parents[2]
+    ap = argparse.ArgumentParser(description="Fetch a build's data into staging.")
+    ap.add_argument("version", nargs="?", help="e.g. 1.60.1.70374 (default: latest detected)")
+    ap.add_argument("--product", default=Config.product)
+    ap.add_argument("--region", default=Config.region)
+    ap.add_argument("--data-dir", type=Path, default=repo_root / "data")
+    ap.add_argument("--overwrite", action="store_true", help="replace an existing staged copy")
+    ap.add_argument(
+        "--promote", action="store_true",
+        help="install after fetching. WARNING: only download integrity is checked; "
+             "the validation gates are not implemented yet",
+    )
+    args = ap.parse_args()
+    config = Config(product=args.product, region=args.region)
+
+    version = args.version
+    if version is None:
+        check = check_for_updates(config, args.data_dir)
+        print(check.message)
+        if check.status is Status.UP_TO_DATE:
+            return 0
+        if check.status not in (Status.UPDATE_READY, Status.UPDATE_UNVERIFIED):
+            return 1
+        version = check.latest.version
+
+    print(f"\nFetching {version} ...")
+    try:
+        result = fetch_build(
+            version, config, args.data_dir, overwrite=args.overwrite,
+            progress=lambda table, note: print(f"  {table}: {note}"),
+        )
+    except (FetchError, ValueError) as exc:
+        print(f"ERROR: {exc}")
+        return 1
+
+    if not result.ok:
+        print(f"\nFAILED: {len(result.failures)} table(s) failed. Nothing was kept.")
+        return 1
+
+    total = sum(t["bytes"] for t in result.manifest["tables"].values())
+    print(f"\nStaged {len(result.manifest['tables'])} tables ({total:,} bytes): {result.staged_dir}")
+
+    if args.promote:
+        print("WARNING: promoting without validation gates (not implemented yet).")
+        try:
+            final = promote_staged(version, args.data_dir)
+        except FetchError as exc:
+            print(f"ERROR: {exc}")
+            return 1
+        print(f"Installed: {final}")
+    else:
+        print("Not installed yet. Re-run with --promote to install.")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
