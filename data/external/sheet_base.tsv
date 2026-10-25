@@ -1,0 +1,2721 @@
+class	race	level	section	label	value	unit
+Shaman	Orc	60	spell	Spell Damage	0	
+Shaman	Orc	60	spell	Arcane Damage	0	
+Shaman	Orc	60	spell	Fire Damage	0	
+Shaman	Orc	60	spell	Frost Damage	0	
+Shaman	Orc	60	spell	Holy Damage	0	
+Shaman	Orc	60	spell	Nature Damage	0	
+Shaman	Orc	60	spell	Shadow Damage	0	
+Shaman	Orc	60	spell	Healing	0	
+Shaman	Orc	60	spell	Spell Hit	0.00	%
+Shaman	Orc	60	spell	Hit Chance	0.00	%
+Shaman	Orc	60	spell	Spell Crit	8.09	%
+Shaman	Orc	60	spell	Crit Chance	4.32	%
+Shaman	Orc	60	spell	Spell Penetration	0	
+Shaman	Orc	60	spell	Mana per 5 Sec.	0	
+Shaman	Orc	60	melee	Attack Power	276	
+Shaman	Orc	60	melee	Hit Chance	0.00	%
+Shaman	Orc	60	melee	Crit Chance	4.32	%
+Shaman	Orc	60	melee	Haste	0.00	%
+Shaman	Orc	60	melee	Expertise	0.00	%
+Shaman	Orc	60	defense	Armor	104	
+Shaman	Orc	60	defense	Damage Reduction	1.86	%
+Shaman	Orc	60	defense	Defense	300	
+Shaman	Orc	60	defense	Dodge Chance	4.34	%
+Shaman	Orc	60	defense	Total Avoidance	9.34	%
+Shaman	Tauren	60	spell	Spell Damage	0	
+Shaman	Tauren	60	spell	Arcane Damage	0	
+Shaman	Tauren	60	spell	Fire Damage	0	
+Shaman	Tauren	60	spell	Frost Damage	0	
+Shaman	Tauren	60	spell	Holy Damage	0	
+Shaman	Tauren	60	spell	Nature Damage	0	
+Shaman	Tauren	60	spell	Shadow Damage	0	
+Shaman	Tauren	60	spell	Healing	0	
+Shaman	Tauren	60	spell	Spell Hit	0.00	%
+Shaman	Tauren	60	spell	Hit Chance	0.00	%
+Shaman	Tauren	60	spell	Spell Crit	7.95	%
+Shaman	Tauren	60	spell	Crit Chance	4.21	%
+Shaman	Tauren	60	spell	Spell Penetration	0	
+Shaman	Tauren	60	spell	Mana per 5 Sec.	0	
+Shaman	Tauren	60	melee	Attack Power	280	
+Shaman	Tauren	60	melee	Hit Chance	0.00	%
+Shaman	Tauren	60	melee	Crit Chance	4.21	%
+Shaman	Tauren	60	melee	Haste	0.00	%
+Shaman	Tauren	60	melee	Expertise	0.00	%
+Shaman	Tauren	60	defense	Armor	100	
+Shaman	Tauren	60	defense	Damage Reduction	1.79	%
+Shaman	Tauren	60	defense	Defense	300	
+Shaman	Tauren	60	defense	Dodge Chance	4.24	%
+Shaman	Tauren	60	defense	Total Avoidance	9.24	%
+Shaman	Tauren	60	defense	Boss Avoidance	8.04	%
+Shaman	Tauren	60	defense	Boss Miss Chance	4.40	%
+Shaman	Tauren	60	defense	Boss Crit Chance	5.60	%
+Shaman	Tauren	60	defense	Boss Crush Chance	15.00	%
+Shaman	Troll	60	spell	Spell Damage	0	
+Shaman	Troll	60	spell	Arcane Damage	0	
+Shaman	Troll	60	spell	Fire Damage	0	
+Shaman	Troll	60	spell	Frost Damage	0	
+Shaman	Troll	60	spell	Holy Damage	0	
+Shaman	Troll	60	spell	Nature Damage	0	
+Shaman	Troll	60	spell	Shadow Damage	0	
+Shaman	Troll	60	spell	Healing	0	
+Shaman	Troll	60	spell	Spell Hit	0.00	%
+Shaman	Troll	60	spell	Hit Chance	0.00	%
+Shaman	Troll	60	spell	Spell Crit	8.32	%
+Shaman	Troll	60	spell	Crit Chance	4.57	%
+Shaman	Troll	60	spell	Spell Penetration	0	
+Shaman	Troll	60	spell	Mana per 5 Sec.	0	
+Shaman	Troll	60	melee	Attack Power	272	
+Shaman	Troll	60	melee	Hit Chance	0.00	%
+Shaman	Troll	60	melee	Crit Chance	4.57	%
+Shaman	Troll	60	melee	Haste	0.00	%
+Shaman	Troll	60	melee	Expertise	0.00	%
+Shaman	Troll	60	defense	Armor	114	
+Shaman	Troll	60	defense	Damage Reduction	2.03	%
+Shaman	Troll	60	defense	Defense	300	
+Shaman	Troll	60	defense	Dodge Chance	4.60	%
+Shaman	Troll	60	defense	Total Avoidance	9.60	%
+Shaman	Troll	60	defense	Boss Avoidance	8.40	%
+Shaman	Troll	60	defense	Boss Miss Chance	4.40	%
+Shaman	Troll	60	defense	Boss Crit Chance	5.60	%
+Shaman	Troll	60	defense	Boss Crush Chance	15.00	%
+Shaman	Skyborne H	60	spell	Spell Damage	0	
+Shaman	Skyborne H	60	spell	Arcane Damage	0	
+Shaman	Skyborne H	60	spell	Fire Damage	0	
+Shaman	Skyborne H	60	spell	Frost Damage	0	
+Shaman	Skyborne H	60	spell	Holy Damage	0	
+Shaman	Skyborne H	60	spell	Nature Damage	0	
+Shaman	Skyborne H	60	spell	Shadow Damage	0	
+Shaman	Skyborne H	60	spell	Healing	0	
+Shaman	Skyborne H	60	spell	Spell Hit	0.00	%
+Shaman	Skyborne H	60	spell	Hit Chance	0.00	%
+Shaman	Skyborne H	60	spell	Spell Crit	8.09	%
+Shaman	Skyborne H	60	spell	Crit Chance	4.32	%
+Shaman	Skyborne H	60	spell	Spell Penetration	0	
+Shaman	Skyborne H	60	spell	Mana per 5 Sec.	0	
+Shaman	Skyborne H	60	melee	Attack Power	276	
+Shaman	Skyborne H	60	melee	Hit Chance	0.00	%
+Shaman	Skyborne H	60	melee	Crit Chance	4.32	%
+Shaman	Skyborne H	60	melee	Haste	1.00	%
+Shaman	Skyborne H	60	melee	Expertise	0.00	%
+Shaman	Skyborne H	60	defense	Armor	104	
+Shaman	Skyborne H	60	defense	Damage Reduction	1.86	%
+Shaman	Skyborne H	60	defense	Defense	300	
+Shaman	Skyborne H	60	defense	Dodge Chance	4.34	%
+Shaman	Skyborne H	60	defense	Total Avoidance	9.34	%
+Shaman	Skyborne H	60	defense	Boss Avoidance	8.14	%
+Shaman	Skyborne H	60	defense	Boss Miss Chance	4.40	%
+Shaman	Skyborne H	60	defense	Boss Crit Chance	5.60	%
+Shaman	Skyborne H	60	defense	Boss Crush Chance	15.00	%
+Shaman	Dwarf	60	spell	Spell Damage	0	
+Shaman	Dwarf	60	spell	Arcane Damage	0	
+Shaman	Dwarf	60	spell	Fire Damage	0	
+Shaman	Dwarf	60	spell	Frost Damage	0	
+Shaman	Dwarf	60	spell	Holy Damage	0	
+Shaman	Dwarf	60	spell	Nature Damage	0	
+Shaman	Dwarf	60	spell	Shadow Damage	0	
+Shaman	Dwarf	60	spell	Healing	0	
+Shaman	Dwarf	60	spell	Spell Hit	0.00	%
+Shaman	Dwarf	60	spell	Hit Chance	0.00	%
+Shaman	Dwarf	60	spell	Spell Crit	7.95	%
+Shaman	Dwarf	60	spell	Crit Chance	4.21	%
+Shaman	Dwarf	60	spell	Spell Penetration	0	
+Shaman	Dwarf	60	spell	Mana per 5 Sec.	0	
+Shaman	Dwarf	60	melee	Attack Power	280	
+Shaman	Dwarf	60	melee	Hit Chance	0.00	%
+Shaman	Dwarf	60	melee	Crit Chance	4.21	%
+Shaman	Dwarf	60	melee	Haste	0.00	%
+Shaman	Dwarf	60	melee	Expertise	0.00	%
+Shaman	Dwarf	60	defense	Armor	100	
+Shaman	Dwarf	60	defense	Damage Reduction	1.79	%
+Shaman	Dwarf	60	defense	Defense	300	
+Shaman	Dwarf	60	defense	Dodge Chance	4.24	%
+Shaman	Dwarf	60	defense	Total Avoidance	9.24	%
+Shaman	Dwarf	60	defense	Boss Avoidance	8.04	%
+Shaman	Dwarf	60	defense	Boss Miss Chance	4.40	%
+Shaman	Dwarf	60	defense	Boss Crit Chance	5.60	%
+Shaman	Dwarf	60	defense	Boss Crush Chance	15.00	%
+Shaman	Dwarf	1	spell	Spell Damage	0	
+Shaman	Dwarf	1	spell	Arcane Damage	0	
+Shaman	Dwarf	1	spell	Fire Damage	0	
+Shaman	Dwarf	1	spell	Frost Damage	0	
+Shaman	Dwarf	1	spell	Holy Damage	0	
+Shaman	Dwarf	1	spell	Nature Damage	0	
+Shaman	Dwarf	1	spell	Shadow Damage	0	
+Shaman	Dwarf	1	spell	Healing	0	
+Shaman	Dwarf	1	spell	Spell Hit	0.00	%
+Shaman	Dwarf	1	spell	Hit Chance	0.00	%
+Shaman	Dwarf	1	spell	Spell Crit	8.51	%
+Shaman	Dwarf	1	spell	Crit Chance	4.15	%
+Shaman	Dwarf	1	spell	Spell Penetration	0	
+Shaman	Dwarf	1	spell	Mana per 5 Sec.	0	
+Shaman	Dwarf	1	melee	Attack Power	34	
+Shaman	Dwarf	1	melee	Hit Chance	0.00	%
+Shaman	Dwarf	1	melee	Crit Chance	4.15	%
+Shaman	Dwarf	1	melee	Haste	0.00	%
+Shaman	Dwarf	1	melee	Expertise	0.00	%
+Shaman	Dwarf	1	defense	Armor	30	
+Shaman	Dwarf	1	defense	Damage Reduction	5.83	%
+Shaman	Dwarf	1	defense	Defense	5	
+Shaman	Dwarf	1	defense	Dodge Chance	4.17	%
+Shaman	Dwarf	1	defense	Total Avoidance	9.18	%
+Shaman	Dwarf	1	defense	Boss Avoidance	7.97	%
+Shaman	Dwarf	1	defense	Boss Miss Chance	4.40	%
+Shaman	Dwarf	1	defense	Boss Crit Chance	5.60	%
+Shaman	Dwarf	1	defense	Boss Crush Chance	15.00	%
+Shaman	Skyborne H	1	spell	Spell Damage	0	
+Shaman	Skyborne H	1	spell	Arcane Damage	0	
+Shaman	Skyborne H	1	spell	Fire Damage	0	
+Shaman	Skyborne H	1	spell	Frost Damage	0	
+Shaman	Skyborne H	1	spell	Holy Damage	0	
+Shaman	Skyborne H	1	spell	Nature Damage	0	
+Shaman	Skyborne H	1	spell	Shadow Damage	0	
+Shaman	Skyborne H	1	spell	Healing	0	
+Shaman	Skyborne H	1	spell	Spell Hit	0.00	%
+Shaman	Skyborne H	1	spell	Hit Chance	0.00	%
+Shaman	Skyborne H	1	spell	Spell Crit	9.09	%
+Shaman	Skyborne H	1	spell	Crit Chance	4.48	%
+Shaman	Skyborne H	1	spell	Spell Penetration	0	
+Shaman	Skyborne H	1	spell	Mana per 5 Sec.	0	
+Shaman	Skyborne H	1	melee	Attack Power	30	
+Shaman	Skyborne H	1	melee	Hit Chance	0.00	%
+Shaman	Skyborne H	1	melee	Crit Chance	4.48	%
+Shaman	Skyborne H	1	melee	Haste	1.00	%
+Shaman	Skyborne H	1	melee	Expertise	0.00	%
+Shaman	Skyborne H	1	defense	Armor	34	
+Shaman	Skyborne H	1	defense	Damage Reduction	6.55	%
+Shaman	Skyborne H	1	defense	Defense	5	
+Shaman	Skyborne H	1	defense	Dodge Chance	4.50	%
+Shaman	Skyborne H	1	defense	Total Avoidance	9.50	%
+Shaman	Skyborne H	1	defense	Boss Avoidance	8.30	%
+Shaman	Skyborne H	1	defense	Boss Miss Chance	4.40	%
+Shaman	Skyborne H	1	defense	Boss Crit Chance	5.60	%
+Shaman	Skyborne H	1	defense	Boss Crush Chance	15.00	%
+Shaman	Troll	1	spell	Spell Damage	0	
+Shaman	Troll	1	spell	Arcane Damage	0	
+Shaman	Troll	1	spell	Fire Damage	0	
+Shaman	Troll	1	spell	Frost Damage	0	
+Shaman	Troll	1	spell	Holy Damage	0	
+Shaman	Troll	1	spell	Nature Damage	0	
+Shaman	Troll	1	spell	Shadow Damage	0	
+Shaman	Troll	1	spell	Healing	0	
+Shaman	Troll	1	spell	Spell Hit	0.00	%
+Shaman	Troll	1	spell	Hit Chance	0.00	%
+Shaman	Troll	1	spell	Spell Crit	9.79	%
+Shaman	Troll	1	spell	Crit Chance	5.31	%
+Shaman	Troll	1	spell	Spell Penetration	0	
+Shaman	Troll	1	spell	Mana per 5 Sec.	0	
+Shaman	Troll	1	melee	Attack Power	26	
+Shaman	Troll	1	melee	Hit Chance	0.00	%
+Shaman	Troll	1	melee	Crit Chance	5.31	%
+Shaman	Troll	1	melee	Haste	0.00	%
+Shaman	Troll	1	melee	Expertise	0.00	%
+Shaman	Troll	1	defense	Armor	44	
+Shaman	Troll	1	defense	Damage Reduction	8.32	%
+Shaman	Troll	1	defense	Defense	5	
+Shaman	Troll	1	defense	Dodge Chance	5.33	%
+Shaman	Troll	1	defense	Total Avoidance	10.33	%
+Shaman	Troll	1	defense	Boss Avoidance	9.13	%
+Shaman	Troll	1	defense	Boss Miss Chance	4.40	%
+Shaman	Troll	1	defense	Boss Crit Chance	5.60	%
+Shaman	Troll	1	defense	Boss Crush Chance	15.00	%
+Shaman	Tauren	1	spell	Spell Damage	0	
+Shaman	Tauren	1	spell	Arcane Damage	0	
+Shaman	Tauren	1	spell	Fire Damage	0	
+Shaman	Tauren	1	spell	Frost Damage	0	
+Shaman	Tauren	1	spell	Holy Damage	0	
+Shaman	Tauren	1	spell	Nature Damage	0	
+Shaman	Tauren	1	spell	Shadow Damage	0	
+Shaman	Tauren	1	spell	Healing	0	
+Shaman	Tauren	1	spell	Spell Hit	0.00	%
+Shaman	Tauren	1	spell	Hit Chance	0.00	%
+Shaman	Tauren	1	spell	Spell Crit	8.51	%
+Shaman	Tauren	1	spell	Crit Chance	4.15	%
+Shaman	Tauren	1	spell	Spell Penetration	0	
+Shaman	Tauren	1	spell	Mana per 5 Sec.	0	
+Shaman	Tauren	1	melee	Attack Power	34	
+Shaman	Tauren	1	melee	Hit Chance	0.00	%
+Shaman	Tauren	1	melee	Crit Chance	4.15	%
+Shaman	Tauren	1	melee	Haste	0.00	%
+Shaman	Tauren	1	melee	Expertise	0.00	%
+Shaman	Tauren	1	defense	Armor	30	
+Shaman	Tauren	1	defense	Damage Reduction	5.83	%
+Shaman	Tauren	1	defense	Defense	5	
+Shaman	Tauren	1	defense	Dodge Chance	4.17	%
+Shaman	Tauren	1	defense	Total Avoidance	9.18	%
+Shaman	Tauren	1	defense	Boss Avoidance	7.97	%
+Shaman	Tauren	1	defense	Boss Miss Chance	4.40	%
+Shaman	Tauren	1	defense	Boss Crit Chance	5.60	%
+Shaman	Tauren	1	defense	Boss Crush Chance	15.00	%
+Shaman	Orc	1	spell	Spell Damage	0	
+Shaman	Orc	1	spell	Arcane Damage	0	
+Shaman	Orc	1	spell	Fire Damage	0	
+Shaman	Orc	1	spell	Frost Damage	0	
+Shaman	Orc	1	spell	Holy Damage	0	
+Shaman	Orc	1	spell	Nature Damage	0	
+Shaman	Orc	1	spell	Shadow Damage	0	
+Shaman	Orc	1	spell	Healing	0	
+Shaman	Orc	1	spell	Spell Hit	0.00	%
+Shaman	Orc	1	spell	Hit Chance	0.00	%
+Shaman	Orc	1	spell	Spell Crit	9.09	%
+Shaman	Orc	1	spell	Crit Chance	4.48	%
+Shaman	Orc	1	spell	Spell Penetration	0	
+Shaman	Orc	1	spell	Mana per 5 Sec.	0	
+Shaman	Orc	1	melee	Attack Power	30	
+Shaman	Orc	1	melee	Hit Chance	0.00	%
+Shaman	Orc	1	melee	Crit Chance	4.48	%
+Shaman	Orc	1	melee	Haste	0.00	%
+Shaman	Orc	1	melee	Expertise	0.00	%
+Shaman	Orc	1	defense	Armor	34	
+Shaman	Orc	1	defense	Damage Reduction	6.55	%
+Shaman	Orc	1	defense	Defense	5	
+Shaman	Orc	1	defense	Dodge Chance	4.50	%
+Shaman	Orc	1	defense	Total Avoidance	9.50	%
+Shaman	Orc	1	defense	Boss Avoidance	8.30	%
+Shaman	Orc	1	defense	Boss Miss Chance	4.40	%
+Shaman	Orc	1	defense	Boss Crit Chance	5.60	%
+Shaman	Orc	1	defense	Boss Crush Chance	15.00	%
+Druid	Skyborne H	60	spell	Spell Damage	0	
+Druid	Skyborne H	60	spell	Arcane Damage	0	
+Druid	Skyborne H	60	spell	Fire Damage	0	
+Druid	Skyborne H	60	spell	Frost Damage	0	
+Druid	Skyborne H	60	spell	Holy Damage	0	
+Druid	Skyborne H	60	spell	Nature Damage	0	
+Druid	Skyborne H	60	spell	Shadow Damage	0	
+Druid	Skyborne H	60	spell	Healing	0	
+Druid	Skyborne H	60	spell	Spell Hit	0.00	%
+Druid	Skyborne H	60	spell	Hit Chance	0.00	%
+Druid	Skyborne H	60	spell	Spell Crit	7.68	%
+Druid	Skyborne H	60	spell	Crit Chance	4.21	%
+Druid	Skyborne H	60	spell	Spell Penetration	0	
+Druid	Skyborne H	60	spell	Mana per 5 Sec.	0	
+Druid	Skyborne H	60	melee	Attack Power	104	
+Druid	Skyborne H	60	melee	Hit Chance	0.00	%
+Druid	Skyborne H	60	melee	Crit Chance	4.21	%
+Druid	Skyborne H	60	melee	Haste	1.00	%
+Druid	Skyborne H	60	melee	Expertise	0.00	%
+Druid	Skyborne H	60	defense	Armor	130	
+Druid	Skyborne H	60	defense	Damage Reduction	2.31	%
+Druid	Skyborne H	60	defense	Defense	300	
+Druid	Skyborne H	60	defense	Dodge Chance	4.15	%
+Druid	Skyborne H	60	defense	Total Avoidance	9.15	%
+Druid	Skyborne H	60	defense	Boss Avoidance	7.95	%
+Druid	Skyborne H	60	defense	Boss Miss Chance	4.40	%
+Druid	Skyborne H	60	defense	Boss Crit Chance	5.60	%
+Druid	Skyborne H	60	defense	Boss Crush Chance	15.00	%
+Druid	Tauren	60	spell	Spell Damage	0	
+Druid	Tauren	60	spell	Arcane Damage	0	
+Druid	Tauren	60	spell	Fire Damage	0	
+Druid	Tauren	60	spell	Frost Damage	0	
+Druid	Tauren	60	spell	Holy Damage	0	
+Druid	Tauren	60	spell	Nature Damage	0	
+Druid	Tauren	60	spell	Shadow Damage	0	
+Druid	Tauren	60	spell	Healing	0	
+Druid	Tauren	60	spell	Spell Hit	0.00	%
+Druid	Tauren	60	spell	Hit Chance	0.00	%
+Druid	Tauren	60	spell	Spell Crit	7.10	%
+Druid	Tauren	60	spell	Crit Chance	3.71	%
+Druid	Tauren	60	spell	Spell Penetration	0	
+Druid	Tauren	60	spell	Mana per 5 Sec.	0	
+Druid	Tauren	60	melee	Attack Power	120	
+Druid	Tauren	60	melee	Hit Chance	0.00	%
+Druid	Tauren	60	melee	Crit Chance	3.71	%
+Druid	Tauren	60	melee	Haste	0.00	%
+Druid	Tauren	60	melee	Expertise	0.00	%
+Druid	Tauren	60	defense	Armor	110	
+Druid	Tauren	60	defense	Damage Reduction	1.96	%
+Druid	Tauren	60	defense	Defense	300	
+Druid	Tauren	60	defense	Dodge Chance	3.65	%
+Druid	Tauren	60	defense	Total Avoidance	8.65	%
+Druid	Tauren	60	defense	Boss Avoidance	7.45	%
+Druid	Tauren	60	defense	Boss Miss Chance	4.40	%
+Druid	Tauren	60	defense	Boss Crit Chance	5.60	%
+Druid	Tauren	60	defense	Boss Crush Chance	15.00	%
+Druid	Night Elf	60	spell	Spell Damage	0	
+Druid	Night Elf	60	spell	Arcane Damage	0	
+Druid	Night Elf	60	spell	Fire Damage	0	
+Druid	Night Elf	60	spell	Frost Damage	0	
+Druid	Night Elf	60	spell	Holy Damage	0	
+Druid	Night Elf	60	spell	Nature Damage	0	
+Druid	Night Elf	60	spell	Shadow Damage	0	
+Druid	Night Elf	60	spell	Healing	0	
+Druid	Night Elf	60	spell	Spell Hit	0.00	%
+Druid	Night Elf	60	spell	Hit Chance	0.00	%
+Druid	Night Elf	60	spell	Spell Crit	7.68	%
+Druid	Night Elf	60	spell	Crit Chance	4.21	%
+Druid	Night Elf	60	spell	Spell Penetration	0	
+Druid	Night Elf	60	spell	Mana per 5 Sec.	0	
+Druid	Night Elf	60	melee	Attack Power	104	
+Druid	Night Elf	60	melee	Hit Chance	0.00	%
+Druid	Night Elf	60	melee	Crit Chance	4.21	%
+Druid	Night Elf	60	melee	Haste	0.00	%
+Druid	Night Elf	60	melee	Expertise	0.00	%
+Druid	Night Elf	60	defense	Armor	130	
+Druid	Night Elf	60	defense	Damage Reduction	2.31	%
+Druid	Night Elf	60	defense	Defense	300	
+Druid	Night Elf	60	defense	Dodge Chance	5.15	%
+Druid	Night Elf	60	defense	Total Avoidance	10.15	%
+Druid	Night Elf	60	defense	Boss Avoidance	8.95	%
+Druid	Night Elf	60	defense	Boss Miss Chance	4.40	%
+Druid	Night Elf	60	defense	Boss Crit Chance	5.60	%
+Druid	Night Elf	60	defense	Boss Crush Chance	15.00	%
+Druid	Skyborne A	60	spell	Spell Damage	0	
+Druid	Skyborne A	60	spell	Arcane Damage	0	
+Druid	Skyborne A	60	spell	Fire Damage	0	
+Druid	Skyborne A	60	spell	Frost Damage	0	
+Druid	Skyborne A	60	spell	Holy Damage	0	
+Druid	Skyborne A	60	spell	Nature Damage	0	
+Druid	Skyborne A	60	spell	Shadow Damage	0	
+Druid	Skyborne A	60	spell	Healing	0	
+Druid	Skyborne A	60	spell	Spell Hit	0.00	%
+Druid	Skyborne A	60	spell	Hit Chance	0.00	%
+Druid	Skyborne A	60	spell	Spell Crit	7.68	%
+Druid	Skyborne A	60	spell	Crit Chance	4.21	%
+Druid	Skyborne A	60	spell	Spell Penetration	0	
+Druid	Skyborne A	60	spell	Mana per 5 Sec.	0	
+Druid	Skyborne A	60	melee	Attack Power	104	
+Druid	Skyborne A	60	melee	Hit Chance	0.00	%
+Druid	Skyborne A	60	melee	Crit Chance	4.21	%
+Druid	Skyborne A	60	melee	Haste	1.00	%
+Druid	Skyborne A	60	melee	Expertise	0.00	%
+Druid	Skyborne A	60	defense	Armor	130	
+Druid	Skyborne A	60	defense	Damage Reduction	2.31	%
+Druid	Skyborne A	60	defense	Defense	300	
+Druid	Skyborne A	60	defense	Dodge Chance	4.15	%
+Druid	Skyborne A	60	defense	Total Avoidance	9.15	%
+Druid	Skyborne A	60	defense	Boss Avoidance	7.95	%
+Druid	Skyborne A	60	defense	Boss Miss Chance	4.40	%
+Druid	Skyborne A	60	defense	Boss Crit Chance	5.60	%
+Druid	Skyborne A	60	defense	Boss Crush Chance	15.00	%
+Druid	Skyborne A	1	spell	Spell Damage	0	
+Druid	Skyborne A	1	spell	Arcane Damage	0	
+Druid	Skyborne A	1	spell	Fire Damage	0	
+Druid	Skyborne A	1	spell	Frost Damage	0	
+Druid	Skyborne A	1	spell	Holy Damage	0	
+Druid	Skyborne A	1	spell	Nature Damage	0	
+Druid	Skyborne A	1	spell	Shadow Damage	0	
+Druid	Skyborne A	1	spell	Healing	0	
+Druid	Skyborne A	1	spell	Spell Hit	0.00	%
+Druid	Skyborne A	1	spell	Hit Chance	0.00	%
+Druid	Skyborne A	1	spell	Spell Crit	11.09	%
+Druid	Skyborne A	1	spell	Crit Chance	6.09	%
+Druid	Skyborne A	1	spell	Spell Penetration	0	
+Druid	Skyborne A	1	spell	Mana per 5 Sec.	0	
+Druid	Skyborne A	1	melee	Attack Power	16	
+Druid	Skyborne A	1	melee	Hit Chance	0.00	%
+Druid	Skyborne A	1	melee	Crit Chance	6.09	%
+Druid	Skyborne A	1	melee	Haste	1.00	%
+Druid	Skyborne A	1	melee	Expertise	0.00	%
+Druid	Skyborne A	1	defense	Armor	50	
+Druid	Skyborne A	1	defense	Damage Reduction	9.35	%
+Druid	Skyborne A	1	defense	Defense	5	
+Druid	Skyborne A	1	defense	Dodge Chance	6.03	%
+Druid	Skyborne A	1	defense	Total Avoidance	11.03	%
+Druid	Skyborne A	1	defense	Boss Avoidance	9.83	%
+Druid	Skyborne A	1	defense	Boss Miss Chance	4.40	%
+Druid	Skyborne A	1	defense	Boss Crit Chance	5.60	%
+Druid	Skyborne A	1	defense	Boss Crush Chance	15.00	%
+Druid	Night Elf	1	spell	Spell Damage	0	
+Druid	Night Elf	1	spell	Arcane Damage	0	
+Druid	Night Elf	1	spell	Fire Damage	0	
+Druid	Night Elf	1	spell	Frost Damage	0	
+Druid	Night Elf	1	spell	Holy Damage	0	
+Druid	Night Elf	1	spell	Nature Damage	0	
+Druid	Night Elf	1	spell	Shadow Damage	0	
+Druid	Night Elf	1	spell	Healing	0	
+Druid	Night Elf	1	spell	Spell Hit	0.00	%
+Druid	Night Elf	1	spell	Hit Chance	0.00	%
+Druid	Night Elf	1	spell	Spell Crit	11.09	%
+Druid	Night Elf	1	spell	Crit Chance	6.09	%
+Druid	Night Elf	1	spell	Spell Penetration	0	
+Druid	Night Elf	1	spell	Mana per 5 Sec.	0	
+Druid	Night Elf	1	melee	Attack Power	16	
+Druid	Night Elf	1	melee	Hit Chance	0.00	%
+Druid	Night Elf	1	melee	Crit Chance	6.09	%
+Druid	Night Elf	1	melee	Haste	0.00	%
+Druid	Night Elf	1	melee	Expertise	0.00	%
+Druid	Night Elf	1	defense	Armor	50	
+Druid	Night Elf	1	defense	Damage Reduction	9.35	%
+Druid	Night Elf	1	defense	Defense	5	
+Druid	Night Elf	1	defense	Dodge Chance	7.03	%
+Druid	Night Elf	1	defense	Total Avoidance	12.03	%
+Druid	Night Elf	1	defense	Boss Avoidance	10.83	%
+Druid	Night Elf	1	defense	Boss Miss Chance	4.40	%
+Druid	Night Elf	1	defense	Boss Crit Chance	5.60	%
+Druid	Night Elf	1	defense	Boss Crush Chance	15.00	%
+Druid	Tauren	1	spell	Spell Damage	0	
+Druid	Tauren	1	spell	Arcane Damage	0	
+Druid	Tauren	1	spell	Fire Damage	0	
+Druid	Tauren	1	spell	Frost Damage	0	
+Druid	Tauren	1	spell	Holy Damage	0	
+Druid	Tauren	1	spell	Nature Damage	0	
+Druid	Tauren	1	spell	Shadow Damage	0	
+Druid	Tauren	1	spell	Healing	0	
+Druid	Tauren	1	spell	Spell Hit	0.00	%
+Druid	Tauren	1	spell	Hit Chance	0.00	%
+Druid	Tauren	1	spell	Spell Crit	8.31	%
+Druid	Tauren	1	spell	Crit Chance	4.04	%
+Druid	Tauren	1	spell	Spell Penetration	0	
+Druid	Tauren	1	spell	Mana per 5 Sec.	0	
+Druid	Tauren	1	melee	Attack Power	32	
+Druid	Tauren	1	melee	Hit Chance	0.00	%
+Druid	Tauren	1	melee	Crit Chance	4.04	%
+Druid	Tauren	1	melee	Haste	0.00	%
+Druid	Tauren	1	melee	Expertise	0.00	%
+Druid	Tauren	1	defense	Armor	30	
+Druid	Tauren	1	defense	Damage Reduction	5.83	%
+Druid	Tauren	1	defense	Defense	5	
+Druid	Tauren	1	defense	Dodge Chance	3.97	%
+Druid	Tauren	1	defense	Total Avoidance	8.97	%
+Druid	Tauren	1	defense	Boss Avoidance	7.78	%
+Druid	Tauren	1	defense	Boss Miss Chance	4.40	%
+Druid	Tauren	1	defense	Boss Crit Chance	5.60	%
+Druid	Tauren	1	defense	Boss Crush Chance	15.00	%
+Druid	Skyborne H	1	spell	Spell Damage	0	
+Druid	Skyborne H	1	spell	Arcane Damage	0	
+Druid	Skyborne H	1	spell	Fire Damage	0	
+Druid	Skyborne H	1	spell	Frost Damage	0	
+Druid	Skyborne H	1	spell	Holy Damage	0	
+Druid	Skyborne H	1	spell	Nature Damage	0	
+Druid	Skyborne H	1	spell	Shadow Damage	0	
+Druid	Skyborne H	1	spell	Healing	0	
+Druid	Skyborne H	1	spell	Spell Hit	0.00	%
+Druid	Skyborne H	1	spell	Hit Chance	0.00	%
+Druid	Skyborne H	1	spell	Spell Crit	11.09	%
+Druid	Skyborne H	1	spell	Crit Chance	6.09	%
+Druid	Skyborne H	1	spell	Spell Penetration	0	
+Druid	Skyborne H	1	spell	Mana per 5 Sec.	0	
+Druid	Skyborne H	1	melee	Attack Power	16	
+Druid	Skyborne H	1	melee	Hit Chance	0.00	%
+Druid	Skyborne H	1	melee	Crit Chance	6.09	%
+Druid	Skyborne H	1	melee	Haste	1.00	%
+Druid	Skyborne H	1	melee	Expertise	0.00	%
+Druid	Skyborne H	1	defense	Armor	50	
+Druid	Skyborne H	1	defense	Damage Reduction	9.35	%
+Druid	Skyborne H	1	defense	Defense	5	
+Druid	Skyborne H	1	defense	Dodge Chance	6.03	%
+Druid	Skyborne H	1	defense	Total Avoidance	11.03	%
+Druid	Skyborne H	1	defense	Boss Avoidance	9.83	%
+Druid	Skyborne H	1	defense	Boss Miss Chance	4.40	%
+Druid	Skyborne H	1	defense	Boss Crit Chance	5.60	%
+Druid	Skyborne H	1	defense	Boss Crush Chance	15.00	%
+Hunter	Human	60	spell	Spell Damage	0	
+Hunter	Human	60	spell	Arcane Damage	0	
+Hunter	Human	60	spell	Fire Damage	0	
+Hunter	Human	60	spell	Frost Damage	0	
+Hunter	Human	60	spell	Holy Damage	0	
+Hunter	Human	60	spell	Nature Damage	0	
+Hunter	Human	60	spell	Shadow Damage	0	
+Hunter	Human	60	spell	Healing	0	
+Hunter	Human	60	spell	Spell Hit	0.00	%
+Hunter	Human	60	spell	Hit Chance	0.00	%
+Hunter	Human	60	spell	Spell Crit	5.41	%
+Hunter	Human	60	spell	Crit Chance	0.75	%
+Hunter	Human	60	spell	Spell Penetration	0	
+Hunter	Human	60	spell	Mana per 5 Sec.	0	
+Hunter	Human	60	melee	Attack Power	278	
+Hunter	Human	60	melee	Hit Chance	0.00	%
+Hunter	Human	60	melee	Crit Chance	0.75	%
+Hunter	Human	60	melee	Haste	0.00	%
+Hunter	Human	60	melee	Expertise	0.00	%
+Hunter	Human	60	defense	Armor	242	
+Hunter	Human	60	defense	Damage Reduction	4.21	%
+Hunter	Human	60	defense	Defense	300	
+Hunter	Human	60	defense	Dodge Chance	2.29	%
+Hunter	Human	60	defense	Parry Chance	5.00	%
+Hunter	Human	60	defense	Total Avoidance	12.29	%
+Hunter	Human	60	defense	Boss Avoidance	10.49	%
+Hunter	Human	60	defense	Boss Miss Chance	4.40	%
+Hunter	Human	60	defense	Boss Crit Chance	5.60	%
+Hunter	Human	60	defense	Boss Crush Chance	15.00	%
+Hunter	Human	60	ranged	Ranged Attack Power	352	
+Hunter	Human	60	ranged	Ranged Hit Chance	0.00	%
+Hunter	Human	60	ranged	Ranged Crit Chance	0.75	%
+Hunter	Human	60	ranged	Haste	0.00	%
+Hunter	Dwarf	60	spell	Spell Damage	0	
+Hunter	Dwarf	60	spell	Arcane Damage	0	
+Hunter	Dwarf	60	spell	Fire Damage	0	
+Hunter	Dwarf	60	spell	Frost Damage	0	
+Hunter	Dwarf	60	spell	Holy Damage	0	
+Hunter	Dwarf	60	spell	Nature Damage	0	
+Hunter	Dwarf	60	spell	Shadow Damage	0	
+Hunter	Dwarf	60	spell	Healing	0	
+Hunter	Dwarf	60	spell	Spell Hit	0.00	%
+Hunter	Dwarf	60	spell	Hit Chance	0.00	%
+Hunter	Dwarf	60	spell	Spell Crit	5.41	%
+Hunter	Dwarf	60	spell	Crit Chance	0.75	%
+Hunter	Dwarf	60	spell	Spell Penetration	0	
+Hunter	Dwarf	60	spell	Mana per 5 Sec.	0	
+Hunter	Dwarf	60	melee	Attack Power	278	
+Hunter	Dwarf	60	melee	Hit Chance	0.00	%
+Hunter	Dwarf	60	melee	Crit Chance	0.75	%
+Hunter	Dwarf	60	melee	Haste	0.00	%
+Hunter	Dwarf	60	melee	Expertise	0.00	%
+Hunter	Dwarf	60	defense	Armor	242	
+Hunter	Dwarf	60	defense	Damage Reduction	4.21	%
+Hunter	Dwarf	60	defense	Defense	300	
+Hunter	Dwarf	60	defense	Dodge Chance	2.29	%
+Hunter	Dwarf	60	defense	Parry Chance	5.00	%
+Hunter	Dwarf	60	defense	Total Avoidance	12.29	%
+Hunter	Dwarf	60	defense	Boss Avoidance	10.49	%
+Hunter	Dwarf	60	defense	Boss Miss Chance	4.40	%
+Hunter	Dwarf	60	defense	Boss Crit Chance	5.60	%
+Hunter	Dwarf	60	defense	Boss Crush Chance	15.00	%
+Hunter	Dwarf	60	ranged	Ranged Attack Power	352	
+Hunter	Dwarf	60	ranged	Ranged Hit Chance	0.00	%
+Hunter	Dwarf	60	ranged	Ranged Crit Chance	0.75	%
+Hunter	Dwarf	60	ranged	Haste	0.00	%
+Hunter	Night Elf	60	spell	Spell Damage	0	
+Hunter	Night Elf	60	spell	Arcane Damage	0	
+Hunter	Night Elf	60	spell	Fire Damage	0	
+Hunter	Night Elf	60	spell	Frost Damage	0	
+Hunter	Night Elf	60	spell	Holy Damage	0	
+Hunter	Night Elf	60	spell	Nature Damage	0	
+Hunter	Night Elf	60	spell	Shadow Damage	0	
+Hunter	Night Elf	60	spell	Healing	0	
+Hunter	Night Elf	60	spell	Spell Hit	0.00	%
+Hunter	Night Elf	60	spell	Hit Chance	0.00	%
+Hunter	Night Elf	60	spell	Spell Crit	5.60	%
+Hunter	Night Elf	60	spell	Crit Chance	0.92	%
+Hunter	Night Elf	60	spell	Spell Penetration	0	
+Hunter	Night Elf	60	spell	Mana per 5 Sec.	0	
+Hunter	Night Elf	60	melee	Attack Power	282	
+Hunter	Night Elf	60	melee	Hit Chance	0.00	%
+Hunter	Night Elf	60	melee	Crit Chance	0.92	%
+Hunter	Night Elf	60	melee	Haste	0.00	%
+Hunter	Night Elf	60	melee	Expertise	0.00	%
+Hunter	Night Elf	60	defense	Armor	260	
+Hunter	Night Elf	60	defense	Damage Reduction	4.51	%
+Hunter	Night Elf	60	defense	Defense	300	
+Hunter	Night Elf	60	defense	Dodge Chance	3.46	%
+Hunter	Night Elf	60	defense	Parry Chance	5.00	%
+Hunter	Night Elf	60	defense	Total Avoidance	13.46	%
+Hunter	Night Elf	60	defense	Boss Avoidance	11.66	%
+Hunter	Night Elf	60	defense	Boss Miss Chance	4.40	%
+Hunter	Night Elf	60	defense	Boss Crit Chance	5.60	%
+Hunter	Night Elf	60	defense	Boss Crush Chance	15.00	%
+Hunter	Night Elf	60	ranged	Ranged Attack Power	370	
+Hunter	Night Elf	60	ranged	Ranged Hit Chance	0.00	%
+Hunter	Night Elf	60	ranged	Ranged Crit Chance	0.92	%
+Hunter	Night Elf	60	ranged	Haste	0.00	%
+Hunter	Skyborne A	60	spell	Spell Damage	0	
+Hunter	Skyborne A	60	spell	Arcane Damage	0	
+Hunter	Skyborne A	60	spell	Fire Damage	0	
+Hunter	Skyborne A	60	spell	Frost Damage	0	
+Hunter	Skyborne A	60	spell	Holy Damage	0	
+Hunter	Skyborne A	60	spell	Nature Damage	0	
+Hunter	Skyborne A	60	spell	Shadow Damage	0	
+Hunter	Skyborne A	60	spell	Healing	0	
+Hunter	Skyborne A	60	spell	Spell Hit	0.00	%
+Hunter	Skyborne A	60	spell	Hit Chance	0.00	%
+Hunter	Skyborne A	60	spell	Spell Crit	5.60	%
+Hunter	Skyborne A	60	spell	Crit Chance	0.92	%
+Hunter	Skyborne A	60	spell	Spell Penetration	0	
+Hunter	Skyborne A	60	spell	Mana per 5 Sec.	0	
+Hunter	Skyborne A	60	melee	Attack Power	282	
+Hunter	Skyborne A	60	melee	Hit Chance	0.00	%
+Hunter	Skyborne A	60	melee	Crit Chance	0.92	%
+Hunter	Skyborne A	60	melee	Haste	1.00	%
+Hunter	Skyborne A	60	melee	Expertise	0.00	%
+Hunter	Skyborne A	60	defense	Armor	260	
+Hunter	Skyborne A	60	defense	Damage Reduction	4.51	%
+Hunter	Skyborne A	60	defense	Defense	300	
+Hunter	Skyborne A	60	defense	Dodge Chance	2.46	%
+Hunter	Skyborne A	60	defense	Parry Chance	5.00	%
+Hunter	Skyborne A	60	defense	Total Avoidance	12.46	%
+Hunter	Skyborne A	60	defense	Boss Avoidance	10.66	%
+Hunter	Skyborne A	60	defense	Boss Miss Chance	4.40	%
+Hunter	Skyborne A	60	defense	Boss Crit Chance	5.60	%
+Hunter	Skyborne A	60	defense	Boss Crush Chance	15.00	%
+Hunter	Skyborne A	60	ranged	Ranged Attack Power	370	
+Hunter	Skyborne A	60	ranged	Ranged Hit Chance	0.00	%
+Hunter	Skyborne A	60	ranged	Ranged Crit Chance	0.92	%
+Hunter	Skyborne A	60	ranged	Haste	1.00	%
+Hunter	Skyborne H	60	spell	Spell Damage	0	
+Hunter	Skyborne H	60	spell	Arcane Damage	0	
+Hunter	Skyborne H	60	spell	Fire Damage	0	
+Hunter	Skyborne H	60	spell	Frost Damage	0	
+Hunter	Skyborne H	60	spell	Holy Damage	0	
+Hunter	Skyborne H	60	spell	Nature Damage	0	
+Hunter	Skyborne H	60	spell	Shadow Damage	0	
+Hunter	Skyborne H	60	spell	Healing	0	
+Hunter	Skyborne H	60	spell	Spell Hit	0.00	%
+Hunter	Skyborne H	60	spell	Hit Chance	0.00	%
+Hunter	Skyborne H	60	spell	Spell Crit	5.60	%
+Hunter	Skyborne H	60	spell	Crit Chance	0.92	%
+Hunter	Skyborne H	60	spell	Spell Penetration	0	
+Hunter	Skyborne H	60	spell	Mana per 5 Sec.	0	
+Hunter	Skyborne H	60	melee	Attack Power	282	
+Hunter	Skyborne H	60	melee	Hit Chance	0.00	%
+Hunter	Skyborne H	60	melee	Crit Chance	0.92	%
+Hunter	Skyborne H	60	melee	Haste	1.00	%
+Hunter	Skyborne H	60	melee	Expertise	0.00	%
+Hunter	Skyborne H	60	defense	Armor	260	
+Hunter	Skyborne H	60	defense	Damage Reduction	4.51	%
+Hunter	Skyborne H	60	defense	Defense	300	
+Hunter	Skyborne H	60	defense	Dodge Chance	2.46	%
+Hunter	Skyborne H	60	defense	Parry Chance	5.00	%
+Hunter	Skyborne H	60	defense	Total Avoidance	12.46	%
+Hunter	Skyborne H	60	defense	Boss Avoidance	10.66	%
+Hunter	Skyborne H	60	defense	Boss Miss Chance	4.40	%
+Hunter	Skyborne H	60	defense	Boss Crit Chance	5.60	%
+Hunter	Skyborne H	60	defense	Boss Crush Chance	15.00	%
+Hunter	Skyborne H	60	ranged	Ranged Attack Power	370	
+Hunter	Skyborne H	60	ranged	Ranged Hit Chance	0.00	%
+Hunter	Skyborne H	60	ranged	Ranged Crit Chance	0.92	%
+Hunter	Skyborne H	60	ranged	Haste	1.00	%
+Hunter	Troll	60	spell	Spell Damage	0	
+Hunter	Troll	60	spell	Arcane Damage	0	
+Hunter	Troll	60	spell	Fire Damage	0	
+Hunter	Troll	60	spell	Frost Damage	0	
+Hunter	Troll	60	spell	Holy Damage	0	
+Hunter	Troll	60	spell	Nature Damage	0	
+Hunter	Troll	60	spell	Shadow Damage	0	
+Hunter	Troll	60	spell	Healing	0	
+Hunter	Troll	60	spell	Spell Hit	0.00	%
+Hunter	Troll	60	spell	Hit Chance	0.00	%
+Hunter	Troll	60	spell	Spell Crit	5.47	%
+Hunter	Troll	60	spell	Crit Chance	0.87	%
+Hunter	Troll	60	spell	Spell Penetration	0	
+Hunter	Troll	60	spell	Mana per 5 Sec.	0	
+Hunter	Troll	60	melee	Attack Power	283	
+Hunter	Troll	60	melee	Hit Chance	0.00	%
+Hunter	Troll	60	melee	Crit Chance	0.87	%
+Hunter	Troll	60	melee	Haste	0.00	%
+Hunter	Troll	60	melee	Expertise	0.00	%
+Hunter	Troll	60	defense	Armor	254	
+Hunter	Troll	60	defense	Damage Reduction	4.41	%
+Hunter	Troll	60	defense	Defense	300	
+Hunter	Troll	60	defense	Dodge Chance	2.40	%
+Hunter	Troll	60	defense	Parry Chance	5.00	%
+Hunter	Troll	60	defense	Total Avoidance	12.40	%
+Hunter	Troll	60	defense	Boss Avoidance	10.60	%
+Hunter	Troll	60	defense	Boss Miss Chance	4.40	%
+Hunter	Troll	60	defense	Boss Crit Chance	5.60	%
+Hunter	Troll	60	defense	Boss Crush Chance	15.00	%
+Hunter	Troll	60	ranged	Ranged Attack Power	364	
+Hunter	Troll	60	ranged	Ranged Hit Chance	0.00	%
+Hunter	Troll	60	ranged	Ranged Crit Chance	0.87	%
+Hunter	Troll	60	ranged	Haste	0.00	%
+Hunter	Tauren	60	spell	Spell Damage	0	
+Hunter	Tauren	60	spell	Arcane Damage	0	
+Hunter	Tauren	60	spell	Fire Damage	0	
+Hunter	Tauren	60	spell	Frost Damage	0	
+Hunter	Tauren	60	spell	Holy Damage	0	
+Hunter	Tauren	60	spell	Nature Damage	0	
+Hunter	Tauren	60	spell	Shadow Damage	0	
+Hunter	Tauren	60	spell	Healing	0	
+Hunter	Tauren	60	spell	Spell Hit	0.00	%
+Hunter	Tauren	60	spell	Hit Chance	0.00	%
+Hunter	Tauren	60	spell	Spell Crit	5.33	%
+Hunter	Tauren	60	spell	Crit Chance	0.74	%
+Hunter	Tauren	60	spell	Spell Penetration	0	
+Hunter	Tauren	60	spell	Mana per 5 Sec.	0	
+Hunter	Tauren	60	melee	Attack Power	280	
+Hunter	Tauren	60	melee	Hit Chance	0.00	%
+Hunter	Tauren	60	melee	Crit Chance	0.74	%
+Hunter	Tauren	60	melee	Haste	0.00	%
+Hunter	Tauren	60	melee	Expertise	0.00	%
+Hunter	Tauren	60	defense	Armor	240	
+Hunter	Tauren	60	defense	Damage Reduction	4.18	%
+Hunter	Tauren	60	defense	Defense	300	
+Hunter	Tauren	60	defense	Dodge Chance	2.27	%
+Hunter	Tauren	60	defense	Parry Chance	5.00	%
+Hunter	Tauren	60	defense	Total Avoidance	12.27	%
+Hunter	Tauren	60	defense	Boss Avoidance	10.47	%
+Hunter	Tauren	60	defense	Boss Miss Chance	4.40	%
+Hunter	Tauren	60	defense	Boss Crit Chance	5.60	%
+Hunter	Tauren	60	defense	Boss Crush Chance	15.00	%
+Hunter	Tauren	60	ranged	Ranged Attack Power	350	
+Hunter	Tauren	60	ranged	Ranged Hit Chance	0.00	%
+Hunter	Tauren	60	ranged	Ranged Crit Chance	0.74	%
+Hunter	Tauren	60	ranged	Haste	0.00	%
+Hunter	Orc	60	spell	Spell Damage	0	
+Hunter	Orc	60	spell	Arcane Damage	0	
+Hunter	Orc	60	spell	Fire Damage	0	
+Hunter	Orc	60	spell	Frost Damage	0	
+Hunter	Orc	60	spell	Holy Damage	0	
+Hunter	Orc	60	spell	Nature Damage	0	
+Hunter	Orc	60	spell	Shadow Damage	0	
+Hunter	Orc	60	spell	Healing	0	
+Hunter	Orc	60	spell	Spell Hit	0.00	%
+Hunter	Orc	60	spell	Hit Chance	0.00	%
+Hunter	Orc	60	spell	Spell Crit	5.40	%
+Hunter	Orc	60	spell	Crit Chance	0.77	%
+Hunter	Orc	60	spell	Spell Penetration	0	
+Hunter	Orc	60	spell	Mana per 5 Sec.	0	
+Hunter	Orc	60	melee	Attack Power	280	
+Hunter	Orc	60	melee	Hit Chance	0.00	%
+Hunter	Orc	60	melee	Crit Chance	0.77	%
+Hunter	Orc	60	melee	Haste	0.00	%
+Hunter	Orc	60	melee	Expertise	0.00	%
+Hunter	Orc	60	defense	Armor	244	
+Hunter	Orc	60	defense	Damage Reduction	4.25	%
+Hunter	Orc	60	defense	Defense	300	
+Hunter	Orc	60	defense	Dodge Chance	2.31	%
+Hunter	Orc	60	defense	Parry Chance	5.00	%
+Hunter	Orc	60	defense	Total Avoidance	12.31	%
+Hunter	Orc	60	defense	Boss Avoidance	10.51	%
+Hunter	Orc	60	defense	Boss Miss Chance	4.40	%
+Hunter	Orc	60	defense	Boss Crit Chance	5.60	%
+Hunter	Orc	60	defense	Boss Crush Chance	15.00	%
+Hunter	Orc	60	ranged	Ranged Attack Power	354	
+Hunter	Orc	60	ranged	Ranged Hit Chance	0.00	%
+Hunter	Orc	60	ranged	Ranged Crit Chance	0.77	%
+Hunter	Orc	60	ranged	Haste	0.00	%
+Hunter	Human	1	spell	Spell Damage	0	
+Hunter	Human	1	spell	Arcane Damage	0	
+Hunter	Human	1	spell	Fire Damage	0	
+Hunter	Human	1	spell	Frost Damage	0	
+Hunter	Human	1	spell	Holy Damage	0	
+Hunter	Human	1	spell	Nature Damage	0	
+Hunter	Human	1	spell	Shadow Damage	0	
+Hunter	Human	1	spell	Healing	0	
+Hunter	Human	1	spell	Spell Hit	0.00	%
+Hunter	Human	1	spell	Hit Chance	0.00	%
+Hunter	Human	1	spell	Spell Crit	7.53	%
+Hunter	Human	1	spell	Crit Chance	2.60	%
+Hunter	Human	1	spell	Spell Penetration	0	
+Hunter	Human	1	spell	Mana per 5 Sec.	0	
+Hunter	Human	1	melee	Attack Power	23	
+Hunter	Human	1	melee	Hit Chance	0.00	%
+Hunter	Human	1	melee	Crit Chance	2.60	%
+Hunter	Human	1	melee	Haste	0.00	%
+Hunter	Human	1	melee	Expertise	0.00	%
+Hunter	Human	1	defense	Armor	38	
+Hunter	Human	1	defense	Damage Reduction	7.27	%
+Hunter	Human	1	defense	Defense	5	
+Hunter	Human	1	defense	Dodge Chance	4.13	%
+Hunter	Human	1	defense	Parry Chance	5.00	%
+Hunter	Human	1	defense	Total Avoidance	14.13	%
+Hunter	Human	1	defense	Boss Avoidance	12.33	%
+Hunter	Human	1	defense	Boss Miss Chance	4.40	%
+Hunter	Human	1	defense	Boss Crit Chance	5.60	%
+Hunter	Human	1	defense	Boss Crush Chance	15.00	%
+Hunter	Human	1	ranged	Ranged Attack Power	30	
+Hunter	Human	1	ranged	Ranged Hit Chance	0.00	%
+Hunter	Human	1	ranged	Ranged Crit Chance	2.60	%
+Hunter	Human	1	ranged	Haste	0.00	%
+Hunter	Dwarf	1	spell	Spell Damage	0	
+Hunter	Dwarf	1	spell	Arcane Damage	0	
+Hunter	Dwarf	1	spell	Fire Damage	0	
+Hunter	Dwarf	1	spell	Frost Damage	0	
+Hunter	Dwarf	1	spell	Holy Damage	0	
+Hunter	Dwarf	1	spell	Nature Damage	0	
+Hunter	Dwarf	1	spell	Shadow Damage	0	
+Hunter	Dwarf	1	spell	Healing	0	
+Hunter	Dwarf	1	spell	Spell Hit	0.00	%
+Hunter	Dwarf	1	spell	Hit Chance	0.00	%
+Hunter	Dwarf	1	spell	Spell Crit	7.53	%
+Hunter	Dwarf	1	spell	Crit Chance	2.60	%
+Hunter	Dwarf	1	spell	Spell Penetration	0	
+Hunter	Dwarf	1	spell	Mana per 5 Sec.	0	
+Hunter	Dwarf	1	melee	Attack Power	23	
+Hunter	Dwarf	1	melee	Hit Chance	0.00	%
+Hunter	Dwarf	1	melee	Crit Chance	2.60	%
+Hunter	Dwarf	1	melee	Haste	0.00	%
+Hunter	Dwarf	1	melee	Expertise	0.00	%
+Hunter	Dwarf	1	defense	Armor	38	
+Hunter	Dwarf	1	defense	Damage Reduction	7.27	%
+Hunter	Dwarf	1	defense	Defense	5	
+Hunter	Dwarf	1	defense	Dodge Chance	4.13	%
+Hunter	Dwarf	1	defense	Parry Chance	5.00	%
+Hunter	Dwarf	1	defense	Total Avoidance	14.13	%
+Hunter	Dwarf	1	defense	Boss Avoidance	12.33	%
+Hunter	Dwarf	1	defense	Boss Miss Chance	4.40	%
+Hunter	Dwarf	1	defense	Boss Crit Chance	5.60	%
+Hunter	Dwarf	1	defense	Boss Crush Chance	15.00	%
+Hunter	Dwarf	1	ranged	Ranged Attack Power	30	
+Hunter	Dwarf	1	ranged	Ranged Hit Chance	0.00	%
+Hunter	Dwarf	1	ranged	Ranged Crit Chance	2.60	%
+Hunter	Dwarf	1	ranged	Haste	0.00	%
+Hunter	Night Elf	1	spell	Spell Damage	0	
+Hunter	Night Elf	1	spell	Arcane Damage	0	
+Hunter	Night Elf	1	spell	Fire Damage	0	
+Hunter	Night Elf	1	spell	Frost Damage	0	
+Hunter	Night Elf	1	spell	Holy Damage	0	
+Hunter	Night Elf	1	spell	Nature Damage	0	
+Hunter	Night Elf	1	spell	Shadow Damage	0	
+Hunter	Night Elf	1	spell	Healing	0	
+Hunter	Night Elf	1	spell	Spell Hit	0.00	%
+Hunter	Night Elf	1	spell	Hit Chance	0.00	%
+Hunter	Night Elf	1	spell	Spell Crit	9.56	%
+Hunter	Night Elf	1	spell	Crit Chance	4.56	%
+Hunter	Night Elf	1	spell	Spell Penetration	0	
+Hunter	Night Elf	1	spell	Mana per 5 Sec.	0	
+Hunter	Night Elf	1	melee	Attack Power	27	
+Hunter	Night Elf	1	melee	Hit Chance	0.00	%
+Hunter	Night Elf	1	melee	Crit Chance	4.56	%
+Hunter	Night Elf	1	melee	Haste	0.00	%
+Hunter	Night Elf	1	melee	Expertise	0.00	%
+Hunter	Night Elf	1	defense	Armor	56	
+Hunter	Night Elf	1	defense	Damage Reduction	10.35	%
+Hunter	Night Elf	1	defense	Defense	5	
+Hunter	Night Elf	1	defense	Dodge Chance	7.09	%
+Hunter	Night Elf	1	defense	Parry Chance	5.00	%
+Hunter	Night Elf	1	defense	Total Avoidance	17.09	%
+Hunter	Night Elf	1	defense	Boss Avoidance	15.29	%
+Hunter	Night Elf	1	defense	Boss Miss Chance	4.40	%
+Hunter	Night Elf	1	defense	Boss Crit Chance	5.60	%
+Hunter	Night Elf	1	defense	Boss Crush Chance	15.00	%
+Hunter	Night Elf	1	ranged	Ranged Attack Power	48	
+Hunter	Night Elf	1	ranged	Ranged Hit Chance	0.00	%
+Hunter	Night Elf	1	ranged	Ranged Crit Chance	4.56	%
+Hunter	Night Elf	1	ranged	Haste	0.00	%
+Hunter	Skyborne A	1	spell	Spell Damage	0	
+Hunter	Skyborne A	1	spell	Arcane Damage	0	
+Hunter	Skyborne A	1	spell	Fire Damage	0	
+Hunter	Skyborne A	1	spell	Frost Damage	0	
+Hunter	Skyborne A	1	spell	Holy Damage	0	
+Hunter	Skyborne A	1	spell	Nature Damage	0	
+Hunter	Skyborne A	1	spell	Shadow Damage	0	
+Hunter	Skyborne A	1	spell	Healing	0	
+Hunter	Skyborne A	1	spell	Spell Hit	0.00	%
+Hunter	Skyborne A	1	spell	Hit Chance	0.00	%
+Hunter	Skyborne A	1	spell	Spell Crit	9.56	%
+Hunter	Skyborne A	1	spell	Crit Chance	4.56	%
+Hunter	Skyborne A	1	spell	Spell Penetration	0	
+Hunter	Skyborne A	1	spell	Mana per 5 Sec.	0	
+Hunter	Skyborne A	1	melee	Attack Power	27	
+Hunter	Skyborne A	1	melee	Hit Chance	0.00	%
+Hunter	Skyborne A	1	melee	Crit Chance	4.56	%
+Hunter	Skyborne A	1	melee	Haste	1.00	%
+Hunter	Skyborne A	1	melee	Expertise	0.00	%
+Hunter	Skyborne A	1	defense	Armor	56	
+Hunter	Skyborne A	1	defense	Damage Reduction	10.35	%
+Hunter	Skyborne A	1	defense	Defense	5	
+Hunter	Skyborne A	1	defense	Dodge Chance	6.09	%
+Hunter	Skyborne A	1	defense	Parry Chance	5.00	%
+Hunter	Skyborne A	1	defense	Total Avoidance	16.09	%
+Hunter	Skyborne A	1	defense	Boss Avoidance	14.29	%
+Hunter	Skyborne A	1	defense	Boss Miss Chance	4.40	%
+Hunter	Skyborne A	1	defense	Boss Crit Chance	5.60	%
+Hunter	Skyborne A	1	defense	Boss Crush Chance	15.00	%
+Hunter	Skyborne A	1	ranged	Ranged Attack Power	48	
+Hunter	Skyborne A	1	ranged	Ranged Hit Chance	0.00	%
+Hunter	Skyborne A	1	ranged	Ranged Crit Chance	4.56	%
+Hunter	Skyborne A	1	ranged	Haste	1.00	%
+Hunter	Skyborne H	1	spell	Spell Damage	0	
+Hunter	Skyborne H	1	spell	Arcane Damage	0	
+Hunter	Skyborne H	1	spell	Fire Damage	0	
+Hunter	Skyborne H	1	spell	Frost Damage	0	
+Hunter	Skyborne H	1	spell	Holy Damage	0	
+Hunter	Skyborne H	1	spell	Nature Damage	0	
+Hunter	Skyborne H	1	spell	Shadow Damage	0	
+Hunter	Skyborne H	1	spell	Healing	0	
+Hunter	Skyborne H	1	spell	Spell Hit	0.00	%
+Hunter	Skyborne H	1	spell	Hit Chance	0.00	%
+Hunter	Skyborne H	1	spell	Spell Crit	9.56	%
+Hunter	Skyborne H	1	spell	Crit Chance	4.56	%
+Hunter	Skyborne H	1	spell	Spell Penetration	0	
+Hunter	Skyborne H	1	spell	Mana per 5 Sec.	0	
+Hunter	Skyborne H	1	melee	Attack Power	27	
+Hunter	Skyborne H	1	melee	Hit Chance	0.00	%
+Hunter	Skyborne H	1	melee	Crit Chance	4.56	%
+Hunter	Skyborne H	1	melee	Haste	1.00	%
+Hunter	Skyborne H	1	melee	Expertise	0.00	%
+Hunter	Skyborne H	1	defense	Armor	56	
+Hunter	Skyborne H	1	defense	Damage Reduction	10.35	%
+Hunter	Skyborne H	1	defense	Defense	5	
+Hunter	Skyborne H	1	defense	Dodge Chance	6.09	%
+Hunter	Skyborne H	1	defense	Parry Chance	5.00	%
+Hunter	Skyborne H	1	defense	Total Avoidance	16.09	%
+Hunter	Skyborne H	1	defense	Boss Avoidance	14.29	%
+Hunter	Skyborne H	1	defense	Boss Miss Chance	4.40	%
+Hunter	Skyborne H	1	defense	Boss Crit Chance	5.60	%
+Hunter	Skyborne H	1	defense	Boss Crush Chance	15.00	%
+Hunter	Skyborne H	1	ranged	Ranged Attack Power	48	
+Hunter	Skyborne H	1	ranged	Ranged Hit Chance	0.00	%
+Hunter	Skyborne H	1	ranged	Ranged Crit Chance	4.56	%
+Hunter	Skyborne H	1	ranged	Haste	1.00	%
+Hunter	Troll	1	spell	Spell Damage	0	
+Hunter	Troll	1	spell	Arcane Damage	0	
+Hunter	Troll	1	spell	Fire Damage	0	
+Hunter	Troll	1	spell	Frost Damage	0	
+Hunter	Troll	1	spell	Holy Damage	0	
+Hunter	Troll	1	spell	Nature Damage	0	
+Hunter	Troll	1	spell	Shadow Damage	0	
+Hunter	Troll	1	spell	Healing	0	
+Hunter	Troll	1	spell	Spell Hit	0.00	%
+Hunter	Troll	1	spell	Hit Chance	0.00	%
+Hunter	Troll	1	spell	Spell Crit	8.62	%
+Hunter	Troll	1	spell	Crit Chance	3.90	%
+Hunter	Troll	1	spell	Spell Penetration	0	
+Hunter	Troll	1	spell	Mana per 5 Sec.	0	
+Hunter	Troll	1	melee	Attack Power	28	
+Hunter	Troll	1	melee	Hit Chance	0.00	%
+Hunter	Troll	1	melee	Crit Chance	3.90	%
+Hunter	Troll	1	melee	Haste	0.00	%
+Hunter	Troll	1	melee	Expertise	0.00	%
+Hunter	Troll	1	defense	Armor	50	
+Hunter	Troll	1	defense	Damage Reduction	9.35	%
+Hunter	Troll	1	defense	Defense	5	
+Hunter	Troll	1	defense	Dodge Chance	5.44	%
+Hunter	Troll	1	defense	Parry Chance	5.00	%
+Hunter	Troll	1	defense	Total Avoidance	15.44	%
+Hunter	Troll	1	defense	Boss Avoidance	13.64	%
+Hunter	Troll	1	defense	Boss Miss Chance	4.40	%
+Hunter	Troll	1	defense	Boss Crit Chance	5.60	%
+Hunter	Troll	1	defense	Boss Crush Chance	15.00	%
+Hunter	Troll	1	ranged	Ranged Attack Power	42	
+Hunter	Troll	1	ranged	Ranged Hit Chance	0.00	%
+Hunter	Troll	1	ranged	Ranged Crit Chance	3.90	%
+Hunter	Troll	1	ranged	Haste	0.00	%
+Hunter	Tauren	1	spell	Spell Damage	0	
+Hunter	Tauren	1	spell	Arcane Damage	0	
+Hunter	Tauren	1	spell	Fire Damage	0	
+Hunter	Tauren	1	spell	Frost Damage	0	
+Hunter	Tauren	1	spell	Holy Damage	0	
+Hunter	Tauren	1	spell	Nature Damage	0	
+Hunter	Tauren	1	spell	Shadow Damage	0	
+Hunter	Tauren	1	spell	Healing	0	
+Hunter	Tauren	1	spell	Spell Hit	0.00	%
+Hunter	Tauren	1	spell	Hit Chance	0.00	%
+Hunter	Tauren	1	spell	Spell Crit	7.03	%
+Hunter	Tauren	1	spell	Crit Chance	2.38	%
+Hunter	Tauren	1	spell	Spell Penetration	0	
+Hunter	Tauren	1	spell	Mana per 5 Sec.	0	
+Hunter	Tauren	1	melee	Attack Power	25	
+Hunter	Tauren	1	melee	Hit Chance	0.00	%
+Hunter	Tauren	1	melee	Crit Chance	2.38	%
+Hunter	Tauren	1	melee	Haste	0.00	%
+Hunter	Tauren	1	melee	Expertise	0.00	%
+Hunter	Tauren	1	defense	Armor	36	
+Hunter	Tauren	1	defense	Damage Reduction	6.91	%
+Hunter	Tauren	1	defense	Defense	5	
+Hunter	Tauren	1	defense	Dodge Chance	3.91	%
+Hunter	Tauren	1	defense	Parry Chance	5.00	%
+Hunter	Tauren	1	defense	Total Avoidance	13.91	%
+Hunter	Tauren	1	defense	Boss Avoidance	12.11	%
+Hunter	Tauren	1	defense	Boss Miss Chance	4.40	%
+Hunter	Tauren	1	defense	Boss Crit Chance	5.60	%
+Hunter	Tauren	1	defense	Boss Crush Chance	15.00	%
+Hunter	Tauren	1	ranged	Ranged Attack Power	28	
+Hunter	Tauren	1	ranged	Ranged Hit Chance	0.00	%
+Hunter	Tauren	1	ranged	Ranged Crit Chance	2.38	%
+Hunter	Tauren	1	ranged	Haste	0.00	%
+Hunter	Orc	1	spell	Spell Damage	0	
+Hunter	Orc	1	spell	Arcane Damage	0	
+Hunter	Orc	1	spell	Fire Damage	0	
+Hunter	Orc	1	spell	Frost Damage	0	
+Hunter	Orc	1	spell	Holy Damage	0	
+Hunter	Orc	1	spell	Nature Damage	0	
+Hunter	Orc	1	spell	Shadow Damage	0	
+Hunter	Orc	1	spell	Healing	0	
+Hunter	Orc	1	spell	Spell Hit	0.00	%
+Hunter	Orc	1	spell	Hit Chance	0.00	%
+Hunter	Orc	1	spell	Spell Crit	7.61	%
+Hunter	Orc	1	spell	Crit Chance	2.82	%
+Hunter	Orc	1	spell	Spell Penetration	0	
+Hunter	Orc	1	spell	Mana per 5 Sec.	0	
+Hunter	Orc	1	melee	Attack Power	25	
+Hunter	Orc	1	melee	Hit Chance	0.00	%
+Hunter	Orc	1	melee	Crit Chance	2.82	%
+Hunter	Orc	1	melee	Haste	0.00	%
+Hunter	Orc	1	melee	Expertise	0.00	%
+Hunter	Orc	1	defense	Armor	40	
+Hunter	Orc	1	defense	Damage Reduction	7.62	%
+Hunter	Orc	1	defense	Defense	5	
+Hunter	Orc	1	defense	Dodge Chance	4.35	%
+Hunter	Orc	1	defense	Parry Chance	5.00	%
+Hunter	Orc	1	defense	Total Avoidance	14.35	%
+Hunter	Orc	1	defense	Boss Avoidance	12.55	%
+Hunter	Orc	1	defense	Boss Miss Chance	4.40	%
+Hunter	Orc	1	defense	Boss Crit Chance	5.60	%
+Hunter	Orc	1	defense	Boss Crush Chance	15.00	%
+Hunter	Orc	1	ranged	Ranged Attack Power	32	
+Hunter	Orc	1	ranged	Ranged Hit Chance	0.00	%
+Hunter	Orc	1	ranged	Ranged Crit Chance	2.82	%
+Hunter	Orc	1	ranged	Haste	0.00	%
+Mage	Human	60	spell	Spell Damage	0	
+Mage	Human	60	spell	Arcane Damage	0	
+Mage	Human	60	spell	Fire Damage	0	
+Mage	Human	60	spell	Frost Damage	0	
+Mage	Human	60	spell	Holy Damage	0	
+Mage	Human	60	spell	Nature Damage	0	
+Mage	Human	60	spell	Shadow Damage	0	
+Mage	Human	60	spell	Healing	0	
+Mage	Human	60	spell	Spell Hit	0.00	%
+Mage	Human	60	spell	Hit Chance	0.00	%
+Mage	Human	60	spell	Spell Crit	7.56	%
+Mage	Human	60	spell	Crit Chance	5.26	%
+Mage	Human	60	spell	Spell Penetration	0	
+Mage	Human	60	spell	Mana per 5 Sec.	0	
+Mage	Human	60	melee	Attack Power	50	
+Mage	Human	60	melee	Hit Chance	0.00	%
+Mage	Human	60	melee	Crit Chance	5.26	%
+Mage	Human	60	melee	Haste	0.00	%
+Mage	Human	60	melee	Expertise	0.00	%
+Mage	Human	60	defense	Armor	70	
+Mage	Human	60	defense	Damage Reduction	1.26	%
+Mage	Human	60	defense	Defense	300	
+Mage	Human	60	defense	Dodge Chance	5.00	%
+Mage	Human	60	defense	Total Avoidance	10.00	%
+Mage	Human	60	defense	Boss Avoidance	8.80	%
+Mage	Human	60	defense	Boss Miss Chance	4.40	%
+Mage	Human	60	defense	Boss Crit Chance	5.60	%
+Mage	Human	60	defense	Boss Crush Chance	15.00	%
+Mage	Gnome	60	spell	Spell Damage	0	
+Mage	Gnome	60	spell	Arcane Damage	0	
+Mage	Gnome	60	spell	Fire Damage	0	
+Mage	Gnome	60	spell	Frost Damage	0	
+Mage	Gnome	60	spell	Holy Damage	0	
+Mage	Gnome	60	spell	Nature Damage	0	
+Mage	Gnome	60	spell	Shadow Damage	0	
+Mage	Gnome	60	spell	Healing	0	
+Mage	Gnome	60	spell	Spell Hit	0.00	%
+Mage	Gnome	60	spell	Hit Chance	0.00	%
+Mage	Gnome	60	spell	Spell Crit	7.85	%
+Mage	Gnome	60	spell	Crit Chance	5.41	%
+Mage	Gnome	60	spell	Spell Penetration	0	
+Mage	Gnome	60	spell	Mana per 5 Sec.	0	
+Mage	Gnome	60	melee	Attack Power	40	
+Mage	Gnome	60	melee	Hit Chance	0.00	%
+Mage	Gnome	60	melee	Crit Chance	5.41	%
+Mage	Gnome	60	melee	Haste	0.00	%
+Mage	Gnome	60	melee	Expertise	0.00	%
+Mage	Gnome	60	defense	Armor	76	
+Mage	Gnome	60	defense	Damage Reduction	1.36	%
+Mage	Gnome	60	defense	Defense	300	
+Mage	Gnome	60	defense	Dodge Chance	5.15	%
+Mage	Gnome	60	defense	Total Avoidance	10.15	%
+Mage	Gnome	60	defense	Boss Avoidance	8.95	%
+Mage	Gnome	60	defense	Boss Miss Chance	4.40	%
+Mage	Gnome	60	defense	Boss Crit Chance	5.60	%
+Mage	Gnome	60	defense	Boss Crush Chance	15.00	%
+Mage	Skyborne A	60	spell	Spell Damage	0	
+Mage	Skyborne A	60	spell	Arcane Damage	0	
+Mage	Skyborne A	60	spell	Fire Damage	0	
+Mage	Skyborne A	60	spell	Frost Damage	0	
+Mage	Skyborne A	60	spell	Holy Damage	0	
+Mage	Skyborne A	60	spell	Nature Damage	0	
+Mage	Skyborne A	60	spell	Shadow Damage	0	
+Mage	Skyborne A	60	spell	Healing	0	
+Mage	Skyborne A	60	spell	Spell Hit	0.00	%
+Mage	Skyborne A	60	spell	Hit Chance	0.00	%
+Mage	Skyborne A	60	spell	Spell Crit	7.56	%
+Mage	Skyborne A	60	spell	Crit Chance	5.26	%
+Mage	Skyborne A	60	spell	Spell Penetration	0	
+Mage	Skyborne A	60	spell	Mana per 5 Sec.	0	
+Mage	Skyborne A	60	melee	Attack Power	50	
+Mage	Skyborne A	60	melee	Hit Chance	0.00	%
+Mage	Skyborne A	60	melee	Crit Chance	5.26	%
+Mage	Skyborne A	60	melee	Haste	1.00	%
+Mage	Skyborne A	60	melee	Expertise	0.00	%
+Mage	Skyborne A	60	defense	Armor	70	
+Mage	Skyborne A	60	defense	Damage Reduction	1.26	%
+Mage	Skyborne A	60	defense	Defense	300	
+Mage	Skyborne A	60	defense	Dodge Chance	5.00	%
+Mage	Skyborne A	60	defense	Total Avoidance	10.00	%
+Mage	Skyborne A	60	defense	Boss Avoidance	8.80	%
+Mage	Skyborne A	60	defense	Boss Miss Chance	4.40	%
+Mage	Skyborne A	60	defense	Boss Crit Chance	5.60	%
+Mage	Skyborne A	60	defense	Boss Crush Chance	15.00	%
+Mage	Troll	60	spell	Spell Damage	0	
+Mage	Troll	60	spell	Arcane Damage	0	
+Mage	Troll	60	spell	Fire Damage	0	
+Mage	Troll	60	spell	Frost Damage	0	
+Mage	Troll	60	spell	Holy Damage	0	
+Mage	Troll	60	spell	Nature Damage	0	
+Mage	Troll	60	spell	Shadow Damage	0	
+Mage	Troll	60	spell	Healing	0	
+Mage	Troll	60	spell	Spell Hit	0.00	%
+Mage	Troll	60	spell	Hit Chance	0.00	%
+Mage	Troll	60	spell	Spell Crit	7.59	%
+Mage	Troll	60	spell	Crit Chance	5.36	%
+Mage	Troll	60	spell	Spell Penetration	0	
+Mage	Troll	60	spell	Mana per 5 Sec.	0	
+Mage	Troll	60	melee	Attack Power	52	
+Mage	Troll	60	melee	Hit Chance	0.00	%
+Mage	Troll	60	melee	Crit Chance	5.36	%
+Mage	Troll	60	melee	Haste	0.00	%
+Mage	Troll	60	melee	Expertise	0.00	%
+Mage	Troll	60	defense	Armor	74	
+Mage	Troll	60	defense	Damage Reduction	1.33	%
+Mage	Troll	60	defense	Defense	300	
+Mage	Troll	60	defense	Dodge Chance	5.10	%
+Mage	Troll	60	defense	Total Avoidance	10.10	%
+Mage	Troll	60	defense	Boss Avoidance	8.90	%
+Mage	Troll	60	defense	Boss Miss Chance	4.40	%
+Mage	Troll	60	defense	Boss Crit Chance	5.60	%
+Mage	Troll	60	defense	Boss Crush Chance	15.00	%
+Mage	Undead	60	spell	Spell Damage	0	
+Mage	Undead	60	spell	Arcane Damage	0	
+Mage	Undead	60	spell	Fire Damage	0	
+Mage	Undead	60	spell	Frost Damage	0	
+Mage	Undead	60	spell	Holy Damage	0	
+Mage	Undead	60	spell	Nature Damage	0	
+Mage	Undead	60	spell	Shadow Damage	0	
+Mage	Undead	60	spell	Healing	0	
+Mage	Undead	60	spell	Spell Hit	2.00	%
+Mage	Undead	60	spell	Hit Chance	1.00	%
+Mage	Undead	60	spell	Spell Crit	7.42	%
+Mage	Undead	60	spell	Crit Chance	5.15	%
+Mage	Undead	60	spell	Spell Penetration	0	
+Mage	Undead	60	spell	Mana per 5 Sec.	0	
+Mage	Undead	60	melee	Attack Power	48	
+Mage	Undead	60	melee	Hit Chance	1.00	%
+Mage	Undead	60	melee	Crit Chance	5.15	%
+Mage	Undead	60	melee	Haste	0.00	%
+Mage	Undead	60	melee	Expertise	0.00	%
+Mage	Undead	60	defense	Armor	66	
+Mage	Undead	60	defense	Damage Reduction	1.19	%
+Mage	Undead	60	defense	Defense	300	
+Mage	Undead	60	defense	Dodge Chance	4.90	%
+Mage	Undead	60	defense	Total Avoidance	9.90	%
+Mage	Undead	60	defense	Boss Avoidance	8.70	%
+Mage	Undead	60	defense	Boss Miss Chance	4.40	%
+Mage	Undead	60	defense	Boss Crit Chance	5.60	%
+Mage	Undead	60	defense	Boss Crush Chance	15.00	%
+Mage	Orc	60	spell	Spell Damage	0	
+Mage	Orc	60	spell	Arcane Damage	0	
+Mage	Orc	60	spell	Fire Damage	0	
+Mage	Orc	60	spell	Frost Damage	0	
+Mage	Orc	60	spell	Holy Damage	0	
+Mage	Orc	60	spell	Nature Damage	0	
+Mage	Orc	60	spell	Shadow Damage	0	
+Mage	Orc	60	spell	Healing	0	
+Mage	Orc	60	spell	Spell Hit	0.00	%
+Mage	Orc	60	spell	Hit Chance	0.00	%
+Mage	Orc	60	spell	Spell Crit	7.59	%
+Mage	Orc	60	spell	Crit Chance	5.36	%
+Mage	Orc	60	spell	Spell Penetration	0	
+Mage	Orc	60	spell	Mana per 5 Sec.	0	
+Mage	Orc	60	melee	Attack Power	52	
+Mage	Orc	60	melee	Hit Chance	0.00	%
+Mage	Orc	60	melee	Crit Chance	5.36	%
+Mage	Orc	60	melee	Haste	0.00	%
+Mage	Orc	60	melee	Expertise	0.00	%
+Mage	Orc	60	defense	Armor	74	
+Mage	Orc	60	defense	Damage Reduction	1.33	%
+Mage	Orc	60	defense	Defense	300	
+Mage	Orc	60	defense	Dodge Chance	5.10	%
+Mage	Orc	60	defense	Total Avoidance	10.10	%
+Mage	Orc	60	defense	Boss Avoidance	8.90	%
+Mage	Orc	60	defense	Boss Miss Chance	4.40	%
+Mage	Orc	60	defense	Boss Crit Chance	5.60	%
+Mage	Orc	60	defense	Boss Crush Chance	15.00	%
+Mage	Human	1	spell	Spell Damage	0	
+Mage	Human	1	spell	Arcane Damage	0	
+Mage	Human	1	spell	Fire Damage	0	
+Mage	Human	1	spell	Frost Damage	0	
+Mage	Human	1	spell	Holy Damage	0	
+Mage	Human	1	spell	Nature Damage	0	
+Mage	Human	1	spell	Shadow Damage	0	
+Mage	Human	1	spell	Healing	0	
+Mage	Human	1	spell	Spell Hit	0.00	%
+Mage	Human	1	spell	Hit Chance	0.00	%
+Mage	Human	1	spell	Spell Crit	9.87	%
+Mage	Human	1	spell	Crit Chance	5.26	%
+Mage	Human	1	spell	Spell Penetration	0	
+Mage	Human	1	spell	Mana per 5 Sec.	0	
+Mage	Human	1	melee	Attack Power	30	
+Mage	Human	1	melee	Hit Chance	0.00	%
+Mage	Human	1	melee	Crit Chance	5.26	%
+Mage	Human	1	melee	Haste	0.00	%
+Mage	Human	1	melee	Expertise	0.00	%
+Mage	Human	1	defense	Armor	40	
+Mage	Human	1	defense	Damage Reduction	7.62	%
+Mage	Human	1	defense	Defense	5	
+Mage	Human	1	defense	Dodge Chance	5.00	%
+Mage	Human	1	defense	Total Avoidance	10.00	%
+Mage	Human	1	defense	Boss Avoidance	8.80	%
+Mage	Human	1	defense	Boss Miss Chance	4.40	%
+Mage	Human	1	defense	Boss Crit Chance	5.60	%
+Mage	Human	1	defense	Boss Crush Chance	15.00	%
+Mage	Gnome	1	spell	Spell Damage	0	
+Mage	Gnome	1	spell	Arcane Damage	0	
+Mage	Gnome	1	spell	Fire Damage	0	
+Mage	Gnome	1	spell	Frost Damage	0	
+Mage	Gnome	1	spell	Holy Damage	0	
+Mage	Gnome	1	spell	Nature Damage	0	
+Mage	Gnome	1	spell	Shadow Damage	0	
+Mage	Gnome	1	spell	Healing	0	
+Mage	Gnome	1	spell	Spell Hit	0.00	%
+Mage	Gnome	1	spell	Hit Chance	0.00	%
+Mage	Gnome	1	spell	Spell Crit	10.72	%
+Mage	Gnome	1	spell	Crit Chance	5.53	%
+Mage	Gnome	1	spell	Spell Penetration	0	
+Mage	Gnome	1	spell	Mana per 5 Sec.	0	
+Mage	Gnome	1	melee	Attack Power	20	
+Mage	Gnome	1	melee	Hit Chance	0.00	%
+Mage	Gnome	1	melee	Crit Chance	5.53	%
+Mage	Gnome	1	melee	Haste	0.00	%
+Mage	Gnome	1	melee	Expertise	0.00	%
+Mage	Gnome	1	defense	Armor	46	
+Mage	Gnome	1	defense	Damage Reduction	8.66	%
+Mage	Gnome	1	defense	Defense	5	
+Mage	Gnome	1	defense	Dodge Chance	5.27	%
+Mage	Gnome	1	defense	Total Avoidance	10.27	%
+Mage	Gnome	1	defense	Boss Avoidance	9.07	%
+Mage	Gnome	1	defense	Boss Miss Chance	4.40	%
+Mage	Gnome	1	defense	Boss Crit Chance	5.60	%
+Mage	Gnome	1	defense	Boss Crush Chance	15.00	%
+Mage	Skyborne A	1	spell	Spell Damage	0	
+Mage	Skyborne A	1	spell	Arcane Damage	0	
+Mage	Skyborne A	1	spell	Fire Damage	0	
+Mage	Skyborne A	1	spell	Frost Damage	0	
+Mage	Skyborne A	1	spell	Holy Damage	0	
+Mage	Skyborne A	1	spell	Nature Damage	0	
+Mage	Skyborne A	1	spell	Shadow Damage	0	
+Mage	Skyborne A	1	spell	Healing	0	
+Mage	Skyborne A	1	spell	Spell Hit	0.00	%
+Mage	Skyborne A	1	spell	Hit Chance	0.00	%
+Mage	Skyborne A	1	spell	Spell Crit	9.87	%
+Mage	Skyborne A	1	spell	Crit Chance	5.26	%
+Mage	Skyborne A	1	spell	Spell Penetration	0	
+Mage	Skyborne A	1	spell	Mana per 5 Sec.	0	
+Mage	Skyborne A	1	melee	Attack Power	30	
+Mage	Skyborne A	1	melee	Hit Chance	0.00	%
+Mage	Skyborne A	1	melee	Crit Chance	5.26	%
+Mage	Skyborne A	1	melee	Haste	1.00	%
+Mage	Skyborne A	1	melee	Expertise	0.00	%
+Mage	Skyborne A	1	defense	Armor	40	
+Mage	Skyborne A	1	defense	Damage Reduction	7.62	%
+Mage	Skyborne A	1	defense	Defense	5	
+Mage	Skyborne A	1	defense	Dodge Chance	5.00	%
+Mage	Skyborne A	1	defense	Total Avoidance	10.00	%
+Mage	Skyborne A	1	defense	Boss Avoidance	8.80	%
+Mage	Skyborne A	1	defense	Boss Miss Chance	4.40	%
+Mage	Skyborne A	1	defense	Boss Crit Chance	5.60	%
+Mage	Skyborne A	1	defense	Boss Crush Chance	15.00	%
+Mage	Troll	1	spell	Spell Damage	0	
+Mage	Troll	1	spell	Arcane Damage	0	
+Mage	Troll	1	spell	Fire Damage	0	
+Mage	Troll	1	spell	Frost Damage	0	
+Mage	Troll	1	spell	Holy Damage	0	
+Mage	Troll	1	spell	Nature Damage	0	
+Mage	Troll	1	spell	Shadow Damage	0	
+Mage	Troll	1	spell	Healing	0	
+Mage	Troll	1	spell	Spell Hit	0.00	%
+Mage	Troll	1	spell	Hit Chance	0.00	%
+Mage	Troll	1	spell	Spell Crit	9.29	%
+Mage	Troll	1	spell	Crit Chance	5.44	%
+Mage	Troll	1	spell	Spell Penetration	0	
+Mage	Troll	1	spell	Mana per 5 Sec.	0	
+Mage	Troll	1	melee	Attack Power	32	
+Mage	Troll	1	melee	Hit Chance	0.00	%
+Mage	Troll	1	melee	Crit Chance	5.44	%
+Mage	Troll	1	melee	Haste	0.00	%
+Mage	Troll	1	melee	Expertise	0.00	%
+Mage	Troll	1	defense	Armor	44	
+Mage	Troll	1	defense	Damage Reduction	8.32	%
+Mage	Troll	1	defense	Defense	5	
+Mage	Troll	1	defense	Dodge Chance	5.18	%
+Mage	Troll	1	defense	Total Avoidance	10.18	%
+Mage	Troll	1	defense	Boss Avoidance	8.98	%
+Mage	Troll	1	defense	Boss Miss Chance	4.40	%
+Mage	Troll	1	defense	Boss Crit Chance	5.60	%
+Mage	Troll	1	defense	Boss Crush Chance	15.00	%
+Mage	Undead	1	spell	Spell Damage	0	
+Mage	Undead	1	spell	Arcane Damage	0	
+Mage	Undead	1	spell	Fire Damage	0	
+Mage	Undead	1	spell	Frost Damage	0	
+Mage	Undead	1	spell	Holy Damage	0	
+Mage	Undead	1	spell	Nature Damage	0	
+Mage	Undead	1	spell	Shadow Damage	0	
+Mage	Undead	1	spell	Healing	0	
+Mage	Undead	1	spell	Spell Hit	2.00	%
+Mage	Undead	1	spell	Hit Chance	1.00	%
+Mage	Undead	1	spell	Spell Crit	10.46	%
+Mage	Undead	1	spell	Crit Chance	5.08	%
+Mage	Undead	1	spell	Spell Penetration	0	
+Mage	Undead	1	spell	Mana per 5 Sec.	0	
+Mage	Undead	1	melee	Attack Power	28	
+Mage	Undead	1	melee	Hit Chance	1.00	%
+Mage	Undead	1	melee	Crit Chance	5.08	%
+Mage	Undead	1	melee	Haste	0.00	%
+Mage	Undead	1	melee	Expertise	0.00	%
+Mage	Undead	1	defense	Armor	36	
+Mage	Undead	1	defense	Damage Reduction	6.91	%
+Mage	Undead	1	defense	Defense	5	
+Mage	Undead	1	defense	Dodge Chance	4.82	%
+Mage	Undead	1	defense	Total Avoidance	9.82	%
+Mage	Undead	1	defense	Boss Avoidance	8.62	%
+Mage	Undead	1	defense	Boss Miss Chance	4.40	%
+Mage	Undead	1	defense	Boss Crit Chance	5.60	%
+Mage	Undead	1	defense	Boss Crush Chance	15.00	%
+Mage	Orc	1	spell	Spell Damage	0	
+Mage	Orc	1	spell	Arcane Damage	0	
+Mage	Orc	1	spell	Fire Damage	0	
+Mage	Orc	1	spell	Frost Damage	0	
+Mage	Orc	1	spell	Holy Damage	0	
+Mage	Orc	1	spell	Nature Damage	0	
+Mage	Orc	1	spell	Shadow Damage	0	
+Mage	Orc	1	spell	Healing	0	
+Mage	Orc	1	spell	Spell Hit	0.00	%
+Mage	Orc	1	spell	Hit Chance	0.00	%
+Mage	Orc	1	spell	Spell Crit	9.29	%
+Mage	Orc	1	spell	Crit Chance	5.44	%
+Mage	Orc	1	spell	Spell Penetration	0	
+Mage	Orc	1	spell	Mana per 5 Sec.	0	
+Mage	Orc	1	melee	Attack Power	32	
+Mage	Orc	1	melee	Hit Chance	0.00	%
+Mage	Orc	1	melee	Crit Chance	5.44	%
+Mage	Orc	1	melee	Haste	0.00	%
+Mage	Orc	1	melee	Expertise	0.00	%
+Mage	Orc	1	defense	Armor	44	
+Mage	Orc	1	defense	Damage Reduction	8.32	%
+Mage	Orc	1	defense	Defense	5	
+Mage	Orc	1	defense	Dodge Chance	5.18	%
+Mage	Orc	1	defense	Total Avoidance	10.18	%
+Mage	Orc	1	defense	Boss Avoidance	8.98	%
+Mage	Orc	1	defense	Boss Miss Chance	4.40	%
+Mage	Orc	1	defense	Boss Crit Chance	5.60	%
+Mage	Orc	1	defense	Boss Crush Chance	15.00	%
+Warrior	Human	60	melee	Attack Power	400	
+Warrior	Human	60	melee	Hit Chance	0.00	%
+Warrior	Human	60	melee	Crit Chance	5.14	%
+Warrior	Human	60	melee	Haste	0.00	%
+Warrior	Human	60	melee	Expertise	0.00	%
+Warrior	Human	60	defense	Armor	160	
+Warrior	Human	60	defense	Damage Reduction	2.83	%
+Warrior	Human	60	defense	Defense	300	
+Warrior	Human	60	defense	Dodge Chance	4.00	%
+Warrior	Human	60	defense	Parry Chance	5.00	%
+Warrior	Human	60	defense	Total Avoidance	14.00	%
+Warrior	Human	60	defense	Boss Avoidance	12.20	%
+Warrior	Human	60	defense	Boss Miss Chance	4.40	%
+Warrior	Human	60	defense	Boss Crit Chance	5.60	%
+Warrior	Human	60	defense	Boss Crush Chance	15.00	%
+Warrior	Dwarf	60	melee	Attack Power	404	
+Warrior	Dwarf	60	melee	Hit Chance	0.00	%
+Warrior	Dwarf	60	melee	Crit Chance	4.94	%
+Warrior	Dwarf	60	melee	Haste	0.00	%
+Warrior	Dwarf	60	melee	Expertise	0.00	%
+Warrior	Dwarf	60	defense	Armor	152	
+Warrior	Dwarf	60	defense	Damage Reduction	2.69	%
+Warrior	Dwarf	60	defense	Defense	300	
+Warrior	Dwarf	60	defense	Dodge Chance	3.80	%
+Warrior	Dwarf	60	defense	Parry Chance	5.00	%
+Warrior	Dwarf	60	defense	Total Avoidance	13.80	%
+Warrior	Dwarf	60	defense	Boss Avoidance	12.00	%
+Warrior	Dwarf	60	defense	Boss Miss Chance	4.40	%
+Warrior	Dwarf	60	defense	Boss Crit Chance	5.60	%
+Warrior	Dwarf	60	defense	Boss Crush Chance	15.00	%
+Warrior	Night Elf	60	melee	Attack Power	394	
+Warrior	Night Elf	60	melee	Hit Chance	0.00	%
+Warrior	Night Elf	60	melee	Crit Chance	5.39	%
+Warrior	Night Elf	60	melee	Haste	0.00	%
+Warrior	Night Elf	60	melee	Expertise	0.00	%
+Warrior	Night Elf	60	defense	Armor	170	
+Warrior	Night Elf	60	defense	Damage Reduction	3.00	%
+Warrior	Night Elf	60	defense	Defense	300	
+Warrior	Night Elf	60	defense	Dodge Chance	5.25	%
+Warrior	Night Elf	60	defense	Parry Chance	5.00	%
+Warrior	Night Elf	60	defense	Total Avoidance	15.25	%
+Warrior	Night Elf	60	defense	Boss Avoidance	13.45	%
+Warrior	Night Elf	60	defense	Boss Miss Chance	4.40	%
+Warrior	Night Elf	60	defense	Boss Crit Chance	5.60	%
+Warrior	Night Elf	60	defense	Boss Crush Chance	15.00	%
+Warrior	Gnome	60	melee	Attack Power	390	
+Warrior	Gnome	60	melee	Hit Chance	0.00	%
+Warrior	Gnome	60	melee	Crit Chance	5.29	%
+Warrior	Gnome	60	melee	Haste	0.00	%
+Warrior	Gnome	60	melee	Expertise	0.00	%
+Warrior	Gnome	60	defense	Armor	166	
+Warrior	Gnome	60	defense	Damage Reduction	2.93	%
+Warrior	Gnome	60	defense	Defense	300	
+Warrior	Gnome	60	defense	Dodge Chance	4.15	%
+Warrior	Gnome	60	defense	Parry Chance	5.00	%
+Warrior	Gnome	60	defense	Total Avoidance	14.15	%
+Warrior	Gnome	60	defense	Boss Avoidance	12.35	%
+Warrior	Gnome	60	defense	Boss Miss Chance	4.40	%
+Warrior	Gnome	60	defense	Boss Crit Chance	5.60	%
+Warrior	Gnome	60	defense	Boss Crush Chance	15.00	%
+Warrior	Skyborne A	60	melee	Attack Power	400	
+Warrior	Skyborne A	60	melee	Hit Chance	0.00	%
+Warrior	Skyborne A	60	melee	Crit Chance	5.14	%
+Warrior	Skyborne A	60	melee	Haste	1.00	%
+Warrior	Skyborne A	60	melee	Expertise	0.00	%
+Warrior	Skyborne A	60	defense	Armor	160	
+Warrior	Skyborne A	60	defense	Damage Reduction	2.83	%
+Warrior	Skyborne A	60	defense	Defense	300	
+Warrior	Skyborne A	60	defense	Dodge Chance	4.00	%
+Warrior	Skyborne A	60	defense	Parry Chance	5.00	%
+Warrior	Skyborne A	60	defense	Total Avoidance	14.00	%
+Warrior	Skyborne A	60	defense	Boss Avoidance	12.20	%
+Warrior	Skyborne A	60	defense	Boss Miss Chance	4.40	%
+Warrior	Skyborne A	60	defense	Boss Crit Chance	5.60	%
+Warrior	Skyborne A	60	defense	Boss Crush Chance	15.00	%
+Warrior	Skyborne H	60	melee	Attack Power	400	
+Warrior	Skyborne H	60	melee	Hit Chance	0.00	%
+Warrior	Skyborne H	60	melee	Crit Chance	5.14	%
+Warrior	Skyborne H	60	melee	Haste	1.00	%
+Warrior	Skyborne H	60	melee	Expertise	0.00	%
+Warrior	Skyborne H	60	defense	Armor	160	
+Warrior	Skyborne H	60	defense	Damage Reduction	2.83	%
+Warrior	Skyborne H	60	defense	Defense	300	
+Warrior	Skyborne H	60	defense	Dodge Chance	4.00	%
+Warrior	Skyborne H	60	defense	Parry Chance	5.00	%
+Warrior	Skyborne H	60	defense	Total Avoidance	14.00	%
+Warrior	Skyborne H	60	defense	Boss Avoidance	12.20	%
+Warrior	Skyborne H	60	defense	Boss Miss Chance	4.40	%
+Warrior	Skyborne H	60	defense	Boss Crit Chance	5.60	%
+Warrior	Skyborne H	60	defense	Boss Crush Chance	15.00	%
+Warrior	Troll	60	melee	Attack Power	402	
+Warrior	Troll	60	melee	Hit Chance	0.00	%
+Warrior	Troll	60	melee	Crit Chance	5.24	%
+Warrior	Troll	60	melee	Haste	0.00	%
+Warrior	Troll	60	melee	Expertise	0.00	%
+Warrior	Troll	60	defense	Armor	164	
+Warrior	Troll	60	defense	Damage Reduction	2.90	%
+Warrior	Troll	60	defense	Defense	300	
+Warrior	Troll	60	defense	Dodge Chance	4.10	%
+Warrior	Troll	60	defense	Parry Chance	5.00	%
+Warrior	Troll	60	defense	Total Avoidance	14.10	%
+Warrior	Troll	60	defense	Boss Avoidance	12.30	%
+Warrior	Troll	60	defense	Boss Miss Chance	4.40	%
+Warrior	Troll	60	defense	Boss Crit Chance	5.60	%
+Warrior	Troll	60	defense	Boss Crush Chance	15.00	%
+Warrior	Tauren	60	melee	Attack Power	410	
+Warrior	Tauren	60	melee	Hit Chance	0.00	%
+Warrior	Tauren	60	melee	Crit Chance	4.89	%
+Warrior	Tauren	60	melee	Haste	0.00	%
+Warrior	Tauren	60	melee	Expertise	0.00	%
+Warrior	Tauren	60	defense	Armor	150	
+Warrior	Tauren	60	defense	Damage Reduction	2.65	%
+Warrior	Tauren	60	defense	Defense	300	
+Warrior	Tauren	60	defense	Dodge Chance	3.75	%
+Warrior	Tauren	60	defense	Parry Chance	5.00	%
+Warrior	Tauren	60	defense	Total Avoidance	13.75	%
+Warrior	Tauren	60	defense	Boss Avoidance	11.95	%
+Warrior	Tauren	60	defense	Boss Miss Chance	4.40	%
+Warrior	Tauren	60	defense	Boss Crit Chance	5.60	%
+Warrior	Tauren	60	defense	Boss Crush Chance	15.00	%
+Warrior	Undead	60	melee	Attack Power	398	
+Warrior	Undead	60	melee	Hit Chance	1.00	%
+Warrior	Undead	60	melee	Crit Chance	5.04	%
+Warrior	Undead	60	melee	Haste	0.00	%
+Warrior	Undead	60	melee	Expertise	0.00	%
+Warrior	Undead	60	defense	Armor	156	
+Warrior	Undead	60	defense	Damage Reduction	2.76	%
+Warrior	Undead	60	defense	Defense	300	
+Warrior	Undead	60	defense	Dodge Chance	3.90	%
+Warrior	Undead	60	defense	Parry Chance	5.00	%
+Warrior	Undead	60	defense	Total Avoidance	13.90	%
+Warrior	Undead	60	defense	Boss Avoidance	12.10	%
+Warrior	Undead	60	defense	Boss Miss Chance	4.40	%
+Warrior	Undead	60	defense	Boss Crit Chance	5.60	%
+Warrior	Undead	60	defense	Boss Crush Chance	15.00	%
+Warrior	Orc	60	melee	Attack Power	406	
+Warrior	Orc	60	melee	Hit Chance	0.00	%
+Warrior	Orc	60	melee	Crit Chance	4.99	%
+Warrior	Orc	60	melee	Haste	0.00	%
+Warrior	Orc	60	melee	Expertise	0.00	%
+Warrior	Orc	60	defense	Armor	154	
+Warrior	Orc	60	defense	Damage Reduction	2.72	%
+Warrior	Orc	60	defense	Defense	300	
+Warrior	Orc	60	defense	Dodge Chance	3.85	%
+Warrior	Orc	60	defense	Parry Chance	5.00	%
+Warrior	Orc	60	defense	Total Avoidance	13.85	%
+Warrior	Orc	60	defense	Boss Avoidance	12.05	%
+Warrior	Orc	60	defense	Boss Miss Chance	4.40	%
+Warrior	Orc	60	defense	Boss Crit Chance	5.60	%
+Warrior	Orc	60	defense	Boss Crush Chance	15.00	%
+Warrior	Human	1	melee	Attack Power	29	
+Warrior	Human	1	melee	Hit Chance	0.00	%
+Warrior	Human	1	melee	Crit Chance	6.14	%
+Warrior	Human	1	melee	Haste	0.00	%
+Warrior	Human	1	melee	Expertise	0.00	%
+Warrior	Human	1	defense	Armor	40	
+Warrior	Human	1	defense	Damage Reduction	7.62	%
+Warrior	Human	1	defense	Defense	5	
+Warrior	Human	1	defense	Dodge Chance	5.00	%
+Warrior	Human	1	defense	Parry Chance	5.00	%
+Warrior	Human	1	defense	Total Avoidance	15.00	%
+Warrior	Human	1	defense	Boss Avoidance	13.20	%
+Warrior	Human	1	defense	Boss Miss Chance	4.40	%
+Warrior	Human	1	defense	Boss Crit Chance	5.60	%
+Warrior	Human	1	defense	Boss Crush Chance	15.00	%
+Warrior	Dwarf	1	melee	Attack Power	33	
+Warrior	Dwarf	1	melee	Hit Chance	0.00	%
+Warrior	Dwarf	1	melee	Crit Chance	5.14	%
+Warrior	Dwarf	1	melee	Haste	0.00	%
+Warrior	Dwarf	1	melee	Expertise	0.00	%
+Warrior	Dwarf	1	defense	Armor	32	
+Warrior	Dwarf	1	defense	Damage Reduction	6.19	%
+Warrior	Dwarf	1	defense	Defense	5	
+Warrior	Dwarf	1	defense	Dodge Chance	4.00	%
+Warrior	Dwarf	1	defense	Parry Chance	5.00	%
+Warrior	Dwarf	1	defense	Total Avoidance	14.00	%
+Warrior	Dwarf	1	defense	Boss Avoidance	12.20	%
+Warrior	Dwarf	1	defense	Boss Miss Chance	4.40	%
+Warrior	Dwarf	1	defense	Boss Crit Chance	5.60	%
+Warrior	Dwarf	1	defense	Boss Crush Chance	15.00	%
+Warrior	Night Elf	1	melee	Attack Power	23	
+Warrior	Night Elf	1	melee	Hit Chance	0.00	%
+Warrior	Night Elf	1	melee	Crit Chance	7.39	%
+Warrior	Night Elf	1	melee	Haste	0.00	%
+Warrior	Night Elf	1	melee	Expertise	0.00	%
+Warrior	Night Elf	1	defense	Armor	50	
+Warrior	Night Elf	1	defense	Damage Reduction	9.35	%
+Warrior	Night Elf	1	defense	Defense	5	
+Warrior	Night Elf	1	defense	Dodge Chance	7.25	%
+Warrior	Night Elf	1	defense	Parry Chance	5.00	%
+Warrior	Night Elf	1	defense	Total Avoidance	17.25	%
+Warrior	Night Elf	1	defense	Boss Avoidance	15.45	%
+Warrior	Night Elf	1	defense	Boss Miss Chance	4.40	%
+Warrior	Night Elf	1	defense	Boss Crit Chance	5.60	%
+Warrior	Night Elf	1	defense	Boss Crush Chance	15.00	%
+Warrior	Gnome	1	melee	Attack Power	19	
+Warrior	Gnome	1	melee	Hit Chance	0.00	%
+Warrior	Gnome	1	melee	Crit Chance	6.89	%
+Warrior	Gnome	1	melee	Haste	0.00	%
+Warrior	Gnome	1	melee	Expertise	0.00	%
+Warrior	Gnome	1	defense	Armor	46	
+Warrior	Gnome	1	defense	Damage Reduction	8.66	%
+Warrior	Gnome	1	defense	Defense	5	
+Warrior	Gnome	1	defense	Dodge Chance	5.75	%
+Warrior	Gnome	1	defense	Parry Chance	5.00	%
+Warrior	Gnome	1	defense	Total Avoidance	15.75	%
+Warrior	Gnome	1	defense	Boss Avoidance	13.95	%
+Warrior	Gnome	1	defense	Boss Miss Chance	4.40	%
+Warrior	Gnome	1	defense	Boss Crit Chance	5.60	%
+Warrior	Gnome	1	defense	Boss Crush Chance	15.00	%
+Warrior	Skyborne A	1	melee	Attack Power	29	
+Warrior	Skyborne A	1	melee	Hit Chance	0.00	%
+Warrior	Skyborne A	1	melee	Crit Chance	6.14	%
+Warrior	Skyborne A	1	melee	Haste	1.00	%
+Warrior	Skyborne A	1	melee	Expertise	0.00	%
+Warrior	Skyborne A	1	defense	Armor	40	
+Warrior	Skyborne A	1	defense	Damage Reduction	7.62	%
+Warrior	Skyborne A	1	defense	Defense	5	
+Warrior	Skyborne A	1	defense	Dodge Chance	5.00	%
+Warrior	Skyborne A	1	defense	Parry Chance	5.00	%
+Warrior	Skyborne A	1	defense	Total Avoidance	15.00	%
+Warrior	Skyborne A	1	defense	Boss Avoidance	13.20	%
+Warrior	Skyborne A	1	defense	Boss Miss Chance	4.40	%
+Warrior	Skyborne A	1	defense	Boss Crit Chance	5.60	%
+Warrior	Skyborne A	1	defense	Boss Crush Chance	15.00	%
+Warrior	Skyborne H	1	melee	Attack Power	29	
+Warrior	Skyborne H	1	melee	Hit Chance	0.00	%
+Warrior	Skyborne H	1	melee	Crit Chance	6.14	%
+Warrior	Skyborne H	1	melee	Haste	1.00	%
+Warrior	Skyborne H	1	melee	Expertise	0.00	%
+Warrior	Skyborne H	1	defense	Armor	40	
+Warrior	Skyborne H	1	defense	Damage Reduction	7.62	%
+Warrior	Skyborne H	1	defense	Defense	5	
+Warrior	Skyborne H	1	defense	Dodge Chance	5.00	%
+Warrior	Skyborne H	1	defense	Parry Chance	5.00	%
+Warrior	Skyborne H	1	defense	Total Avoidance	15.00	%
+Warrior	Skyborne H	1	defense	Boss Avoidance	13.20	%
+Warrior	Skyborne H	1	defense	Boss Miss Chance	4.40	%
+Warrior	Skyborne H	1	defense	Boss Crit Chance	5.60	%
+Warrior	Skyborne H	1	defense	Boss Crush Chance	15.00	%
+Warrior	Troll	1	melee	Attack Power	31	
+Warrior	Troll	1	melee	Hit Chance	0.00	%
+Warrior	Troll	1	melee	Crit Chance	6.64	%
+Warrior	Troll	1	melee	Haste	0.00	%
+Warrior	Troll	1	melee	Expertise	0.00	%
+Warrior	Troll	1	defense	Armor	44	
+Warrior	Troll	1	defense	Damage Reduction	8.32	%
+Warrior	Troll	1	defense	Defense	5	
+Warrior	Troll	1	defense	Dodge Chance	5.50	%
+Warrior	Troll	1	defense	Parry Chance	5.00	%
+Warrior	Troll	1	defense	Total Avoidance	15.50	%
+Warrior	Troll	1	defense	Boss Avoidance	13.70	%
+Warrior	Troll	1	defense	Boss Miss Chance	4.40	%
+Warrior	Troll	1	defense	Boss Crit Chance	5.60	%
+Warrior	Troll	1	defense	Boss Crush Chance	15.00	%
+Warrior	Tauren	1	melee	Attack Power	39	
+Warrior	Tauren	1	melee	Hit Chance	0.00	%
+Warrior	Tauren	1	melee	Crit Chance	4.89	%
+Warrior	Tauren	1	melee	Haste	0.00	%
+Warrior	Tauren	1	melee	Expertise	0.00	%
+Warrior	Tauren	1	defense	Armor	30	
+Warrior	Tauren	1	defense	Damage Reduction	5.83	%
+Warrior	Tauren	1	defense	Defense	5	
+Warrior	Tauren	1	defense	Dodge Chance	3.75	%
+Warrior	Tauren	1	defense	Parry Chance	5.00	%
+Warrior	Tauren	1	defense	Total Avoidance	13.75	%
+Warrior	Tauren	1	defense	Boss Avoidance	11.95	%
+Warrior	Tauren	1	defense	Boss Miss Chance	4.40	%
+Warrior	Tauren	1	defense	Boss Crit Chance	5.60	%
+Warrior	Tauren	1	defense	Boss Crush Chance	15.00	%
+Warrior	Undead	1	melee	Attack Power	27	
+Warrior	Undead	1	melee	Hit Chance	1.00	%
+Warrior	Undead	1	melee	Crit Chance	5.64	%
+Warrior	Undead	1	melee	Haste	0.00	%
+Warrior	Undead	1	melee	Expertise	0.00	%
+Warrior	Undead	1	defense	Armor	36	
+Warrior	Undead	1	defense	Damage Reduction	6.91	%
+Warrior	Undead	1	defense	Defense	5	
+Warrior	Undead	1	defense	Dodge Chance	4.50	%
+Warrior	Undead	1	defense	Parry Chance	5.00	%
+Warrior	Undead	1	defense	Total Avoidance	14.50	%
+Warrior	Undead	1	defense	Boss Avoidance	12.70	%
+Warrior	Undead	1	defense	Boss Miss Chance	4.40	%
+Warrior	Undead	1	defense	Boss Crit Chance	5.60	%
+Warrior	Undead	1	defense	Boss Crush Chance	15.00	%
+Warrior	Orc	1	melee	Attack Power	35	
+Warrior	Orc	1	melee	Hit Chance	0.00	%
+Warrior	Orc	1	melee	Crit Chance	5.39	%
+Warrior	Orc	1	melee	Haste	0.00	%
+Warrior	Orc	1	melee	Expertise	0.00	%
+Warrior	Orc	1	defense	Armor	34	
+Warrior	Orc	1	defense	Damage Reduction	6.55	%
+Warrior	Orc	1	defense	Defense	5	
+Warrior	Orc	1	defense	Dodge Chance	4.25	%
+Warrior	Orc	1	defense	Parry Chance	5.00	%
+Warrior	Orc	1	defense	Total Avoidance	14.25	%
+Warrior	Orc	1	defense	Boss Avoidance	12.45	%
+Warrior	Orc	1	defense	Boss Miss Chance	4.40	%
+Warrior	Orc	1	defense	Boss Crit Chance	5.60	%
+Warrior	Orc	1	defense	Boss Crush Chance	15.00	%
+Priest	Human	60	spell	Spell Damage	0	
+Priest	Human	60	spell	Arcane Damage	0	
+Priest	Human	60	spell	Fire Damage	0	
+Priest	Human	60	spell	Frost Damage	0	
+Priest	Human	60	spell	Holy Damage	0	
+Priest	Human	60	spell	Nature Damage	0	
+Priest	Human	60	spell	Shadow Damage	0	
+Priest	Human	60	spell	Healing	0	
+Priest	Human	60	spell	Spell Hit	0.00	%
+Priest	Human	60	spell	Hit Chance	0.00	%
+Priest	Human	60	spell	Spell Crit	8.00	%
+Priest	Human	60	spell	Crit Chance	5.18	%
+Priest	Human	60	spell	Spell Penetration	0	
+Priest	Human	60	spell	Mana per 5 Sec.	0	
+Priest	Human	60	melee	Attack Power	60	
+Priest	Human	60	melee	Hit Chance	0.00	%
+Priest	Human	60	melee	Crit Chance	5.18	%
+Priest	Human	60	melee	Haste	0.00	%
+Priest	Human	60	melee	Expertise	0.00	%
+Priest	Human	60	defense	Armor	80	
+Priest	Human	60	defense	Damage Reduction	1.43	%
+Priest	Human	60	defense	Defense	300	
+Priest	Human	60	defense	Dodge Chance	5.00	%
+Priest	Human	60	defense	Total Avoidance	10.00	%
+Priest	Human	60	defense	Boss Avoidance	8.80	%
+Priest	Human	60	defense	Boss Miss Chance	4.40	%
+Priest	Human	60	defense	Boss Crit Chance	5.60	%
+Priest	Human	60	defense	Boss Crush Chance	15.00	%
+Priest	Dwarf	60	spell	Spell Damage	0	
+Priest	Dwarf	60	spell	Arcane Damage	0	
+Priest	Dwarf	60	spell	Fire Damage	0	
+Priest	Dwarf	60	spell	Frost Damage	0	
+Priest	Dwarf	60	spell	Holy Damage	0	
+Priest	Dwarf	60	spell	Nature Damage	0	
+Priest	Dwarf	60	spell	Shadow Damage	0	
+Priest	Dwarf	60	spell	Healing	0	
+Priest	Dwarf	60	spell	Spell Hit	0.00	%
+Priest	Dwarf	60	spell	Hit Chance	0.00	%
+Priest	Dwarf	60	spell	Spell Crit	7.78	%
+Priest	Dwarf	60	spell	Crit Chance	4.98	%
+Priest	Dwarf	60	spell	Spell Penetration	0	
+Priest	Dwarf	60	spell	Mana per 5 Sec.	0	
+Priest	Dwarf	60	melee	Attack Power	64	
+Priest	Dwarf	60	melee	Hit Chance	0.00	%
+Priest	Dwarf	60	melee	Crit Chance	4.98	%
+Priest	Dwarf	60	melee	Haste	0.00	%
+Priest	Dwarf	60	melee	Expertise	0.00	%
+Priest	Dwarf	60	defense	Armor	72	
+Priest	Dwarf	60	defense	Damage Reduction	1.29	%
+Priest	Dwarf	60	defense	Defense	300	
+Priest	Dwarf	60	defense	Dodge Chance	4.80	%
+Priest	Dwarf	60	defense	Total Avoidance	9.80	%
+Priest	Night Elf	60	spell	Spell Damage	0	
+Priest	Night Elf	60	spell	Arcane Damage	0	
+Priest	Night Elf	60	spell	Fire Damage	0	
+Priest	Night Elf	60	spell	Frost Damage	0	
+Priest	Night Elf	60	spell	Holy Damage	0	
+Priest	Night Elf	60	spell	Nature Damage	0	
+Priest	Night Elf	60	spell	Shadow Damage	0	
+Priest	Night Elf	60	spell	Healing	0	
+Priest	Night Elf	60	spell	Spell Hit	0.00	%
+Priest	Night Elf	60	spell	Hit Chance	0.00	%
+Priest	Night Elf	60	spell	Spell Crit	8.25	%
+Priest	Night Elf	60	spell	Crit Chance	5.43	%
+Priest	Night Elf	60	spell	Spell Penetration	0	
+Priest	Night Elf	60	spell	Mana per 5 Sec.	0	
+Priest	Night Elf	60	melee	Attack Power	54	
+Priest	Night Elf	60	melee	Hit Chance	0.00	%
+Priest	Night Elf	60	melee	Crit Chance	5.43	%
+Priest	Night Elf	60	melee	Haste	0.00	%
+Priest	Night Elf	60	melee	Expertise	0.00	%
+Priest	Night Elf	60	defense	Armor	90	
+Priest	Night Elf	60	defense	Damage Reduction	1.61	%
+Priest	Night Elf	60	defense	Defense	300	
+Priest	Night Elf	60	defense	Dodge Chance	6.25	%
+Priest	Night Elf	60	defense	Total Avoidance	11.25	%
+Priest	Night Elf	60	defense	Boss Avoidance	10.05	%
+Priest	Night Elf	60	defense	Boss Miss Chance	4.40	%
+Priest	Night Elf	60	defense	Boss Crit Chance	5.60	%
+Priest	Night Elf	60	defense	Boss Crush Chance	15.00	%
+Priest	Gnome	60	spell	Spell Damage	0	
+Priest	Gnome	60	spell	Arcane Damage	0	
+Priest	Gnome	60	spell	Fire Damage	0	
+Priest	Gnome	60	spell	Frost Damage	0	
+Priest	Gnome	60	spell	Holy Damage	0	
+Priest	Gnome	60	spell	Nature Damage	0	
+Priest	Gnome	60	spell	Shadow Damage	0	
+Priest	Gnome	60	spell	Healing	0	
+Priest	Gnome	60	spell	Spell Hit	0.00	%
+Priest	Gnome	60	spell	Hit Chance	0.00	%
+Priest	Gnome	60	spell	Spell Crit	8.00	%
+Priest	Gnome	60	spell	Crit Chance	5.18	%
+Priest	Gnome	60	spell	Spell Penetration	0	
+Priest	Gnome	60	spell	Mana per 5 Sec.	0	
+Priest	Gnome	60	melee	Attack Power	60	
+Priest	Gnome	60	melee	Hit Chance	0.00	%
+Priest	Gnome	60	melee	Crit Chance	5.18	%
+Priest	Gnome	60	melee	Haste	0.00	%
+Priest	Gnome	60	melee	Expertise	0.00	%
+Priest	Gnome	60	defense	Armor	80	
+Priest	Gnome	60	defense	Damage Reduction	1.43	%
+Priest	Gnome	60	defense	Defense	300	
+Priest	Gnome	60	defense	Dodge Chance	5.00	%
+Priest	Gnome	60	defense	Total Avoidance	10.00	%
+Priest	Gnome	60	defense	Boss Avoidance	8.80	%
+Priest	Gnome	60	defense	Boss Miss Chance	4.40	%
+Priest	Gnome	60	defense	Boss Crit Chance	5.60	%
+Priest	Gnome	60	defense	Boss Crush Chance	15.00	%
+Priest	Troll	60	spell	Spell Damage	0	
+Priest	Troll	60	spell	Arcane Damage	0	
+Priest	Troll	60	spell	Fire Damage	0	
+Priest	Troll	60	spell	Frost Damage	0	
+Priest	Troll	60	spell	Holy Damage	0	
+Priest	Troll	60	spell	Nature Damage	0	
+Priest	Troll	60	spell	Shadow Damage	0	
+Priest	Troll	60	spell	Healing	0	
+Priest	Troll	60	spell	Spell Hit	0.00	%
+Priest	Troll	60	spell	Hit Chance	0.00	%
+Priest	Troll	60	spell	Spell Crit	8.03	%
+Priest	Troll	60	spell	Crit Chance	5.28	%
+Priest	Troll	60	spell	Spell Penetration	0	
+Priest	Troll	60	spell	Mana per 5 Sec.	0	
+Priest	Troll	60	melee	Attack Power	62	
+Priest	Troll	60	melee	Hit Chance	0.00	%
+Priest	Troll	60	melee	Crit Chance	5.28	%
+Priest	Troll	60	melee	Haste	0.00	%
+Priest	Troll	60	melee	Expertise	0.00	%
+Priest	Troll	60	defense	Armor	84	
+Priest	Troll	60	defense	Damage Reduction	1.50	%
+Priest	Troll	60	defense	Defense	300	
+Priest	Troll	60	defense	Dodge Chance	5.10	%
+Priest	Troll	60	defense	Total Avoidance	10.10	%
+Priest	Troll	60	defense	Boss Avoidance	8.90	%
+Priest	Troll	60	defense	Boss Miss Chance	4.40	%
+Priest	Troll	60	defense	Boss Crit Chance	5.60	%
+Priest	Troll	60	defense	Boss Crush Chance	15.00	%
+Priest	Undead	60	spell	Spell Damage	0	
+Priest	Undead	60	spell	Arcane Damage	0	
+Priest	Undead	60	spell	Fire Damage	0	
+Priest	Undead	60	spell	Frost Damage	0	
+Priest	Undead	60	spell	Holy Damage	0	
+Priest	Undead	60	spell	Nature Damage	0	
+Priest	Undead	60	spell	Shadow Damage	0	
+Priest	Undead	60	spell	Healing	0	
+Priest	Undead	60	spell	Spell Hit	2.00	%
+Priest	Undead	60	spell	Hit Chance	1.00	%
+Priest	Undead	60	spell	Spell Crit	7.87	%
+Priest	Undead	60	spell	Crit Chance	5.08	%
+Priest	Undead	60	spell	Spell Penetration	0	
+Priest	Undead	60	spell	Mana per 5 Sec.	0	
+Priest	Undead	60	melee	Attack Power	58	
+Priest	Undead	60	melee	Hit Chance	1.00	%
+Priest	Undead	60	melee	Crit Chance	5.08	%
+Priest	Undead	60	melee	Haste	0.00	%
+Priest	Undead	60	melee	Expertise	0.00	%
+Priest	Undead	60	defense	Armor	76	
+Priest	Undead	60	defense	Damage Reduction	1.36	%
+Priest	Undead	60	defense	Defense	300	
+Priest	Undead	60	defense	Dodge Chance	4.90	%
+Priest	Undead	60	defense	Total Avoidance	9.90	%
+Priest	Undead	60	defense	Boss Avoidance	8.70	%
+Priest	Undead	60	defense	Boss Miss Chance	4.40	%
+Priest	Undead	60	defense	Boss Crit Chance	5.60	%
+Priest	Undead	60	defense	Boss Crush Chance	15.00	%
+Priest	Human	1	spell	Spell Damage	0	
+Priest	Human	1	spell	Arcane Damage	0	
+Priest	Human	1	spell	Fire Damage	0	
+Priest	Human	1	spell	Frost Damage	0	
+Priest	Human	1	spell	Holy Damage	0	
+Priest	Human	1	spell	Nature Damage	0	
+Priest	Human	1	spell	Shadow Damage	0	
+Priest	Human	1	spell	Healing	0	
+Priest	Human	1	spell	Spell Hit	0.00	%
+Priest	Human	1	spell	Hit Chance	0.00	%
+Priest	Human	1	spell	Spell Crit	10.18	%
+Priest	Human	1	spell	Crit Chance	5.18	%
+Priest	Human	1	spell	Spell Penetration	0	
+Priest	Human	1	spell	Mana per 5 Sec.	0	
+Priest	Human	1	melee	Attack Power	30	
+Priest	Human	1	melee	Hit Chance	0.00	%
+Priest	Human	1	melee	Crit Chance	5.18	%
+Priest	Human	1	melee	Haste	0.00	%
+Priest	Human	1	melee	Expertise	0.00	%
+Priest	Human	1	defense	Armor	40	
+Priest	Human	1	defense	Damage Reduction	7.62	%
+Priest	Human	1	defense	Defense	5	
+Priest	Human	1	defense	Dodge Chance	5.00	%
+Priest	Human	1	defense	Total Avoidance	10.00	%
+Priest	Human	1	defense	Boss Avoidance	8.80	%
+Priest	Human	1	defense	Boss Miss Chance	4.40	%
+Priest	Human	1	defense	Boss Crit Chance	5.60	%
+Priest	Human	1	defense	Boss Crush Chance	15.00	%
+Priest	Dwarf	1	spell	Spell Damage	0	
+Priest	Dwarf	1	spell	Arcane Damage	0	
+Priest	Dwarf	1	spell	Fire Damage	0	
+Priest	Dwarf	1	spell	Frost Damage	0	
+Priest	Dwarf	1	spell	Holy Damage	0	
+Priest	Dwarf	1	spell	Nature Damage	0	
+Priest	Dwarf	1	spell	Shadow Damage	0	
+Priest	Dwarf	1	spell	Healing	0	
+Priest	Dwarf	1	spell	Spell Hit	0.00	%
+Priest	Dwarf	1	spell	Hit Chance	0.00	%
+Priest	Dwarf	1	spell	Spell Crit	9.59	%
+Priest	Dwarf	1	spell	Crit Chance	4.78	%
+Priest	Dwarf	1	spell	Spell Penetration	0	
+Priest	Dwarf	1	spell	Mana per 5 Sec.	0	
+Priest	Dwarf	1	melee	Attack Power	34	
+Priest	Dwarf	1	melee	Hit Chance	0.00	%
+Priest	Dwarf	1	melee	Crit Chance	4.78	%
+Priest	Dwarf	1	melee	Haste	0.00	%
+Priest	Dwarf	1	melee	Expertise	0.00	%
+Priest	Dwarf	1	defense	Armor	32	
+Priest	Dwarf	1	defense	Damage Reduction	6.19	%
+Priest	Dwarf	1	defense	Defense	5	
+Priest	Dwarf	1	defense	Dodge Chance	4.60	%
+Priest	Dwarf	1	defense	Total Avoidance	9.60	%
+Priest	Dwarf	1	defense	Boss Avoidance	8.40	%
+Priest	Dwarf	1	defense	Boss Miss Chance	4.40	%
+Priest	Dwarf	1	defense	Boss Crit Chance	5.60	%
+Priest	Dwarf	1	defense	Boss Crush Chance	15.00	%
+Priest	Night Elf	1	spell	Spell Damage	0	
+Priest	Night Elf	1	spell	Arcane Damage	0	
+Priest	Night Elf	1	spell	Fire Damage	0	
+Priest	Night Elf	1	spell	Frost Damage	0	
+Priest	Night Elf	1	spell	Holy Damage	0	
+Priest	Night Elf	1	spell	Nature Damage	0	
+Priest	Night Elf	1	spell	Shadow Damage	0	
+Priest	Night Elf	1	spell	Healing	0	
+Priest	Night Elf	1	spell	Spell Hit	0.00	%
+Priest	Night Elf	1	spell	Hit Chance	0.00	%
+Priest	Night Elf	1	spell	Spell Crit	10.68	%
+Priest	Night Elf	1	spell	Crit Chance	5.68	%
+Priest	Night Elf	1	spell	Spell Penetration	0	
+Priest	Night Elf	1	spell	Mana per 5 Sec.	0	
+Priest	Night Elf	1	melee	Attack Power	24	
+Priest	Night Elf	1	melee	Hit Chance	0.00	%
+Priest	Night Elf	1	melee	Crit Chance	5.68	%
+Priest	Night Elf	1	melee	Haste	0.00	%
+Priest	Night Elf	1	melee	Expertise	0.00	%
+Priest	Night Elf	1	defense	Armor	50	
+Priest	Night Elf	1	defense	Damage Reduction	9.35	%
+Priest	Night Elf	1	defense	Defense	5	
+Priest	Night Elf	1	defense	Dodge Chance	6.50	%
+Priest	Night Elf	1	defense	Total Avoidance	11.50	%
+Priest	Night Elf	1	defense	Boss Avoidance	10.30	%
+Priest	Night Elf	1	defense	Boss Miss Chance	4.40	%
+Priest	Night Elf	1	defense	Boss Crit Chance	5.60	%
+Priest	Night Elf	1	defense	Boss Crush Chance	15.00	%
+Priest	Gnome	1	spell	Spell Damage	0	
+Priest	Gnome	1	spell	Arcane Damage	0	
+Priest	Gnome	1	spell	Fire Damage	0	
+Priest	Gnome	1	spell	Frost Damage	0	
+Priest	Gnome	1	spell	Holy Damage	0	
+Priest	Gnome	1	spell	Nature Damage	0	
+Priest	Gnome	1	spell	Shadow Damage	0	
+Priest	Gnome	1	spell	Healing	0	
+Priest	Gnome	1	spell	Spell Hit	0.00	%
+Priest	Gnome	1	spell	Hit Chance	0.00	%
+Priest	Gnome	1	spell	Spell Crit	10.18	%
+Priest	Gnome	1	spell	Crit Chance	5.18	%
+Priest	Gnome	1	spell	Spell Penetration	0	
+Priest	Gnome	1	spell	Mana per 5 Sec.	0	
+Priest	Gnome	1	melee	Attack Power	30	
+Priest	Gnome	1	melee	Hit Chance	0.00	%
+Priest	Gnome	1	melee	Crit Chance	5.18	%
+Priest	Gnome	1	melee	Haste	0.00	%
+Priest	Gnome	1	melee	Expertise	0.00	%
+Priest	Gnome	1	defense	Armor	40	
+Priest	Gnome	1	defense	Damage Reduction	7.62	%
+Priest	Gnome	1	defense	Defense	5	
+Priest	Gnome	1	defense	Dodge Chance	5.00	%
+Priest	Gnome	1	defense	Total Avoidance	10.00	%
+Priest	Gnome	1	defense	Boss Avoidance	8.80	%
+Priest	Gnome	1	defense	Boss Miss Chance	4.40	%
+Priest	Gnome	1	defense	Boss Crit Chance	5.60	%
+Priest	Gnome	1	defense	Boss Crush Chance	15.00	%
+Priest	Troll	1	spell	Spell Damage	0	
+Priest	Troll	1	spell	Arcane Damage	0	
+Priest	Troll	1	spell	Fire Damage	0	
+Priest	Troll	1	spell	Frost Damage	0	
+Priest	Troll	1	spell	Holy Damage	0	
+Priest	Troll	1	spell	Nature Damage	0	
+Priest	Troll	1	spell	Shadow Damage	0	
+Priest	Troll	1	spell	Healing	0	
+Priest	Troll	1	spell	Spell Hit	0.00	%
+Priest	Troll	1	spell	Hit Chance	0.00	%
+Priest	Troll	1	spell	Spell Crit	9.62	%
+Priest	Troll	1	spell	Crit Chance	5.38	%
+Priest	Troll	1	spell	Spell Penetration	0	
+Priest	Troll	1	spell	Mana per 5 Sec.	0	
+Priest	Troll	1	melee	Attack Power	32	
+Priest	Troll	1	melee	Hit Chance	0.00	%
+Priest	Troll	1	melee	Crit Chance	5.38	%
+Priest	Troll	1	melee	Haste	0.00	%
+Priest	Troll	1	melee	Expertise	0.00	%
+Priest	Troll	1	defense	Armor	44	
+Priest	Troll	1	defense	Damage Reduction	8.32	%
+Priest	Troll	1	defense	Defense	5	
+Priest	Troll	1	defense	Dodge Chance	5.20	%
+Priest	Troll	1	defense	Total Avoidance	10.20	%
+Priest	Troll	1	defense	Boss Avoidance	9.00	%
+Priest	Troll	1	defense	Boss Miss Chance	4.40	%
+Priest	Troll	1	defense	Boss Crit Chance	5.60	%
+Priest	Troll	1	defense	Boss Crush Chance	15.00	%
+Priest	Undead	1	spell	Spell Damage	0	
+Priest	Undead	1	spell	Arcane Damage	0	
+Priest	Undead	1	spell	Fire Damage	0	
+Priest	Undead	1	spell	Frost Damage	0	
+Priest	Undead	1	spell	Holy Damage	0	
+Priest	Undead	1	spell	Nature Damage	0	
+Priest	Undead	1	spell	Shadow Damage	0	
+Priest	Undead	1	spell	Healing	0	
+Priest	Undead	1	spell	Spell Hit	2.00	%
+Priest	Undead	1	spell	Hit Chance	1.00	%
+Priest	Undead	1	spell	Spell Crit	9.60	%
+Priest	Undead	1	spell	Crit Chance	4.98	%
+Priest	Undead	1	spell	Spell Penetration	0	
+Priest	Undead	1	spell	Mana per 5 Sec.	0	
+Priest	Undead	1	melee	Attack Power	28	
+Priest	Undead	1	melee	Hit Chance	1.00	%
+Priest	Undead	1	melee	Crit Chance	4.98	%
+Priest	Undead	1	melee	Haste	0.00	%
+Priest	Undead	1	melee	Expertise	0.00	%
+Priest	Undead	1	defense	Armor	36	
+Priest	Undead	1	defense	Damage Reduction	6.91	%
+Priest	Undead	1	defense	Defense	5	
+Priest	Undead	1	defense	Dodge Chance	4.80	%
+Priest	Undead	1	defense	Total Avoidance	9.80	%
+Priest	Undead	1	defense	Boss Avoidance	8.60	%
+Priest	Undead	1	defense	Boss Miss Chance	4.40	%
+Priest	Undead	1	defense	Boss Crit Chance	5.60	%
+Priest	Undead	1	defense	Boss Crush Chance	15.00	%
+Rogue	Human	60	melee	Attack Power	310	
+Rogue	Human	60	melee	Hit Chance	0.00	%
+Rogue	Human	60	melee	Crit Chance	4.19	%
+Rogue	Human	60	melee	Haste	0.00	%
+Rogue	Human	60	melee	Expertise	0.00	%
+Rogue	Human	60	defense	Armor	260	
+Rogue	Human	60	defense	Damage Reduction	4.51	%
+Rogue	Human	60	defense	Defense	300	
+Rogue	Human	60	defense	Dodge Chance	4.49	%
+Rogue	Human	60	defense	Parry Chance	5.00	%
+Rogue	Human	60	defense	Total Avoidance	14.48	%
+Rogue	Human	60	defense	Boss Avoidance	12.69	%
+Rogue	Human	60	defense	Boss Miss Chance	4.40	%
+Rogue	Human	60	defense	Boss Crit Chance	5.60	%
+Rogue	Human	60	defense	Boss Crush Chance	15.00	%
+Rogue	Dwarf	60	melee	Attack Power	308	
+Rogue	Dwarf	60	melee	Hit Chance	0.00	%
+Rogue	Dwarf	60	melee	Crit Chance	4.05	%
+Rogue	Dwarf	60	melee	Haste	0.00	%
+Rogue	Dwarf	60	melee	Expertise	0.00	%
+Rogue	Dwarf	60	defense	Armor	252	
+Rogue	Dwarf	60	defense	Damage Reduction	4.38	%
+Rogue	Dwarf	60	defense	Defense	300	
+Rogue	Dwarf	60	defense	Dodge Chance	4.35	%
+Rogue	Dwarf	60	defense	Parry Chance	5.00	%
+Rogue	Dwarf	60	defense	Total Avoidance	14.35	%
+Rogue	Dwarf	60	defense	Boss Avoidance	12.55	%
+Rogue	Dwarf	60	defense	Boss Miss Chance	4.40	%
+Rogue	Dwarf	60	defense	Boss Crit Chance	5.60	%
+Rogue	Dwarf	60	defense	Boss Crush Chance	15.00	%
+Rogue	Night Elf	60	melee	Attack Power	312	
+Rogue	Night Elf	60	melee	Hit Chance	0.00	%
+Rogue	Night Elf	60	melee	Crit Chance	4.36	%
+Rogue	Night Elf	60	melee	Haste	0.00	%
+Rogue	Night Elf	60	melee	Expertise	0.00	%
+Rogue	Night Elf	60	defense	Armor	270	
+Rogue	Night Elf	60	defense	Damage Reduction	4.68	%
+Rogue	Night Elf	60	defense	Defense	300	
+Rogue	Night Elf	60	defense	Dodge Chance	5.66	%
+Rogue	Night Elf	60	defense	Parry Chance	5.00	%
+Rogue	Night Elf	60	defense	Total Avoidance	15.66	%
+Rogue	Night Elf	60	defense	Boss Avoidance	13.86	%
+Rogue	Night Elf	60	defense	Boss Miss Chance	4.40	%
+Rogue	Night Elf	60	defense	Boss Crit Chance	5.60	%
+Rogue	Night Elf	60	defense	Boss Crush Chance	15.00	%
+Rogue	Gnome	60	melee	Attack Power	308	
+Rogue	Gnome	60	melee	Hit Chance	0.00	%
+Rogue	Gnome	60	melee	Crit Chance	4.29	%
+Rogue	Gnome	60	melee	Haste	0.00	%
+Rogue	Gnome	60	melee	Expertise	0.00	%
+Rogue	Gnome	60	defense	Armor	266	
+Rogue	Gnome	60	defense	Damage Reduction	4.61	%
+Rogue	Gnome	60	defense	Defense	300	
+Rogue	Gnome	60	defense	Dodge Chance	4.59	%
+Rogue	Gnome	60	defense	Parry Chance	5.00	%
+Rogue	Gnome	60	defense	Total Avoidance	14.59	%
+Rogue	Gnome	60	defense	Boss Avoidance	12.79	%
+Rogue	Gnome	60	defense	Boss Miss Chance	4.40	%
+Rogue	Gnome	60	defense	Boss Crit Chance	5.60	%
+Rogue	Gnome	60	defense	Boss Crush Chance	15.00	%
+Rogue	Skyborne A	60	melee	Attack Power	312	
+Rogue	Skyborne A	60	melee	Hit Chance	0.00	%
+Rogue	Skyborne A	60	melee	Crit Chance	4.36	%
+Rogue	Skyborne A	60	melee	Haste	1.00	%
+Rogue	Skyborne A	60	melee	Expertise	0.00	%
+Rogue	Skyborne A	60	defense	Armor	270	
+Rogue	Skyborne A	60	defense	Damage Reduction	4.68	%
+Rogue	Skyborne A	60	defense	Defense	300	
+Rogue	Skyborne A	60	defense	Dodge Chance	4.66	%
+Rogue	Skyborne A	60	defense	Parry Chance	5.00	%
+Rogue	Skyborne A	60	defense	Total Avoidance	14.66	%
+Rogue	Skyborne A	60	defense	Boss Avoidance	12.86	%
+Rogue	Skyborne A	60	defense	Boss Miss Chance	4.40	%
+Rogue	Skyborne A	60	defense	Boss Crit Chance	5.60	%
+Rogue	Skyborne A	60	defense	Boss Crush Chance	15.00	%
+Rogue	Skyborne H	60	melee	Attack Power	312	
+Rogue	Skyborne H	60	melee	Hit Chance	0.00	%
+Rogue	Skyborne H	60	melee	Crit Chance	4.36	%
+Rogue	Skyborne H	60	melee	Haste	1.00	%
+Rogue	Skyborne H	60	melee	Expertise	0.00	%
+Rogue	Skyborne H	60	defense	Armor	270	
+Rogue	Skyborne H	60	defense	Damage Reduction	4.68	%
+Rogue	Skyborne H	60	defense	Defense	300	
+Rogue	Skyborne H	60	defense	Dodge Chance	4.66	%
+Rogue	Skyborne H	60	defense	Parry Chance	5.00	%
+Rogue	Skyborne H	60	defense	Total Avoidance	14.66	%
+Rogue	Skyborne H	60	defense	Boss Avoidance	12.86	%
+Rogue	Skyborne H	60	defense	Boss Miss Chance	4.40	%
+Rogue	Skyborne H	60	defense	Boss Crit Chance	5.60	%
+Rogue	Skyborne H	60	defense	Boss Crush Chance	15.00	%
+Rogue	Troll	60	melee	Attack Power	313	
+Rogue	Troll	60	melee	Hit Chance	0.00	%
+Rogue	Troll	60	melee	Crit Chance	4.26	%
+Rogue	Troll	60	melee	Haste	0.00	%
+Rogue	Troll	60	melee	Expertise	0.00	%
+Rogue	Troll	60	defense	Armor	264	
+Rogue	Troll	60	defense	Damage Reduction	4.58	%
+Rogue	Troll	60	defense	Defense	300	
+Rogue	Troll	60	defense	Dodge Chance	4.55	%
+Rogue	Troll	60	defense	Parry Chance	5.00	%
+Rogue	Troll	60	defense	Total Avoidance	14.55	%
+Rogue	Troll	60	defense	Boss Avoidance	12.75	%
+Rogue	Troll	60	defense	Boss Miss Chance	4.40	%
+Rogue	Troll	60	defense	Boss Crit Chance	5.60	%
+Rogue	Troll	60	defense	Boss Crush Chance	15.00	%
+Rogue	Undead	60	melee	Attack Power	307	
+Rogue	Undead	60	melee	Hit Chance	1.00	%
+Rogue	Undead	60	melee	Crit Chance	4.12	%
+Rogue	Undead	60	melee	Haste	0.00	%
+Rogue	Undead	60	melee	Expertise	0.00	%
+Rogue	Undead	60	defense	Armor	256	
+Rogue	Undead	60	defense	Damage Reduction	4.45	%
+Rogue	Undead	60	defense	Defense	300	
+Rogue	Undead	60	defense	Dodge Chance	4.42	%
+Rogue	Undead	60	defense	Parry Chance	5.00	%
+Rogue	Undead	60	defense	Total Avoidance	14.42	%
+Rogue	Undead	60	defense	Boss Avoidance	12.62	%
+Rogue	Undead	60	defense	Boss Miss Chance	4.40	%
+Rogue	Undead	60	defense	Boss Crit Chance	5.60	%
+Rogue	Undead	60	defense	Boss Crush Chance	15.00	%
+Rogue	Orc	60	melee	Attack Power	310	
+Rogue	Orc	60	melee	Hit Chance	0.00	%
+Rogue	Orc	60	melee	Crit Chance	4.09	%
+Rogue	Orc	60	melee	Haste	0.00	%
+Rogue	Orc	60	melee	Expertise	0.00	%
+Rogue	Orc	60	defense	Armor	254	
+Rogue	Orc	60	defense	Damage Reduction	4.41	%
+Rogue	Orc	60	defense	Defense	300	
+Rogue	Orc	60	defense	Dodge Chance	4.38	%
+Rogue	Orc	60	defense	Parry Chance	5.00	%
+Rogue	Orc	60	defense	Total Avoidance	14.38	%
+Rogue	Orc	60	defense	Boss Avoidance	12.58	%
+Rogue	Orc	60	defense	Boss Miss Chance	4.40	%
+Rogue	Orc	60	defense	Boss Crit Chance	5.60	%
+Rogue	Orc	60	defense	Boss Crush Chance	15.00	%
+Rogue	Human	1	melee	Attack Power	26	
+Rogue	Human	1	melee	Hit Chance	0.00	%
+Rogue	Human	1	melee	Crit Chance	9.71	%
+Rogue	Human	1	melee	Haste	0.00	%
+Rogue	Human	1	melee	Expertise	0.00	%
+Rogue	Human	1	defense	Armor	46	
+Rogue	Human	1	defense	Damage Reduction	8.66	%
+Rogue	Human	1	defense	Defense	5	
+Rogue	Human	1	defense	Dodge Chance	10.00	%
+Rogue	Human	1	defense	Parry Chance	5.00	%
+Rogue	Human	1	defense	Total Avoidance	20.00	%
+Rogue	Human	1	defense	Boss Avoidance	18.20	%
+Rogue	Human	1	defense	Boss Miss Chance	4.40	%
+Rogue	Human	1	defense	Boss Crit Chance	5.60	%
+Rogue	Human	1	defense	Boss Crush Chance	15.00	%
+Rogue	Dwarf	1	melee	Attack Power	24	
+Rogue	Dwarf	1	melee	Hit Chance	0.00	%
+Rogue	Dwarf	1	melee	Crit Chance	7.97	%
+Rogue	Dwarf	1	melee	Haste	0.00	%
+Rogue	Dwarf	1	melee	Expertise	0.00	%
+Rogue	Dwarf	1	defense	Armor	38	
+Rogue	Dwarf	1	defense	Damage Reduction	7.27	%
+Rogue	Dwarf	1	defense	Defense	5	
+Rogue	Dwarf	1	defense	Dodge Chance	8.26	%
+Rogue	Dwarf	1	defense	Parry Chance	5.00	%
+Rogue	Dwarf	1	defense	Total Avoidance	18.26	%
+Rogue	Dwarf	1	defense	Boss Avoidance	16.46	%
+Rogue	Dwarf	1	defense	Boss Miss Chance	4.40	%
+Rogue	Dwarf	1	defense	Boss Crit Chance	5.60	%
+Rogue	Dwarf	1	defense	Boss Crush Chance	15.00	%
+Rogue	Night Elf	1	melee	Attack Power	28	
+Rogue	Night Elf	1	melee	Hit Chance	0.00	%
+Rogue	Night Elf	1	melee	Crit Chance	11.88	%
+Rogue	Night Elf	1	melee	Haste	0.00	%
+Rogue	Night Elf	1	melee	Expertise	0.00	%
+Rogue	Night Elf	1	defense	Armor	56	
+Rogue	Night Elf	1	defense	Damage Reduction	10.35	%
+Rogue	Night Elf	1	defense	Defense	5	
+Rogue	Night Elf	1	defense	Dodge Chance	13.17	%
+Rogue	Night Elf	1	defense	Parry Chance	5.00	%
+Rogue	Night Elf	1	defense	Total Avoidance	23.17	%
+Rogue	Night Elf	1	defense	Boss Avoidance	21.37	%
+Rogue	Night Elf	1	defense	Boss Miss Chance	4.40	%
+Rogue	Night Elf	1	defense	Boss Crit Chance	5.60	%
+Rogue	Night Elf	1	defense	Boss Crush Chance	15.00	%
+Rogue	Gnome	1	melee	Attack Power	24	
+Rogue	Gnome	1	melee	Hit Chance	0.00	%
+Rogue	Gnome	1	melee	Crit Chance	11.01	%
+Rogue	Gnome	1	melee	Haste	0.00	%
+Rogue	Gnome	1	melee	Expertise	0.00	%
+Rogue	Gnome	1	defense	Armor	52	
+Rogue	Gnome	1	defense	Damage Reduction	9.68	%
+Rogue	Gnome	1	defense	Defense	5	
+Rogue	Gnome	1	defense	Dodge Chance	11.30	%
+Rogue	Gnome	1	defense	Parry Chance	5.00	%
+Rogue	Gnome	1	defense	Total Avoidance	21.30	%
+Rogue	Gnome	1	defense	Boss Avoidance	19.50	%
+Rogue	Gnome	1	defense	Boss Miss Chance	4.40	%
+Rogue	Gnome	1	defense	Boss Crit Chance	5.60	%
+Rogue	Gnome	1	defense	Boss Crush Chance	15.00	%
+Rogue	Skyborne A	1	melee	Attack Power	28	
+Rogue	Skyborne A	1	melee	Hit Chance	0.00	%
+Rogue	Skyborne A	1	melee	Crit Chance	11.88	%
+Rogue	Skyborne A	1	melee	Haste	1.00	%
+Rogue	Skyborne A	1	melee	Expertise	0.00	%
+Rogue	Skyborne A	1	defense	Armor	56	
+Rogue	Skyborne A	1	defense	Damage Reduction	10.35	%
+Rogue	Skyborne A	1	defense	Defense	5	
+Rogue	Skyborne A	1	defense	Dodge Chance	12.17	%
+Rogue	Skyborne A	1	defense	Parry Chance	5.00	%
+Rogue	Skyborne A	1	defense	Total Avoidance	22.17	%
+Rogue	Skyborne A	1	defense	Boss Avoidance	20.37	%
+Rogue	Skyborne A	1	defense	Boss Miss Chance	4.40	%
+Rogue	Skyborne A	1	defense	Boss Crit Chance	5.60	%
+Rogue	Skyborne A	1	defense	Boss Crush Chance	15.00	%
+Rogue	Skyborne H	1	melee	Attack Power	28	
+Rogue	Skyborne H	1	melee	Hit Chance	0.00	%
+Rogue	Skyborne H	1	melee	Crit Chance	11.88	%
+Rogue	Skyborne H	1	melee	Haste	1.00	%
+Rogue	Skyborne H	1	melee	Expertise	0.00	%
+Rogue	Skyborne H	1	defense	Armor	56	
+Rogue	Skyborne H	1	defense	Damage Reduction	10.35	%
+Rogue	Skyborne H	1	defense	Defense	5	
+Rogue	Skyborne H	1	defense	Dodge Chance	12.17	%
+Rogue	Skyborne H	1	defense	Parry Chance	5.00	%
+Rogue	Skyborne H	1	defense	Total Avoidance	22.17	%
+Rogue	Skyborne H	1	defense	Boss Avoidance	20.37	%
+Rogue	Skyborne H	1	defense	Boss Miss Chance	4.40	%
+Rogue	Skyborne H	1	defense	Boss Crit Chance	5.60	%
+Rogue	Skyborne H	1	defense	Boss Crush Chance	15.00	%
+Rogue	Troll	1	melee	Attack Power	29	
+Rogue	Troll	1	melee	Hit Chance	0.00	%
+Rogue	Troll	1	melee	Crit Chance	10.58	%
+Rogue	Troll	1	melee	Haste	0.00	%
+Rogue	Troll	1	melee	Expertise	0.00	%
+Rogue	Troll	1	defense	Armor	50	
+Rogue	Troll	1	defense	Damage Reduction	9.35	%
+Rogue	Troll	1	defense	Defense	5	
+Rogue	Troll	1	defense	Dodge Chance	10.87	%
+Rogue	Troll	1	defense	Parry Chance	5.00	%
+Rogue	Troll	1	defense	Total Avoidance	20.87	%
+Rogue	Troll	1	defense	Boss Avoidance	19.07	%
+Rogue	Troll	1	defense	Boss Miss Chance	4.40	%
+Rogue	Troll	1	defense	Boss Crit Chance	5.60	%
+Rogue	Troll	1	defense	Boss Crush Chance	15.00	%
+Rogue	Undead	1	melee	Attack Power	23	
+Rogue	Undead	1	melee	Hit Chance	1.00	%
+Rogue	Undead	1	melee	Crit Chance	8.84	%
+Rogue	Undead	1	melee	Haste	0.00	%
+Rogue	Undead	1	melee	Expertise	0.00	%
+Rogue	Undead	1	defense	Armor	42	
+Rogue	Undead	1	defense	Damage Reduction	7.97	%
+Rogue	Undead	1	defense	Defense	5	
+Rogue	Undead	1	defense	Dodge Chance	9.13	%
+Rogue	Undead	1	defense	Parry Chance	5.00	%
+Rogue	Undead	1	defense	Total Avoidance	19.13	%
+Rogue	Undead	1	defense	Boss Avoidance	17.33	%
+Rogue	Undead	1	defense	Boss Miss Chance	4.40	%
+Rogue	Undead	1	defense	Boss Crit Chance	5.60	%
+Rogue	Undead	1	defense	Boss Crush Chance	15.00	%
+Rogue	Orc	1	melee	Attack Power	26	
+Rogue	Orc	1	melee	Hit Chance	0.00	%
+Rogue	Orc	1	melee	Crit Chance	8.40	%
+Rogue	Orc	1	melee	Haste	0.00	%
+Rogue	Orc	1	melee	Expertise	0.00	%
+Rogue	Orc	1	defense	Armor	40	
+Rogue	Orc	1	defense	Damage Reduction	7.62	%
+Rogue	Orc	1	defense	Defense	5	
+Rogue	Orc	1	defense	Dodge Chance	8.70	%
+Rogue	Orc	1	defense	Parry Chance	5.00	%
+Rogue	Orc	1	defense	Total Avoidance	18.70	%
+Rogue	Orc	1	defense	Boss Avoidance	16.90	%
+Rogue	Orc	1	defense	Boss Miss Chance	4.40	%
+Rogue	Orc	1	defense	Boss Crit Chance	5.60	%
+Rogue	Orc	1	defense	Boss Crush Chance	15.00	%
+Paladin	Human	60	spell	Spell Damage	0	
+Paladin	Human	60	spell	Arcane Damage	0	
+Paladin	Human	60	spell	Fire Damage	0	
+Paladin	Human	60	spell	Frost Damage	0	
+Paladin	Human	60	spell	Holy Damage	0	
+Paladin	Human	60	spell	Nature Damage	0	
+Paladin	Human	60	spell	Shadow Damage	0	
+Paladin	Human	60	spell	Healing	0	
+Paladin	Human	60	spell	Spell Hit	0.00	%
+Paladin	Human	60	spell	Hit Chance	0.00	%
+Paladin	Human	60	spell	Spell Crit	8.61	%
+Paladin	Human	60	spell	Crit Chance	3.94	%
+Paladin	Human	60	spell	Spell Penetration	0	
+Paladin	Human	60	spell	Mana per 5 Sec.	0	
+Paladin	Human	60	melee	Attack Power	370	
+Paladin	Human	60	melee	Hit Chance	0.00	%
+Paladin	Human	60	melee	Crit Chance	3.94	%
+Paladin	Human	60	melee	Haste	0.00	%
+Paladin	Human	60	melee	Expertise	0.00	%
+Paladin	Human	60	defense	Armor	130	
+Paladin	Human	60	defense	Damage Reduction	2.31	%
+Paladin	Human	60	defense	Defense	300	
+Paladin	Human	60	defense	Dodge Chance	3.99	%
+Paladin	Human	60	defense	Parry Chance	5.00	%
+Paladin	Human	60	defense	Total Avoidance	13.99	%
+Paladin	Human	60	defense	Boss Avoidance	12.19	%
+Paladin	Human	60	defense	Boss Miss Chance	4.40	%
+Paladin	Human	60	defense	Boss Crit Chance	5.60	%
+Paladin	Human	60	defense	Boss Crush Chance	15.00	%
+Paladin	Dwarf	60	spell	Spell Damage	0	
+Paladin	Dwarf	60	spell	Arcane Damage	0	
+Paladin	Dwarf	60	spell	Fire Damage	0	
+Paladin	Dwarf	60	spell	Frost Damage	0	
+Paladin	Dwarf	60	spell	Holy Damage	0	
+Paladin	Dwarf	60	spell	Nature Damage	0	
+Paladin	Dwarf	60	spell	Shadow Damage	0	
+Paladin	Dwarf	60	spell	Healing	0	
+Paladin	Dwarf	60	spell	Spell Hit	0.00	%
+Paladin	Dwarf	60	spell	Hit Chance	0.00	%
+Paladin	Dwarf	60	spell	Spell Crit	8.39	%
+Paladin	Dwarf	60	spell	Crit Chance	3.74	%
+Paladin	Dwarf	60	spell	Spell Penetration	0	
+Paladin	Dwarf	60	spell	Mana per 5 Sec.	0	
+Paladin	Dwarf	60	melee	Attack Power	374	
+Paladin	Dwarf	60	melee	Hit Chance	0.00	%
+Paladin	Dwarf	60	melee	Crit Chance	3.74	%
+Paladin	Dwarf	60	melee	Haste	0.00	%
+Paladin	Dwarf	60	melee	Expertise	0.00	%
+Paladin	Dwarf	60	defense	Armor	122	
+Paladin	Dwarf	60	defense	Damage Reduction	2.17	%
+Paladin	Dwarf	60	defense	Defense	300	
+Paladin	Dwarf	60	defense	Dodge Chance	3.79	%
+Paladin	Dwarf	60	defense	Parry Chance	5.00	%
+Paladin	Dwarf	60	defense	Total Avoidance	13.79	%
+Paladin	Dwarf	60	defense	Boss Avoidance	11.99	%
+Paladin	Dwarf	60	defense	Boss Miss Chance	4.40	%
+Paladin	Dwarf	60	defense	Boss Crit Chance	5.60	%
+Paladin	Dwarf	60	defense	Boss Crush Chance	15.00	%
+Paladin	Undead	60	spell	Spell Damage	0	
+Paladin	Undead	60	spell	Arcane Damage	0	
+Paladin	Undead	60	spell	Fire Damage	0	
+Paladin	Undead	60	spell	Frost Damage	0	
+Paladin	Undead	60	spell	Holy Damage	0	
+Paladin	Undead	60	spell	Nature Damage	0	
+Paladin	Undead	60	spell	Shadow Damage	0	
+Paladin	Undead	60	spell	Healing	0	
+Paladin	Undead	60	spell	Spell Hit	2.00	%
+Paladin	Undead	60	spell	Hit Chance	1.00	%
+Paladin	Undead	60	spell	Spell Crit	8.61	%
+Paladin	Undead	60	spell	Crit Chance	3.94	%
+Paladin	Undead	60	spell	Spell Penetration	0	
+Paladin	Undead	60	spell	Mana per 5 Sec.	0	
+Paladin	Undead	60	melee	Attack Power	370	
+Paladin	Undead	60	melee	Hit Chance	1.00	%
+Paladin	Undead	60	melee	Crit Chance	3.94	%
+Paladin	Undead	60	melee	Haste	0.00	%
+Paladin	Undead	60	melee	Expertise	0.00	%
+Paladin	Undead	60	defense	Armor	130	
+Paladin	Undead	60	defense	Damage Reduction	2.31	%
+Paladin	Undead	60	defense	Defense	300	
+Paladin	Undead	60	defense	Dodge Chance	3.99	%
+Paladin	Undead	60	defense	Parry Chance	5.00	%
+Paladin	Undead	60	defense	Total Avoidance	13.99	%
+Paladin	Undead	60	defense	Boss Avoidance	12.19	%
+Paladin	Undead	60	defense	Boss Miss Chance	4.40	%
+Paladin	Undead	60	defense	Boss Crit Chance	5.60	%
+Paladin	Undead	60	defense	Boss Crush Chance	15.00	%
+Paladin	Human	1	spell	Spell Damage	0	
+Paladin	Human	1	spell	Arcane Damage	0	
+Paladin	Human	1	spell	Fire Damage	0	
+Paladin	Human	1	spell	Frost Damage	0	
+Paladin	Human	1	spell	Holy Damage	0	
+Paladin	Human	1	spell	Nature Damage	0	
+Paladin	Human	1	spell	Shadow Damage	0	
+Paladin	Human	1	spell	Healing	0	
+Paladin	Human	1	spell	Spell Hit	0.00	%
+Paladin	Human	1	spell	Hit Chance	0.00	%
+Paladin	Human	1	spell	Spell Crit	9.95	%
+Paladin	Human	1	spell	Crit Chance	4.95	%
+Paladin	Human	1	spell	Spell Penetration	0	
+Paladin	Human	1	spell	Mana per 5 Sec.	0	
+Paladin	Human	1	melee	Attack Power	27	
+Paladin	Human	1	melee	Hit Chance	0.00	%
+Paladin	Human	1	melee	Crit Chance	4.95	%
+Paladin	Human	1	melee	Haste	0.00	%
+Paladin	Human	1	melee	Expertise	0.00	%
+Paladin	Human	1	defense	Armor	40	
+Paladin	Human	1	defense	Damage Reduction	7.62	%
+Paladin	Human	1	defense	Defense	5	
+Paladin	Human	1	defense	Dodge Chance	5.00	%
+Paladin	Human	1	defense	Parry Chance	5.00	%
+Paladin	Human	1	defense	Total Avoidance	15.00	%
+Paladin	Human	1	defense	Boss Avoidance	13.20	%
+Paladin	Human	1	defense	Boss Miss Chance	4.40	%
+Paladin	Human	1	defense	Boss Crit Chance	5.60	%
+Paladin	Human	1	defense	Boss Crush Chance	15.00	%
+Paladin	Dwarf	1	spell	Spell Damage	0	
+Paladin	Dwarf	1	spell	Arcane Damage	0	
+Paladin	Dwarf	1	spell	Fire Damage	0	
+Paladin	Dwarf	1	spell	Frost Damage	0	
+Paladin	Dwarf	1	spell	Holy Damage	0	
+Paladin	Dwarf	1	spell	Nature Damage	0	
+Paladin	Dwarf	1	spell	Shadow Damage	0	
+Paladin	Dwarf	1	spell	Healing	0	
+Paladin	Dwarf	1	spell	Spell Hit	0.00	%
+Paladin	Dwarf	1	spell	Hit Chance	0.00	%
+Paladin	Dwarf	1	spell	Spell Crit	9.02	%
+Paladin	Dwarf	1	spell	Crit Chance	4.09	%
+Paladin	Dwarf	1	spell	Spell Penetration	0	
+Paladin	Dwarf	1	spell	Mana per 5 Sec.	0	
+Paladin	Dwarf	1	melee	Attack Power	31	
+Paladin	Dwarf	1	melee	Hit Chance	0.00	%
+Paladin	Dwarf	1	melee	Crit Chance	4.09	%
+Paladin	Dwarf	1	melee	Haste	0.00	%
+Paladin	Dwarf	1	melee	Expertise	0.00	%
+Paladin	Dwarf	1	defense	Armor	32	
+Paladin	Dwarf	1	defense	Damage Reduction	6.19	%
+Paladin	Dwarf	1	defense	Defense	5	
+Paladin	Dwarf	1	defense	Dodge Chance	4.14	%
+Paladin	Dwarf	1	defense	Parry Chance	5.00	%
+Paladin	Dwarf	1	defense	Total Avoidance	14.14	%
+Paladin	Dwarf	1	defense	Boss Avoidance	12.34	%
+Paladin	Dwarf	1	defense	Boss Miss Chance	4.40	%
+Paladin	Dwarf	1	defense	Boss Crit Chance	5.60	%
+Paladin	Dwarf	1	defense	Boss Crush Chance	15.00	%
+Paladin	Undead	1	spell	Spell Damage	0	
+Paladin	Undead	1	spell	Arcane Damage	0	
+Paladin	Undead	1	spell	Fire Damage	0	
+Paladin	Undead	1	spell	Frost Damage	0	
+Paladin	Undead	1	spell	Holy Damage	0	
+Paladin	Undead	1	spell	Nature Damage	0	
+Paladin	Undead	1	spell	Shadow Damage	0	
+Paladin	Undead	1	spell	Healing	0	
+Paladin	Undead	1	spell	Spell Hit	2.00	%
+Paladin	Undead	1	spell	Hit Chance	1.00	%
+Paladin	Undead	1	spell	Spell Crit	9.95	%
+Paladin	Undead	1	spell	Crit Chance	4.95	%
+Paladin	Undead	1	spell	Spell Penetration	0	
+Paladin	Undead	1	spell	Mana per 5 Sec.	0	
+Paladin	Undead	1	melee	Attack Power	27	
+Paladin	Undead	1	melee	Hit Chance	1.00	%
+Paladin	Undead	1	melee	Crit Chance	4.95	%
+Paladin	Undead	1	melee	Haste	0.00	%
+Paladin	Undead	1	melee	Expertise	0.00	%
+Paladin	Undead	1	defense	Armor	40	
+Paladin	Undead	1	defense	Damage Reduction	7.62	%
+Paladin	Undead	1	defense	Defense	5	
+Paladin	Undead	1	defense	Dodge Chance	5.00	%
+Paladin	Undead	1	defense	Parry Chance	5.00	%
+Paladin	Undead	1	defense	Total Avoidance	15.00	%
+Paladin	Undead	1	defense	Boss Avoidance	13.20	%
+Paladin	Undead	1	defense	Boss Miss Chance	4.40	%
+Paladin	Undead	1	defense	Boss Crit Chance	5.60	%
+Paladin	Undead	1	defense	Boss Crush Chance	15.00	%
+Warlock	Human	60	spell	Spell Damage	0	
+Warlock	Human	60	spell	Arcane Damage	0	
+Warlock	Human	60	spell	Fire Damage	0	
+Warlock	Human	60	spell	Frost Damage	0	
+Warlock	Human	60	spell	Holy Damage	0	
+Warlock	Human	60	spell	Nature Damage	0	
+Warlock	Human	60	spell	Shadow Damage	0	
+Warlock	Human	60	spell	Healing	0	
+Warlock	Human	60	spell	Spell Hit	0.00	%
+Warlock	Human	60	spell	Hit Chance	0.00	%
+Warlock	Human	60	spell	Spell Crit	8.02	%
+Warlock	Human	60	spell	Crit Chance	4.50	%
+Warlock	Human	60	spell	Spell Penetration	0	
+Warlock	Human	60	spell	Mana per 5 Sec.	0	
+Warlock	Human	60	melee	Attack Power	80	
+Warlock	Human	60	melee	Hit Chance	0.00	%
+Warlock	Human	60	melee	Crit Chance	4.50	%
+Warlock	Human	60	melee	Haste	0.00	%
+Warlock	Human	60	melee	Expertise	0.00	%
+Warlock	Human	60	defense	Armor	100	
+Warlock	Human	60	defense	Damage Reduction	1.79	%
+Warlock	Human	60	defense	Defense	300	
+Warlock	Human	60	defense	Dodge Chance	4.50	%
+Warlock	Human	60	defense	Total Avoidance	9.50	%
+Warlock	Human	60	defense	Boss Avoidance	8.30	%
+Warlock	Human	60	defense	Boss Miss Chance	4.40	%
+Warlock	Human	60	defense	Boss Crit Chance	5.60	%
+Warlock	Human	60	defense	Boss Crush Chance	15.00	%
+Warlock	Gnome	60	spell	Spell Damage	0	
+Warlock	Gnome	60	spell	Arcane Damage	0	
+Warlock	Gnome	60	spell	Fire Damage	0	
+Warlock	Gnome	60	spell	Frost Damage	0	
+Warlock	Gnome	60	spell	Holy Damage	0	
+Warlock	Gnome	60	spell	Nature Damage	0	
+Warlock	Gnome	60	spell	Shadow Damage	0	
+Warlock	Gnome	60	spell	Healing	0	
+Warlock	Gnome	60	spell	Spell Hit	0.00	%
+Warlock	Gnome	60	spell	Hit Chance	0.00	%
+Warlock	Gnome	60	spell	Spell Crit	8.31	%
+Warlock	Gnome	60	spell	Crit Chance	4.65	%
+Warlock	Gnome	60	spell	Spell Penetration	0	
+Warlock	Gnome	60	spell	Mana per 5 Sec.	0	
+Warlock	Gnome	60	melee	Attack Power	70	
+Warlock	Gnome	60	melee	Hit Chance	0.00	%
+Warlock	Gnome	60	melee	Crit Chance	4.65	%
+Warlock	Gnome	60	melee	Haste	0.00	%
+Warlock	Gnome	60	melee	Expertise	0.00	%
+Warlock	Gnome	60	defense	Armor	106	
+Warlock	Gnome	60	defense	Damage Reduction	1.89	%
+Warlock	Gnome	60	defense	Defense	300	
+Warlock	Gnome	60	defense	Dodge Chance	4.65	%
+Warlock	Gnome	60	defense	Total Avoidance	9.65	%
+Warlock	Gnome	60	defense	Boss Avoidance	8.45	%
+Warlock	Gnome	60	defense	Boss Miss Chance	4.40	%
+Warlock	Gnome	60	defense	Boss Crit Chance	5.60	%
+Warlock	Gnome	60	defense	Boss Crush Chance	15.00	%
+Warlock	Troll	60	spell	Spell Damage	0	
+Warlock	Troll	60	spell	Arcane Damage	0	
+Warlock	Troll	60	spell	Fire Damage	0	
+Warlock	Troll	60	spell	Frost Damage	0	
+Warlock	Troll	60	spell	Holy Damage	0	
+Warlock	Troll	60	spell	Nature Damage	0	
+Warlock	Troll	60	spell	Shadow Damage	0	
+Warlock	Troll	60	spell	Healing	0	
+Warlock	Troll	60	spell	Spell Hit	0.00	%
+Warlock	Troll	60	spell	Hit Chance	0.00	%
+Warlock	Troll	60	spell	Spell Crit	7.82	%
+Warlock	Troll	60	spell	Crit Chance	4.35	%
+Warlock	Troll	60	spell	Spell Penetration	0	
+Warlock	Troll	60	spell	Mana per 5 Sec.	0	
+Warlock	Troll	60	melee	Attack Power	86	
+Warlock	Troll	60	melee	Hit Chance	0.00	%
+Warlock	Troll	60	melee	Crit Chance	4.35	%
+Warlock	Troll	60	melee	Haste	0.00	%
+Warlock	Troll	60	melee	Expertise	0.00	%
+Warlock	Troll	60	defense	Armor	94	
+Warlock	Troll	60	defense	Damage Reduction	1.68	%
+Warlock	Troll	60	defense	Defense	300	
+Warlock	Troll	60	defense	Dodge Chance	4.35	%
+Warlock	Troll	60	defense	Total Avoidance	9.35	%
+Warlock	Troll	60	defense	Boss Avoidance	8.15	%
+Warlock	Troll	60	defense	Boss Miss Chance	4.40	%
+Warlock	Troll	60	defense	Boss Crit Chance	5.60	%
+Warlock	Troll	60	defense	Boss Crush Chance	15.00	%
+Warlock	Undead	60	spell	Spell Damage	0	
+Warlock	Undead	60	spell	Arcane Damage	0	
+Warlock	Undead	60	spell	Fire Damage	0	
+Warlock	Undead	60	spell	Frost Damage	0	
+Warlock	Undead	60	spell	Holy Damage	0	
+Warlock	Undead	60	spell	Nature Damage	0	
+Warlock	Undead	60	spell	Shadow Damage	0	
+Warlock	Undead	60	spell	Healing	0	
+Warlock	Undead	60	spell	Spell Hit	2.00	%
+Warlock	Undead	60	spell	Hit Chance	1.00	%
+Warlock	Undead	60	spell	Spell Crit	7.88	%
+Warlock	Undead	60	spell	Crit Chance	4.40	%
+Warlock	Undead	60	spell	Spell Penetration	0	
+Warlock	Undead	60	spell	Mana per 5 Sec.	0	
+Warlock	Undead	60	melee	Attack Power	78	
+Warlock	Undead	60	melee	Hit Chance	1.00	%
+Warlock	Undead	60	melee	Crit Chance	4.40	%
+Warlock	Undead	60	melee	Haste	0.00	%
+Warlock	Undead	60	melee	Expertise	0.00	%
+Warlock	Undead	60	defense	Armor	96	
+Warlock	Undead	60	defense	Damage Reduction	1.72	%
+Warlock	Undead	60	defense	Defense	300	
+Warlock	Undead	60	defense	Dodge Chance	4.40	%
+Warlock	Undead	60	defense	Total Avoidance	9.40	%
+Warlock	Undead	60	defense	Boss Avoidance	8.20	%
+Warlock	Undead	60	defense	Boss Miss Chance	4.40	%
+Warlock	Undead	60	defense	Boss Crit Chance	5.60	%
+Warlock	Undead	60	defense	Boss Crush Chance	15.00	%
+Warlock	Orc	60	spell	Spell Damage	0	
+Warlock	Orc	60	spell	Arcane Damage	0	
+Warlock	Orc	60	spell	Fire Damage	0	
+Warlock	Orc	60	spell	Frost Damage	0	
+Warlock	Orc	60	spell	Holy Damage	0	
+Warlock	Orc	60	spell	Nature Damage	0	
+Warlock	Orc	60	spell	Shadow Damage	0	
+Warlock	Orc	60	spell	Healing	0	
+Warlock	Orc	60	spell	Spell Hit	0.00	%
+Warlock	Orc	60	spell	Hit Chance	0.00	%
+Warlock	Orc	60	spell	Spell Crit	7.82	%
+Warlock	Orc	60	spell	Crit Chance	4.35	%
+Warlock	Orc	60	spell	Spell Penetration	0	
+Warlock	Orc	60	spell	Mana per 5 Sec.	0	
+Warlock	Orc	60	melee	Attack Power	86	
+Warlock	Orc	60	melee	Hit Chance	0.00	%
+Warlock	Orc	60	melee	Crit Chance	4.35	%
+Warlock	Orc	60	melee	Haste	0.00	%
+Warlock	Orc	60	melee	Expertise	0.00	%
+Warlock	Orc	60	defense	Armor	94	
+Warlock	Orc	60	defense	Damage Reduction	1.68	%
+Warlock	Orc	60	defense	Defense	300	
+Warlock	Orc	60	defense	Dodge Chance	4.35	%
+Warlock	Orc	60	defense	Total Avoidance	9.35	%
+Warlock	Orc	60	defense	Boss Avoidance	8.15	%
+Warlock	Orc	60	defense	Boss Miss Chance	4.40	%
+Warlock	Orc	60	defense	Boss Crit Chance	5.60	%
+Warlock	Orc	60	defense	Boss Crush Chance	15.00	%
+Warlock	Human	1	spell	Spell Damage	0	
+Warlock	Human	1	spell	Arcane Damage	0	
+Warlock	Human	1	spell	Fire Damage	0	
+Warlock	Human	1	spell	Frost Damage	0	
+Warlock	Human	1	spell	Holy Damage	0	
+Warlock	Human	1	spell	Nature Damage	0	
+Warlock	Human	1	spell	Shadow Damage	0	
+Warlock	Human	1	spell	Healing	0	
+Warlock	Human	1	spell	Spell Hit	0.00	%
+Warlock	Human	1	spell	Hit Chance	0.00	%
+Warlock	Human	1	spell	Spell Crit	10.00	%
+Warlock	Human	1	spell	Crit Chance	5.00	%
+Warlock	Human	1	spell	Spell Penetration	0	
+Warlock	Human	1	spell	Mana per 5 Sec.	0	
+Warlock	Human	1	melee	Attack Power	30	
+Warlock	Human	1	melee	Hit Chance	0.00	%
+Warlock	Human	1	melee	Crit Chance	5.00	%
+Warlock	Human	1	melee	Haste	0.00	%
+Warlock	Human	1	melee	Expertise	0.00	%
+Warlock	Human	1	defense	Armor	40	
+Warlock	Human	1	defense	Damage Reduction	7.62	%
+Warlock	Human	1	defense	Defense	5	
+Warlock	Human	1	defense	Dodge Chance	5.00	%
+Warlock	Human	1	defense	Total Avoidance	10.00	%
+Warlock	Human	1	defense	Boss Avoidance	8.80	%
+Warlock	Human	1	defense	Boss Miss Chance	4.40	%
+Warlock	Human	1	defense	Boss Crit Chance	5.60	%
+Warlock	Human	1	defense	Boss Crush Chance	15.00	%
+Warlock	Gnome	1	spell	Spell Damage	0	
+Warlock	Gnome	1	spell	Arcane Damage	0	
+Warlock	Gnome	1	spell	Fire Damage	0	
+Warlock	Gnome	1	spell	Frost Damage	0	
+Warlock	Gnome	1	spell	Holy Damage	0	
+Warlock	Gnome	1	spell	Nature Damage	0	
+Warlock	Gnome	1	spell	Shadow Damage	0	
+Warlock	Gnome	1	spell	Healing	0	
+Warlock	Gnome	1	spell	Spell Hit	0.00	%
+Warlock	Gnome	1	spell	Hit Chance	0.00	%
+Warlock	Gnome	1	spell	Spell Crit	10.90	%
+Warlock	Gnome	1	spell	Crit Chance	5.45	%
+Warlock	Gnome	1	spell	Spell Penetration	0	
+Warlock	Gnome	1	spell	Mana per 5 Sec.	0	
+Warlock	Gnome	1	melee	Attack Power	20	
+Warlock	Gnome	1	melee	Hit Chance	0.00	%
+Warlock	Gnome	1	melee	Crit Chance	5.45	%
+Warlock	Gnome	1	melee	Haste	0.00	%
+Warlock	Gnome	1	melee	Expertise	0.00	%
+Warlock	Gnome	1	defense	Armor	46	
+Warlock	Gnome	1	defense	Damage Reduction	8.66	%
+Warlock	Gnome	1	defense	Defense	5	
+Warlock	Gnome	1	defense	Dodge Chance	5.45	%
+Warlock	Gnome	1	defense	Total Avoidance	10.45	%
+Warlock	Gnome	1	defense	Boss Avoidance	9.25	%
+Warlock	Gnome	1	defense	Boss Miss Chance	4.40	%
+Warlock	Gnome	1	defense	Boss Crit Chance	5.60	%
+Warlock	Gnome	1	defense	Boss Crush Chance	15.00	%
+Warlock	Troll	1	spell	Spell Damage	0	
+Warlock	Troll	1	spell	Arcane Damage	0	
+Warlock	Troll	1	spell	Fire Damage	0	
+Warlock	Troll	1	spell	Frost Damage	0	
+Warlock	Troll	1	spell	Holy Damage	0	
+Warlock	Troll	1	spell	Nature Damage	0	
+Warlock	Troll	1	spell	Shadow Damage	0	
+Warlock	Troll	1	spell	Healing	0	
+Warlock	Troll	1	spell	Spell Hit	0.00	%
+Warlock	Troll	1	spell	Hit Chance	0.00	%
+Warlock	Troll	1	spell	Spell Crit	9.10	%
+Warlock	Troll	1	spell	Crit Chance	4.55	%
+Warlock	Troll	1	spell	Spell Penetration	0	
+Warlock	Troll	1	spell	Mana per 5 Sec.	0	
+Warlock	Troll	1	melee	Attack Power	36	
+Warlock	Troll	1	melee	Hit Chance	0.00	%
+Warlock	Troll	1	melee	Crit Chance	4.55	%
+Warlock	Troll	1	melee	Haste	0.00	%
+Warlock	Troll	1	melee	Expertise	0.00	%
+Warlock	Troll	1	defense	Armor	34	
+Warlock	Troll	1	defense	Damage Reduction	6.55	%
+Warlock	Troll	1	defense	Defense	5	
+Warlock	Troll	1	defense	Dodge Chance	4.55	%
+Warlock	Troll	1	defense	Total Avoidance	9.55	%
+Warlock	Troll	1	defense	Boss Avoidance	8.35	%
+Warlock	Troll	1	defense	Boss Miss Chance	4.40	%
+Warlock	Troll	1	defense	Boss Crit Chance	5.60	%
+Warlock	Troll	1	defense	Boss Crush Chance	15.00	%
+Warlock	Undead	1	spell	Spell Damage	0	
+Warlock	Undead	1	spell	Arcane Damage	0	
+Warlock	Undead	1	spell	Fire Damage	0	
+Warlock	Undead	1	spell	Frost Damage	0	
+Warlock	Undead	1	spell	Holy Damage	0	
+Warlock	Undead	1	spell	Nature Damage	0	
+Warlock	Undead	1	spell	Shadow Damage	0	
+Warlock	Undead	1	spell	Healing	0	
+Warlock	Undead	1	spell	Spell Hit	2.00	%
+Warlock	Undead	1	spell	Hit Chance	1.00	%
+Warlock	Undead	1	spell	Spell Crit	9.40	%
+Warlock	Undead	1	spell	Crit Chance	4.70	%
+Warlock	Undead	1	spell	Spell Penetration	0	
+Warlock	Undead	1	spell	Mana per 5 Sec.	0	
+Warlock	Undead	1	melee	Attack Power	28	
+Warlock	Undead	1	melee	Hit Chance	1.00	%
+Warlock	Undead	1	melee	Crit Chance	4.70	%
+Warlock	Undead	1	melee	Haste	0.00	%
+Warlock	Undead	1	melee	Expertise	0.00	%
+Warlock	Undead	1	defense	Armor	36	
+Warlock	Undead	1	defense	Damage Reduction	6.91	%
+Warlock	Undead	1	defense	Defense	5	
+Warlock	Undead	1	defense	Dodge Chance	4.70	%
+Warlock	Undead	1	defense	Total Avoidance	9.70	%
+Warlock	Undead	1	defense	Boss Avoidance	8.50	%
+Warlock	Undead	1	defense	Boss Miss Chance	4.40	%
+Warlock	Undead	1	defense	Boss Crit Chance	5.60	%
+Warlock	Undead	1	defense	Boss Crush Chance	15.00	%
+Warlock	Orc	1	spell	Spell Damage	0	
+Warlock	Orc	1	spell	Arcane Damage	0	
+Warlock	Orc	1	spell	Fire Damage	0	
+Warlock	Orc	1	spell	Frost Damage	0	
+Warlock	Orc	1	spell	Holy Damage	0	
+Warlock	Orc	1	spell	Nature Damage	0	
+Warlock	Orc	1	spell	Shadow Damage	0	
+Warlock	Orc	1	spell	Healing	0	
+Warlock	Orc	1	spell	Spell Hit	0.00	%
+Warlock	Orc	1	spell	Hit Chance	0.00	%
+Warlock	Orc	1	spell	Spell Crit	9.10	%
+Warlock	Orc	1	spell	Crit Chance	4.55	%
+Warlock	Orc	1	spell	Spell Penetration	0	
+Warlock	Orc	1	spell	Mana per 5 Sec.	0	
+Warlock	Orc	1	melee	Attack Power	36	
+Warlock	Orc	1	melee	Hit Chance	0.00	%
+Warlock	Orc	1	melee	Crit Chance	4.55	%
+Warlock	Orc	1	melee	Haste	0.00	%
+Warlock	Orc	1	melee	Expertise	0.00	%
+Warlock	Orc	1	defense	Armor	34	
+Warlock	Orc	1	defense	Damage Reduction	6.55	%
+Warlock	Orc	1	defense	Defense	5	
+Warlock	Orc	1	defense	Dodge Chance	4.55	%
+Warlock	Orc	1	defense	Total Avoidance	9.55	%
+Warlock	Orc	1	defense	Boss Avoidance	8.35	%
+Warlock	Orc	1	defense	Boss Miss Chance	4.40	%
+Warlock	Orc	1	defense	Boss Crit Chance	5.60	%
+Warlock	Orc	1	defense	Boss Crush Chance	15.00	%

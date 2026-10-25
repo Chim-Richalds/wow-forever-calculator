@@ -18,7 +18,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from wowcalc import transport  # noqa: E402
 from wowcalc.builds import Config, installed_builds  # noqa: E402
 from wowcalc.fetch import (  # noqa: E402
-    TABLES, FetchError, fetch_build, promote_staged, validate_csv,
+    BASE_TABLES, EXTENDED_TABLES, TABLES, FetchError, complete_build, fetch_build, promote_staged, validate_csv,
 )
 
 CFG = Config()
@@ -141,10 +141,12 @@ class FetchSuccessTests(TempData):
         self.assertFalse((self.data / "raw").exists())
         self.assertEqual(installed_builds(self.data), [])
 
-    def test_default_table_list_is_thirteen(self):
-        self.assertEqual(len(TABLES), 13)
+    def test_default_table_list_is_base_plus_extended_without_duplicates(self):
+        self.assertEqual(TABLES, BASE_TABLES + EXTENDED_TABLES)
+        self.assertEqual(len(BASE_TABLES), 13)  # the original set never changes; extended grows over time
+        self.assertEqual(len(set(TABLES)), len(TABLES))
         r = fetch_build(V, CFG, self.data, fetch=ok_fetch, now=FIXED_NOW)
-        self.assertEqual(len(r.manifest["tables"]), 13)
+        self.assertEqual(set(r.manifest["tables"]), set(TABLES))
 
     def test_progress_reported(self):
         seen = []
@@ -240,6 +242,130 @@ class FetchPreconditionTests(TempData):
         self.fetch(fetch=fetch_failing_on("TraitTree", http_error(404)))
         self.assertTrue((self.data / "raw" / "1.60.1.70338").is_dir())
         self.assertTrue(other.is_dir())
+
+
+class CompleteTests(TempData):
+    """Adding tables to an installed build."""
+
+    INSTALLED = ("TraitTree", "SpellName")
+    WANTED = ("TraitTree", "SpellName", "Spell", "ChrRaces")
+
+    def setUp(self):
+        super().setUp()
+        self.fetch(tables=self.INSTALLED)
+        promote_staged(V, self.data)
+
+    def complete(self, fetch=ok_fetch, tables=None, **kw):
+        return complete_build(V, CFG, self.data, fetch=fetch, tables=tables or self.WANTED, now=FIXED_NOW, **kw)
+
+    def manifest_path(self):
+        return self.data / "manifests" / f"{V}.json"
+
+    def manifest(self):
+        return json.loads(self.manifest_path().read_text())
+
+    def test_adds_only_the_missing_tables_and_leaves_existing_files_alone(self):
+        before = (self.data / "raw" / V / "TraitTree.csv").read_bytes()
+        r = self.complete()
+        self.assertEqual((r.ok, r.added), (True, ("Spell", "ChrRaces")))
+        for table in self.WANTED:
+            self.assertTrue((self.data / "raw" / V / f"{table}.csv").is_file())
+        self.assertEqual((self.data / "raw" / V / "TraitTree.csv").read_bytes(), before)
+
+    def test_manifest_records_new_tables_and_the_completion(self):
+        self.complete()
+        m = self.manifest()
+        entry = m["tables"]["Spell"]
+        self.assertEqual(entry["sha256"], hashlib.sha256(GOOD).hexdigest())
+        self.assertEqual(entry["file"], f"data/raw/{V}/Spell.csv")
+        self.assertTrue(entry["addedAfterInstall"])
+        self.assertEqual(entry["addedAt"], FIXED_NOW.isoformat())
+        self.assertNotIn("addedAfterInstall", m["tables"]["TraitTree"])  # originals unmarked
+        self.assertEqual(m["completions"], [{"at": FIXED_NOW.isoformat(), "tables": ["Spell", "ChrRaces"]}])
+        self.assertEqual(set(m["tables"]), set(self.WANTED))
+
+    def test_no_temporary_files_left_behind(self):
+        self.complete()
+        self.assertEqual(list((self.data / "staging").iterdir()), [])
+        self.assertEqual(sorted(p.name for p in (self.data / "manifests").iterdir()), [f"{V}.json"])
+
+    def test_completed_build_can_be_completed_again_with_nothing_to_do(self):
+        self.complete()
+        before = self.manifest_path().read_bytes()
+        r = self.complete()
+        self.assertEqual((r.ok, r.added), (True, ()))
+        self.assertEqual(self.manifest_path().read_bytes(), before)
+
+    def test_nothing_missing_changes_nothing(self):
+        before = self.manifest_path().read_bytes()
+        r = self.complete(tables=self.INSTALLED)
+        self.assertEqual(r.added, ())
+        self.assertEqual(self.manifest_path().read_bytes(), before)
+
+    def test_one_failed_download_adds_nothing(self):
+        before = self.manifest_path().read_bytes()
+        r = self.complete(fetch=fetch_failing_on("ChrRaces", http_error(503, "Unavailable")))
+        self.assertFalse(r.ok)
+        self.assertEqual([f["table"] for f in r.failures], ["ChrRaces"])
+        self.assertFalse((self.data / "raw" / V / "Spell.csv").exists())  # the good one was not kept either
+        self.assertEqual(self.manifest_path().read_bytes(), before)
+        self.assertEqual(list((self.data / "staging").iterdir()), [])
+
+    def test_html_response_fails(self):
+        r = self.complete(fetch=fetch_failing_on("Spell", b"<html>blocked</html>"))
+        self.assertFalse(r.ok)
+        self.assertIn("HTML", r.failures[0]["error"])
+
+    def test_refuses_a_build_that_is_not_installed(self):
+        with self.assertRaises(FetchError):
+            complete_build("1.60.1.70374", CFG, self.data, fetch=ok_fetch, tables=self.WANTED)
+
+    def test_refuses_without_a_manifest(self):
+        self.manifest_path().unlink()
+        with self.assertRaises(FetchError):
+            self.complete()
+
+    def test_invalid_version(self):
+        with self.assertRaises(ValueError):
+            complete_build("garbage", CFG, self.data, fetch=ok_fetch)
+
+    def test_tampered_installed_file_is_refused_and_nothing_is_added(self):
+        (self.data / "raw" / V / "TraitTree.csv").write_bytes(b"ID,Name\n9,tampered\n")
+        with self.assertRaises(FetchError) as ctx:
+            self.complete()
+        self.assertIn("hash mismatch", str(ctx.exception))
+        self.assertFalse((self.data / "raw" / V / "Spell.csv").exists())
+
+    def test_recorded_file_that_has_gone_missing_is_refused(self):
+        (self.data / "raw" / V / "SpellName.csv").unlink()
+        with self.assertRaises(FetchError) as ctx:
+            self.complete()
+        self.assertIn("file missing", str(ctx.exception))
+
+    def test_unrecorded_leftover_file_is_replaced_and_recorded(self):
+        (self.data / "raw" / V / "Spell.csv").write_bytes(b"left,by,a,crash\n")
+        self.complete()
+        self.assertEqual((self.data / "raw" / V / "Spell.csv").read_bytes(), GOOD)
+        self.assertIn("Spell", self.manifest()["tables"])
+
+    def test_previously_failed_manifest_entry_is_retried(self):
+        m = self.manifest()
+        m["tables"]["Spell"] = {"status": "failed", "error": "HTTP 503"}
+        self.manifest_path().write_text(json.dumps(m))
+        self.assertEqual(self.complete().added, ("Spell", "ChrRaces"))
+        self.assertEqual(self.manifest()["tables"]["Spell"]["status"], "downloaded-needs-validation")
+
+    def test_stale_work_directory_is_cleared(self):
+        stale = self.data / "staging" / f"{V}.complete.partial"
+        stale.mkdir(parents=True)
+        (stale / "junk.csv").write_text("x")
+        self.assertTrue(self.complete().ok)
+        self.assertFalse(stale.exists())
+
+    def test_progress_is_reported_for_added_tables_only(self):
+        seen = []
+        self.complete(progress=lambda t, n: seen.append(t))
+        self.assertEqual(seen, ["Spell", "ChrRaces"])
 
 
 class PromoteTests(TempData):

@@ -1,0 +1,14 @@
+{
+  "source": "https://sixtyupgrades.com (compiled by hand by the project owner)",
+  "receivedAt": "2026-10-23",
+  "levels": [
+    1,
+    60
+  ],
+  "verification": "unverified",
+  "notes": [
+    "Only levels 1 and 60 are supplied. Values at other levels are linear estimates and can be off by a point or two; health and mana by more.",
+    "The numbers appear to include racial percentage bonuses (Human Spirit, Gnome Intellect). If so, racial percentages must not be applied again. Unconfirmed.",
+    "Re-check at the source: Mage/Gnome agility at level 60 (28; others suggest about 38), Warrior/Night Elf agility at level 60 (85), Warrior/Undead agility at level 60 (87)."
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "client_build": "1.60.1.70338",
+  "data_directory": "/home/Jim/wow-forever-calculator/data/raw/1.60.1.70338",
+  "rule_count": 2,
+  "integrity_failures": 0,
+  "results": [
+    {
+      "rule_id": "shaman.purification.effect_0",
+      "talent_spell_id": "16178",
+      "effect_id": "693066",
+      "source_integrity": "pass",
+      "problems": [],
+      "mechanical_verification": "pending"
+    },
+    {
+      "rule_id": "shaman.purification.effect_1",
+      "talent_spell_id": "16178",
+      "effect_id": "1197174",
+      "source_integrity": "pass",
+      "problems": [],
+      "mechanical_verification": "pending"
+    }
+  ],
+  "important_note": "Source integrity does not establish mechanical correctness. Verification status is preserved, never automatically promoted."
+}

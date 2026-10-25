@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+
+# Downloaded game data: large, and reproducible from data/manifests (hashes) with `python -m wowcalc.update`
+data/raw/
+data/staging/
+data/active.json
+
+# Talent icons: extracted game art, kept locally (see src/wowcalc/icons.py)
+data/icons/
+
+# Your saved builds and local UI state
+data/ui/
+
+# Editor and OS noise
+.vscode/
+.idea/
+.DS_Store
+*.swp

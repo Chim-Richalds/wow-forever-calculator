@@ -1,0 +1,357 @@
+{
+  "build": "1.60.1.70338",
+  "talent_spell_id": "16178",
+  "effect_id": "1197174",
+  "effect_mask_word": 2,
+  "effect_mask_value": 16,
+  "candidate_count": 32,
+  "priority_spell_records": [
+    {
+      "spell_id": "1239242",
+      "record_found": true,
+      "name": "Rank 2",
+      "description": "Heals a friendly target for $s1, an additional $o2 over $d, and increases the effectiveness of your Chain Heal casts directly on that target by $s3%."
+    },
+    {
+      "spell_id": "1239243",
+      "record_found": true,
+      "name": "Rank 3",
+      "description": "Heals a friendly target for $s1, an additional $o2 over $d, and increases the effectiveness of your Chain Heal casts directly on that target by $s3%."
+    },
+    {
+      "spell_id": "16178",
+      "record_found": true,
+      "name": "",
+      "description": "Increases the effectiveness of your healing spells by $m1%."
+    },
+    {
+      "spell_id": "408521",
+      "record_found": true,
+      "name": "Rank 1",
+      "description": "Heals a friendly target for $s1, an additional $o2 over $d, and increases the effectiveness of your Chain Heal casts directly on that target by $s3%."
+    }
+  ],
+  "candidates": [
+    {
+      "spell_id": "1239242",
+      "spell_class_set": "11",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "Rank 2",
+      "description": "Heals a friendly target for $s1, an additional $o2 over $d, and increases the effectiveness of your Chain Heal casts directly on that target by $s3%.",
+      "looks_healing_related": true,
+      "is_priority_spell": true
+    },
+    {
+      "spell_id": "1239243",
+      "spell_class_set": "11",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "Rank 3",
+      "description": "Heals a friendly target for $s1, an additional $o2 over $d, and increases the effectiveness of your Chain Heal casts directly on that target by $s3%.",
+      "looks_healing_related": true,
+      "is_priority_spell": true
+    },
+    {
+      "spell_id": "408521",
+      "spell_class_set": "11",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "Rank 1",
+      "description": "Heals a friendly target for $s1, an additional $o2 over $d, and increases the effectiveness of your Chain Heal casts directly on that target by $s3%.",
+      "looks_healing_related": true,
+      "is_priority_spell": true
+    },
+    {
+      "spell_id": "687",
+      "spell_class_set": "5",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "Rank 1",
+      "description": "Protects the caster, increasing armor by $m1 and increases health regeneration by $s2 health per 5 sec. for $d.",
+      "looks_healing_related": true,
+      "is_priority_spell": false
+    },
+    {
+      "spell_id": "696",
+      "spell_class_set": "5",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "Rank 2",
+      "description": "Protects the caster, increasing armor by $m1 and increases health regeneration by $s2 health per 5 sec. for $d.",
+      "looks_healing_related": true,
+      "is_priority_spell": false
+    },
+    {
+      "spell_id": "13220",
+      "spell_class_set": "8",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "Rank 1",
+      "description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $13219h% chance of poisoning the enemy, reducing all healing effects used on them by $13218s1 for $13218d.  Stacks up to $13218u times on a single target.  $m3 charges.",
+      "looks_healing_related": true,
+      "is_priority_spell": false
+    },
+    {
+      "spell_id": "13228",
+      "spell_class_set": "8",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "Rank 2",
+      "description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $13225h% chance of poisoning the enemy, reducing all healing effects used on them by $13222s1 for $13222d.  Stacks up to $13222u times on a single target.  $m3 charges.",
+      "looks_healing_related": true,
+      "is_priority_spell": false
+    },
+    {
+      "spell_id": "13229",
+      "spell_class_set": "8",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "Rank 3",
+      "description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $13226h% chance of poisoning the enemy, reducing all healing effects used on them by $13223s1 for $13223d.  Stacks up to $13223u times on a single target.  $m3 charges.",
+      "looks_healing_related": true,
+      "is_priority_spell": false
+    },
+    {
+      "spell_id": "13230",
+      "spell_class_set": "8",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "Rank 4",
+      "description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $13227h% chance of poisoning the enemy, reducing all healing effects used on them by $13224s1 for $13224d.  Stacks up to $13224u times on a single target.  $m3 charges.",
+      "looks_healing_related": true,
+      "is_priority_spell": false
+    },
+    {
+      "spell_id": "407803",
+      "spell_class_set": "10",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "",
+      "description": "",
+      "looks_healing_related": false,
+      "is_priority_spell": false
+    },
+    {
+      "spell_id": "1238122",
+      "spell_class_set": "7",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "",
+      "description": "$?a5487|a9634[|CFFFFFFFFRequires Bear Form, Dire Bear Form|R][|CFFFF2020Requires Bear Form, Dire Bear Form|R]\r\nCharge an enemy, immobilizing them and interrupting any spell they are casting for $19675d.\r\n\r\n$@spelltooltip414924",
+      "looks_healing_related": false,
+      "is_priority_spell": false
+    },
+    {
+      "spell_id": "16979",
+      "spell_class_set": "7",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "",
+      "description": "Charge an enemy, immobilizing them and interrupting any spell they are casting for $19675d.",
+      "looks_healing_related": false,
+      "is_priority_spell": false
+    },
+    {
+      "spell_id": "11341",
+      "spell_class_set": "8",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "Rank 4",
+      "description": "Coats a weapon with poison that lasts for ${$m2/60}  minutes.\r\nEach strike has a $11338h% chance of poisoning the enemy which instantly inflicts $11335s1 Nature damage.  $m2 charges.",
+      "looks_healing_related": false,
+      "is_priority_spell": false
+    },
+    {
+      "spell_id": "11342",
+      "spell_class_set": "8",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "Rank 5",
+      "description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $11339h% chance of poisoning the enemy which instantly inflicts $11336s1 Nature damage.  $m3 charges.",
+      "looks_healing_related": false,
+      "is_priority_spell": false
+    },
+    {
+      "spell_id": "11343",
+      "spell_class_set": "8",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "Rank 6",
+      "description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $11340h% chance of poisoning the enemy which instantly inflicts $11337s1 Nature damage.  $m3 charges.",
+      "looks_healing_related": false,
+      "is_priority_spell": false
+    },
+    {
+      "spell_id": "11357",
+      "spell_class_set": "8",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "Rank 3",
+      "description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $11355h% chance of poisoning the enemy for $11353o1 Nature damage over $11353d.  Stacks up to $11353u times on a single target.  $m3 charges.",
+      "looks_healing_related": false,
+      "is_priority_spell": false
+    },
+    {
+      "spell_id": "11358",
+      "spell_class_set": "8",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "Rank 4",
+      "description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $11356h% chance of poisoning the enemy for $11354o1 Nature damage over $11354d.  Stacks up to $11354u times on a single target.  $m3 charges.",
+      "looks_healing_related": false,
+      "is_priority_spell": false
+    },
+    {
+      "spell_id": "11400",
+      "spell_class_set": "8",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "Rank 3",
+      "description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $11399h% chance of poisoning the enemy, increasing their casting time by $11398s1% for $11398d.  $m3 charges.",
+      "looks_healing_related": false,
+      "is_priority_spell": false
+    },
+    {
+      "spell_id": "25347",
+      "spell_class_set": "8",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "Rank 5",
+      "description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $11356h% chance of poisoning the enemy for $25349o1 Nature damage over $25349d.  Stacks up to $25349u times on a single target.  $m3 charges.",
+      "looks_healing_related": false,
+      "is_priority_spell": false
+    },
+    {
+      "spell_id": "2835",
+      "spell_class_set": "8",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "Rank 1",
+      "description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $2823h% chance of poisoning the enemy for $2818o1 Nature damage over $2818d.  Stacks up to $2818u times on a single target.  $m3 charges.",
+      "looks_healing_related": false,
+      "is_priority_spell": false
+    },
+    {
+      "spell_id": "2837",
+      "spell_class_set": "8",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "Rank 2",
+      "description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $2824h% chance of poisoning the enemy for $2819o1 Nature damage over $2819d.  Stacks up to $2819u times on a single target.  $m3 charges.",
+      "looks_healing_related": false,
+      "is_priority_spell": false
+    },
+    {
+      "spell_id": "3420",
+      "spell_class_set": "8",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "Rank 1",
+      "description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $3408h% chance of poisoning the enemy, slowing their movement speed by $3409s1% for $3409d.",
+      "looks_healing_related": false,
+      "is_priority_spell": false
+    },
+    {
+      "spell_id": "3421",
+      "spell_class_set": "8",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "Rank 2",
+      "description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $11202h% chance of poisoning the enemy, slowing their movement speed by $11201s1% for $11201d.",
+      "looks_healing_related": false,
+      "is_priority_spell": false
+    },
+    {
+      "spell_id": "5763",
+      "spell_class_set": "8",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "Rank 1",
+      "description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $5761h% chance of poisoning the enemy, increasing their casting time by $5760s1% for $5760d.  $m3 charges.",
+      "looks_healing_related": false,
+      "is_priority_spell": false
+    },
+    {
+      "spell_id": "8681",
+      "spell_class_set": "8",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "Rank 1",
+      "description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $8679h% chance of poisoning the enemy which instantly inflicts $8680s1 Nature damage.  $m3 charges.",
+      "looks_healing_related": false,
+      "is_priority_spell": false
+    },
+    {
+      "spell_id": "8687",
+      "spell_class_set": "8",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "Rank 2",
+      "description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $8686h% chance of poisoning the enemy which instantly inflicts $8685s1 Nature damage.  $m3 charges.",
+      "looks_healing_related": false,
+      "is_priority_spell": false
+    },
+    {
+      "spell_id": "8691",
+      "spell_class_set": "8",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "Rank 3",
+      "description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $8688h% chance of poisoning the enemy which instantly inflicts $8689s1 Nature damage.  $m3 charges.",
+      "looks_healing_related": false,
+      "is_priority_spell": false
+    },
+    {
+      "spell_id": "8694",
+      "spell_class_set": "8",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "Rank 2",
+      "description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $8693h% chance of poisoning the enemy, increasing their casting time by $8692s1% for $8692d.  $m3 charges.",
+      "looks_healing_related": false,
+      "is_priority_spell": false
+    },
+    {
+      "spell_id": "1299445",
+      "spell_class_set": "9",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "Rank 2",
+      "description": "You take on the aspects of a beast, becoming untrackable and increasing Melee Attack Power by $s2. Only one Aspect can be active at a time.",
+      "looks_healing_related": false,
+      "is_priority_spell": false
+    },
+    {
+      "spell_id": "1299446",
+      "spell_class_set": "9",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "Rank 3",
+      "description": "You take on the aspects of a beast, becoming untrackable and increasing Melee Attack Power by $s2. Only one Aspect can be active at a time.",
+      "looks_healing_related": false,
+      "is_priority_spell": false
+    },
+    {
+      "spell_id": "1299447",
+      "spell_class_set": "9",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "Rank 4",
+      "description": "You take on the aspects of a beast, becoming untrackable and increasing Melee Attack Power by $s2. Only one Aspect can be active at a time.",
+      "looks_healing_related": false,
+      "is_priority_spell": false
+    },
+    {
+      "spell_id": "13161",
+      "spell_class_set": "9",
+      "mask_word_2": 16,
+      "overlapping_bits": 16,
+      "name": "Rank 1",
+      "description": "The hunter takes on the aspects of a beast, becoming untrackable and increasing Melee Attack Power by $s2. Only one Aspect can be active at a time.",
+      "looks_healing_related": false,
+      "is_priority_spell": false
+    }
+  ],
+  "warning": "Text matches and mask overlaps are discovery clues only. They do not establish actual effect application."
+}

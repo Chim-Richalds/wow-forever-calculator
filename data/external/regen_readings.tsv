@@ -1,0 +1,6 @@
+class	race	level	spirit	intellect	mp5_gear	talent_note	regen_not_casting_per_5s	regen_casting_per_5s	in_combat	notes
+Priest	Human	60			0	no regen talents			no	Fill one row per reading. Spirit and Intellect are the TOTALS shown on the character pane.
+Priest	Human	60			0	no regen talents			no	Change Spirit only (swap a piece of gear, a buff or food) and read again.
+Priest	Human	60			0	no regen talents			no	Change Spirit again, to a third value.
+Priest	Human	60			0	no regen talents			no	Change Intellect only and read again.
+Priest	Human	60			0	Meditation 3/3			no	Same gear as the first row, with Meditation at 3 ranks.

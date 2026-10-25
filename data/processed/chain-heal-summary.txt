@@ -1,0 +1,150 @@
+
+SPELL ID: 21899
+Name fields: []
+Descriptions: ['Increases the amount healed by Chain Heal to targets beyond the first by $s1%.']
+CLASS OPTION: class_set=11, masks=['0', '0', '0', '0']
+EFFECT: id=699871, index=0, type=6, aura=108, trigger=0, mask=['256', '0', '0', '0']
+
+SPELL ID: 26122
+Name fields: []
+Descriptions: ['-$/1000;S1 seconds on the casting time of your Chain Heal spell.']
+CLASS OPTION: class_set=11, masks=['0', '0', '0', '0']
+EFFECT: id=702230, index=0, type=6, aura=107, trigger=0, mask=['256', '0', '0', '0']
+
+SPELL ID: 30872
+Name fields: ['Rank 1']
+Descriptions: ['Increases the effectiveness of your Chain Heal spell by $s1%.']
+CLASS OPTION: class_set=11, masks=['0', '0', '0', '0']
+EFFECT: id=705816, index=0, type=6, aura=108, trigger=0, mask=['256', '0', '0', '0']
+
+SPELL ID: 408521
+Name fields: ['Rank 1']
+Descriptions: ['Heals a friendly target for $s1, an additional $o2 over $d, and increases the effectiveness of your Chain Heal casts directly on that target by $s3%.', "Heals $w2 every $t2 sec.  Increases the effectiveness of the caster's Chain Heal spells cast directly on this target by $s3%."]
+CLASS OPTION: class_set=11, masks=['0', '0', '16', '0']
+EFFECT: id=1072707, index=0, type=10, aura=0, trigger=0, mask=['0', '0', '0', '0']
+EFFECT: id=1072708, index=1, type=6, aura=8, trigger=0, mask=['0', '0', '0', '0']
+EFFECT: id=1072709, index=2, type=6, aura=4, trigger=0, mask=['0', '0', '0', '0']
+PRIORITY: Purification candidate rank
+
+SPELL ID: 408531
+Name fields: []
+Descriptions: ['While Rockbiter Weapon is active on your main hand weapon and you have a shield equipped, you deal $408680s1% increased threat, gain $408680s2% increased health, take $408680s4% reduced damage, gain $408680s5% reduced chance to be critically hit by melee attacks, and Earth Shock taunts targets to attack you and has a separate cooldown from other Shock spells but has its range reduced to melee range. However, the range of your Lightning Bolt, Chain Lightning, Chain Heal, Healing Wave, and Lava Burst spells is reduced by $408680s13 yards. ']
+CLASS OPTION: class_set=11, masks=['0', '0', '0', '0']
+EFFECT: id=1072726, index=0, type=6, aura=226, trigger=0, mask=['0', '0', '0', '0']
+
+SPELL ID: 415096
+Name fields: []
+Descriptions: ['Causes your Chain heal effectiveness to only reduce by $s1% per jump, and Chain Lightning effectiveness to only reduce by $s2% per jump. Each also jumps to $s3 additional target.  ']
+CLASS OPTION: class_set=11, masks=['0', '0', '0', '0']
+EFFECT: id=1084770, index=0, type=6, aura=4, trigger=0, mask=['0', '0', '0', '0']
+EFFECT: id=1084771, index=1, type=6, aura=4, trigger=0, mask=['0', '0', '0', '0']
+EFFECT: id=1084772, index=2, type=6, aura=107, trigger=0, mask=['258', '0', '0', '0']
+EFFECT: id=1084773, index=3, type=6, aura=108, trigger=0, mask=['256', '0', '0', '0']
+EFFECT: id=1084774, index=4, type=6, aura=108, trigger=0, mask=['2', '0', '0', '0']
+
+SPELL ID: 415100
+Name fields: []
+Descriptions: ['Each time Flame Shock deals damage, it has a $h% chance to reset the cooldown on Lava Burst and Chain Lightning and make your next Lava Burst or Chain Lightning within $415105d instant. Each time Riptide heals, it has a $h% chance to make your next Chain Heal within $468526d instant. Additionally, every $440285t sec you gain mana equal to $s2% of your Intellect.  ']
+CLASS OPTION: class_set=11, masks=['0', '0', '128', '0']
+EFFECT: id=1084784, index=0, type=6, aura=4, trigger=0, mask=['0', '0', '0', '0']
+EFFECT: id=1134077, index=1, type=6, aura=4, trigger=0, mask=['0', '0', '0', '0']
+
+SPELL ID: 432041
+Name fields: []
+Descriptions: ['Reduces the cast time of Healing Wave by $s1%, reduces the cast time of Chain Heal by $s3%, and increases the critical strike chance of Lesser Healing Wave by $s2%.']
+CLASS OPTION: class_set=11, masks=['0', '0', '0', '0']
+EFFECT: id=1120316, index=0, type=6, aura=108, trigger=0, mask=['64', '0', '0', '0']
+EFFECT: id=1120317, index=1, type=6, aura=107, trigger=0, mask=['128', '0', '0', '0']
+EFFECT: id=1188866, index=2, type=6, aura=108, trigger=0, mask=['256', '0', '0', '0']
+
+SPELL ID: 432042
+Name fields: []
+Descriptions: ['When you cast Chain Heal or Riptide you gain $s1 charges of Tidal Waves, which reduces the cast time of your Healing Wave by $432041s1%, reduces the cast time of your Chain Heal by $432041s3%, and increases the critical effect chance of your Lesser Healing Wave by $432041s2%.']
+CLASS OPTION: class_set=11, masks=['0', '0', '0', '0']
+EFFECT: id=1120318, index=0, type=6, aura=42, trigger=432041, mask=['192', '0', '0', '0']
+
+SPELL ID: 436376
+Name fields: []
+Descriptions: ['Reduces the mana cost of your Chain Heal spell by $s1. Effect lasts $d seconds.']
+CLASS OPTION: class_set=11, masks=['256', '0', '0', '0']
+EFFECT: id=1127663, index=0, type=6, aura=107, trigger=0, mask=['256', '0', '0', '0']
+
+SPELL ID: 440285
+Name fields: []
+Descriptions: ['Your next Chain Lightning, Chain Heal,  or Lava Burst spell will be an instant cast spell.']
+CLASS OPTION: class_set=11, masks=['0', '0', '0', '0']
+EFFECT: id=1134064, index=0, type=6, aura=24, trigger=0, mask=['0', '0', '0', '0']
+
+SPELL ID: 467814
+Name fields: []
+Descriptions: ['Increases the healing of Chain Heal and the damage of Chain Lightning by $s1%.']
+CLASS OPTION: class_set=11, masks=['0', '0', '0', '0']
+EFFECT: id=1181155, index=0, type=6, aura=108, trigger=0, mask=['258', '0', '0', '0']
+
+SPELL ID: 468526
+Name fields: []
+Descriptions: ['Your next Chain Heal spell will be an instant cast spell.']
+CLASS OPTION: class_set=11, masks=['0', '0', '0', '0']
+EFFECT: id=1182274, index=0, type=6, aura=108, trigger=0, mask=['256', '0', '0', '0']
+
+SPELL ID: 1213810
+Name fields: []
+Descriptions: ['Your Riptide increases the amount healed by Chain Heal by an additional $s1%.']
+CLASS OPTION: class_set=11, masks=['0', '0', '0', '0']
+EFFECT: id=1195625, index=0, type=6, aura=107, trigger=0, mask=['0', '0', '16', '0']
+
+SPELL ID: 1213894
+Name fields: []
+Descriptions: ['Reduces the cast time of Chain Heal by ${$m1/-1000}.1 sec.']
+CLASS OPTION: class_set=11, masks=['0', '0', '0', '0']
+EFFECT: id=1195756, index=0, type=6, aura=107, trigger=0, mask=['256', '0', '0', '0']
+
+SPELL ID: 1214059
+Name fields: []
+Descriptions: ['Increases the amount healed by your Chain Heal and Healing Wave spells by $s1%.']
+CLASS OPTION: class_set=11, masks=['0', '0', '0', '0']
+EFFECT: id=1196013, index=0, type=6, aura=108, trigger=0, mask=['320', '0', '0', '0']
+
+SPELL ID: 1220642
+Name fields: []
+Descriptions: ['Increases the amount healed by your Chain Heal, Riptide, and Earth Shield spells by $s1%.']
+CLASS OPTION: class_set=11, masks=['0', '0', '0', '0']
+EFFECT: id=1206703, index=0, type=6, aura=108, trigger=0, mask=['256', '1024', '80', '0']
+EFFECT: id=1206706, index=1, type=6, aura=108, trigger=0, mask=['0', '0', '16', '0']
+
+SPELL ID: 1227088
+Name fields: []
+Descriptions: ['Reduces the cast time of your next Lesser Healing Wave, Healing Wave, or Chain Heal by $s1%.', 'Cast time of your next Lesser Healing Wave, Healing Wave, or Chain Heal spell reduced by $s1%.']
+CLASS OPTION: class_set=11, masks=['0', '0', '0', '0']
+EFFECT: id=1217298, index=0, type=6, aura=108, trigger=0, mask=['448', '0', '0', '0']
+
+SPELL ID: 1227111
+Name fields: []
+Descriptions: ['Your Chain Heal jumps to $s1 additional targets and its magnitude reduces $s2% less per jump.']
+CLASS OPTION: class_set=11, masks=['0', '0', '0', '0']
+EFFECT: id=1217329, index=0, type=6, aura=107, trigger=0, mask=['256', '0', '0', '0']
+EFFECT: id=1217330, index=1, type=6, aura=108, trigger=0, mask=['256', '0', '0', '0']
+
+SPELL ID: 1239242
+Name fields: ['Rank 2']
+Descriptions: ['Heals a friendly target for $s1, an additional $o2 over $d, and increases the effectiveness of your Chain Heal casts directly on that target by $s3%.', "Heals $w2 every $t2 sec.  Increases the effectiveness of the caster's Chain Heal spells cast directly on this target by $s3%."]
+CLASS OPTION: class_set=11, masks=['0', '0', '16', '0']
+EFFECT: id=1236793, index=0, type=10, aura=0, trigger=0, mask=['0', '0', '0', '0']
+EFFECT: id=1236794, index=1, type=6, aura=8, trigger=0, mask=['0', '0', '0', '0']
+EFFECT: id=1236795, index=2, type=6, aura=4, trigger=0, mask=['0', '0', '0', '0']
+PRIORITY: Purification candidate rank
+
+SPELL ID: 1239243
+Name fields: ['Rank 3']
+Descriptions: ['Heals a friendly target for $s1, an additional $o2 over $d, and increases the effectiveness of your Chain Heal casts directly on that target by $s3%.', "Heals $w2 every $t2 sec.  Increases the effectiveness of the caster's Chain Heal spells cast directly on this target by $s3%."]
+CLASS OPTION: class_set=11, masks=['0', '0', '16', '0']
+EFFECT: id=1236796, index=0, type=10, aura=0, trigger=0, mask=['0', '0', '0', '0']
+EFFECT: id=1236797, index=1, type=6, aura=8, trigger=0, mask=['0', '0', '0', '0']
+EFFECT: id=1236798, index=2, type=6, aura=4, trigger=0, mask=['0', '0', '0', '0']
+PRIORITY: Purification candidate rank
+
+SPELL ID: 446170
+Name fields: []
+Descriptions: ['-$/1000;S1 seconds on the casting time of your Chain Heal spell.']
+CLASS OPTION: class_set=11, masks=['0', '0', '0', '0']
+EFFECT: id=1143431, index=0, type=6, aura=107, trigger=0, mask=['256', '0', '0', '0']

@@ -1,7 +1,7 @@
 {
   "product": "wow_classic_beta",
   "build": "1.60.1.70338",
-  "retrievedAt": "2026-10-15T21:17:05.616357+00:00",
+  "retrievedAt": "2026-10-16T17:36:44.780777+00:00",
   "source": "Wago.Tools DB2 CSV exports",
   "tables": {
     "TraitTree": {
@@ -208,6 +208,24 @@
       "contentType": "text/csv; charset=UTF-8",
       "status": "downloaded-needs-validation"
     },
+    "SpellClassOptions": {
+      "url": "https://wago.tools/db2/SpellClassOptions/csv?build=1.60.1.70338",
+      "file": "data/raw/1.60.1.70338/SpellClassOptions.csv",
+      "sha256": "3a07194417c0992e4f818d7ab525b5dad5211f835b088e9362b1bcee68fcd1ee",
+      "bytes": 166705,
+      "columns": [
+        "ID",
+        "SpellID",
+        "ModalNextSpell",
+        "SpellClassSet",
+        "SpellClassMask_0",
+        "SpellClassMask_1",
+        "SpellClassMask_2",
+        "SpellClassMask_3"
+      ],
+      "contentType": "text/csv; charset=UTF-8",
+      "status": "downloaded-needs-validation"
+    },
     "ChrClasses": {
       "url": "https://wago.tools/db2/ChrClasses/csv?build=1.60.1.70338",
       "file": "data/raw/1.60.1.70338/ChrClasses.csv",
@@ -332,7 +350,279 @@
       ],
       "contentType": "text/csv; charset=UTF-8",
       "status": "downloaded-needs-validation"
+    },
+    "SkillLineXTraitTree": {
+      "url": "https://wago.tools/db2/SkillLineXTraitTree/csv?build=1.60.1.70338",
+      "file": "data/raw/1.60.1.70338/SkillLineXTraitTree.csv",
+      "sha256": "e6774240ba1fda84bef060fda0d0b23e42d5ae9b4d8ae3323f7ccb31f38c5760",
+      "bytes": 167,
+      "columns": [
+        "ID",
+        "SkillLineID",
+        "TraitTreeID",
+        "Variant"
+      ],
+      "rows": 9,
+      "malformedRows": 0,
+      "duplicateHeaders": [],
+      "contentType": "text/csv; charset=UTF-8",
+      "status": "downloaded-needs-validation",
+      "addedAfterInstall": true,
+      "addedAt": "2026-10-18T23:57:09.131277+00:00"
+    },
+    "SkillRaceClassInfo": {
+      "url": "https://wago.tools/db2/SkillRaceClassInfo/csv?build=1.60.1.70338",
+      "file": "data/raw/1.60.1.70338/SkillRaceClassInfo.csv",
+      "sha256": "2193908c90f65d38fa9bc68907217fd759c132ccdc9f882cd3bc5acecabba322",
+      "bytes": 5248,
+      "columns": [
+        "ID",
+        "SkillID",
+        "ClassMask",
+        "Flags",
+        "Availability",
+        "MinLevel",
+        "SkillTierID",
+        "RaceMasks_0",
+        "RaceMasks_1"
+      ],
+      "rows": 186,
+      "malformedRows": 0,
+      "duplicateHeaders": [],
+      "contentType": "text/csv; charset=UTF-8",
+      "status": "downloaded-needs-validation",
+      "addedAfterInstall": true,
+      "addedAt": "2026-10-18T23:57:09.131277+00:00"
+    },
+    "TraitCond": {
+      "url": "https://wago.tools/db2/TraitCond/csv?build=1.60.1.70338",
+      "file": "data/raw/1.60.1.70338/TraitCond.csv",
+      "sha256": "08b6e59a3e49faa5fac554774494f5feb860c6c750981be46762bfc0e939e276",
+      "bytes": 8965,
+      "columns": [
+        "ID",
+        "CondType",
+        "TraitTreeID",
+        "GrantedRanks",
+        "QuestID",
+        "AchievementID",
+        "SpecSetID",
+        "TraitNodeGroupID",
+        "TraitNodeID",
+        "TraitNodeEntryID",
+        "TraitCurrencyID",
+        "SpentAmountRequired",
+        "Flags",
+        "RequiredLevel",
+        "FreeSharedStringID",
+        "SpendMoreSharedStringID",
+        "TraitCondAccountElementID"
+      ],
+      "rows": 172,
+      "malformedRows": 0,
+      "duplicateHeaders": [],
+      "contentType": "text/csv; charset=UTF-8",
+      "status": "downloaded-needs-validation",
+      "addedAfterInstall": true,
+      "addedAt": "2026-10-18T23:57:09.131277+00:00"
+    },
+    "TraitNodeGroup": {
+      "url": "https://wago.tools/db2/TraitNodeGroup/csv?build=1.60.1.70338",
+      "file": "data/raw/1.60.1.70338/TraitNodeGroup.csv",
+      "sha256": "7e21500029e5c6c4e391bc98672209984cd8a22677695a37e431899e114b0d48",
+      "bytes": 4805,
+      "columns": [
+        "ID",
+        "TraitTreeID",
+        "Flags"
+      ],
+      "rows": 368,
+      "malformedRows": 0,
+      "duplicateHeaders": [],
+      "contentType": "text/csv; charset=UTF-8",
+      "status": "downloaded-needs-validation",
+      "addedAfterInstall": true,
+      "addedAt": "2026-10-18T23:57:09.131277+00:00"
+    },
+    "TraitNodeGroupXTraitNode": {
+      "url": "https://wago.tools/db2/TraitNodeGroupXTraitNode/csv?build=1.60.1.70338",
+      "file": "data/raw/1.60.1.70338/TraitNodeGroupXTraitNode.csv",
+      "sha256": "ba1b33592d1ab662a7f2cac34afede5dc411421ee0321c01c684d53e1fd10f43",
+      "bytes": 47857,
+      "columns": [
+        "ID",
+        "TraitNodeGroupID",
+        "TraitNodeID",
+        "_Index"
+      ],
+      "rows": 2150,
+      "malformedRows": 0,
+      "duplicateHeaders": [],
+      "contentType": "text/csv; charset=UTF-8",
+      "status": "downloaded-needs-validation",
+      "addedAfterInstall": true,
+      "addedAt": "2026-10-18T23:57:09.131277+00:00"
+    },
+    "TraitNodeGroupXTraitCond": {
+      "url": "https://wago.tools/db2/TraitNodeGroupXTraitCond/csv?build=1.60.1.70338",
+      "file": "data/raw/1.60.1.70338/TraitNodeGroupXTraitCond.csv",
+      "sha256": "14e3713a9108330a52cb03c2780a465cc4fa4f1c5787dc8299a3f2804c46b9c9",
+      "bytes": 3110,
+      "columns": [
+        "ID",
+        "TraitCondID",
+        "TraitNodeGroupID"
+      ],
+      "rows": 171,
+      "malformedRows": 0,
+      "duplicateHeaders": [],
+      "contentType": "text/csv; charset=UTF-8",
+      "status": "downloaded-needs-validation",
+      "addedAfterInstall": true,
+      "addedAt": "2026-10-18T23:57:09.131277+00:00"
+    },
+    "TraitNodeXTraitCond": {
+      "url": "https://wago.tools/db2/TraitNodeXTraitCond/csv?build=1.60.1.70338",
+      "file": "data/raw/1.60.1.70338/TraitNodeXTraitCond.csv",
+      "sha256": "de507858bdc7ba06de776390baae45b04b1b8eadabfb1ab5e98e43b505c915de",
+      "bytes": 46,
+      "columns": [
+        "ID",
+        "TraitCondID",
+        "TraitNodeID"
+      ],
+      "rows": 1,
+      "malformedRows": 0,
+      "duplicateHeaders": [],
+      "contentType": "text/csv; charset=UTF-8",
+      "status": "downloaded-needs-validation",
+      "addedAfterInstall": true,
+      "addedAt": "2026-10-18T23:57:09.131277+00:00"
+    },
+    "TraitCurrency": {
+      "url": "https://wago.tools/db2/TraitCurrency/csv?build=1.60.1.70338",
+      "file": "data/raw/1.60.1.70338/TraitCurrency.csv",
+      "sha256": "b2d6ef2dd53501743263af16368e3b2808f917a2356fd9ada6d0870b15c90ef5",
+      "bytes": 147,
+      "columns": [
+        "ID",
+        "Type",
+        "CurrencyTypesID",
+        "Flags",
+        "Icon",
+        "PlayerDataElementAccountID",
+        "PlayerDataElementCharacterID",
+        "SourcedMax"
+      ],
+      "rows": 2,
+      "malformedRows": 0,
+      "duplicateHeaders": [],
+      "contentType": "text/csv; charset=UTF-8",
+      "status": "downloaded-needs-validation",
+      "addedAfterInstall": true,
+      "addedAt": "2026-10-18T23:57:09.131277+00:00"
+    },
+    "TraitCurrencySource": {
+      "url": "https://wago.tools/db2/TraitCurrencySource/csv?build=1.60.1.70338",
+      "file": "data/raw/1.60.1.70338/TraitCurrencySource.csv",
+      "sha256": "36b59851eb8a3feb2aa25521811b05337d68ce5854a451ac5b7af22e225e8dc4",
+      "bytes": 12758,
+      "columns": [
+        "Requirement_lang",
+        "ID",
+        "TraitCurrencyID",
+        "Amount",
+        "QuestID",
+        "AchievementID",
+        "PlayerLevel",
+        "TraitNodeEntryID",
+        "SuperDistrictSetID",
+        "OrderIndex"
+      ],
+      "rows": 187,
+      "malformedRows": 0,
+      "duplicateHeaders": [],
+      "contentType": "text/csv; charset=UTF-8",
+      "status": "downloaded-needs-validation",
+      "addedAfterInstall": true,
+      "addedAt": "2026-10-18T23:57:09.131277+00:00"
+    },
+    "TraitTreeXTraitCurrency": {
+      "url": "https://wago.tools/db2/TraitTreeXTraitCurrency/csv?build=1.60.1.70338",
+      "file": "data/raw/1.60.1.70338/TraitTreeXTraitCurrency.csv",
+      "sha256": "3cca15d8258f04b7b6b4608e8ac3d1f9f0252a200bca188034877bcf9ca329f1",
+      "bytes": 259,
+      "columns": [
+        "ID",
+        "_Index",
+        "TraitTreeID",
+        "TraitCurrencyID"
+      ],
+      "rows": 13,
+      "malformedRows": 0,
+      "duplicateHeaders": [],
+      "contentType": "text/csv; charset=UTF-8",
+      "status": "downloaded-needs-validation",
+      "addedAfterInstall": true,
+      "addedAt": "2026-10-18T23:57:09.131277+00:00"
+    },
+    "TraitCost": {
+      "url": "https://wago.tools/db2/TraitCost/csv?build=1.60.1.70338",
+      "file": "data/raw/1.60.1.70338/TraitCost.csv",
+      "sha256": "70b9242720e4e848f0d9191c6532b602898975adb1ebb673e7e305f157215141",
+      "bytes": 327,
+      "columns": [
+        "InternalName",
+        "ID",
+        "Amount",
+        "TraitCurrencyID",
+        "CurveID"
+      ],
+      "rows": 11,
+      "malformedRows": 0,
+      "duplicateHeaders": [],
+      "contentType": "text/csv; charset=UTF-8",
+      "status": "downloaded-needs-validation",
+      "addedAfterInstall": true,
+      "addedAt": "2026-10-18T23:57:09.131277+00:00"
+    },
+    "TraitTreeXTraitCost": {
+      "url": "https://wago.tools/db2/TraitTreeXTraitCost/csv?build=1.60.1.70338",
+      "file": "data/raw/1.60.1.70338/TraitTreeXTraitCost.csv",
+      "sha256": "ee6ebdc2d3d384435b05e9873e598df476497af0274e97774d8bca70aee1beae",
+      "bytes": 196,
+      "columns": [
+        "ID",
+        "TraitTreeID",
+        "TraitCostID"
+      ],
+      "rows": 13,
+      "malformedRows": 0,
+      "duplicateHeaders": [],
+      "contentType": "text/csv; charset=UTF-8",
+      "status": "downloaded-needs-validation",
+      "addedAfterInstall": true,
+      "addedAt": "2026-10-18T23:57:09.131277+00:00"
     }
   },
-  "failures": []
+  "failures": [],
+  "completions": [
+    {
+      "at": "2026-10-18T23:57:09.131277+00:00",
+      "tables": [
+        "SkillLineXTraitTree",
+        "SkillRaceClassInfo",
+        "TraitCond",
+        "TraitNodeGroup",
+        "TraitNodeGroupXTraitNode",
+        "TraitNodeGroupXTraitCond",
+        "TraitNodeXTraitCond",
+        "TraitCurrency",
+        "TraitCurrencySource",
+        "TraitTreeXTraitCurrency",
+        "TraitCost",
+        "TraitTreeXTraitCost"
+      ]
+    }
+  ]
 }

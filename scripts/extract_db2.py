@@ -24,6 +24,7 @@ TABLES = [
     "SpellName",
     "Spell",
     "SpellEffect",
+    "SpellClassOptions",
     "ChrClasses",
     "ChrRaces",
 ]

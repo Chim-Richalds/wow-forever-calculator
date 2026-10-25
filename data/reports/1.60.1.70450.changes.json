@@ -1,0 +1,2812 @@
+{
+  "generatedAt": "2026-10-17T13:45:16.024108+00:00",
+  "changes": {
+    "old_version": "1.60.1.70338",
+    "new_version": "1.60.1.70450",
+    "schema": {},
+    "tables": {
+      "TraitTree": {
+        "old": 17,
+        "new": 17,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitNode": {
+        "old": 558,
+        "new": 558,
+        "added": 1,
+        "removed": 1,
+        "changed": 39,
+        "keyed": true
+      },
+      "TraitNodeEntry": {
+        "old": 659,
+        "new": 659,
+        "added": 1,
+        "removed": 1,
+        "changed": 6,
+        "keyed": true
+      },
+      "TraitNodeXTraitNodeEntry": {
+        "old": 561,
+        "new": 561,
+        "added": 1,
+        "removed": 1,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitDefinition": {
+        "old": 658,
+        "new": 659,
+        "added": 1,
+        "removed": 0,
+        "changed": 10,
+        "keyed": true
+      },
+      "TraitDefinitionEffectPoints": {
+        "old": 644,
+        "new": 644,
+        "added": 6,
+        "removed": 6,
+        "changed": 1,
+        "keyed": true
+      },
+      "TraitEdge": {
+        "old": 98,
+        "new": 99,
+        "added": 4,
+        "removed": 3,
+        "changed": 0,
+        "keyed": true
+      },
+      "CurvePoint": {
+        "old": 38956,
+        "new": 41758,
+        "added": 2817,
+        "removed": 15,
+        "changed": 49,
+        "keyed": true
+      },
+      "SpellName": {
+        "old": 31863,
+        "new": 31962,
+        "added": 102,
+        "removed": 3,
+        "changed": 31,
+        "keyed": true
+      },
+      "Spell": {
+        "old": 31863,
+        "new": 31962,
+        "added": 102,
+        "removed": 3,
+        "changed": 177,
+        "keyed": true
+      },
+      "SpellEffect": {
+        "old": 42569,
+        "new": 42726,
+        "added": 180,
+        "removed": 23,
+        "changed": 485,
+        "keyed": true
+      },
+      "ChrClasses": {
+        "old": 9,
+        "new": 9,
+        "added": 0,
+        "removed": 0,
+        "changed": 1,
+        "keyed": true
+      },
+      "ChrRaces": {
+        "old": 58,
+        "new": 58,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      }
+    },
+    "trees_added": [],
+    "trees_removed": [],
+    "trees_renamed": [],
+    "nodes_added": [
+      {
+        "nodeId": "113627",
+        "treeId": "1112",
+        "label": "Arcane Wrath [node 113627]",
+        "text": "Arcane Wrath [node 113627] in tree 1112 at (2820, 3930)"
+      }
+    ],
+    "nodes_removed": [
+      {
+        "nodeId": "105827",
+        "treeId": "1114",
+        "label": "Improved Mind Blast [node 105827]",
+        "text": "Improved Mind Blast [node 105827] from tree 1114"
+      }
+    ],
+    "nodes_moved": [
+      {
+        "nodeId": "104759",
+        "treeId": "1082",
+        "label": "Lightning Overload [node 104759]",
+        "old": {
+          "tree": "1082",
+          "x": "1620",
+          "y": "4530"
+        },
+        "new": {
+          "tree": "1082",
+          "x": "2220",
+          "y": "4530"
+        },
+        "text": "Lightning Overload [node 104759]: (1620, 4530) -> (2220, 4530)"
+      },
+      {
+        "nodeId": "104760",
+        "treeId": "1082",
+        "label": "Lava Burst [node 104760]",
+        "old": {
+          "tree": "1082",
+          "x": "2820",
+          "y": "4530"
+        },
+        "new": {
+          "tree": "1082",
+          "x": "1620",
+          "y": "4530"
+        },
+        "text": "Lava Burst [node 104760]: (2820, 4530) -> (1620, 4530)"
+      },
+      {
+        "nodeId": "104762",
+        "treeId": "1082",
+        "label": "Earthbound [node 104762]",
+        "old": {
+          "tree": "1082",
+          "x": "2220",
+          "y": "3930"
+        },
+        "new": {
+          "tree": "1082",
+          "x": "2820",
+          "y": "3930"
+        },
+        "text": "Earthbound [node 104762]: (2220, 3930) -> (2820, 3930)"
+      },
+      {
+        "nodeId": "104765",
+        "treeId": "1082",
+        "label": "Elemental Warding [node 104765]",
+        "old": {
+          "tree": "1082",
+          "x": "2220",
+          "y": "3330"
+        },
+        "new": {
+          "tree": "1082",
+          "x": "1620",
+          "y": "3330"
+        },
+        "text": "Elemental Warding [node 104765]: (2220, 3330) -> (1620, 3330)"
+      },
+      {
+        "nodeId": "104768",
+        "treeId": "1082",
+        "label": "Elemental Focus [node 104768]",
+        "old": {
+          "tree": "1082",
+          "x": "1620",
+          "y": "3330"
+        },
+        "new": {
+          "tree": "1082",
+          "x": "1020",
+          "y": "3330"
+        },
+        "text": "Elemental Focus [node 104768]: (1620, 3330) -> (1020, 3330)"
+      },
+      {
+        "nodeId": "104769",
+        "treeId": "1082",
+        "label": "Elemental Devastation [node 104769]",
+        "old": {
+          "tree": "1082",
+          "x": "2820",
+          "y": "2730"
+        },
+        "new": {
+          "tree": "1082",
+          "x": "1020",
+          "y": "2730"
+        },
+        "text": "Elemental Devastation [node 104769]: (2820, 2730) -> (1020, 2730)"
+      },
+      {
+        "nodeId": "104770",
+        "treeId": "1082",
+        "label": "Call of Flame [node 104770]",
+        "old": {
+          "tree": "1082",
+          "x": "2220",
+          "y": "2730"
+        },
+        "new": {
+          "tree": "1082",
+          "x": "2820",
+          "y": "2730"
+        },
+        "text": "Call of Flame [node 104770]: (2220, 2730) -> (2820, 2730)"
+      },
+      {
+        "nodeId": "104771",
+        "treeId": "1082",
+        "label": "Elemental Alacrity [node 104771]",
+        "old": {
+          "tree": "1082",
+          "x": "1020",
+          "y": "2730"
+        },
+        "new": {
+          "tree": "1082",
+          "x": "2220",
+          "y": "2730"
+        },
+        "text": "Elemental Alacrity [node 104771]: (1020, 2730) -> (2220, 2730)"
+      },
+      {
+        "nodeId": "105802",
+        "treeId": "1112",
+        "label": "Missile Barrage [node 105802]",
+        "old": {
+          "tree": "1112",
+          "x": "2820",
+          "y": "3930"
+        },
+        "new": {
+          "tree": "1112",
+          "x": "2820",
+          "y": "2130"
+        },
+        "text": "Missile Barrage [node 105802]: (2820, 3930) -> (2820, 2130)"
+      },
+      {
+        "nodeId": "105837",
+        "treeId": "1114",
+        "label": "Mental Strength [node 105837]",
+        "old": {
+          "tree": "1114",
+          "x": "1620",
+          "y": "3930"
+        },
+        "new": {
+          "tree": "1114",
+          "x": "2220",
+          "y": "2730"
+        },
+        "text": "Mental Strength [node 105837]: (1620, 3930) -> (2220, 2730)"
+      },
+      {
+        "nodeId": "105838",
+        "treeId": "1114",
+        "label": "Improved Mana Burn [node 105838]",
+        "old": {
+          "tree": "1114",
+          "x": "2820",
+          "y": "3930"
+        },
+        "new": {
+          "tree": "1114",
+          "x": "1620",
+          "y": "3930"
+        },
+        "text": "Improved Mana Burn [node 105838]: (2820, 3930) -> (1620, 3930)"
+      },
+      {
+        "nodeId": "105846",
+        "treeId": "1114",
+        "label": "Improved Power Word: Shield [node 105846]",
+        "old": {
+          "tree": "1114",
+          "x": "2220",
+          "y": "2730"
+        },
+        "new": {
+          "tree": "1114",
+          "x": "2220",
+          "y": "3330"
+        },
+        "text": "Improved Power Word: Shield [node 105846]: (2220, 2730) -> (2220, 3330)"
+      },
+      {
+        "nodeId": "110284",
+        "treeId": "1187",
+        "label": "Dedicated Study [node 110284]",
+        "old": {
+          "tree": "1187",
+          "x": "3900",
+          "y": "1800"
+        },
+        "new": {
+          "tree": "1187",
+          "x": "4200",
+          "y": "1750"
+        },
+        "text": "Dedicated Study [node 110284]: (3900, 1800) -> (4200, 1750)"
+      },
+      {
+        "nodeId": "110286",
+        "treeId": "1187",
+        "label": "Bartering [node 110286]",
+        "old": {
+          "tree": "1187",
+          "x": "3150",
+          "y": "1800"
+        },
+        "new": {
+          "tree": "1187",
+          "x": "3300",
+          "y": "1750"
+        },
+        "text": "Bartering [node 110286]: (3150, 1800) -> (3300, 1750)"
+      },
+      {
+        "nodeId": "110289",
+        "treeId": "1187",
+        "label": "Master Chef [node 110289]",
+        "old": {
+          "tree": "1187",
+          "x": "3900",
+          "y": "1050"
+        },
+        "new": {
+          "tree": "1187",
+          "x": "3300",
+          "y": "850"
+        },
+        "text": "Master Chef [node 110289]: (3900, 1050) -> (3300, 850)"
+      },
+      {
+        "nodeId": "110290",
+        "treeId": "1187",
+        "label": "Working Overtime [node 110290]",
+        "old": {
+          "tree": "1187",
+          "x": "2400",
+          "y": "1800"
+        },
+        "new": {
+          "tree": "1187",
+          "x": "2400",
+          "y": "1750"
+        },
+        "text": "Working Overtime [node 110290]: (2400, 1800) -> (2400, 1750)"
+      },
+      {
+        "nodeId": "110291",
+        "treeId": "1187",
+        "label": "Bountiful Harvest [node 110291]",
+        "old": {
+          "tree": "1187",
+          "x": "2400",
+          "y": "2550"
+        },
+        "new": {
+          "tree": "1187",
+          "x": "2400",
+          "y": "2650"
+        },
+        "text": "Bountiful Harvest [node 110291]: (2400, 2550) -> (2400, 2650)"
+      },
+      {
+        "nodeId": "110292",
+        "treeId": "1187",
+        "label": "Performance Bonus [node 110292]",
+        "old": {
+          "tree": "1187",
+          "x": "3150",
+          "y": "2550"
+        },
+        "new": {
+          "tree": "1187",
+          "x": "3300",
+          "y": "2650"
+        },
+        "text": "Performance Bonus [node 110292]: (3150, 2550) -> (3300, 2650)"
+      },
+      {
+        "nodeId": "110293",
+        "treeId": "1187",
+        "label": "Luremaster [node 110293]",
+        "old": {
+          "tree": "1187",
+          "x": "3900",
+          "y": "3300"
+        },
+        "new": {
+          "tree": "1187",
+          "x": "3300",
+          "y": "3550"
+        },
+        "text": "Luremaster [node 110293]: (3900, 3300) -> (3300, 3550)"
+      },
+      {
+        "nodeId": "110296",
+        "treeId": "1188",
+        "label": "Thrill of Adventure [node 110296]",
+        "old": {
+          "tree": "1188",
+          "x": "2400",
+          "y": "2550"
+        },
+        "new": {
+          "tree": "1188",
+          "x": "2400",
+          "y": "2650"
+        },
+        "text": "Thrill of Adventure [node 110296]: (2400, 2550) -> (2400, 2650)"
+      },
+      {
+        "nodeId": "110298",
+        "treeId": "1188",
+        "label": "Talented \u00d75 [node 110298]",
+        "old": {
+          "tree": "1188",
+          "x": "3150",
+          "y": "1800"
+        },
+        "new": {
+          "tree": "1188",
+          "x": "3300",
+          "y": "1750"
+        },
+        "text": "Talented \u00d75 [node 110298]: (3150, 1800) -> (3300, 1750)"
+      },
+      {
+        "nodeId": "110300",
+        "treeId": "1188",
+        "label": "Frequent Flier [node 110300]",
+        "old": {
+          "tree": "1188",
+          "x": "3900",
+          "y": "2550"
+        },
+        "new": {
+          "tree": "1188",
+          "x": "4200",
+          "y": "2650"
+        },
+        "text": "Frequent Flier [node 110300]: (3900, 2550) -> (4200, 2650)"
+      },
+      {
+        "nodeId": "110301",
+        "treeId": "1188",
+        "label": "Well Rested [node 110301]",
+        "old": {
+          "tree": "1188",
+          "x": "2400",
+          "y": "1800"
+        },
+        "new": {
+          "tree": "1188",
+          "x": "2400",
+          "y": "1750"
+        },
+        "text": "Well Rested [node 110301]: (2400, 1800) -> (2400, 1750)"
+      },
+      {
+        "nodeId": "110303",
+        "treeId": "1188",
+        "label": "Field Medicine [node 110303]",
+        "old": {
+          "tree": "1188",
+          "x": "3150",
+          "y": "3300"
+        },
+        "new": {
+          "tree": "1188",
+          "x": "3300",
+          "y": "3550"
+        },
+        "text": "Field Medicine [node 110303]: (3150, 3300) -> (3300, 3550)"
+      },
+      {
+        "nodeId": "110304",
+        "treeId": "1188",
+        "label": "Field Guide [node 110304]",
+        "old": {
+          "tree": "1188",
+          "x": "3150",
+          "y": "2550"
+        },
+        "new": {
+          "tree": "1188",
+          "x": "3300",
+          "y": "2650"
+        },
+        "text": "Field Guide [node 110304]: (3150, 2550) -> (3300, 2650)"
+      },
+      {
+        "nodeId": "110305",
+        "treeId": "1188",
+        "label": "High Alert [node 110305]",
+        "old": {
+          "tree": "1188",
+          "x": "3150",
+          "y": "1050"
+        },
+        "new": {
+          "tree": "1188",
+          "x": "3300",
+          "y": "850"
+        },
+        "text": "High Alert [node 110305]: (3150, 1050) -> (3300, 850)"
+      },
+      {
+        "nodeId": "110309",
+        "treeId": "1189",
+        "label": "Reagent Economy [node 110309]",
+        "old": {
+          "tree": "1189",
+          "x": "3900",
+          "y": "2550"
+        },
+        "new": {
+          "tree": "1189",
+          "x": "4200",
+          "y": "2650"
+        },
+        "text": "Reagent Economy [node 110309]: (3900, 2550) -> (4200, 2650)"
+      },
+      {
+        "nodeId": "110313",
+        "treeId": "1189",
+        "label": "Gourmand [node 110313]",
+        "old": {
+          "tree": "1189",
+          "x": "2400",
+          "y": "1800"
+        },
+        "new": {
+          "tree": "1189",
+          "x": "2400",
+          "y": "1750"
+        },
+        "text": "Gourmand [node 110313]: (2400, 1800) -> (2400, 1750)"
+      },
+      {
+        "nodeId": "110314",
+        "treeId": "1189",
+        "label": "Diplomat [node 110314]",
+        "old": {
+          "tree": "1189",
+          "x": "3150",
+          "y": "3300"
+        },
+        "new": {
+          "tree": "1189",
+          "x": "3300",
+          "y": "3550"
+        },
+        "text": "Diplomat [node 110314]: (3150, 3300) -> (3300, 3550)"
+      },
+      {
+        "nodeId": "110315",
+        "treeId": "1189",
+        "label": "The Quick and the Dead [node 110315]",
+        "old": {
+          "tree": "1189",
+          "x": "2400",
+          "y": "2550"
+        },
+        "new": {
+          "tree": "1189",
+          "x": "2400",
+          "y": "2650"
+        },
+        "text": "The Quick and the Dead [node 110315]: (2400, 2550) -> (2400, 2650)"
+      },
+      {
+        "nodeId": "110316",
+        "treeId": "1189",
+        "label": "Permanence [node 110316]",
+        "old": {
+          "tree": "1189",
+          "x": "3150",
+          "y": "1800"
+        },
+        "new": {
+          "tree": "1189",
+          "x": "3300",
+          "y": "1750"
+        },
+        "text": "Permanence [node 110316]: (3150, 1800) -> (3300, 1750)"
+      },
+      {
+        "nodeId": "110318",
+        "treeId": "1189",
+        "label": "Reinforce [node 110318]",
+        "old": {
+          "tree": "1189",
+          "x": "2400",
+          "y": "3300"
+        },
+        "new": {
+          "tree": "1189",
+          "x": "2400",
+          "y": "3550"
+        },
+        "text": "Reinforce [node 110318]: (2400, 3300) -> (2400, 3550)"
+      },
+      {
+        "nodeId": "110319",
+        "treeId": "1189",
+        "label": "For Great Honor [node 110319]",
+        "old": {
+          "tree": "1189",
+          "x": "3150",
+          "y": "1050"
+        },
+        "new": {
+          "tree": "1189",
+          "x": "3300",
+          "y": "850"
+        },
+        "text": "For Great Honor [node 110319]: (3150, 1050) -> (3300, 850)"
+      },
+      {
+        "nodeId": "113506",
+        "treeId": "1187",
+        "label": "Unknown [node 113506]",
+        "old": {
+          "tree": "1187",
+          "x": "4650",
+          "y": "2550"
+        },
+        "new": {
+          "tree": "1187",
+          "x": "5100",
+          "y": "2650"
+        },
+        "text": "Unknown [node 113506]: (4650, 2550) -> (5100, 2650)"
+      },
+      {
+        "nodeId": "113508",
+        "treeId": "1187",
+        "label": "Unknown [node 113508]",
+        "old": {
+          "tree": "1187",
+          "x": "3900",
+          "y": "2550"
+        },
+        "new": {
+          "tree": "1187",
+          "x": "4200",
+          "y": "2650"
+        },
+        "text": "Unknown [node 113508]: (3900, 2550) -> (4200, 2650)"
+      },
+      {
+        "nodeId": "113510",
+        "treeId": "1188",
+        "label": "Unknown [node 113510]",
+        "old": {
+          "tree": "1188",
+          "x": "4650",
+          "y": "1800"
+        },
+        "new": {
+          "tree": "1188",
+          "x": "5100",
+          "y": "1750"
+        },
+        "text": "Unknown [node 113510]: (4650, 1800) -> (5100, 1750)"
+      },
+      {
+        "nodeId": "113511",
+        "treeId": "1188",
+        "label": "Unknown [node 113511]",
+        "old": {
+          "tree": "1188",
+          "x": "3900",
+          "y": "1800"
+        },
+        "new": {
+          "tree": "1188",
+          "x": "4200",
+          "y": "1750"
+        },
+        "text": "Unknown [node 113511]: (3900, 1800) -> (4200, 1750)"
+      },
+      {
+        "nodeId": "113512",
+        "treeId": "1189",
+        "label": "Unknown [node 113512]",
+        "old": {
+          "tree": "1189",
+          "x": "4650",
+          "y": "1800"
+        },
+        "new": {
+          "tree": "1189",
+          "x": "5100",
+          "y": "1750"
+        },
+        "text": "Unknown [node 113512]: (4650, 1800) -> (5100, 1750)"
+      },
+      {
+        "nodeId": "113513",
+        "treeId": "1189",
+        "label": "Unknown [node 113513]",
+        "old": {
+          "tree": "1189",
+          "x": "3900",
+          "y": "1800"
+        },
+        "new": {
+          "tree": "1189",
+          "x": "4200",
+          "y": "1750"
+        },
+        "text": "Unknown [node 113513]: (3900, 1800) -> (4200, 1750)"
+      }
+    ],
+    "entry_changes": [
+      {
+        "nodeId": "104729",
+        "treeId": "1082",
+        "label": "Tidal Focus [node 104729]",
+        "kind": "spell",
+        "text": "Tidal Focus [node 104729]: spell 16173 (Totemic Focus) -> 16179 (Tidal Focus)",
+        "entryId": "129389",
+        "old": "16173",
+        "new": "16179"
+      },
+      {
+        "nodeId": "104735",
+        "treeId": "1082",
+        "label": "Totemic Focus [node 104735]",
+        "kind": "spell",
+        "text": "Totemic Focus [node 104735]: spell 16179 (Tidal Focus) -> 16173 (Totemic Focus)",
+        "entryId": "129395",
+        "old": "16179",
+        "new": "16173"
+      },
+      {
+        "nodeId": "104758",
+        "treeId": "1082",
+        "label": "Elemental Mastery [node 104758]",
+        "kind": "spell",
+        "text": "Elemental Mastery [node 104758]: spell 408490 (Lava Burst) -> 16166 (Elemental Mastery)",
+        "entryId": "129418",
+        "old": "408490",
+        "new": "16166"
+      },
+      {
+        "nodeId": "104760",
+        "treeId": "1082",
+        "label": "Lava Burst [node 104760]",
+        "kind": "spell",
+        "text": "Lava Burst [node 104760]: spell 1222988 (Earthbound) -> 408490 (Lava Burst)",
+        "entryId": "129420",
+        "old": "1222988",
+        "new": "408490"
+      },
+      {
+        "nodeId": "104762",
+        "treeId": "1082",
+        "label": "Earthbound [node 104762]",
+        "kind": "spell",
+        "text": "Earthbound [node 104762]: spell 16120 (Call of Thunder) -> 1222988 (Earthbound)",
+        "entryId": "129422",
+        "old": "16120",
+        "new": "1222988"
+      },
+      {
+        "nodeId": "104765",
+        "treeId": "1082",
+        "label": "Elemental Warding [node 104765]",
+        "kind": "spell",
+        "text": "Elemental Warding [node 104765]: spell 16578 (Elemental Alacrity) -> 28996 (Elemental Warding)",
+        "entryId": "129425",
+        "old": "16578",
+        "new": "28996"
+      },
+      {
+        "nodeId": "104771",
+        "treeId": "1082",
+        "label": "Elemental Alacrity [node 104771]",
+        "kind": "spell",
+        "text": "Elemental Alacrity [node 104771]: spell 28996 (Elemental Warding) -> 16578 (Elemental Alacrity)",
+        "entryId": "129431",
+        "old": "28996",
+        "new": "16578"
+      },
+      {
+        "nodeId": "105782",
+        "treeId": "1112",
+        "label": "Fire Power [node 105782]",
+        "kind": "max_ranks",
+        "text": "Fire Power [node 105782]: max ranks 5 -> 3",
+        "entryId": "130511",
+        "old": "5",
+        "new": "3"
+      },
+      {
+        "nodeId": "105784",
+        "treeId": "1112",
+        "label": "Critical Mass [node 105784]",
+        "kind": "max_ranks",
+        "text": "Critical Mass [node 105784]: max ranks 3 -> 5",
+        "entryId": "130513",
+        "old": "3",
+        "new": "5"
+      },
+      {
+        "nodeId": "105802",
+        "treeId": "1112",
+        "label": "Missile Barrage [node 105802]",
+        "kind": "max_ranks",
+        "text": "Missile Barrage [node 105802]: max ranks 1 -> 2",
+        "entryId": "130531",
+        "old": "1",
+        "new": "2"
+      },
+      {
+        "nodeId": "105823",
+        "treeId": "1114",
+        "label": "Dark Inspiration [node 105823]",
+        "kind": "max_ranks",
+        "text": "Dark Inspiration [node 105823]: max ranks 2 -> 5",
+        "entryId": "130552",
+        "old": "2",
+        "new": "5"
+      },
+      {
+        "nodeId": "105823",
+        "treeId": "1114",
+        "label": "Dark Inspiration [node 105823]",
+        "kind": "spell",
+        "text": "Dark Inspiration [node 105823]: spell 15274 (Improved Fade) -> 1326159 (Dark Inspiration)",
+        "entryId": "130552",
+        "old": "15274",
+        "new": "1326159"
+      },
+      {
+        "nodeId": "105831",
+        "treeId": "1114",
+        "label": "Improved Mind Blast [node 105831]",
+        "kind": "max_ranks",
+        "text": "Improved Mind Blast [node 105831]: max ranks 3 -> 5",
+        "entryId": "130560",
+        "old": "3",
+        "new": "5"
+      },
+      {
+        "nodeId": "105831",
+        "treeId": "1114",
+        "label": "Improved Mind Blast [node 105831]",
+        "kind": "spell",
+        "text": "Improved Mind Blast [node 105831]: spell 15318 (Shadow Affinity) -> 15273 (Improved Mind Blast)",
+        "entryId": "130560",
+        "old": "15318",
+        "new": "15273"
+      },
+      {
+        "nodeId": "105923",
+        "treeId": "1116",
+        "label": "Grim Reach [node 105923]",
+        "kind": "max_ranks",
+        "text": "Grim Reach [node 105923]: max ranks 5 -> 2",
+        "entryId": "130653",
+        "old": "5",
+        "new": "2"
+      },
+      {
+        "nodeId": "105923",
+        "treeId": "1116",
+        "label": "Grim Reach [node 105923]",
+        "kind": "spell",
+        "text": "Grim Reach [node 105923]: spell 1225177 (Malediction) -> 18218 (Grim Reach)",
+        "entryId": "130653",
+        "old": "1225177",
+        "new": "18218"
+      }
+    ],
+    "edges_added": [
+      {
+        "left": "104759",
+        "right": "104766",
+        "treeId": "1082",
+        "text": "Added link Lightning Overload [node 104759] -> Elemental Fury [node 104766]"
+      },
+      {
+        "left": "104760",
+        "right": "104758",
+        "treeId": "1082",
+        "text": "Added link Lava Burst [node 104760] -> Elemental Mastery [node 104758]"
+      },
+      {
+        "left": "104771",
+        "right": "104759",
+        "treeId": "1082",
+        "text": "Added link Elemental Alacrity [node 104771] -> Lightning Overload [node 104759]"
+      },
+      {
+        "left": "105806",
+        "right": "113627",
+        "treeId": "1112",
+        "text": "Added link Arcane Blast [node 105806] -> Arcane Wrath [node 113627]"
+      }
+    ],
+    "edges_removed": [
+      {
+        "left": "104759",
+        "right": "104758",
+        "treeId": "1082",
+        "text": "Removed link Lightning Overload [node 104759] -> Lava Burst [node 104758]"
+      },
+      {
+        "left": "104762",
+        "right": "104766",
+        "treeId": "1082",
+        "text": "Removed link Call of Thunder [node 104762] -> Elemental Fury [node 104766]"
+      },
+      {
+        "left": "104765",
+        "right": "104762",
+        "treeId": "1082",
+        "text": "Removed link Elemental Alacrity [node 104765] -> Call of Thunder [node 104762]"
+      }
+    ],
+    "definitions_added": [
+      {
+        "definitionId": "145958",
+        "spellId": "1326079",
+        "placed": true,
+        "text": "Definition 145958 (Arcane Wrath, spell 1326079), placed on a node"
+      }
+    ],
+    "definitions_removed": [],
+    "definitions_changed": [
+      {
+        "definitionId": "134190",
+        "placed": true,
+        "changes": {
+          "SpellID": [
+            "16173",
+            "16179"
+          ]
+        },
+        "text": "Definition 134190 (Tidal Focus), placed: SpellID '16173' -> '16179'"
+      },
+      {
+        "definitionId": "134196",
+        "placed": true,
+        "changes": {
+          "SpellID": [
+            "16179",
+            "16173"
+          ]
+        },
+        "text": "Definition 134196 (Totemic Focus), placed: SpellID '16179' -> '16173'"
+      },
+      {
+        "definitionId": "134219",
+        "placed": true,
+        "changes": {
+          "SpellID": [
+            "408490",
+            "16166"
+          ]
+        },
+        "text": "Definition 134219 (Elemental Mastery), placed: SpellID '408490' -> '16166'"
+      },
+      {
+        "definitionId": "134221",
+        "placed": true,
+        "changes": {
+          "SpellID": [
+            "1222988",
+            "408490"
+          ]
+        },
+        "text": "Definition 134221 (Lava Burst), placed: SpellID '1222988' -> '408490'"
+      },
+      {
+        "definitionId": "134223",
+        "placed": true,
+        "changes": {
+          "SpellID": [
+            "16120",
+            "1222988"
+          ]
+        },
+        "text": "Definition 134223 (Earthbound), placed: SpellID '16120' -> '1222988'"
+      },
+      {
+        "definitionId": "134226",
+        "placed": true,
+        "changes": {
+          "SpellID": [
+            "16578",
+            "28996"
+          ]
+        },
+        "text": "Definition 134226 (Elemental Warding), placed: SpellID '16578' -> '28996'"
+      },
+      {
+        "definitionId": "134232",
+        "placed": true,
+        "changes": {
+          "SpellID": [
+            "28996",
+            "16578"
+          ]
+        },
+        "text": "Definition 134232 (Elemental Alacrity), placed: SpellID '28996' -> '16578'"
+      },
+      {
+        "definitionId": "135353",
+        "placed": true,
+        "changes": {
+          "SpellID": [
+            "15274",
+            "1326159"
+          ]
+        },
+        "text": "Definition 135353 (Dark Inspiration), placed: SpellID '15274' -> '1326159'"
+      },
+      {
+        "definitionId": "135361",
+        "placed": true,
+        "changes": {
+          "SpellID": [
+            "15318",
+            "15273"
+          ]
+        },
+        "text": "Definition 135361 (Improved Mind Blast), placed: SpellID '15318' -> '15273'"
+      },
+      {
+        "definitionId": "135454",
+        "placed": true,
+        "changes": {
+          "SpellID": [
+            "1225177",
+            "18218"
+          ]
+        },
+        "text": "Definition 135454 (Grim Reach), placed: SpellID '1225177' -> '18218'"
+      }
+    ],
+    "spell_text_changes": [
+      {
+        "spellId": "11070",
+        "field": "Description_lang",
+        "old": "Reduces the casting time of your Frostbolt spell by $/1000;S1 sec.",
+        "new": "Reduces the casting time of your Frostbolt and Frost Blast spells by $/1000;S1 sec.",
+        "text": "Improved Frostbolt (spell 11070): Description_lang changed: '\u2026g time of your Frostbolt spell by $/1000;S1 sec.' -> '\u2026g time of your Frostbolt and Frost Blast spells by $/1000;S1 sec.'"
+      },
+      {
+        "spellId": "11078",
+        "field": "Name_lang",
+        "old": "Wake of Fire",
+        "new": "Improved Fire Blast",
+        "text": "spell 11078: Name_lang 'Wake of Fire' -> 'Improved Fire Blast'"
+      },
+      {
+        "spellId": "11078",
+        "field": "Description_lang",
+        "old": "Reduces the cooldown of your Fire Blast spell by ${$s1/-1000} sec. Killing a non-trivial target increases the critical strike chance of your next Fire Blast cast within $1312934d by $m2%.",
+        "new": "Reduces the cooldown of your Fire Blast spell by ${$s1/-1000} sec and increases its range by $s2 yards.",
+        "text": "Improved Fire Blast (spell 11078): Description_lang changed: '\u2026spell by ${$s1/-1000} sec. Killing a non-trivial target increases the \u2026' -> '\u2026spell by ${$s1/-1000} sec and increases its range by $s2 yards.'"
+      },
+      {
+        "spellId": "11124",
+        "field": "Description_lang",
+        "old": "Increases the damage done by your Fire spells by $s1%.",
+        "new": "Increases the damage done by your Fire spells by $s1% per your Fire effects on the target, up to a maximum increase of ${$s1*4}%. Effects which mix multiple schools of magic do not qualify.",
+        "text": "Fire Power (spell 11124): Description_lang changed: '\u2026 your Fire spells by $s1%.' -> '\u2026 your Fire spells by $s1% per your Fire effects on the target, up to a\u2026'"
+      },
+      {
+        "spellId": "11180",
+        "field": "Description_lang",
+        "old": "Gives your Frost damage spells a $m2% chance to apply the Winter's Chill effect, which increases the chance your Ice Lance and Frostbolt spells will critically hit the target by $12579s1% for $12579d. Stacks up to $s1 times.",
+        "new": "Gives your Frost damage spells a $m2% chance to apply the Winter's Chill effect, which increases the damage done by your Cone of Cold spell to the target by $12579s1%, stacking up to $s1 times.",
+        "text": "Winter's Chill (spell 11180): Description_lang changed: '\u2026ect, which increases the chance your Ice Lance and Frostbolt spells wi\u2026' -> '\u2026ect, which increases the damage done by your Cone of Cold spell to the\u2026'"
+      },
+      {
+        "spellId": "11237",
+        "field": "Description_lang",
+        "old": "Gives you a $m1% chance to avoid interruption caused by damage while channeling Arcane Missiles and a $m2% chance while casting Arcane Blast.",
+        "new": "Gives you a $m1% chance to avoid interruption caused by damage while channeling Arcane Missiles and a $m2% chance while casting Arcane Blast or Arcane Wrath.",
+        "text": "Improved Channeling (spell 11237): Description_lang changed: '\u2026hile casting Arcane Blast.' -> '\u2026hile casting Arcane Blast or Arcane Wrath.'"
+      },
+      {
+        "spellId": "14523",
+        "field": "Description_lang",
+        "old": "Reduces the threat generated by your Holy spells by $s1% and reduces the duration of Stun, Fear, and Silence effects inflicted on you by $m2%.\r\n",
+        "new": "Reduces the threat generated by your spells by $s1% and reduces the duration of Stun, Fear, and Silence effects inflicted on you by $m2%.\r\n",
+        "text": "Silent Resolve (spell 14523): Description_lang changed: '\u2026threat generated by your Holy spells by $s1% and reduces the duration \u2026' -> '\u2026threat generated by your spells by $s1% and reduces the duration of St\u2026'"
+      },
+      {
+        "spellId": "15257",
+        "field": "Description_lang",
+        "old": "Your Shadow damage spells have a $s1% chance to increase the Shadow damage you deal by $15258s1% for $15258d, stacking up to $15258u times.",
+        "new": "Your Shadow damage spells have a $s1% chance to increase the Shadow damage the target takes from you by $15258s1% for $15258d, stacking up to $15258u times.",
+        "text": "Shadow Weaving (spell 15257): Description_lang changed: '\u2026crease the Shadow damage you deal by $15258s1% for $15258d, stacking u\u2026' -> '\u2026crease the Shadow damage the target takes from you by $15258s1% for $1\u2026'"
+      },
+      {
+        "spellId": "16038",
+        "field": "Description_lang",
+        "old": "Increases the damage done by your Fire Totems and by your Flame Shock, Fire Nova, and Lava Burst spells by $m1%.",
+        "new": "Increases the damage done by your Fire Totems and by your Flame Shock, Fire Nova, and Lava Burst spells by $m1%, as well as increases the duration of your Flame Shock spell by ${$m3/1000} sec.",
+        "text": "Call of Flame (spell 16038): Description_lang changed: '\u2026Lava Burst spells by $m1%.' -> '\u2026Lava Burst spells by $m1%, as well as increases the duration of your F\u2026'"
+      },
+      {
+        "spellId": "16086",
+        "field": "Name_lang",
+        "old": "Improved Fire Nova",
+        "new": "Trial by Fire",
+        "text": "spell 16086: Name_lang 'Improved Fire Nova' -> 'Trial by Fire'"
+      },
+      {
+        "spellId": "16086",
+        "field": "Description_lang",
+        "old": "Increases the damage done by your Fire Nova spell by $m1% and reduces its cooldown by ${$m2/-1000} sec.",
+        "new": "Increases the damage done by your Fire Nova spell by $m1% and reduces its cooldown by ${$m2/-1000} sec, and increases the duration of your Magma Totem by ${$m3/1000} sec.",
+        "text": "Trial by Fire (spell 16086): Description_lang changed: '\u2026ldown by ${$m2/-1000} sec.' -> '\u2026ldown by ${$m2/-1000} sec, and increases the duration of your Magma To\u2026'"
+      },
+      {
+        "spellId": "16757",
+        "field": "Description_lang",
+        "old": "Increases the range of your Frostbolt and Blizzard spells and the radius of your Frost Nova and Cone of Cold spells by $s1%.",
+        "new": "Increases the range of your Frostbolt, Frost Blast, and Blizzard spells and the radius of your Frost Nova and Cone of Cold spells by $s1%.",
+        "text": "Arctic Reach (spell 16757): Description_lang changed: '\u2026e range of your Frostbolt and Blizzard spells and the radius of your F\u2026' -> '\u2026e range of your Frostbolt, Frost Blast, and Blizzard spells and the ra\u2026'"
+      },
+      {
+        "spellId": "17007",
+        "field": "Description_lang",
+        "old": "While in Cat Form, Bear Form, or Dire Bear Form, the Leader of the Pack increases the critical strike chance of all party members within $24932a1 yards by $24932s1%, exclusive with Moonkin Aura.",
+        "new": "While in Cat Form, Bear Form, or Dire Bear Form, the Leader of the Pack increases the melee and ranged Critical Strike chance of all party or raid members within $24932a1 yards by $24932s1%.",
+        "text": "Leader of the Pack (spell 17007): Description_lang changed: '\u2026f the Pack increases the critical strike chance of all party members w\u2026' -> '\u2026f the Pack increases the melee and ranged Critical Strike chance of al\u2026'"
+      },
+      {
+        "spellId": "17056",
+        "field": "Description_lang",
+        "old": "Gives you a $m1% chance to gain $/10;17057s1 Rage when shapeshifting into Bear Form or Dire Bear Form. Shapeshifting into Cat Form restores ${100*($m2/100)}% of the Energy you had when last in Cat Form, plus ${10*($m2/100)} Energy per sec spent outside Cat Form, up to ${100*($m2/100)} Energy.\r\n\r\nBear Form and Dire Bear Form forfeit this Energy and halt its restoration while active.",
+        "new": "Gives you a $m1% chance to gain $/10;17057s1 Rage when shapeshifting into Bear Form or Dire Bear Form. Shapeshifting into Cat Form restores ${100*($m2/100)}% of the Energy you had when last in Cat Form, plus ${10*($m2/100)} Energy per second spent outside Bear Form or Dire Bear Form, up to ${100*($m2/100)} Energy.",
+        "text": "Furor (spell 17056): Description_lang changed: '\u2026($m2/100)} Energy per sec spent outside Cat Form, up to ${100*($m2/100\u2026' -> '\u2026($m2/100)} Energy per second spent outside Bear Form or Dire Bear Form\u2026'"
+      },
+      {
+        "spellId": "17917",
+        "field": "Description_lang",
+        "old": "Increases the range of your damaging spells by $s1%.",
+        "new": "Increases the range of your Destruction spells by $s1%.",
+        "text": "Destructive Reach (spell 17917): Description_lang changed: '\u2026reases the range of your damaging spells by $s1%.' -> '\u2026reases the range of your Destruction spells by $s1%.'"
+      },
+      {
+        "spellId": "20177",
+        "field": "Description_lang",
+        "old": "Gives you a $m1% chance to gain an extra attack after Blocking a melee attack and a ${$m1*2.5}% chance to gain an extra attack after being the victim of a non-periodic critical strike. Cannot occur more often than once every 1.5 sec.",
+        "new": "Gives you a $m1% chance after Blocking and a ${$m1*2.5}% chance after receiving a non-periodic critical strike to gain an extra attack. Stores up to $1326084u extra attacks. Cannot occur from Blocks more than once every ${$proccooldown}.1 sec.",
+        "text": "Reckoning (spell 20177): Description_lang changed: 'Gives you a $m1% chance to gain an extra attack after Blocking a mele\u2026' -> 'Gives you a $m1% chance after Blocking and a ${$m1*2.5}% chance after\u2026'"
+      },
+      {
+        "spellId": "24858",
+        "field": "Description_lang",
+        "old": "Shapeshift into Moonkin Form, increasing Omen of Clarity's chance to trigger by $s5%, Armor contribution from items by $24905s1%, and all party members within $24907a1 yards have their Critical Strike chance increased by $24907s1%, exclusive with Leader of the Pack.  Also protects the caster from Polymorph effects and prevents the use of healing spells.\r\n\r\nThe act of shapeshifting frees the caster of Polymorph and Movement Impairing effects.",
+        "new": "Shapeshift into Moonkin Form, increasing Omen of Clarity's chance to trigger by $s5%, Armor contribution from items by $24905s1%, and all party or raid members within $24907a1 yards have their spell Critical Strike chance increased by $24907s1%.  Also protects the caster from Polymorph effects and prevents the use of healing spells.\r\n\r\nThe act of shapeshifting frees the caster of Polymorph and Movement Impairing effects.",
+        "text": "Moonkin Form (spell 24858): Description_lang changed: '\u2026$24905s1%, and all party members within $24907a1 yards have their Crit\u2026' -> '\u2026$24905s1%, and all party or raid members within $24907a1 yards have th\u2026'"
+      },
+      {
+        "spellId": "28999",
+        "field": "Description_lang",
+        "old": "Increases the range of your Lightning Bolt, Chain Lightning, Fire Nova, and Lava Burst spells by $m1 yards, and increases the range of your Flame Shock spell by $m2 yards.",
+        "new": "Increases the range of your Lightning Bolt, Chain Lightning, Fire Nova, and Lava Burst spells by $m1 yards and reduces the cooldown of Totemic Projection by ${$m3/-1000} sec.",
+        "text": "Elemental Reach (spell 28999): Description_lang changed: '\u2026Burst spells by $m1 yards, and increases the range of your Flame Shock\u2026' -> '\u2026Burst spells by $m1 yards and reduces the cooldown of Totemic Projecti\u2026'"
+      },
+      {
+        "spellId": "30160",
+        "field": "Description_lang",
+        "old": "Your offensive spell critical strikes will increase your chance to get a critical strike with melee attacks by $m1% for $30165d.",
+        "new": "Your Critical Strikes with direct damage spells increase your chance to get a Critical Strike with melee attacks by $m1% for $30165d.",
+        "text": "Elemental Devastation (spell 30160): Description_lang changed: 'Your offensive spell critical strikes will increas\u2026' -> 'Your Critical Strikes with direct damage spells in\u2026'"
+      },
+      {
+        "spellId": "400574",
+        "field": "Description_lang",
+        "old": "Blasts the target with energy, dealing $s1 Arcane damage. Each time you cast Arcane Blast, the damage of all your other spells is increased by $400573s1% and the mana cost of Arcane Blast is increased by $400573s2%. Effect stacks up to $400573u times and lasts $400573d or until any other damage spell is cast.",
+        "new": "Blasts the target with energy, dealing $s1 Arcane damage. Each time you cast Arcane Blast, you gain $400573s1% of your Intellect as Spell Damage and the mana cost of Arcane Blast is increased by $400573s2%. Effect stacks up to $400573u times and lasts $400573d from time of initial application.",
+        "text": "Arcane Blast (spell 400574): Description_lang changed: '\u2026e you cast Arcane Blast, the damage of all your other spells is increa\u2026' -> '\u2026e you cast Arcane Blast, you gain $400573s1% of your Intellect as Spel\u2026'"
+      },
+      {
+        "spellId": "400588",
+        "field": "Description_lang",
+        "old": "Gives your Arcane Blast spell a $m1% chance, and your Fireball, Frostbolt, and Frostfire Bolt spells a ${$m1/2}% chance to reduce the channeled duration of your next Arcane Missiles spell by $400589s1%, reduce the Mana cost by $400589s3%, and missiles fire every ${$m2/10}.1 sec.",
+        "new": "Gives your Arcane Blast spell a $m1% chance, your Arcane Missile hits a ${$m1/4}% chance, and your Arcane Wrath, Fireball, Frostbolt, and Frostfire Bolt spells a ${$m1/2}% chance to reduce the channeled duration of your next Arcane Missiles spell by $400589s1%, reduce the Mana cost by $400589s3%, and missiles fire every ${$m2/10}.1 sec.",
+        "text": "Missile Barrage (spell 400588): Description_lang changed: '\u2026ast spell a $m1% chance, and your Fireball, Frostbolt, and Frostfire B\u2026' -> '\u2026ast spell a $m1% chance, your Arcane Missile hits a ${$m1/4}% chance, \u2026'"
+      },
+      {
+        "spellId": "400624",
+        "field": "Description_lang",
+        "old": "Non-periodic critical strikes with Fireball, Frostfire Bolt, Fire Blast, and Scorch reduce the cast time of your next Pyroblast cast within $400625d by $400625s1%, stacking up to $400625s2 times.",
+        "new": "Non-periodic critical strikes with Fireball, Frostfire Bolt, Fire Blast, and Scorch reduce the cast time of your next Pyroblast cast within $400625d by $400625s1%, stacking up to $400625s2 times. Fire Blast grants an additional stack every time it deals damage.",
+        "text": "Heating Up (spell 400624): Description_lang changed: '\u2026ng up to $400625s2 times.' -> '\u2026ng up to $400625s2 times. Fire Blast grants an additional stack every \u2026'"
+      },
+      {
+        "spellId": "408510",
+        "field": "Description_lang",
+        "old": "The caster is surrounded by $n globes of water. When a spell, melee, or ranged attack hits the caster or when one of the caster's healing spells gets a critical result, $408511s1% of maximum mana is restored to the caster, expending one water globe. Only one globe will activate every few seconds.  Lasts $d.\r\n\r\nOnly one Elemental Shield can be active on the Shaman at any one time.",
+        "new": "The caster is surrounded by $n globes of water. When a spell, melee, or ranged attack hits the caster or when one of the caster's spells gets a critical result, $408511s1% of maximum mana is restored to the caster, expending one water globe. Only one globe will activate every few seconds.  Lasts $d.\r\n\r\nOnly one Elemental Shield can be active on the Shaman at any one time.",
+        "text": "Water Shield (spell 408510): Description_lang changed: \"\u2026when one of the caster's healing spells gets a critical result, $40851\u2026\" -> \"\u2026when one of the caster's spells gets a critical result, $408511s1% of \u2026\""
+      },
+      {
+        "spellId": "408510",
+        "field": "AuraDescription_lang",
+        "old": "Attacks and spells used against you and your critical heals restore ${$408511m1/$s2}% of your maximum mana. $s2 charges.",
+        "new": "Attacks and spells used against you and your critical spells restore ${$408511m1/$s2}% of your maximum mana. $s2 charges.",
+        "text": "Water Shield (spell 408510): AuraDescription_lang changed: '\u2026st you and your critical heals restore ${$408511m1/$s2}% of your maxim\u2026' -> '\u2026st you and your critical spells restore ${$408511m1/$s2}% of your maxi\u2026'"
+      },
+      {
+        "spellId": "431622",
+        "field": "Description_lang",
+        "old": "Your critical heals create a protective shield on the target, absorbing $s1% of the amount healed. Lasts $431624d.",
+        "new": "Your non-periodic critical heals create a protective shield on the target, absorbing $s1% of the amount healed. Shields up to ${$s2*$pl} damage and lasts $431624d.",
+        "text": "Divine Aegis (spell 431622): Description_lang changed: 'Your critical heals create a protective shield on \u2026' -> 'Your non-periodic critical heals create a protecti\u2026'"
+      },
+      {
+        "spellId": "440529",
+        "field": "Description_lang",
+        "old": "Reduces the mana cost of your Trap abilities and melee abilities by $s1%. In addition, your critical strikes have a $m3% chance to allow $1242688s1% of your Mana regeneration to continue while casting for $1242688d.",
+        "new": "Reduces the Mana cost of your Trap and melee abilities by $s1%, and grants your melee and ranged ability Critical Strikes a $m2% chance to allow $1242688s1% of your Mana Regeneration to continue while casting for $1242688d.",
+        "text": "Resourcefulness (spell 440529): Description_lang changed: 'Reduces the mana cost of your Trap abilities and melee ab\u2026' -> 'Reduces the Mana cost of your Trap and melee abilities by\u2026'"
+      },
+      {
+        "spellId": "1223987",
+        "field": "Description_lang",
+        "old": "Hitting a target with your Serpent Sting ability grants you $s1% and consuming Rapid Killing grants you $s2% of your Mana regeneration while casting for the next $1242512d.",
+        "new": "Afflicting a target with Serpent Sting allows $s1% of your Mana Regeneration to continue while casting for $1242512d, increased to $s2% when Rapid Killing is consumed.",
+        "text": "Rapid Recuperation (spell 1223987): Description_lang changed: 'Hitting a target with your Serpent Sting abil\u2026' -> 'Afflicting a target with Serpent Sting allows\u2026'"
+      },
+      {
+        "spellId": "1225139",
+        "field": "Description_lang",
+        "old": "Your Mind Flay now deals $s1% more damage, gains $s2 yards increased range, but slows the target's movement speed by ${$s4-($m3)}%.",
+        "new": "Each instance of damage of Mind Flay deals $s1% more damage than its previous instance of damage.",
+        "text": "Improved Mind Flay (spell 1225139): Description_lang changed: 'Your Mind Flay now deals $s1% more damage, ga\u2026' -> 'Each instance of damage of Mind Flay deals $s\u2026'"
+      },
+      {
+        "spellId": "1289682",
+        "field": "Description_lang",
+        "old": "Your Main Hand melee attacks against enemies afflicted by your Rend have a $s1% chance to allow the use of your Overpower ability on the target. Lasts $1289681d.",
+        "new": "Grants your Main Hand melee attacks against enemies afflicted by your Rend a $s1% chance to allow an activation of Overpower.",
+        "text": "Bloodthrill (spell 1289682): Description_lang changed: 'Your Main Hand melee attacks against enemies \u2026' -> 'Grants your Main Hand melee attacks against e\u2026'"
+      },
+      {
+        "spellId": "1299346",
+        "field": "Description_lang",
+        "old": "Increases the Ranged Attack Power of party members within $a1 yds by $s1.",
+        "new": "Increases the Ranged Attack Power of party or raid members within $a1 yds by $s1.",
+        "text": "Trueshot Aura (spell 1299346): Description_lang changed: '\u2026ed Attack Power of party members within $a1 yds by $s1.' -> '\u2026ed Attack Power of party or raid members within $a1 yds by $s1.'"
+      },
+      {
+        "spellId": "1309950",
+        "field": "Description_lang",
+        "old": "Reduces the mana cost of your Devouring Plague by $s1%.\r\n\r\nTargets that die while Devouring Plague is active spreads it, jumping to a nearby enemy within $s2 yds for the remaining duration.\r\n",
+        "new": "Reduces the mana cost of your Devouring Plague by $s1%.\r\n\r\nTargets that die while Devouring Plague is active spreads it, jumping to $s3 nearby enemies within $s2 yds for the remaining duration.\r\n",
+        "text": "Devouring Contagion (spell 1309950): Description_lang changed: '\u2026e spreads it, jumping to a nearby enemy within $s2 yds for the remaini\u2026' -> '\u2026e spreads it, jumping to $s3 nearby enemies within $s2 yds for the rem\u2026'"
+      },
+      {
+        "spellId": "1309969",
+        "field": "Description_lang",
+        "old": "Your Smite and Penance spells deal $m1% increased damage to targets afflicted with your Holy Fire.",
+        "new": "Your Smite and Penance spells deal $m1% increased damage to targets afflicted with your Holy Fire or Shadow Word: Pain.",
+        "text": "Power in Light (spell 1309969): Description_lang changed: '\u2026icted with your Holy Fire.' -> '\u2026icted with your Holy Fire or Shadow Word: Pain.'"
+      },
+      {
+        "spellId": "1310532",
+        "field": "Description_lang",
+        "old": "Your attacks against targets with Hunter's Mark have a $s1% chance to activate your Mongoose Bite for $1310726d.",
+        "new": "Grants your melee and ranged attacks against enemies afflicted by Hunter's Mark a $s1% chance to allow an activation of Mongoose Bite. Lasts $1310726d.",
+        "text": "Expose Prey (spell 1310532): Description_lang changed: \"Your attacks against targets with Hunter's Ma\u2026\" -> 'Grants your melee and ranged attacks against \u2026'"
+      },
+      {
+        "spellId": "1310627",
+        "field": "Description_lang",
+        "old": "Increases your melee critical strike damage by $s1% and your Off Hand weapon damage by $s2%.",
+        "new": "Increases your melee ability critical strike damage by $s1% and your Off Hand weapon damage by $s2%.",
+        "text": "Predator's Edge (spell 1310627): Description_lang changed: 'Increases your melee critical strike damage by $s1% and your Off H\u2026' -> 'Increases your melee ability critical strike damage by $s1% and yo\u2026'"
+      },
+      {
+        "spellId": "1317257",
+        "field": "NameSubtext_lang",
+        "old": "Rank 1",
+        "new": "",
+        "text": "Strider Kick (spell 1317257): NameSubtext_lang changed: 'Rank 1' -> ''"
+      }
+    ],
+    "spell_presence_changes": [
+      {
+        "spellId": "16166",
+        "presentNow": true,
+        "text": "Elemental Mastery (spell 16166): spell data appeared"
+      },
+      {
+        "spellId": "1326079",
+        "presentNow": true,
+        "text": "Arcane Wrath (spell 1326079): spell data appeared"
+      },
+      {
+        "spellId": "1326159",
+        "presentNow": true,
+        "text": "Dark Inspiration (spell 1326159): spell data appeared"
+      }
+    ],
+    "effects_added": [
+      {
+        "effectId": "694178",
+        "spellId": "16166",
+        "index": "0",
+        "text": "Elemental Mastery (spell 16166): effect 0 added (Effect 6, Aura 107, base -500)"
+      },
+      {
+        "effectId": "694179",
+        "spellId": "16166",
+        "index": "1",
+        "text": "Elemental Mastery (spell 16166): effect 1 added (Effect 6, Aura 108, base -100)"
+      },
+      {
+        "effectId": "1363670",
+        "spellId": "431622",
+        "index": "1",
+        "text": "Divine Aegis (spell 431622): effect 1 added (Effect 6, Aura 4, base 20)"
+      },
+      {
+        "effectId": "1363729",
+        "spellId": "28999",
+        "index": "2",
+        "text": "Elemental Reach (spell 28999): effect 2 added (Effect 6, Aura 107, base -20000)"
+      },
+      {
+        "effectId": "1363730",
+        "spellId": "16086",
+        "index": "2",
+        "text": "Trial by Fire (spell 16086): effect 2 added (Effect 6, Aura 107, base 20000)"
+      },
+      {
+        "effectId": "1363732",
+        "spellId": "16038",
+        "index": "2",
+        "text": "Call of Flame (spell 16038): effect 2 added (Effect 6, Aura 107, base 9000)"
+      },
+      {
+        "effectId": "1363789",
+        "spellId": "1326079",
+        "index": "0",
+        "text": "Arcane Wrath (spell 1326079): effect 0 added (Effect 2, Aura 0, base 120)"
+      },
+      {
+        "effectId": "1363790",
+        "spellId": "1326079",
+        "index": "1",
+        "text": "Arcane Wrath (spell 1326079): effect 1 added (Effect 3, Aura 0, base 5)"
+      },
+      {
+        "effectId": "1363921",
+        "spellId": "1326159",
+        "index": "0",
+        "text": "Dark Inspiration (spell 1326159): effect 0 added (Effect 6, Aura 4, base 15)"
+      },
+      {
+        "effectId": "1363982",
+        "spellId": "1309950",
+        "index": "2",
+        "text": "Devouring Contagion (spell 1309950): effect 2 added (Effect 6, Aura 4, base 2)"
+      }
+    ],
+    "effects_removed": [
+      {
+        "effectId": "695824",
+        "spellId": "18288",
+        "index": "1",
+        "text": "Amplify Curse (spell 18288): effect 1 removed"
+      },
+      {
+        "effectId": "696833",
+        "spellId": "18697",
+        "index": "1",
+        "text": "Demonic Embrace (spell 18697): effect 1 removed"
+      },
+      {
+        "effectId": "1131710",
+        "spellId": "17917",
+        "index": "1",
+        "text": "Destructive Reach (spell 17917): effect 1 removed"
+      },
+      {
+        "effectId": "1214147",
+        "spellId": "1225139",
+        "index": "1",
+        "text": "Improved Mind Flay (spell 1225139): effect 1 removed"
+      },
+      {
+        "effectId": "1239748",
+        "spellId": "1225139",
+        "index": "2",
+        "text": "Improved Mind Flay (spell 1225139): effect 2 removed"
+      },
+      {
+        "effectId": "1339336",
+        "spellId": "1225139",
+        "index": "3",
+        "text": "Improved Mind Flay (spell 1225139): effect 3 removed"
+      }
+    ],
+    "effects_changed": [
+      {
+        "effectId": "685179",
+        "spellId": "12042",
+        "index": "0",
+        "changes": {
+          "EffectSpellClassMask_1": [
+            "4096",
+            "36864"
+          ]
+        },
+        "text": "Arcane Power (spell 12042): effect 0: EffectSpellClassMask_1 '4096' -> '36864'"
+      },
+      {
+        "effectId": "685180",
+        "spellId": "12042",
+        "index": "1",
+        "changes": {
+          "EffectSpellClassMask_1": [
+            "4096",
+            "36864"
+          ]
+        },
+        "text": "Arcane Power (spell 12042): effect 1: EffectSpellClassMask_1 '4096' -> '36864'"
+      },
+      {
+        "effectId": "688625",
+        "spellId": "11222",
+        "index": "0",
+        "changes": {
+          "EffectSpellClassMask_1": [
+            "0",
+            "32768"
+          ]
+        },
+        "text": "Arcane Focus (spell 11222): effect 0: EffectSpellClassMask_1 '0' -> '32768'"
+      },
+      {
+        "effectId": "688647",
+        "spellId": "11247",
+        "index": "0",
+        "changes": {
+          "EffectSpellClassMask_1": [
+            "0",
+            "32768"
+          ]
+        },
+        "text": "Arcane Geometry (spell 11247): effect 0: EffectSpellClassMask_1 '0' -> '32768'"
+      },
+      {
+        "effectId": "688743",
+        "spellId": "11071",
+        "index": "0",
+        "changes": {
+          "EffectAura": [
+            "109",
+            "42"
+          ],
+          "EffectSpellClassMask_0": [
+            "1048576",
+            "0"
+          ]
+        },
+        "text": "Frostbite (spell 11071): effect 0: EffectAura '109' -> '42'; EffectSpellClassMask_0 '1048576' -> '0'"
+      },
+      {
+        "effectId": "689223",
+        "spellId": "11242",
+        "index": "0",
+        "changes": {
+          "EffectSpellClassMask_1": [
+            "0",
+            "32768"
+          ]
+        },
+        "text": "Arcane Impact (spell 11242): effect 0: EffectSpellClassMask_1 '0' -> '32768'"
+      },
+      {
+        "effectId": "689557",
+        "spellId": "11124",
+        "index": "0",
+        "changes": {
+          "EffectAura": [
+            "108",
+            "4"
+          ],
+          "EffectBasePointsF": [
+            "2",
+            "3"
+          ],
+          "EffectSpellClassMask_0": [
+            "12582935",
+            "0"
+          ],
+          "EffectSpellClassMask_1": [
+            "4096",
+            "0"
+          ]
+        },
+        "text": "Fire Power (spell 11124): effect 0: EffectAura '108' -> '4'; EffectBasePointsF '2' -> '3'; EffectSpellClassMask_0 '12582935' -> '0'; EffectSpellClassMask_1 '4096' -> '0'"
+      },
+      {
+        "effectId": "689558",
+        "spellId": "11124",
+        "index": "1",
+        "changes": {
+          "EffectAura": [
+            "108",
+            "4"
+          ],
+          "EffectBasePointsF": [
+            "2",
+            "3"
+          ],
+          "EffectMiscValue_0": [
+            "22",
+            "0"
+          ],
+          "EffectSpellClassMask_0": [
+            "4194309",
+            "0"
+          ],
+          "EffectSpellClassMask_1": [
+            "4096",
+            "0"
+          ]
+        },
+        "text": "Fire Power (spell 11124): effect 1: EffectAura '108' -> '4'; EffectBasePointsF '2' -> '3'; EffectMiscValue_0 '22' -> '0'; EffectSpellClassMask_0 '4194309' -> '0'; +1 more column(s)"
+      },
+      {
+        "effectId": "690270",
+        "spellId": "14523",
+        "index": "0",
+        "changes": {
+          "EffectMiscValue_0": [
+            "2",
+            "34"
+          ]
+        },
+        "text": "Silent Resolve (spell 14523): effect 0: EffectMiscValue_0 '2' -> '34'"
+      },
+      {
+        "effectId": "691761",
+        "spellId": "14179",
+        "index": "0",
+        "changes": {
+          "EffectSpellClassMask_2": [
+            "67108864",
+            "67108868"
+          ]
+        },
+        "text": "Relentless Strikes (spell 14179): effect 0: EffectSpellClassMask_2 '67108864' -> '67108868'"
+      },
+      {
+        "effectId": "692455",
+        "spellId": "15058",
+        "index": "0",
+        "changes": {
+          "EffectSpellClassMask_1": [
+            "4096",
+            "36864"
+          ]
+        },
+        "text": "Arcane Instability (spell 15058): effect 0: EffectSpellClassMask_1 '4096' -> '36864'"
+      },
+      {
+        "effectId": "694770",
+        "spellId": "17917",
+        "index": "0",
+        "changes": {
+          "EffectSpellClassMask_0": [
+            "4769791",
+            "997"
+          ],
+          "EffectSpellClassMask_1": [
+            "327747",
+            "320"
+          ],
+          "EffectSpellClassMask_2": [
+            "2",
+            "0"
+          ]
+        },
+        "text": "Destructive Reach (spell 17917): effect 0: EffectSpellClassMask_0 '4769791' -> '997'; EffectSpellClassMask_1 '327747' -> '320'; EffectSpellClassMask_2 '2' -> '0'"
+      },
+      {
+        "effectId": "694804",
+        "spellId": "18218",
+        "index": "0",
+        "changes": {
+          "EffectSpellClassMask_1": [
+            "256",
+            "262145"
+          ]
+        },
+        "text": "Grim Reach (spell 18218): effect 0: EffectSpellClassMask_1 '256' -> '262145'"
+      },
+      {
+        "effectId": "696507",
+        "spellId": "19485",
+        "index": "0",
+        "changes": {
+          "EffectSpellClassMask_3": [
+            "0",
+            "8388608"
+          ]
+        },
+        "text": "Mortal Shots (spell 19485): effect 0: EffectSpellClassMask_3 '0' -> '8388608'"
+      },
+      {
+        "effectId": "696992",
+        "spellId": "19416",
+        "index": "0",
+        "changes": {
+          "EffectSpellClassMask_3": [
+            "0",
+            "8388608"
+          ]
+        },
+        "text": "Efficiency (spell 19416): effect 0: EffectSpellClassMask_3 '0' -> '8388608'"
+      },
+      {
+        "effectId": "698053",
+        "spellId": "20224",
+        "index": "0",
+        "changes": {
+          "EffectBasePointsF": [
+            "3",
+            "0"
+          ]
+        },
+        "text": "Improved Seals (spell 20224): effect 0: EffectBasePointsF '3' -> '0'"
+      },
+      {
+        "effectId": "698556",
+        "spellId": "20177",
+        "index": "0",
+        "changes": {
+          "EffectAura": [
+            "42",
+            "4"
+          ],
+          "EffectTriggerSpell": [
+            "20178",
+            "0"
+          ]
+        },
+        "text": "Reckoning (spell 20177): effect 0: EffectAura '42' -> '4'; EffectTriggerSpell '20178' -> '0'"
+      },
+      {
+        "effectId": "1045739",
+        "spellId": "400574",
+        "index": "0",
+        "changes": {
+          "EffectBonusCoefficient": [
+            "0.71399998665",
+            "0.42899999022"
+          ],
+          "EffectRealPointsPerLevel": [
+            "0.89999997616",
+            "0.5"
+          ],
+          "EffectBasePointsF": [
+            "54",
+            "32"
+          ]
+        },
+        "text": "Arcane Blast (spell 400574): effect 0: EffectBonusCoefficient '0.71399998665' -> '0.42899999022'; EffectRealPointsPerLevel '0.89999997616' -> '0.5'; EffectBasePointsF '54' -> '32'"
+      },
+      {
+        "effectId": "1072652",
+        "spellId": "408490",
+        "index": "0",
+        "changes": {
+          "EffectRealPointsPerLevel": [
+            "0.89999997616",
+            "0.80000001192"
+          ],
+          "EffectBasePointsF": [
+            "164",
+            "123"
+          ]
+        },
+        "text": "Lava Burst (spell 408490): effect 0: EffectRealPointsPerLevel '0.89999997616' -> '0.80000001192'; EffectBasePointsF '164' -> '123'"
+      },
+      {
+        "effectId": "1134467",
+        "spellId": "440529",
+        "index": "0",
+        "changes": {
+          "EffectSpellClassMask_2": [
+            "0",
+            "2097152"
+          ]
+        },
+        "text": "Resourcefulness (spell 440529): effect 0: EffectSpellClassMask_2 '0' -> '2097152'"
+      },
+      {
+        "effectId": "1176985",
+        "spellId": "11237",
+        "index": "1",
+        "changes": {
+          "EffectSpellClassMask_1": [
+            "0",
+            "32768"
+          ]
+        },
+        "text": "Improved Channeling (spell 11237): effect 1: EffectSpellClassMask_1 '0' -> '32768'"
+      },
+      {
+        "effectId": "1214136",
+        "spellId": "1225132",
+        "index": "0",
+        "changes": {
+          "EffectSpellClassMask_1": [
+            "16",
+            "98322"
+          ]
+        },
+        "text": "Twin Disciplines (spell 1225132): effect 0: EffectSpellClassMask_1 '16' -> '98322'"
+      },
+      {
+        "effectId": "1214146",
+        "spellId": "1225139",
+        "index": "0",
+        "changes": {
+          "EffectAura": [
+            "108",
+            "4"
+          ],
+          "EffectMiscValue_0": [
+            "22",
+            "0"
+          ],
+          "EffectSpellClassMask_0": [
+            "8388608",
+            "0"
+          ]
+        },
+        "text": "Improved Mind Flay (spell 1225139): effect 0: EffectAura '108' -> '4'; EffectMiscValue_0 '22' -> '0'; EffectSpellClassMask_0 '8388608' -> '0'"
+      },
+      {
+        "effectId": "1214658",
+        "spellId": "1225459",
+        "index": "0",
+        "changes": {
+          "EffectMiscValue_0": [
+            "0",
+            "1"
+          ]
+        },
+        "text": "Bartering (spell 1225459): effect 0: EffectMiscValue_0 '0' -> '1'"
+      },
+      {
+        "effectId": "1229966",
+        "spellId": "28999",
+        "index": "1",
+        "changes": {
+          "EffectAura": [
+            "107",
+            "4"
+          ],
+          "EffectMiscValue_0": [
+            "5",
+            "0"
+          ],
+          "EffectSpellClassMask_0": [
+            "268435456",
+            "0"
+          ]
+        },
+        "text": "Elemental Reach (spell 28999): effect 1: EffectAura '107' -> '4'; EffectMiscValue_0 '5' -> '0'; EffectSpellClassMask_0 '268435456' -> '0'"
+      },
+      {
+        "effectId": "1230113",
+        "spellId": "16187",
+        "index": "1",
+        "changes": {
+          "EffectMiscValue_0": [
+            "8",
+            "22"
+          ]
+        },
+        "text": "Restorative Totems (spell 16187): effect 1: EffectMiscValue_0 '8' -> '22'"
+      },
+      {
+        "effectId": "1230612",
+        "spellId": "11232",
+        "index": "1",
+        "changes": {
+          "EffectSpellClassMask_1": [
+            "0",
+            "32768"
+          ]
+        },
+        "text": "Arcane Mind (spell 11232): effect 1: EffectSpellClassMask_1 '0' -> '32768'"
+      },
+      {
+        "effectId": "1239165",
+        "spellId": "1225132",
+        "index": "1",
+        "changes": {
+          "EffectSpellClassMask_0": [
+            "32864",
+            "10518624"
+          ]
+        },
+        "text": "Twin Disciplines (spell 1225132): effect 1: EffectSpellClassMask_0 '32864' -> '10518624'"
+      },
+      {
+        "effectId": "1239839",
+        "spellId": "15473",
+        "index": "4",
+        "changes": {
+          "EffectSpellClassMask_1": [
+            "0",
+            "2"
+          ]
+        },
+        "text": "Shadowform (spell 15473): effect 4: EffectSpellClassMask_1 '0' -> '2'"
+      },
+      {
+        "effectId": "1296201",
+        "spellId": "1225177",
+        "index": "1",
+        "changes": {
+          "EffectSpellClassMask_1": [
+            "2048",
+            "256"
+          ]
+        },
+        "text": "Malediction (spell 1225177): effect 1: EffectSpellClassMask_1 '2048' -> '256'"
+      },
+      {
+        "effectId": "1323534",
+        "spellId": "1299346",
+        "index": "0",
+        "changes": {
+          "Effect": [
+            "35",
+            "65"
+          ]
+        },
+        "text": "Trueshot Aura (spell 1299346): effect 0: Effect '35' -> '65'"
+      },
+      {
+        "effectId": "1342606",
+        "spellId": "1312002",
+        "index": "1",
+        "changes": {
+          "EffectBasePointsF": [
+            "300",
+            "200"
+          ]
+        },
+        "text": "Ice Lance (spell 1312002): effect 1: EffectBasePointsF '300' -> '200'"
+      },
+      {
+        "effectId": "1344068",
+        "spellId": "11078",
+        "index": "1",
+        "changes": {
+          "EffectAura": [
+            "4",
+            "107"
+          ],
+          "EffectBasePointsF": [
+            "50",
+            "15"
+          ],
+          "EffectMiscValue_0": [
+            "0",
+            "5"
+          ],
+          "EffectSpellClassMask_0": [
+            "0",
+            "2"
+          ]
+        },
+        "text": "Improved Fire Blast (spell 11078): effect 1: EffectAura '4' -> '107'; EffectBasePointsF '50' -> '15'; EffectMiscValue_0 '0' -> '5'; EffectSpellClassMask_0 '0' -> '2'"
+      }
+    ],
+    "effect_points_changed": [
+      {
+        "id": "25198",
+        "kind": "added",
+        "definitionId": "134190",
+        "text": "Tidal Focus: scaling link added (effect 1, curve 126021)"
+      },
+      {
+        "id": "25199",
+        "kind": "added",
+        "definitionId": "134190",
+        "text": "Tidal Focus: scaling link added (effect 2, curve 126020)"
+      },
+      {
+        "id": "25200",
+        "kind": "added",
+        "definitionId": "134222",
+        "text": "Elemental Reach: scaling link added (effect 2, curve 126022)"
+      },
+      {
+        "id": "25201",
+        "kind": "added",
+        "definitionId": "134225",
+        "text": "Trial by Fire: scaling link added (effect 2, curve 126023)"
+      },
+      {
+        "id": "25202",
+        "kind": "added",
+        "definitionId": "134231",
+        "text": "Call of Flame: scaling link added (effect 2, curve 126024)"
+      },
+      {
+        "id": "25203",
+        "kind": "added",
+        "definitionId": "135332",
+        "text": "Missile Barrage: scaling link added (effect 0, curve 126757)"
+      },
+      {
+        "id": "23496",
+        "kind": "removed",
+        "definitionId": "135355",
+        "text": "Improved Mind Flay: scaling link removed (effect 1, curve 83150)"
+      },
+      {
+        "id": "23833",
+        "kind": "removed",
+        "definitionId": "135355",
+        "text": "Improved Mind Flay: scaling link removed (effect 2, curve 87682)"
+      },
+      {
+        "id": "24355",
+        "kind": "removed",
+        "definitionId": "135454",
+        "text": "Grim Reach: scaling link removed (effect 1, curve 98030)"
+      },
+      {
+        "id": "24556",
+        "kind": "removed",
+        "definitionId": "134196",
+        "text": "Totemic Focus: scaling link removed (effect 1, curve 109096)"
+      },
+      {
+        "id": "24557",
+        "kind": "removed",
+        "definitionId": "134196",
+        "text": "Totemic Focus: scaling link removed (effect 2, curve 109095)"
+      },
+      {
+        "id": "24560",
+        "kind": "removed",
+        "definitionId": "135312",
+        "text": "Fire Power: scaling link removed (effect 1, curve 109309)"
+      },
+      {
+        "id": "23260",
+        "kind": "changed",
+        "definitionId": "134448",
+        "changes": {
+          "CurveID": [
+            "82780",
+            "85425"
+          ]
+        },
+        "text": "Resourcefulness: scaling link changed: CurveID '82780' -> '85425'"
+      }
+    ],
+    "curve_changes": [
+      {
+        "curveId": "83064",
+        "oldPoints": 5,
+        "newPoints": 5,
+        "differing": 4,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "1"
+            ],
+            "new": [
+              "1",
+              "5"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "2"
+            ],
+            "new": [
+              "2",
+              "5"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "3"
+            ],
+            "new": [
+              "3",
+              "5"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Winter's Chill"
+        ],
+        "text": "Curve 83064 (Winter's Chill): 4 of 5 points differ"
+      },
+      {
+        "curveId": "83082",
+        "oldPoints": 5,
+        "newPoints": 3,
+        "differing": 3,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "2"
+            ],
+            "new": [
+              "1",
+              "1"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "4"
+            ],
+            "new": [
+              "2",
+              "2"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "6"
+            ],
+            "new": [
+              "3",
+              "3"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Fire Power"
+        ],
+        "text": "Curve 83082 (Fire Power): 5 -> 3 points"
+      },
+      {
+        "curveId": "83083",
+        "oldPoints": 3,
+        "newPoints": 5,
+        "differing": 0,
+        "examples": [],
+        "usedBy": [
+          "Critical Mass"
+        ],
+        "text": "Curve 83083 (Critical Mass): 3 -> 5 points"
+      },
+      {
+        "curveId": "83132",
+        "oldPoints": 5,
+        "newPoints": 5,
+        "differing": 5,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "3"
+            ],
+            "new": [
+              "1",
+              "2"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "6"
+            ],
+            "new": [
+              "2",
+              "4"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "9"
+            ],
+            "new": [
+              "3",
+              "6"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Mental Strength"
+        ],
+        "text": "Curve 83132 (Mental Strength): 5 of 5 points differ"
+      },
+      {
+        "curveId": "83149",
+        "oldPoints": 2,
+        "newPoints": 5,
+        "differing": 2,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "-3000"
+            ],
+            "new": [
+              "1",
+              "3"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "-6000"
+            ],
+            "new": [
+              "2",
+              "6"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Dark Inspiration"
+        ],
+        "text": "Curve 83149 (Dark Inspiration): 2 -> 5 points"
+      },
+      {
+        "curveId": "83156",
+        "oldPoints": 3,
+        "newPoints": 5,
+        "differing": 3,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "-10"
+            ],
+            "new": [
+              "1",
+              "-500"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "-20"
+            ],
+            "new": [
+              "2",
+              "-1000"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "-30"
+            ],
+            "new": [
+              "3",
+              "-1500"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Improved Mind Blast"
+        ],
+        "text": "Curve 83156 (Improved Mind Blast): 3 -> 5 points"
+      },
+      {
+        "curveId": "83215",
+        "oldPoints": 5,
+        "newPoints": 5,
+        "differing": 5,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "1"
+            ],
+            "new": [
+              "1",
+              "2"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "2"
+            ],
+            "new": [
+              "2",
+              "4"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "3"
+            ],
+            "new": [
+              "3",
+              "6"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Shadow Mastery"
+        ],
+        "text": "Curve 83215 (Shadow Mastery): 5 of 5 points differ"
+      },
+      {
+        "curveId": "83227",
+        "oldPoints": 5,
+        "newPoints": 2,
+        "differing": 2,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "1"
+            ],
+            "new": [
+              "1",
+              "10"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "2"
+            ],
+            "new": [
+              "2",
+              "20"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Grim Reach"
+        ],
+        "text": "Curve 83227 (Grim Reach): 5 -> 2 points"
+      },
+      {
+        "curveId": "85216",
+        "oldPoints": 3,
+        "newPoints": 3,
+        "differing": 3,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "-3"
+            ],
+            "new": [
+              "1",
+              "-170"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "-7"
+            ],
+            "new": [
+              "2",
+              "-330"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "-10"
+            ],
+            "new": [
+              "3",
+              "-500"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Elemental Alacrity"
+        ],
+        "text": "Curve 85216 (Elemental Alacrity): 3 of 3 points differ"
+      },
+      {
+        "curveId": "85228",
+        "oldPoints": 3,
+        "newPoints": 3,
+        "differing": 3,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "-170"
+            ],
+            "new": [
+              "1",
+              "-3"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "-330"
+            ],
+            "new": [
+              "2",
+              "-7"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "-500"
+            ],
+            "new": [
+              "3",
+              "-10"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Elemental Warding"
+        ],
+        "text": "Curve 85228 (Elemental Warding): 3 of 3 points differ"
+      },
+      {
+        "curveId": "85315",
+        "oldPoints": 5,
+        "newPoints": 5,
+        "differing": 5,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "-1"
+            ],
+            "new": [
+              "1",
+              "-5"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "-2"
+            ],
+            "new": [
+              "2",
+              "-10"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "-3"
+            ],
+            "new": [
+              "3",
+              "-15"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Totemic Focus"
+        ],
+        "text": "Curve 85315 (Totemic Focus): 5 of 5 points differ"
+      },
+      {
+        "curveId": "85321",
+        "oldPoints": 5,
+        "newPoints": 5,
+        "differing": 5,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "-5"
+            ],
+            "new": [
+              "1",
+              "-1"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "-10"
+            ],
+            "new": [
+              "2",
+              "-2"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "-15"
+            ],
+            "new": [
+              "3",
+              "-3"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Tidal Focus"
+        ],
+        "text": "Curve 85321 (Tidal Focus): 5 of 5 points differ"
+      },
+      {
+        "curveId": "88067",
+        "oldPoints": 5,
+        "newPoints": 5,
+        "differing": 5,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "1"
+            ],
+            "new": [
+              "1",
+              "2"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "2"
+            ],
+            "new": [
+              "2",
+              "4"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "3"
+            ],
+            "new": [
+              "3",
+              "6"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Shadow Mastery"
+        ],
+        "text": "Curve 88067 (Shadow Mastery): 5 of 5 points differ"
+      },
+      {
+        "curveId": "110240",
+        "oldPoints": 2,
+        "newPoints": 2,
+        "differing": 2,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "10"
+            ],
+            "new": [
+              "1",
+              "-10"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "20"
+            ],
+            "new": [
+              "2",
+              "-20"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Improved Mend Pet"
+        ],
+        "text": "Curve 110240 (Improved Mend Pet): 2 of 2 points differ"
+      },
+      {
+        "curveId": "110350",
+        "oldPoints": 3,
+        "newPoints": 3,
+        "differing": 3,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "20"
+            ],
+            "new": [
+              "1",
+              "10"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "40"
+            ],
+            "new": [
+              "2",
+              "20"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "60"
+            ],
+            "new": [
+              "3",
+              "30"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Champion of the Light"
+        ],
+        "text": "Curve 110350 (Champion of the Light): 3 of 3 points differ"
+      },
+      {
+        "curveId": "110790",
+        "oldPoints": 3,
+        "newPoints": 3,
+        "differing": 3,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "10"
+            ],
+            "new": [
+              "1",
+              "-10"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "20"
+            ],
+            "new": [
+              "2",
+              "-20"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "30"
+            ],
+            "new": [
+              "3",
+              "-30"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Frost Channeling"
+        ],
+        "text": "Curve 110790 (Frost Channeling): 3 of 3 points differ"
+      },
+      {
+        "curveId": "111697",
+        "oldPoints": 2,
+        "newPoints": 2,
+        "differing": 2,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "25"
+            ],
+            "new": [
+              "1",
+              "8"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "50"
+            ],
+            "new": [
+              "2",
+              "15"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Improved Fire Blast"
+        ],
+        "text": "Curve 111697 (Improved Fire Blast): 2 of 2 points differ"
+      },
+      {
+        "curveId": "126020",
+        "oldPoints": 0,
+        "newPoints": 5,
+        "differing": 0,
+        "examples": [],
+        "usedBy": [
+          "Tidal Focus"
+        ],
+        "text": "Curve 126020 (Tidal Focus): 0 -> 5 points"
+      },
+      {
+        "curveId": "126021",
+        "oldPoints": 0,
+        "newPoints": 5,
+        "differing": 0,
+        "examples": [],
+        "usedBy": [
+          "Tidal Focus"
+        ],
+        "text": "Curve 126021 (Tidal Focus): 0 -> 5 points"
+      },
+      {
+        "curveId": "126022",
+        "oldPoints": 0,
+        "newPoints": 2,
+        "differing": 0,
+        "examples": [],
+        "usedBy": [
+          "Elemental Reach"
+        ],
+        "text": "Curve 126022 (Elemental Reach): 0 -> 2 points"
+      },
+      {
+        "curveId": "126023",
+        "oldPoints": 0,
+        "newPoints": 2,
+        "differing": 0,
+        "examples": [],
+        "usedBy": [
+          "Trial by Fire"
+        ],
+        "text": "Curve 126023 (Trial by Fire): 0 -> 2 points"
+      },
+      {
+        "curveId": "126024",
+        "oldPoints": 0,
+        "newPoints": 3,
+        "differing": 0,
+        "examples": [],
+        "usedBy": [
+          "Call of Flame"
+        ],
+        "text": "Curve 126024 (Call of Flame): 0 -> 3 points"
+      },
+      {
+        "curveId": "126757",
+        "oldPoints": 0,
+        "newPoints": 2,
+        "differing": 0,
+        "examples": [],
+        "usedBy": [
+          "Missile Barrage"
+        ],
+        "text": "Curve 126757 (Missile Barrage): 0 -> 2 points"
+      }
+    ],
+    "issue_value_changes": [
+      {
+        "code": "orphan_foreign_key",
+        "subject": "SpellEffect.SpellID",
+        "added": [
+          "1314956"
+        ],
+        "removed": [
+          "1321233"
+        ],
+        "text": "SpellEffect.SpellID: new: 1314956; resolved: 1321233"
+      }
+    ],
+    "notes": [
+      "6 spells moved from one talent slot to another (16173 (Totemic Focus), 16179 (Tidal Focus), 16578 (Elemental Alacrity), 28996 (Elemental Warding) and 2 more). Talent slots (nodes and definitions) are not stable identities in this build pair; anything tied to a talent should be keyed by spell, not by slot."
+    ],
+    "counts": {
+      "trees_added": 0,
+      "trees_removed": 0,
+      "trees_renamed": 0,
+      "nodes_added": 1,
+      "nodes_removed": 1,
+      "nodes_moved": 39,
+      "entry_changes": 16,
+      "edges_added": 4,
+      "edges_removed": 3,
+      "definitions_added": 1,
+      "definitions_removed": 0,
+      "definitions_changed": 10,
+      "spell_text_changes": 35,
+      "spell_presence_changes": 3,
+      "effects_added": 10,
+      "effects_removed": 6,
+      "effects_changed": 33,
+      "effect_points_changed": 13,
+      "curve_changes": 23
+    }
+  }
+}

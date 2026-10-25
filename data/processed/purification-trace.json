@@ -1,0 +1,122 @@
+{
+  "talent_spell_id": "16178",
+  "inputs": {
+    "TraitDefinition.csv": "/home/Jim/wow-forever-calculator/data/raw/1.60.1.70338/TraitDefinition.csv",
+    "TraitDefinitionEffectPoints.csv": "/home/Jim/wow-forever-calculator/data/raw/1.60.1.70338/TraitDefinitionEffectPoints.csv",
+    "SpellEffect.csv": "/home/Jim/wow-forever-calculator/data/raw/1.60.1.70338/SpellEffect.csv"
+  },
+  "schema": {
+    "TraitDefinition": [
+      "OverrideName_lang",
+      "OverrideSubtext_lang",
+      "OverrideDescription_lang",
+      "ID",
+      "SpellID",
+      "OverrideIcon",
+      "OverridesSpellID",
+      "VisibleSpellID"
+    ],
+    "TraitDefinitionEffectPoints": [
+      "ID",
+      "TraitDefinitionID",
+      "EffectIndex",
+      "OperationType",
+      "CurveID"
+    ],
+    "SpellEffect": [
+      "ID",
+      "EffectAura",
+      "DifficultyID",
+      "EffectIndex",
+      "Effect",
+      "EffectAmplitude",
+      "EffectAttributes",
+      "EffectAuraPeriod",
+      "EffectBonusCoefficient",
+      "EffectChainAmplitude",
+      "EffectChainTargets",
+      "EffectItemType",
+      "EffectMechanic",
+      "EffectPointsPerResource",
+      "EffectPos_facing",
+      "EffectRealPointsPerLevel",
+      "EffectTriggerSpell",
+      "BonusCoefficientFromAP",
+      "PvpMultiplier",
+      "Coefficient",
+      "Variance",
+      "ResourceCoefficient",
+      "GroupSizeBasePointsCoefficient",
+      "EffectBasePointsF",
+      "ScalingClass",
+      "Node__Field_12_0_0_63534_001",
+      "EffectMiscValue_0",
+      "EffectMiscValue_1",
+      "EffectRadiusIndex_0",
+      "EffectRadiusIndex_1",
+      "EffectSpellClassMask_0",
+      "EffectSpellClassMask_1",
+      "EffectSpellClassMask_2",
+      "EffectSpellClassMask_3",
+      "ImplicitTarget_0",
+      "ImplicitTarget_1",
+      "SpellID"
+    ]
+  },
+  "talent_trait_matches": [
+    {
+      "matched_column": "SpellID",
+      "row": {
+        "OverrideName_lang": "",
+        "OverrideSubtext_lang": "",
+        "OverrideDescription_lang": "",
+        "ID": "134186",
+        "SpellID": "16178",
+        "OverrideIcon": "0",
+        "OverridesSpellID": "0",
+        "VisibleSpellID": "0"
+      }
+    }
+  ],
+  "direct_effect_point_talent_matches": [],
+  "candidate_trait_ids": [
+    "134186"
+  ],
+  "candidate_effect_point_links": [
+    {
+      "row_number": 403,
+      "reference_column": "TraitDefinitionID",
+      "referenced_trait_id": "134186",
+      "row": {
+        "ID": "23745",
+        "TraitDefinitionID": "134186",
+        "EffectIndex": "0",
+        "OperationType": "0",
+        "CurveID": "85323"
+      },
+      "relationship_status": "candidate_reference"
+    },
+    {
+      "row_number": 459,
+      "reference_column": "TraitDefinitionID",
+      "referenced_trait_id": "134186",
+      "row": {
+        "ID": "23818",
+        "TraitDefinitionID": "134186",
+        "EffectIndex": "1",
+        "OperationType": "0",
+        "CurveID": "87379"
+      },
+      "relationship_status": "candidate_reference"
+    }
+  ],
+  "effect_id_columns_detected": [],
+  "resolved_effect_references": [],
+  "trigger_spell_links": [],
+  "limitations": [
+    "Column-name heuristics do not prove foreign-key semantics.",
+    "No matching rows does not prove that a relationship is absent.",
+    "Triggered spells require additional resolution before conclusions.",
+    "Mask overlap alone does not prove runtime effect application."
+  ]
+}

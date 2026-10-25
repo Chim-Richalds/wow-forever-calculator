@@ -1,0 +1,48 @@
+{
+  "source": "https://foreverdb.net/stats",
+  "build": "1.60.1.70532",
+  "extracted": "2026-10-24",
+  "status": "third party, taken from the beta client's PlayerExpectedStat table; the page labels its level 60 values 'speculation'. Crit rates are used only where they lie inside the range the character panel proves. Attack power per Strength/Agility replaces the panel fit for stat CHANGES (the user's decision where the two differ: casters 1 per Strength here vs 2 x Strength - 10 in the panel); the panel's own base attack power is never altered.",
+  "agility_per_crit": {
+    "Warrior": "20.0",
+    "Paladin": "19.8",
+    "Hunter": "52.9",
+    "Rogue": "29.0",
+    "Priest": "20.0",
+    "Shaman": "19.7",
+    "Mage": "19.5",
+    "Warlock": "20.0",
+    "Druid": "20.0"
+  },
+  "intellect_per_spell_crit": {
+    "Paladin": "59.9",
+    "Hunter": "60.6",
+    "Priest": "59.5",
+    "Shaman": "59.2",
+    "Mage": "59.5",
+    "Warlock": "60.6",
+    "Druid": "59.9"
+  },
+  "attack_power_per_strength": {
+    "Warrior": 2,
+    "Paladin": 2,
+    "Hunter": 1,
+    "Rogue": 1,
+    "Priest": 1,
+    "Shaman": 2,
+    "Mage": 1,
+    "Warlock": 1,
+    "Druid": 2
+  },
+  "attack_power_per_agility": {
+    "Warrior": 0,
+    "Paladin": 0,
+    "Hunter": 1,
+    "Rogue": 1,
+    "Priest": 0,
+    "Shaman": 0,
+    "Mage": 0,
+    "Warlock": 0,
+    "Druid": 0
+  }
+}

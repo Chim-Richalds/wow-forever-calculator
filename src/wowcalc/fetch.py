@@ -40,7 +40,8 @@ WAGO_TABLE_URL = "https://wago.tools/db2/{table}/csv?build={version}"
 SOURCE = "Wago.Tools DB2 CSV exports"
 DOWNLOAD_TIMEOUT = 60.0
 
-TABLES: tuple[str, ...] = (
+# Tables every build has carried since the first fetch.
+BASE_TABLES: tuple[str, ...] = (
     "TraitTree",
     "TraitNode",
     "TraitNodeEntry",
@@ -55,6 +56,27 @@ TABLES: tuple[str, ...] = (
     "ChrClasses",
     "ChrRaces",
 )
+
+# Added for the calculator itself: which class owns which tree, how talents
+# unlock, and how many points a character has. Builds fetched before these were
+# added are "legacy": usable for diffs and rollback, but not complete.
+EXTENDED_TABLES: tuple[str, ...] = (
+    "SkillLineXTraitTree",
+    "SkillRaceClassInfo",
+    "TraitCond",
+    "TraitNodeGroup",
+    "TraitNodeGroupXTraitNode",
+    "TraitNodeGroupXTraitCond",
+    "TraitNodeXTraitCond",
+    "TraitCurrency",
+    "TraitCurrencySource",
+    "TraitTreeXTraitCurrency",
+    "TraitCost",
+    "TraitTreeXTraitCost",
+    "CharBaseInfo",  # which race and class combinations exist
+)
+
+TABLES: tuple[str, ...] = BASE_TABLES + EXTENDED_TABLES
 
 FetchBytes = Callable[[str], transport.Response]
 Progress = Callable[[str, str], None]
@@ -134,6 +156,32 @@ def _sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
+def _download_table(table: str, version: str, data_dir: Path, fetch: FetchBytes):
+    """Download and structurally check one table.
+
+    Returns (body, entry). On success `body` is the file content and `entry` is
+    its manifest record; on failure `body` is None and `entry` records the error.
+    """
+    url = WAGO_TABLE_URL.format(table=table, version=version)
+    try:
+        response = fetch(url)
+        facts = validate_csv(response.body)
+    except urllib.error.HTTPError as exc:  # must precede OSError (subclass)
+        exc.close()
+        return None, {"url": url, "status": "failed", "error": f"HTTP {exc.code} {exc.reason}"}
+    except (OSError, ValueError) as exc:
+        return None, {"url": url, "status": "failed", "error": str(exc) or type(exc).__name__}
+    return response.body, {
+        "url": url,
+        "file": (Path(Path(data_dir).name) / "raw" / version / f"{table}.csv").as_posix(),
+        "sha256": _sha256_bytes(response.body),
+        "bytes": len(response.body),
+        **facts,
+        "contentType": response.content_type,
+        "status": "downloaded-needs-validation",
+    }
+
+
 # --------------------------------------------------------------------------
 # Fetch
 # --------------------------------------------------------------------------
@@ -188,34 +236,16 @@ def fetch_build(
 
     try:
         for table in tables:
-            url = WAGO_TABLE_URL.format(table=table, version=version)
-            try:
-                response = fetch(url)
-                facts = validate_csv(response.body)
-            except urllib.error.HTTPError as exc:  # must precede OSError (subclass)
-                exc.close()
-                error = f"HTTP {exc.code} {exc.reason}"
-            except (OSError, ValueError) as exc:
-                error = str(exc) or type(exc).__name__
-            else:
-                (partial / f"{table}.csv").write_bytes(response.body)
-                manifest["tables"][table] = {
-                    "url": url,
-                    "file": (Path(data_dir.name) / "raw" / version / f"{table}.csv").as_posix(),
-                    "sha256": _sha256_bytes(response.body),
-                    "bytes": len(response.body),
-                    **facts,
-                    "contentType": response.content_type,
-                    "status": "downloaded-needs-validation",
-                }
+            body, entry = _download_table(table, version, data_dir, fetch)
+            manifest["tables"][table] = entry
+            if body is None:
+                failures.append({"table": table, "error": entry["error"]})
                 if progress:
-                    progress(table, f"{facts['rows']:,} rows")
-                continue
-
-            failures.append({"table": table, "error": error})
-            manifest["tables"][table] = {"url": url, "status": "failed", "error": error}
-            if progress:
-                progress(table, f"FAILED: {error}")
+                    progress(table, f"FAILED: {entry['error']}")
+            else:
+                (partial / f"{table}.csv").write_bytes(body)
+                if progress:
+                    progress(table, f"{entry['rows']:,} rows")
 
         manifest["failures"] = failures
         if failures:
@@ -229,6 +259,108 @@ def fetch_build(
     finally:
         if partial.exists():  # failure, or an exception mid-download
             shutil.rmtree(partial, ignore_errors=True)
+
+
+# --------------------------------------------------------------------------
+# Complete an installed build
+# --------------------------------------------------------------------------
+
+@dataclass(frozen=True)
+class CompleteResult:
+    version: str
+    ok: bool
+    added: tuple[str, ...] = ()
+    failures: tuple[dict, ...] = ()
+
+
+def _write_json_atomic(path: Path, obj) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_name(path.name + ".tmp")
+    tmp.write_text(json.dumps(obj, indent=2) + "\n", encoding="utf-8")
+    os.replace(tmp, path)
+
+
+def complete_build(
+    version: str,
+    config: Config,
+    data_dir: Path,
+    fetch: FetchBytes = _default_fetch_bytes,
+    tables: tuple[str, ...] = TABLES,
+    now: datetime | None = None,
+    progress: Progress | None = None,
+) -> CompleteResult:
+    """Add tables an installed build does not have yet. Purely additive.
+
+    Builds downloaded before a table was added to TABLES are "legacy". Wago's
+    exports are stable for a given build (checked: refetching reproduces every
+    file byte for byte), so the missing tables can be fetched later and belong to
+    the same build. Existing files are never rewritten. Before adding anything,
+    every recorded file is re-hashed, so a build that has been altered is refused.
+    All missing tables are downloaded and checked first; only then are they moved
+    in, and the manifest is rewritten last. If any download fails, nothing is added.
+    """
+    BuildInfo.from_version(version)
+    data_dir = Path(data_dir)
+    raw = data_dir / "raw" / version
+    manifest_path = data_dir / "manifests" / f"{version}.json"
+    if not raw.is_dir():
+        raise FetchError(f"Build {version} is not installed ({raw}).")
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        raise FetchError(f"Manifest for {version} unreadable ({manifest_path}): {exc}") from exc
+
+    entries = manifest.get("tables") or {}
+    problems: list[str] = []
+    for table, entry in entries.items():
+        if entry.get("status") == "failed":
+            continue
+        path = raw / f"{table}.csv"
+        if not path.is_file():
+            problems.append(f"{table}: file missing")
+        elif _sha256_file(path) != entry.get("sha256"):
+            problems.append(f"{table}: hash mismatch")
+    if problems:
+        raise FetchError("Installed data failed integrity check: " + "; ".join(problems))
+
+    # Unrecorded means not in the manifest. A file present without a record (left
+    # by an interrupted run) is fetched again and replaced.
+    missing = [t for t in tables if t not in entries or entries[t].get("status") == "failed"]
+    if not missing:
+        return CompleteResult(version, True, ())
+
+    work = data_dir / "staging" / f"{version}.complete.partial"
+    if work.exists():
+        shutil.rmtree(work)
+    work.mkdir(parents=True)
+    try:
+        new_entries: dict[str, dict] = {}
+        failures: list[dict] = []
+        for table in missing:
+            body, entry = _download_table(table, version, data_dir, fetch)
+            if body is None:
+                failures.append({"table": table, "error": entry["error"]})
+                if progress:
+                    progress(table, f"FAILED: {entry['error']}")
+            else:
+                (work / f"{table}.csv").write_bytes(body)
+                new_entries[table] = entry
+                if progress:
+                    progress(table, f"{entry['rows']:,} rows")
+        if failures:
+            return CompleteResult(version, False, (), tuple(failures))
+
+        stamp = (now or datetime.now(timezone.utc)).isoformat()
+        for table, entry in new_entries.items():
+            os.replace(work / f"{table}.csv", raw / f"{table}.csv")
+            entry["addedAfterInstall"] = True
+            entry["addedAt"] = stamp
+        manifest["tables"] = {**entries, **new_entries}
+        manifest.setdefault("completions", []).append({"at": stamp, "tables": list(new_entries)})
+        _write_json_atomic(manifest_path, manifest)
+        return CompleteResult(version, True, tuple(new_entries))
+    finally:
+        shutil.rmtree(work, ignore_errors=True)
 
 
 # --------------------------------------------------------------------------

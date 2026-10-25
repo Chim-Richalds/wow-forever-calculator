@@ -1,0 +1,5270 @@
+{
+  "schema_version": 1,
+  "build": "1.60.1.70338",
+  "talent": "Purification",
+  "spell_id": "16178",
+  "definition_id": "134186",
+  "source_counts": {
+    "definitions": 658,
+    "spells": 31863,
+    "spell_effects": 42569,
+    "effect_point_references": 644,
+    "curve_points": 38956,
+    "spell_class_options": 6062
+  },
+  "source_availability": {
+    "spell_class_options": true
+  },
+  "definition_records": [
+    {
+      "OverrideName_lang": "",
+      "OverrideSubtext_lang": "",
+      "OverrideDescription_lang": "",
+      "ID": "134186",
+      "SpellID": "16178",
+      "OverrideIcon": "0",
+      "OverridesSpellID": "0",
+      "VisibleSpellID": "0"
+    }
+  ],
+  "spell_records": [
+    {
+      "ID": "16178",
+      "NameSubtext_lang": "",
+      "Description_lang": "Increases the effectiveness of your healing spells by $m1%.",
+      "AuraDescription_lang": ""
+    }
+  ],
+  "effect_records": [
+    {
+      "effect_id": "693066",
+      "spell_id": "16178",
+      "effect_index": "0",
+      "effect_type": "6",
+      "aura_id": "108",
+      "base_points": "10",
+      "misc_values": [
+        "0",
+        "0"
+      ],
+      "spell_class_mask": [
+        "448",
+        "0",
+        "16",
+        "0"
+      ],
+      "source_id_match_count": 1
+    },
+    {
+      "effect_id": "1197174",
+      "spell_id": "16178",
+      "effect_index": "1",
+      "effect_type": "6",
+      "aura_id": "108",
+      "base_points": "10",
+      "misc_values": [
+        "22",
+        "0"
+      ],
+      "spell_class_mask": [
+        "0",
+        "0",
+        "16",
+        "0"
+      ],
+      "source_id_match_count": 1
+    }
+  ],
+  "effect_point_references": [
+    {
+      "ID": "23745",
+      "TraitDefinitionID": "134186",
+      "EffectIndex": "0",
+      "OperationType": "0",
+      "CurveID": "85323"
+    },
+    {
+      "ID": "23818",
+      "TraitDefinitionID": "134186",
+      "EffectIndex": "1",
+      "OperationType": "0",
+      "CurveID": "87379"
+    }
+  ],
+  "curve_records": [
+    {
+      "effect_index": "0",
+      "operation_type": "0",
+      "curve_id": "85323",
+      "point_count": 5,
+      "points": [
+        {
+          "order_index": "0",
+          "pos_0": "1",
+          "pos_1": "2",
+          "pos_pre_squish_0": "0",
+          "pos_pre_squish_1": "0"
+        },
+        {
+          "order_index": "1",
+          "pos_0": "2",
+          "pos_1": "4",
+          "pos_pre_squish_0": "0",
+          "pos_pre_squish_1": "0"
+        },
+        {
+          "order_index": "2",
+          "pos_0": "3",
+          "pos_1": "6",
+          "pos_pre_squish_0": "0",
+          "pos_pre_squish_1": "0"
+        },
+        {
+          "order_index": "3",
+          "pos_0": "4",
+          "pos_1": "8",
+          "pos_pre_squish_0": "0",
+          "pos_pre_squish_1": "0"
+        },
+        {
+          "order_index": "4",
+          "pos_0": "5",
+          "pos_1": "10",
+          "pos_pre_squish_0": "0",
+          "pos_pre_squish_1": "0"
+        }
+      ]
+    },
+    {
+      "effect_index": "1",
+      "operation_type": "0",
+      "curve_id": "87379",
+      "point_count": 5,
+      "points": [
+        {
+          "order_index": "0",
+          "pos_0": "1",
+          "pos_1": "2",
+          "pos_pre_squish_0": "0",
+          "pos_pre_squish_1": "0"
+        },
+        {
+          "order_index": "1",
+          "pos_0": "2",
+          "pos_1": "4",
+          "pos_pre_squish_0": "0",
+          "pos_pre_squish_1": "0"
+        },
+        {
+          "order_index": "2",
+          "pos_0": "3",
+          "pos_1": "6",
+          "pos_pre_squish_0": "0",
+          "pos_pre_squish_1": "0"
+        },
+        {
+          "order_index": "3",
+          "pos_0": "4",
+          "pos_1": "8",
+          "pos_pre_squish_0": "0",
+          "pos_pre_squish_1": "0"
+        },
+        {
+          "order_index": "4",
+          "pos_0": "5",
+          "pos_1": "10",
+          "pos_pre_squish_0": "0",
+          "pos_pre_squish_1": "0"
+        }
+      ]
+    }
+  ],
+  "spell_class_options_for_talent_spell": [
+    {
+      "ID": "45313",
+      "SpellID": "16178",
+      "ModalNextSpell": "0",
+      "SpellClassSet": "11",
+      "SpellClassMask_0": "0",
+      "SpellClassMask_1": "0",
+      "SpellClassMask_2": "0",
+      "SpellClassMask_3": "0"
+    }
+  ],
+  "spell_mask_diagnostics": [
+    {
+      "effect_id": "693066",
+      "effect_index": "0",
+      "effect_mask": [
+        "448",
+        "0",
+        "16",
+        "0"
+      ],
+      "matching_option_count": 264,
+      "matching_options": [
+        {
+          "spell_id": "598",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Smite an enemy for $s1 Holy damage.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "139",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Heals the target of $o1 damage over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "585",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Smite an enemy for $s1 Holy damage.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "10",
+          "spell_class_set": "3",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Ice shards pelt the target area doing ${$1279976m1*$d*$<frostdamage>} Frost damage over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "467",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Thorns sprout from the friendly target causing $s1 Nature damage to attackers when hit.  Lasts $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "547",
+          "spell_class_set": "11",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Heals a friendly target for $s1.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "465",
+          "spell_class_set": "10",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Gives $s1 additional armor to party members within $a1 yards.  Players may only have one Aura on them per Paladin at any one time.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "591",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Smite an enemy for $s1 Holy damage.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "78",
+          "spell_class_set": "4",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "A strong attack that increases melee damage by $s1 and causes a high amount of threat.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "122",
+          "spell_class_set": "3",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Blasts enemies near the caster for ${$m1*$<frostdamage>} to ${$M1*$<frostdamage>} Frost damage and freezes them in place for up to $d.  Damage caused may interrupt the effect.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "285",
+          "spell_class_set": "4",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "A strong attack that increases melee damage by $s1 and causes a high amount of threat.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "913",
+          "spell_class_set": "11",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "Heals a friendly target for $s1.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "984",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "Smite an enemy for $s1 Holy damage.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "703",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Garrote the enemy, causing $o1 damage over $d, increased by your Attack Power.  Must be stealthed and behind the target.  Awards $s2 combo $lpoint:points;.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "782",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Thorns sprout from the friendly target causing $s1 Nature damage to attackers when hit.  Lasts $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1004",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 5",
+          "spell_description": "Smite an enemy for $s1 Holy damage.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "284",
+          "spell_class_set": "4",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "A strong attack that increases melee damage by $s1 and causes a high amount of threat.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "865",
+          "spell_class_set": "3",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Blasts enemies near the caster for ${$m1*$<frostdamage>} to ${$M1*$<frostdamage>} Frost damage and freezes them in place for up to $d.  Damage caused may interrupt the effect.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "939",
+          "spell_class_set": "11",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 5",
+          "spell_description": "Heals a friendly target for $s1.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "331",
+          "spell_class_set": "11",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Heals a friendly target for $s1.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "332",
+          "spell_class_set": "11",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Heals a friendly target for $s1.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1075",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Thorns sprout from the friendly target causing $s1 Nature damage to attackers when hit.  Lasts $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "2687",
+          "spell_class_set": "4",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Generates $/10;s1 rage at the cost of health, and then generates an additional $/10;29131o1 rage over $29131d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "959",
+          "spell_class_set": "11",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 6",
+          "spell_description": "Heals a friendly target for $s1.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1064",
+          "spell_class_set": "11",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Heals the friendly target for $s1, then jumps to heal additional nearby targets.  If cast on a party member, the heal will only jump to other party members.  Each jump is $?a415096[65%][50%] as effective as the previous target.  Heals $x1 total targets.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "740",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Regenerates all nearby party members within $a yards for $?$p456322[${$m1*2}][$s1] every $t1 sec for $d.  Druid must channel to maintain the spell.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "976",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Increases the target's resistance to Shadow spells by $s1 for $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1499",
+          "spell_class_set": "9",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Place a Frost trap that freezes the first enemy that approaches, preventing all action for up to $3355d.  Any damage caused will break the ice. Trap will exist for $d. Only one Frost trap can be active at a time.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1608",
+          "spell_class_set": "4",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "A strong attack that increases melee damage by $s1 and causes a high amount of threat.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1022",
+          "spell_class_set": "10",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "A targeted party member is protected from all physical attacks for $d, but during that time they cannot attack or use physical abilities.  Players may only have one Blessing on them per Paladin at any one time.  Applies Forbearance for $25771d. Cannot be cast while Forbearance is active.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1038",
+          "spell_class_set": "10",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Places a Blessing on the party member, reducing the amount of all threat generated by $s1% for $d.  Players may only have one Blessing on them per Paladin at any one time.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "2983",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Increases the rogue's movement speed by $s1% for $d.  Does not break stealth.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "2974",
+          "spell_class_set": "9",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Inflicts $s2 damage and reduces the enemy target's movement speed by $s1% for $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1949",
+          "spell_class_set": "5",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Ignites the area surrounding the caster, causing $s2 Fire damage to $ghimself:herself; and $5857s1 Fire damage to all nearby enemies every $t2 sec.  Lasts $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "2070",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Incapacitates the target for up to $d. Only works on Humanoids that are not in combat.  Any damage taken will break the effect. Only 1 target may be sapped at a time. Does not break Stealth.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "6076",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "Heals the target of $o1 damage over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "5384",
+          "spell_class_set": "9",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Feign death which may trick enemies into ignoring you. Lasts $d. If not cancelled, after $d you will actually die.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "6074",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Heals the target of $o1 damage over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "6075",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Heals the target of $o1 damage over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "6060",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 6",
+          "spell_description": "Smite an enemy for $s1 Holy damage.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "6077",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 5",
+          "spell_description": "Heals the target of $o1 damage over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "6131",
+          "spell_class_set": "3",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Blasts enemies near the caster for ${$m1*$<frostdamage>} to ${$M1*$<frostdamage>} Frost damage and freezes them in place for up to $d.  Damage caused may interrupt the effect.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "9750",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 6",
+          "spell_description": "Heals a friendly target for $s1 and another $o2 over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "6078",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 6",
+          "spell_description": "Heals the target of $o1 damage over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "6141",
+          "spell_class_set": "3",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Ice shards pelt the target area doing ${$1279977m1*$d*$<frostdamage>} Frost damage over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "5676",
+          "spell_class_set": "5",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Inflict searing pain on the enemy target, causing $s1 Fire damage.  Causes a high amount of threat.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "6770",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Incapacitates the target for up to $d. Only works on Humanoids that are not in combat.  Any damage taken will break the effect. Only 1 target may be sapped at a time. Does not break Stealth.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "6143",
+          "spell_class_set": "3",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Absorbs $s1 Frost damage$?s11189[ and grants a $s2% chance to reflect Frost spells and effects][].  Lasts $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "6343",
+          "spell_class_set": "4",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Blasts nearby enemies, increasing the time between their attacks by $s2% for $d and doing $s1 damage to them. Will affect up to $i targets.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "6353",
+          "spell_class_set": "5",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Burn the enemy's soul, causing $s1 Fire damage.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "5857",
+          "spell_class_set": "5",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Deals $s1 Fire damage.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "5599",
+          "spell_class_set": "10",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "A targeted party member is protected from all physical attacks for $d, but during that time they cannot attack or use physical abilities.  Players may only have one Blessing on them per Paladin at any one time.  Applies Forbearance for $25771d. Cannot be cast while Forbearance is active.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1032",
+          "spell_class_set": "10",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 5",
+          "spell_description": "Gives $s1 additional armor to party members within $a1 yards.  Players may only have one Aura on them per Paladin at any one time.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "8004",
+          "spell_class_set": "11",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Heals a friendly target for $s1.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "8005",
+          "spell_class_set": "11",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 7",
+          "spell_description": "Heals a friendly target for $s1.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "8010",
+          "spell_class_set": "11",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Heals a friendly target for $s1.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "8461",
+          "spell_class_set": "3",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Absorbs $s1 Frost damage$?s11189[ and grants a $s2% chance to reflect Frost spells and effects][].  Lasts $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "8462",
+          "spell_class_set": "3",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Absorbs $s1 Frost damage$?s11189[ and grants a $s2% chance to reflect Frost spells and effects][].  Lasts $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "8631",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Garrote the enemy, causing $o1 damage over $d, increased by your Attack Power.  Must be stealthed and behind the target.  Awards $s2 combo $lpoint:points;.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "8632",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Garrote the enemy, causing $o1 damage over $d, increased by your Attack Power.  Must be stealthed and behind the target.  Awards $s2 combo $lpoint:points;.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "643",
+          "spell_class_set": "10",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Gives $s1 additional armor to party members within $a1 yards.  Players may only have one Aura on them per Paladin at any one time.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "8914",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "Thorns sprout from the friendly target causing $s1 Nature damage to attackers when hit.  Lasts $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "8204",
+          "spell_class_set": "4",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Blasts nearby enemies with thunder, increasing the time between their attacks by $s2% for $d and doing $s1 damage to them. Will affect up to $i targets.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "8427",
+          "spell_class_set": "3",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Ice shards pelt the target area doing ${$1279978m1*$d*$<frostdamage>} Frost damage over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "8008",
+          "spell_class_set": "11",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Heals a friendly target for $s1.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "8918",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Regenerates all nearby party members within $a yards for $?$p456322[${$m1*2}][$s1] every $t1 sec for $d.  Druid must channel to maintain the spell.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "8205",
+          "spell_class_set": "4",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "Blasts nearby enemies with thunder, increasing the time between their attacks by $s2% for $d and doing $s1 damage to them. Will affect up to $i targets.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "9856",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 7",
+          "spell_description": "Heals a friendly target for $s1 and another $o2 over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "10186",
+          "spell_class_set": "3",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 5",
+          "spell_description": "Ice shards pelt the target area doing ${$1279980m1*$d*$<frostdamage>} Frost damage over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "9857",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 8",
+          "spell_description": "Heals a friendly target for $s1 and another $o2 over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "8936",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Heals a friendly target for $s1 and another $o2 over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "10185",
+          "spell_class_set": "3",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "Ice shards pelt the target area doing ${$1279979m1*$d*$<frostdamage>} Frost damage over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "10187",
+          "spell_class_set": "3",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 6",
+          "spell_description": "Ice shards pelt the target area doing ${$1279949m1*$d*$<frostdamage>} Frost damage over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "9756",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 5",
+          "spell_description": "Thorns sprout from the friendly target causing $s1 Nature damage to attackers when hit.  Lasts $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "10177",
+          "spell_class_set": "3",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "Absorbs $s1 Frost damage$?s11189[ and grants a $s2% chance to reflect Frost spells and effects][].  Lasts $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "8938",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Heals a friendly target for $s1 and another $o2 over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "8939",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Heals a friendly target for $s1 and another $o2 over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "8633",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "Garrote the enemy, causing $o1 damage over $d, increased by your Attack Power.  Must be stealthed and behind the target.  Awards $s2 combo $lpoint:points;.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "8198",
+          "spell_class_set": "4",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Blasts nearby enemies with thunder increasing, the time between their attacks by $s2% for $d and doing $s1 damage to them. Will affect up to $i targets.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "8696",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Increases the rogue's movement speed by $s1% for $d.  Does not break stealth.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "9862",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Regenerates all nearby party members within $a yards for $?$p456322[${$m1*2}][$s1] every $t1 sec for $d.  Druid must channel to maintain the spell.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "9910",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 6",
+          "spell_description": "Thorns sprout from the friendly target causing $s1 Nature damage to attackers when hit.  Lasts $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "10396",
+          "spell_class_set": "11",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 9",
+          "spell_description": "Heals a friendly target for $s1.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "10957",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Increases the target's resistance to Shadow spells by $s1 for $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "9863",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "Regenerates all nearby party members within $a yards for $?$p456322[${$m1*2}][$s1] every $t1 sec for $d.  Druid must channel to maintain the spell.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "10958",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Increases the target's resistance to Shadow spells by $s1 for $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "10292",
+          "spell_class_set": "10",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 6",
+          "spell_description": "Gives $s1 additional armor to party members within $a1 yards.  Players may only have one Aura on them per Paladin at any one time.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "10293",
+          "spell_class_set": "10",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 7",
+          "spell_description": "Gives $s1 additional armor to party members within $a1 yards.  Players may only have one Aura on them per Paladin at any one time.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "8940",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "Heals a friendly target for $s1 and another $o2 over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "8941",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 5",
+          "spell_description": "Heals a friendly target for $s1 and another $o2 over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "10622",
+          "spell_class_set": "11",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Heals the friendly target for $s1, then jumps to heal additional nearby targets.  If cast on a party member, the heal will only jump to other party members.  Each jump is $?a415096[65%][50%] as effective as the previous target.  Heals $x1 total targets.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "10278",
+          "spell_class_set": "10",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "A targeted party member is protected from all physical attacks for $d, but during that time they cannot attack or use physical abilities.  Players may only have one Blessing on them per Paladin at any one time.  Applies Forbearance for $25771d. Cannot be cast while Forbearance is active.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "9858",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 9",
+          "spell_description": "Heals a friendly target for $s1 and another $o2 over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "10395",
+          "spell_class_set": "11",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 8",
+          "spell_description": "Heals a friendly target for $s1.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "10230",
+          "spell_class_set": "3",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "Blasts enemies near the caster for ${$m1*$<frostdamage>} to ${$M1*$<frostdamage>} Frost damage and freezes them in place for up to $d.  Damage caused may interrupt the effect.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "11581",
+          "spell_class_set": "4",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 6",
+          "spell_description": "Blasts nearby enemies with thunder, increasing the time between their attacks by $s2% for $d and doing $s1 damage to them. Will affect up to $i targets.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "11684",
+          "spell_class_set": "5",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Ignites the area surrounding the caster, causing $s2 Fire damage to $ghimself:herself; and $11682s1 Fire damage to all nearby enemies every $t2 sec.  Lasts $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "11305",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Increases the rogue's movement speed by $s1% for $d.  Does not break stealth.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "11567",
+          "spell_class_set": "4",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 8",
+          "spell_description": "A strong attack that increases melee damage by $s1 and causes a high amount of threat.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "10927",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 7",
+          "spell_description": "Heals the target of $o1 damage over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "10928",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 8",
+          "spell_description": "Heals the target of $o1 damage over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "10291",
+          "spell_class_set": "10",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "Gives $s1 additional armor to party members within $a1 yards.  Players may only have one Aura on them per Paladin at any one time.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "10467",
+          "spell_class_set": "11",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 5",
+          "spell_description": "Heals a friendly target for $s1.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "10468",
+          "spell_class_set": "11",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 6",
+          "spell_description": "Heals a friendly target for $s1.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "10623",
+          "spell_class_set": "11",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Heals the friendly target for $s1, then jumps to heal additional nearby targets.  If cast on a party member, the heal will only jump to other party members.  Each jump is $?a415096[65%][50%] as effective as the previous target.  Heals $x1 total targets.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "10466",
+          "spell_class_set": "11",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "Heals a friendly target for $s1.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "10929",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 9",
+          "spell_description": "Heals the target of $o1 damage over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "10933",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 7",
+          "spell_description": "Smite an enemy for $s1 Holy damage.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "10290",
+          "spell_class_set": "10",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Gives $s1 additional armor to party members within $a1 yards.  Players may only have one Aura on them per Paladin at any one time.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "10934",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 8",
+          "spell_description": "Smite an enemy for $s1 Holy damage.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "11565",
+          "spell_class_set": "4",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 6",
+          "spell_description": "A strong attack that increases melee damage by $s1 and causes a high amount of threat.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "11566",
+          "spell_class_set": "4",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 7",
+          "spell_description": "A strong attack that increases melee damage by $s1 and causes a high amount of threat.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "11580",
+          "spell_class_set": "4",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 5",
+          "spell_description": "Blasts nearby enemies with thunder, increasing the time between their attacks by $s2% for $d and doing $s1 damage to them. Will affect up to $i targets.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "11564",
+          "spell_class_set": "4",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 5",
+          "spell_description": "A strong attack that increases melee damage by $s1 and causes a high amount of threat.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "11683",
+          "spell_class_set": "5",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Ignites the area surrounding the caster, causing $s2 Fire damage to $ghimself:herself; and $11681s1 Fire damage to all nearby enemies every $t2 sec.  Lasts $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "11289",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 5",
+          "spell_description": "Garrote the enemy, causing $o1 damage over $d, increased by your Attack Power.  Must be stealthed and behind the target.  Awards $s2 combo $lpoint:points;.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "11290",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 6",
+          "spell_description": "Garrote the enemy, causing $o1 damage over $d, increased by your Attack Power.  Must be stealthed and behind the target.  Awards $s2 combo $lpoint:points;.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "14267",
+          "spell_class_set": "9",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Inflicts $s2 damage and reduces the enemy target's movement speed by $s1% for $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "11297",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Incapacitates the target for up to $d. Only works on Humanoids that are not in combat.  Any damage taken will break the effect. Only 1 target may be sapped at a time. Does not break Stealth.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "14268",
+          "spell_class_set": "9",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Inflicts $s2 damage and reduces the enemy target's movement speed by $s1% for $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "11681",
+          "spell_class_set": "5",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Deals $s1 Fire damage.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "28609",
+          "spell_class_set": "3",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 5",
+          "spell_description": "Absorbs $s1 Frost damage$?s11189[ and grants a $s2% chance to reflect Frost spells and effects][].  Lasts $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "13809",
+          "spell_class_set": "9",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Place a Frost trap that creates an ice slick around itself for $13810d when the first enemy approaches it. All enemies within $13810a1 yards will be slowed by $14207s1% while in the area of effect. Trap will exist for $d. Only one Frost trap can be active at a time.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "14316",
+          "spell_class_set": "9",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Place a Fire trap that explodes when an enemy approaches, causing $14314s1 Fire damage and $14314o2 additional Fire damage over $14314d to all within $14314a1 yards. Trap will exist for $d. Only one Fire trap can be active at a time.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "13813",
+          "spell_class_set": "9",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Place a Fire trap that explodes when an enemy approaches, causing $13812s1 Fire damage and $13812o2 additional Fire damage over $13812d to all within $13812a1 yards. Trap will exist for $d. Only one Fire trap can be active at a time.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "13795",
+          "spell_class_set": "9",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Place a Fire trap that will burn the first enemy to approach for $13797o1 Fire damage over $13797d. Trap will exist for $d. Only one Fire trap can be active at a time.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "14310",
+          "spell_class_set": "9",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Place a Frost trap that freezes the first enemy that approaches, preventing all action for up to $14308d. Any damage caused will break the ice. Trap will exist for $d. Only one Frost trap can be active at a time.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "14303",
+          "spell_class_set": "9",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Place a Fire trap that will burn the first enemy to approach for $14299o1 Fire damage over $14299d. Trap will exist for $d. Only one Fire trap can be active at a time.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "14311",
+          "spell_class_set": "9",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Place a Frost trap that freezes the first enemy that approaches, preventing all action for up to $14309d. Any damage caused will break the ice. Trap will exist for $d. Only one Frost trap can be active at a time.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "14304",
+          "spell_class_set": "9",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "Place a Fire trap that will burn the first enemy to approach for $14300o1 Fire damage over $14300d. Trap will exist for $d. Only one Fire trap can be active at a time.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "14305",
+          "spell_class_set": "9",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 5",
+          "spell_description": "Place a Fire trap that will burn the first enemy to approach for $14301o1 Fire damage over $14301d. Trap will exist for $d. Only one Fire trap can be active at a time.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "14302",
+          "spell_class_set": "9",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Place a Fire trap that will burn the first enemy to approach for $14298o1 Fire damage over $14298d. Trap will exist for $d. Only one Fire trap can be active at a time.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "15229",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Heals the target of $o1 damage over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "15044",
+          "spell_class_set": "3",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Surrounds the caster with a shield that lasts $d. and can absorb a fixed amount of Frost damage.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "14317",
+          "spell_class_set": "9",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Place a Fire trap that explodes when an enemy approaches, causing $14315s1 Fire damage and $14315o2 additional Fire damage over $14315d to all within $14315a1 yards. Trap will exist for $d. Only one Fire trap can be active at a time.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "11682",
+          "spell_class_set": "5",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Deals $s1 Fire damage.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "17151",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Reduces the Shadow damage taken by an ally by $s1 for $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "18869",
+          "spell_class_set": "5",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "Instantly blasts the target for $s2 Shadow damage.  If the target dies within $d of Shadowburn, and yields experience or honor, the caster gains a Soul Shard.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "18870",
+          "spell_class_set": "5",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 5",
+          "spell_description": "Instantly blasts the target for $s2 Shadow damage.  If the target dies within $d of Shadowburn, and yields experience or honor, the caster gains a Soul Shard.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "16979",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Charge an enemy, immobilizing them and interrupting any spell they are casting for $19675d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "16874",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Increases the target's resistance to Shadow spells by $s1 for $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "17921",
+          "spell_class_set": "5",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "Inflict searing pain on the enemy target, causing $s1 Fire damage.  Causes a high amount of threat.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "17922",
+          "spell_class_set": "5",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 5",
+          "spell_description": "Inflict searing pain on the enemy target, causing $s1 Fire damage.  Causes a high amount of threat.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "17923",
+          "spell_class_set": "5",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 6",
+          "spell_description": "Inflict searing pain on the enemy target, causing $s1 Fire damage.  Causes a high amount of threat.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "18867",
+          "spell_class_set": "5",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Instantly blasts the target for $s2 Shadow damage.  If the target dies within $d of Shadowburn, and yields experience or honor, the caster gains a Soul Shard.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "18868",
+          "spell_class_set": "5",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Instantly blasts the target for $s2 Shadow damage.  If the target dies within $d of Shadowburn, and yields experience or honor, the caster gains a Soul Shard.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "17877",
+          "spell_class_set": "5",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Instantly blasts the target for $s2 Shadow damage.  If a non-trivial target dies within $d of being hit with Shadowburn, the caster gains a Soul Shard.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "16877",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 6",
+          "spell_description": "Thorns sprout from the friendly target causing $s1 Nature damage to attackers when hit.  Lasts $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "17919",
+          "spell_class_set": "5",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Inflict searing pain on the enemy target, causing $s1 Fire damage.  Causes a high amount of threat.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "17920",
+          "spell_class_set": "5",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Inflict searing pain on the enemy target, causing $s1 Fire damage.  Causes a high amount of threat.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "18871",
+          "spell_class_set": "5",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 6",
+          "spell_description": "Instantly blasts the target for $s2 Shadow damage.  If the target dies within $d of Shadowburn, and yields experience or honor, the caster gains a Soul Shard.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "17924",
+          "spell_class_set": "5",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Burn the enemy's soul, causing $s1 Fire damage.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "21335",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Thorns sprout from the friendly target causing $s1 Nature damage to attackers when hit.  Lasts $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "22696",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Thorns sprout from the friendly target causing $s1 Nature damage to attackers when hit.  Lasts $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "21791",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Regenerates all nearby group members for $s1 every $t1 seconds for $d.  Druid must channel to maintain the spell.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "22128",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Thorns sprout from the friendly target causing $s1 Nature damage to attackers when hit.  Lasts $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "22781",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Thorns sprout from the friendly target causing $s1 Nature damage to attackers when hit.  Lasts $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "21337",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Thorns sprout from the friendly target causing $s1 Nature damage to attackers when hit.  Lasts $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "21793",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Deals nature damage to enemies in an area over $d, slowing their movement by $s2% and increasing the time between their attacks by $s3%.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "23415",
+          "spell_class_set": "10",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Immune to physical attacks.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "24826",
+          "spell_class_set": "5",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Incinerates the target for $d Fire damage.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "25357",
+          "spell_class_set": "11",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 10",
+          "spell_description": "Heals a friendly target for $s1.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "25315",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 10",
+          "spell_description": "Heals the target of $o1 damage over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "25640",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Thorns sprout from the friendly target causing $s1 Nature damage to attackers when hit.  Lasts $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "25712",
+          "spell_class_set": "4",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "A strong attack that increases melee damage by $s1 and causes a high amount of threat.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "25059",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Thorns sprout from the friendly target causing $s1 Nature damage to attackers when hit.  Lasts $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "25282",
+          "spell_class_set": "10",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Immune to all schools.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "25895",
+          "spell_class_set": "10",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Gives all members of the raid or group that share the same class with the target the Greater Blessing of Salvation, reducing the amount of all threat generated by $s1% for $d.  Players may only have one Blessing on them per Paladin at any one time.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "25286",
+          "spell_class_set": "4",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 9",
+          "spell_description": "A strong attack that increases melee damage by $s1 and causes a high amount of threat.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "25710",
+          "spell_class_set": "4",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "A strong attack that increases melee damage by $s1 and causes a high amount of threat.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "27683",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Power infuses all party and raid members, increasing their Shadow resistance by $s1 for $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "27618",
+          "spell_class_set": "3",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 6",
+          "spell_description": "Ice shards pelt the target area doing $o1 Frost damage over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "27624",
+          "spell_class_set": "11",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 6",
+          "spell_description": "Heals a friendly target for $s1.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "25817",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Regenerates all nearby group members for $s1 every $t1 seconds for $d.  Druid must channel to maintain the spell.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "26666",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Thorns sprout from the friendly target causing $s1 Nature damage to attackers when hit.  Lasts $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "25777",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Thorns sprout from the friendly target causing $s1 Nature damage to attackers when hit.  Lasts $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "27753",
+          "spell_class_set": "9",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Place a frost trap that freezes the first enemy that approaches, preventing all action for up to $14309d.  Any damage caused will break the ice.  Trap will exist for $d.  Traps can only be placed when out of combat.  Only one trap can be active at a time.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "27633",
+          "spell_class_set": "9",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Inflicts $s2 damage and reduces the enemy target's movement speed by $s1% for $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "27606",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 9",
+          "spell_description": "Heals the target of $o1 damage over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "28863",
+          "spell_class_set": "3",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Summon a Void Zone that deals shadow damage to enemies that stand within it",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "29131",
+          "spell_class_set": "4",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Generating $/10;s1 Rage per second.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "408521",
+          "spell_class_set": "11",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Heals a friendly target for $s1, an additional $o2 over $d, and increases the effectiveness of your Chain Heal casts directly on that target by $s3%.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "412202",
+          "spell_class_set": "3",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Absorbs $s1 Frost damage.  Lasts $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "412205",
+          "spell_class_set": "3",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Absorbs $s1 Frost damage.  Lasts $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "412207",
+          "spell_class_set": "3",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Absorbs $s1 Frost damage.  Lasts $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "412209",
+          "spell_class_set": "3",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "Absorbs $s1 Frost damage.  Lasts $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "412210",
+          "spell_class_set": "3",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 5",
+          "spell_description": "Absorbs $s1 Frost damage.  Lasts $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "413589",
+          "spell_class_set": "4",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Time between attacks increased by $s2%.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "425268",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Heals the target of $o1 damage over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "425269",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Heals the target of $o1 damage over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "425270",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Heals the target of $o1 damage over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "425271",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "Heals the target of $o1 damage over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "425272",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 5",
+          "spell_description": "Heals the target of $o1 damage over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "425273",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 6",
+          "spell_description": "Heals the target of $o1 damage over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "425274",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 7",
+          "spell_description": "Heals the target of $o1 damage over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "425275",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 8",
+          "spell_description": "Heals the target of $o1 damage over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "425276",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 9",
+          "spell_description": "Heals the target of $o1 damage over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "425277",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 10",
+          "spell_description": "Heals the target of $o1 damage over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "436376",
+          "spell_class_set": "11",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Reduces the mana cost of your Chain Heal spell by $s1. Effect lasts $d seconds.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "436937",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Heals a friendly target for $s1 and another $o2 over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "436938",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Heals a friendly target for $s1 and another $o2 over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "436939",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Heals a friendly target for $s1 and another $o2 over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "436940",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "Heals a friendly target for $s1 and another $o2 over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "436942",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 5",
+          "spell_description": "Heals a friendly target for $s1 and another $o2 over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "436943",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 6",
+          "spell_description": "Heals a friendly target for $s1 and another $o2 over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "436944",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 7",
+          "spell_description": "Heals a friendly target for $s1 and another $o2 over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "436945",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 8",
+          "spell_description": "Heals a friendly target for $s1 and another $o2 over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "436946",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 9",
+          "spell_description": "Heals a friendly target for $s1 and another $o2 over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "442948",
+          "spell_class_set": "10",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "A targeted party member is protected from all physical attacks for $d, but during that time they cannot attack or use physical abilities.  Players may only have one Blessing on them per Paladin at any one time.  Once protected, the target cannot be made invulnerable by Divine Shield, Divine Protection or Blessing of Protection again for $25771d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "407803",
+          "spell_class_set": "10",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "447548",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Deals nature damage to enemies in an area over $d, slowing their movement by $s2% and increasing the time between their attacks by $s3%.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "461810",
+          "spell_class_set": "4",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 6",
+          "spell_description": "Blasts nearby enemies with thunder increasing the time between their attacks by $s2% for $d and doing $s1 damage to them.  Will affect up to $i targets.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "461826",
+          "spell_class_set": "4",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 5",
+          "spell_description": "Blasts nearby enemies with thunder increasing the time between their attacks by $s2% for $d and doing $s1 damage to them.  Will affect up to $i targets.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "461827",
+          "spell_class_set": "4",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "Blasts nearby enemies with thunder increasing the time between their attacks by $s2% for $d and doing $s1 damage to them.  Will affect up to $i targets.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "461828",
+          "spell_class_set": "4",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Blasts nearby enemies with thunder increasing the time between their attacks by $s2% for $d and doing $s1 damage to them.  Will affect up to $i targets.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "461829",
+          "spell_class_set": "4",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Blasts nearby enemies with thunder increasing the time between their attacks by $s2% for $d and doing $s1 damage to them.  Will affect up to $i targets.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "461830",
+          "spell_class_set": "4",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Blasts nearby enemies increasing the time between their attacks by $s2% for $d and doing $s1 damage to them.  Will affect up to $i targets.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "462724",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Garrote the enemy, causing $o1 damage over $d, increased by your Attack Power.  Must be stealthed and behind the target.  Awards $s2 combo $lpoint:points;.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "462726",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Garrote the enemy, causing $o1 damage over $d, increased by your Attack Power.  Must be stealthed and behind the target.  Awards $s2 combo $lpoint:points;.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "462727",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Garrote the enemy, causing $o1 damage over $d, increased by your Attack Power.  Must be stealthed and behind the target.  Awards $s2 combo $lpoint:points;.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "462728",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "Garrote the enemy, causing $o1 damage over $d, increased by your Attack Power.  Must be stealthed and behind the target.  Awards $s2 combo $lpoint:points;.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "462729",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 5",
+          "spell_description": "Garrote the enemy, causing $o1 damage over $d, increased by your Attack Power.  Must be stealthed and behind the target.  Awards $s2 combo $lpoint:points;.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "462730",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 6",
+          "spell_description": "Garrote the enemy, causing $o1 damage over $d, increased by your Attack Power.  Must be stealthed and behind the target.  Awards $s2 combo $lpoint:points;.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1236151",
+          "spell_class_set": "6",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 9",
+          "spell_description": "Heals the target of $o1 damage over $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1236308",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Thorns sprout from the friendly target causing $s1 Nature damage to attackers when hit.  Lasts $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1238122",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "$?a5487|a9634[|CFFFFFFFFRequires Bear Form, Dire Bear Form|R][|CFFFF2020Requires Bear Form, Dire Bear Form|R]\r\nCharge an enemy, immobilizing them and interrupting any spell they are casting for $19675d.\r\n\r\n$@spelltooltip414924",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1239242",
+          "spell_class_set": "11",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Heals a friendly target for $s1, an additional $o2 over $d, and increases the effectiveness of your Chain Heal casts directly on that target by $s3%.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1239243",
+          "spell_class_set": "11",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Heals a friendly target for $s1, an additional $o2 over $d, and increases the effectiveness of your Chain Heal casts directly on that target by $s3%.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "696",
+          "spell_class_set": "5",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Protects the caster, increasing armor by $m1 and increases health regeneration by $s2 health per 5 sec. for $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "687",
+          "spell_class_set": "5",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Protects the caster, increasing armor by $m1 and increases health regeneration by $s2 health per 5 sec. for $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1253568",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Regenerates all nearby group members for $s1 every $t1 sec for $d. The Druid must channel to maintain the spell.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "3420",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $3408h% chance of poisoning the enemy, slowing their movement speed by $3409s1% for $3409d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "3421",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $11202h% chance of poisoning the enemy, slowing their movement speed by $11201s1% for $11201d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "2835",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $2823h% chance of poisoning the enemy for $2818o1 Nature damage over $2818d.  Stacks up to $2818u times on a single target.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "2837",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $2824h% chance of poisoning the enemy for $2819o1 Nature damage over $2819d.  Stacks up to $2819u times on a single target.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "11357",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $11355h% chance of poisoning the enemy for $11353o1 Nature damage over $11353d.  Stacks up to $11353u times on a single target.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "11358",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $11356h% chance of poisoning the enemy for $11354o1 Nature damage over $11354d.  Stacks up to $11354u times on a single target.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "25347",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 5",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $11356h% chance of poisoning the enemy for $25349o1 Nature damage over $25349d.  Stacks up to $25349u times on a single target.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "8681",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $8679h% chance of poisoning the enemy which instantly inflicts $8680s1 Nature damage.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "8687",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $8686h% chance of poisoning the enemy which instantly inflicts $8685s1 Nature damage.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "8691",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $8688h% chance of poisoning the enemy which instantly inflicts $8689s1 Nature damage.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "11341",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60}  minutes.\r\nEach strike has a $11338h% chance of poisoning the enemy which instantly inflicts $11335s1 Nature damage.  $m2 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "11342",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 5",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $11339h% chance of poisoning the enemy which instantly inflicts $11336s1 Nature damage.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "11343",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 6",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $11340h% chance of poisoning the enemy which instantly inflicts $11337s1 Nature damage.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "5763",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $5761h% chance of poisoning the enemy, increasing their casting time by $5760s1% for $5760d.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "8694",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $8693h% chance of poisoning the enemy, increasing their casting time by $8692s1% for $8692d.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "11400",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $11399h% chance of poisoning the enemy, increasing their casting time by $11398s1% for $11398d.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "13220",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $13219h% chance of poisoning the enemy, reducing all healing effects used on them by $13218s1 for $13218d.  Stacks up to $13218u times on a single target.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "13228",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $13225h% chance of poisoning the enemy, reducing all healing effects used on them by $13222s1 for $13222d.  Stacks up to $13222u times on a single target.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "13229",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $13226h% chance of poisoning the enemy, reducing all healing effects used on them by $13223s1 for $13223d.  Stacks up to $13223u times on a single target.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "13230",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $13227h% chance of poisoning the enemy, reducing all healing effects used on them by $13224s1 for $13224d.  Stacks up to $13224u times on a single target.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1279949",
+          "spell_class_set": "3",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 6",
+          "spell_description": "",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1279976",
+          "spell_class_set": "3",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1279977",
+          "spell_class_set": "3",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1279978",
+          "spell_class_set": "3",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1279979",
+          "spell_class_set": "3",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1279980",
+          "spell_class_set": "3",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 5",
+          "spell_description": "",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1286251",
+          "spell_class_set": "0",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 256
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Places a Blessing on the party member, reducing the amount of all threat generated by $s1% for $d. Players may only have one Blessing on them per Paladin at any one time.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "13161",
+          "spell_class_set": "9",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "The hunter takes on the aspects of a beast, becoming untrackable and increasing Melee Attack Power by $s2. Only one Aspect can be active at a time.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1299445",
+          "spell_class_set": "9",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "You take on the aspects of a beast, becoming untrackable and increasing Melee Attack Power by $s2. Only one Aspect can be active at a time.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1299446",
+          "spell_class_set": "9",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "You take on the aspects of a beast, becoming untrackable and increasing Melee Attack Power by $s2. Only one Aspect can be active at a time.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1299447",
+          "spell_class_set": "9",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "You take on the aspects of a beast, becoming untrackable and increasing Melee Attack Power by $s2. Only one Aspect can be active at a time.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1308651",
+          "spell_class_set": "3",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 128
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Rapidly cooling the target.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1310180",
+          "spell_class_set": "9",
+          "overlapping_mask_words": [
+            0
+          ],
+          "overlapping_bits": [
+            {
+              "word": 0,
+              "bits": 64
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Inflicts $s2 damage and reduces the enemy target's movement speed by $s1% for $d.",
+          "status": "bitwise_overlap_only"
+        }
+      ],
+      "interpretation": "Candidates indicate bitwise overlap only. SpellClassSet compatibility and actual in-game effect application have not been established."
+    },
+    {
+      "effect_id": "1197174",
+      "effect_index": "1",
+      "effect_mask": [
+        "0",
+        "0",
+        "16",
+        "0"
+      ],
+      "matching_option_count": 32,
+      "matching_options": [
+        {
+          "spell_id": "16979",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "Charge an enemy, immobilizing them and interrupting any spell they are casting for $19675d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "408521",
+          "spell_class_set": "11",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Heals a friendly target for $s1, an additional $o2 over $d, and increases the effectiveness of your Chain Heal casts directly on that target by $s3%.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "407803",
+          "spell_class_set": "10",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1238122",
+          "spell_class_set": "7",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "",
+          "spell_description": "$?a5487|a9634[|CFFFFFFFFRequires Bear Form, Dire Bear Form|R][|CFFFF2020Requires Bear Form, Dire Bear Form|R]\r\nCharge an enemy, immobilizing them and interrupting any spell they are casting for $19675d.\r\n\r\n$@spelltooltip414924",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1239242",
+          "spell_class_set": "11",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Heals a friendly target for $s1, an additional $o2 over $d, and increases the effectiveness of your Chain Heal casts directly on that target by $s3%.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1239243",
+          "spell_class_set": "11",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Heals a friendly target for $s1, an additional $o2 over $d, and increases the effectiveness of your Chain Heal casts directly on that target by $s3%.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "696",
+          "spell_class_set": "5",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Protects the caster, increasing armor by $m1 and increases health regeneration by $s2 health per 5 sec. for $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "687",
+          "spell_class_set": "5",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Protects the caster, increasing armor by $m1 and increases health regeneration by $s2 health per 5 sec. for $d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "3420",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $3408h% chance of poisoning the enemy, slowing their movement speed by $3409s1% for $3409d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "3421",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $11202h% chance of poisoning the enemy, slowing their movement speed by $11201s1% for $11201d.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "2835",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $2823h% chance of poisoning the enemy for $2818o1 Nature damage over $2818d.  Stacks up to $2818u times on a single target.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "2837",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $2824h% chance of poisoning the enemy for $2819o1 Nature damage over $2819d.  Stacks up to $2819u times on a single target.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "11357",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $11355h% chance of poisoning the enemy for $11353o1 Nature damage over $11353d.  Stacks up to $11353u times on a single target.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "11358",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $11356h% chance of poisoning the enemy for $11354o1 Nature damage over $11354d.  Stacks up to $11354u times on a single target.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "25347",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 5",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $11356h% chance of poisoning the enemy for $25349o1 Nature damage over $25349d.  Stacks up to $25349u times on a single target.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "8681",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $8679h% chance of poisoning the enemy which instantly inflicts $8680s1 Nature damage.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "8687",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $8686h% chance of poisoning the enemy which instantly inflicts $8685s1 Nature damage.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "8691",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $8688h% chance of poisoning the enemy which instantly inflicts $8689s1 Nature damage.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "11341",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60}  minutes.\r\nEach strike has a $11338h% chance of poisoning the enemy which instantly inflicts $11335s1 Nature damage.  $m2 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "11342",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 5",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $11339h% chance of poisoning the enemy which instantly inflicts $11336s1 Nature damage.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "11343",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 6",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $11340h% chance of poisoning the enemy which instantly inflicts $11337s1 Nature damage.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "5763",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $5761h% chance of poisoning the enemy, increasing their casting time by $5760s1% for $5760d.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "8694",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $8693h% chance of poisoning the enemy, increasing their casting time by $8692s1% for $8692d.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "11400",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $11399h% chance of poisoning the enemy, increasing their casting time by $11398s1% for $11398d.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "13220",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $13219h% chance of poisoning the enemy, reducing all healing effects used on them by $13218s1 for $13218d.  Stacks up to $13218u times on a single target.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "13228",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $13225h% chance of poisoning the enemy, reducing all healing effects used on them by $13222s1 for $13222d.  Stacks up to $13222u times on a single target.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "13229",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $13226h% chance of poisoning the enemy, reducing all healing effects used on them by $13223s1 for $13223d.  Stacks up to $13223u times on a single target.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "13230",
+          "spell_class_set": "8",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "Coats a weapon with poison that lasts for ${$m2/60} minutes.\r\nEach strike has a $13227h% chance of poisoning the enemy, reducing all healing effects used on them by $13224s1 for $13224d.  Stacks up to $13224u times on a single target.  $m3 charges.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "13161",
+          "spell_class_set": "9",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 1",
+          "spell_description": "The hunter takes on the aspects of a beast, becoming untrackable and increasing Melee Attack Power by $s2. Only one Aspect can be active at a time.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1299445",
+          "spell_class_set": "9",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 2",
+          "spell_description": "You take on the aspects of a beast, becoming untrackable and increasing Melee Attack Power by $s2. Only one Aspect can be active at a time.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1299446",
+          "spell_class_set": "9",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 3",
+          "spell_description": "You take on the aspects of a beast, becoming untrackable and increasing Melee Attack Power by $s2. Only one Aspect can be active at a time.",
+          "status": "bitwise_overlap_only"
+        },
+        {
+          "spell_id": "1299447",
+          "spell_class_set": "9",
+          "overlapping_mask_words": [
+            2
+          ],
+          "overlapping_bits": [
+            {
+              "word": 2,
+              "bits": 16
+            }
+          ],
+          "unknown_mask_words": [],
+          "spell_name": "Rank 4",
+          "spell_description": "You take on the aspects of a beast, becoming untrackable and increasing Melee Attack Power by $s2. Only one Aspect can be active at a time.",
+          "status": "bitwise_overlap_only"
+        }
+      ],
+      "interpretation": "Candidates indicate bitwise overlap only. SpellClassSet compatibility and actual in-game effect application have not been established."
+    }
+  ],
+  "integrity_checks": {
+    "definition_found": true,
+    "spell_found": true,
+    "expected_effect_ids_found": true,
+    "effect_point_reference_count": 2,
+    "referenced_nonzero_curves_without_points": []
+  },
+  "mechanical_verification": "pending",
+  "unresolved_questions": [
+    "Resolve spell-class-mask matching against spell-class options",
+    "Interpret each effect-point operation and its curve",
+    "Determine whether both effects contribute independently",
+    "Verify actual healing behavior independently"
+  ]
+}
