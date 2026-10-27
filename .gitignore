@@ -18,3 +18,5 @@ data/ui/
 .idea/
 .DS_Store
 *.swp
+data/ui.log
+data/ui.pid

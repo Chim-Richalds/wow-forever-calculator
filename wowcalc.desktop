@@ -1,0 +1,15 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Name=WoW Forever Calculator
+Comment=Talent value calculator for WoW Forever
+Exec=/home/Jim/wow-forever-calculator/launch.sh
+Path=/home/Jim/wow-forever-calculator
+Icon=applications-games
+Terminal=false
+Categories=Game;
+Actions=stop;
+
+[Desktop Action stop]
+Name=Stop calculator server
+Exec=/home/Jim/wow-forever-calculator/launch.sh stop
