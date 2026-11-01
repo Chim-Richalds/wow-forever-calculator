@@ -14,7 +14,7 @@ from fixtures import TempCase  # noqa: E402
 from basestats_fixtures import row, tsv, warrior  # noqa: E402
 from wowcalc.basestats import parse_base_stats  # noqa: E402
 from wowcalc.dataset import Dataset  # noqa: E402
-from wowcalc.effects import AP_FROM_STAT, SP_FROM_STAT, SHEET_ADD, SCRIPT, SPELL_MODIFIER, STAT_PERCENT, UNSUPPORTED, EffectBook, TalentEffect  # noqa: E402
+from wowcalc.effects import AP_FROM_STAT, CC_DURATION, SP_FROM_STAT, SHEET_ADD, SCRIPT, SPELL_MODIFIER, STAT_PERCENT, UNSUPPORTED, EffectBook, TalentEffect  # noqa: E402
 from fractions import Fraction as F  # noqa: E402
 from wowcalc.derived import ArmorRule, AssumedRules, PoolRule  # noqa: E402
 from wowcalc.rates import AttackPowerRule, Interval, RateTable  # noqa: E402
@@ -104,6 +104,14 @@ class SheetTests(unittest.TestCase):
         effect = TalentEffect("s", 0, 137, STAT_PERCENT, ("strength", "stamina"), {1: 10.0})
         sheet = self.sheet([RankedTalent("n", "s", "Both", 1, (effect,))])
         self.assertEqual((sheet.lines["strength"].total, sheet.lines["stamina"].total, sheet.lines["agility"].total), (66, 66, 60))
+
+    def test_crowd_control_durations_are_listed_beside_the_sheet(self):
+        stun = TalentEffect("s", 1, 232, CC_DURATION, (), {1: -5.0, 2: -10.0}, figures=("stunned",))
+        fear = TalentEffect("s", 2, 232, CC_DURATION, (), {1: -5.0, 2: -10.0}, figures=("fleeing",))
+        sheet = self.sheet([RankedTalent("n", "s", "Silent Resolve", 2, (stun, fear))])
+        self.assertEqual(sheet.crowd_control, [("Silent Resolve", "stunned", Decimal("-10.0")), ("Silent Resolve", "fleeing", Decimal("-10.0"))])
+        self.assertEqual(sheet.not_modelled, [])
+        self.assertEqual({s: l.total for s, l in sheet.lines.items()}, {s: l.total for s, l in self.sheet([]).lines.items()})
 
     def test_health_and_mana_pass_through_and_can_be_adjusted(self):
         sheet = self.sheet([], adjustments={"health": 100})

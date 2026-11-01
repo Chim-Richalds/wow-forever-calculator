@@ -74,6 +74,7 @@ EXTENDED_TABLES: tuple[str, ...] = (
     "TraitCost",
     "TraitTreeXTraitCost",
     "CharBaseInfo",  # which race and class combinations exist
+    "SpellMechanic",  # names of crowd control types (stunned, fleeing), for aura 232 talents
 )
 
 TABLES: tuple[str, ...] = BASE_TABLES + EXTENDED_TABLES

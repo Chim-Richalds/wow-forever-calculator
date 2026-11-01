@@ -18,14 +18,17 @@ Principles that apply to everything below: data-driven, versioned, traceable, ne
 - [ ] **Mana regen while casting base.** The calculator takes the base as 0% (the texts say the talent "allows" N%). Check without any of the six talents.
 - [ ] **Block.** The 5% base, the level-difference rule and Strength to block value are taken from the game's own text, not tested. Check with a shield on a Warrior, Paladin and Shaman.
 - [ ] **Specialization names.** Look through all 27 trees in the UI and confirm each name (`data/external/spec_names.tsv`), especially the two Protection trees.
+- [ ] **Iron Will.** The text says it reduces Stun and Fear durations by up to 15%. The data says charmed (+3 .. +15, which looks like Classic's resist chance) and stunned (no rank values). Check the stun and fear durations with 0 and 5 ranks. Left unsupported until then.
+- [ ] **Crowd control stacking.** Each class has one talent per kind of crowd control today, so how two reductions combine is untested. Check if a buff or item ever adds a second one.
+- [ ] **Surefooted spell hit.** Effect 3 (aura 55, spell hit, base 3) has no rank values; the tooltip only mentions the melee hit. Check spell hit at 1 and 3 ranks.
 - [ ] **Hit and spell hit.** The Hit row merges melee and spell hit when they are equal. Confirm with a talent that raises only one of them.
 
 ## Modelling more talents  [offline]
 
-The full list is `docs/unmodelled_effects.tsv` (regenerate it after each change). Of 469 talents, 23 are fully modelled and 13 partly. What is left, by type:
+The full list is `docs/unmodelled_effects.tsv` (regenerate it after each change). Of 469 talents, 32 are fully modelled and 16 partly (2026-11-01). What is left, by type:
 
 - [ ] Auras decoded for the sheet but still conditional: 54, 290, 55, 49, 47, 51 (abilities with a duration, a single form).
-- [ ] Undecoded auras that look like they touch the sheet: 232 (9 effects: Iron Will, Silent Resolve, Surefooted, Unyielding Faith), 79 (16, looks like a damage percent), 77 (16), 332 (10), 10 (9), 87 (5), 33 (4). Read the tooltips first; never assume the meaning from the aura number.
+- [ ] Undecoded auras that look like they touch the sheet: 79 (16, looks like a damage percent), 77 (16), 332 (10), 10 (9), 87 (5), 33 (4). Read the tooltips first; never assume the meaning from the aura number.
 - [ ] Spell modifiers (auras 107 and 108, about 300 effects): they change particular spells (cost, damage, cast time), not the sheet. Needs a different engine and a model of the spells.
 - [ ] Scripts (auras 4, 42, 109, 190 effects): the data holds numbers only; the tooltip says what they mean.
 - [ ] Instant effects (no aura, 74).
@@ -37,6 +40,18 @@ The full list is `docs/unmodelled_effects.tsv` (regenerate it after each change)
 - [ ] Show Spell power and Healing rows at levels with no exported panel when the base is unknown (today they appear only if a talent contributes).
 - [ ] Two talent icons are missing (357 of 359 cached). Find which and why (possibly encrypted in the game files).
 - [ ] Per-class defaults (race, level) remembered between visits.
+- [ ] Crowd control durations (Silent Resolve, Surefooted, Unyielding Faith) appear beside the sheet but not in the Values tab, which only compares sheet figures.
+
+## Codebase clean-up  [offline]
+
+Goal: less code saying the same thing, with no loss of coverage of real behaviour. Do it in small steps, and keep the full test run green after each one.
+
+- [ ] **Tests.** 880 tests across 19 files (about 8,200 lines). Remove duplicates and tests that check implementation details rather than behaviour; merge near-identical cases into table-driven tests. Before deleting a test, confirm what it guards is covered elsewhere.
+- [ ] **Redundant sections in `src/wowcalc/`.** Look for logic repeated across modules (CSV and table loading, build/version handling, report formatting in `diff.py`, `update.py`, `validate.py` and `rates.py`) and pull it into one place.
+- [ ] **One-off scripts.** `scripts/` holds 22 investigation scripts (Purification, Chain Heal, tree 1082), many hard-coded to old builds. Keep what the pipeline still uses, fold anything useful into the package, and delete the rest along with their outputs in `data/processed/`.
+- [ ] **Stray files at the repo root.** `check_builds.py` is a copy of `scripts/check_builds.py`; `base_stats.meta.json` is a copy of `data/external/base_stats.meta.json`; `icon_ids.txt` looks like a leftover. Confirm and remove.
+- [ ] **Compiled files in git.** Six `__pycache__/*.pyc` files are tracked even though `.gitignore` excludes them. Untrack them (`git rm --cached`).
+- [ ] **Rate fit summary.** `rates fit` prints the panel attack power fit (Mage, Priest, Warlock at 2 per Strength) and then says it was replaced by the reference (1 per Strength). The calculator uses 1; print the value in use, with the panel fit as a note.
 
 ## Talent tree backgrounds  [needs-source]
 
@@ -45,7 +60,7 @@ The full list is `docs/unmodelled_effects.tsv` (regenerate it after each change)
 ## Data upkeep  [offline]
 
 - [ ] When a new build appears: `python -m wowcalc.update prepare` and `apply`, then `python -m wowcalc.diff`, then re-run `python -m wowcalc.rates fit` and the data checks in the UI. Spec names are tied to spells, so a moved talent shows up in the Data tab's "Specialization names" check.
-- [ ] Per-level stat rates (`data/external/PlayerExpectedStat.csv`) were taken from build 1.60.1.70450; refetch when the build changes.
+- [ ] Per-level stat rates (`data/external/PlayerExpectedStat.csv`): refetch when the build changes. Last checked against build 1.60.1.70532 (2026-11-01): identical to the 1.60.1.70450 copy.
 
 ## Done recently (for context)
 
@@ -54,3 +69,4 @@ The full list is `docs/unmodelled_effects.tsv` (regenerate it after each change)
 - Spell power and healing rows; spell power and healing from Intellect or Spirit talents.
 - Parry row appears only where it applies; Hit row merges melee and spell hit.
 - Mana regeneration while casting, as a percentage only.
+- Crowd control durations (aura 232), named from the build's SpellMechanic table and checked against each tooltip.

@@ -428,6 +428,7 @@ class Workbench:
             "healing": self.power_json(sheet.healing),
             "block_value": sheet.block_value_from_strength,
             "notes": list(sheet.notes),
+            "crowd_control": [[label, name, num(p)] for label, name, p in sheet.crowd_control],
             "not_modelled": [{"label": n.label, "ranks": n.ranks, "parts": [{"effect": i, "kind": k, "why": w} for i, k, w in n.parts]}
                              for n in sheet.not_modelled],
         }

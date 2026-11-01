@@ -19,6 +19,7 @@ def effect_tables(mutate=None):
     t["SpellName"] = (["ID", "Name_lang"], [dict(ID=str(3000 + i), Name_lang=f"Talent {i}") for i in range(1, 8)])
     t["Spell"] = (["ID", "NameSubtext_lang", "Description_lang", "AuraDescription_lang"],
                   [dict(ID=str(3000 + i), Description_lang=f"Does thing {i}.") for i in range(1, 8)])
+    t["SpellMechanic"] = (["ID", "StateName_lang"], [dict(ID="5", StateName_lang="fleeing"), dict(ID="12", StateName_lang="stunned")])
     if mutate:
         mutate(t)
     return t

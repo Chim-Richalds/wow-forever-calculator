@@ -51,7 +51,7 @@ from .derived import PoolRule
 from .perlevel import mana_total
 from .rates import RateTable, StatEffects
 from .sheetbase import SheetBase, SheetBaseError
-from .effects import AP_FROM_STAT, SHEET_ADD, SHEET_FIGURES, SP_FROM_STAT, STAT_PERCENT, EffectBook, TalentEffect
+from .effects import AP_FROM_STAT, CC_DURATION, SHEET_ADD, SHEET_FIGURES, SP_FROM_STAT, STAT_PERCENT, EffectBook, TalentEffect
 from .trees import Node
 
 # Where each sheet figure's base lives in the sheet-figures file: (section, label).
@@ -200,6 +200,8 @@ class Sheet:
     block_value_from_strength: int | None = None  # ASSUMED rule; only with a shield
     not_modelled: list[NotModelled] = field(default_factory=list)
     notes: list[str] = field(default_factory=list)
+    # Not sheet figures: (talent, crowd control name, percent change in duration), one per effect.
+    crowd_control: list[tuple[str, str, Decimal]] = field(default_factory=list)
 
 
 def build_sheet(
@@ -223,6 +225,7 @@ def build_sheet(
     figure_parts: dict[str, list[tuple[str, Decimal]]] = {f: [] for f in SHEET_FIGURES}
     ap_parts: list[tuple[str, str, Decimal]] = []
     sp_parts: dict[str, list[tuple[str, str, Decimal]]] = {"spell_power": [], "healing": []}
+    crowd_control: list[tuple[str, str, Decimal]] = []
 
     for talent in talents:
         if talent.ranks <= 0:
@@ -241,6 +244,8 @@ def build_sheet(
                     ap_parts.append((talent.label, effect.stats[0], Decimal(str(value))))
                 elif effect.kind == SP_FROM_STAT:
                     sp_parts[effect.figures[0]].append((talent.label, effect.stats[0], Decimal(str(value))))
+                elif effect.kind == CC_DURATION:
+                    crowd_control.append((talent.label, effect.figures[0], Decimal(str(value))))
             else:
                 why = effect.note or effect.kind
                 if effect.modelled:
@@ -354,7 +359,8 @@ def build_sheet(
     healing = _spell_power(sp_parts["healing"], lines, heal_base, int(adjustments.get("healing", 0)))
     if sp_parts["spell_power"] or sp_parts["healing"]:
         notes.append("spell power and healing from a stat: the amount is rounded down; the game's rounding has not been checked")
-    return Sheet(class_name, race_name, level, lines, figures, attack, armor_line, spell_power, healing, block_value, not_modelled, notes)
+    return Sheet(class_name, race_name, level, lines, figures, attack, armor_line, spell_power, healing, block_value, not_modelled, notes,
+                 crowd_control)
 
 
 def _armor(rates: RateTable | None, level: int, lines: dict[str, StatLine], adjustments, panel_armor, rates_applied: bool,

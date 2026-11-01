@@ -1,5 +1,6 @@
 """Offline tests for wowcalc.ui. Run: python -m unittest discover -s tests"""
 
+import http.client
 import json
 import sys
 import threading
@@ -493,8 +494,19 @@ class ServerTests(WorkbenchCase):
         self.assertEqual(self.call("GET", "/api/meta", headers={"Host": "localhost:1234"})[0], 200)
 
     def test_an_oversized_body_is_refused(self):
-        status, _, _ = self.call("POST", "/api/evaluate", raw=b"x" * 1_000_001)
-        self.assertEqual(status, 413)
+        # Refused from the declared length, before any body is read. Sending a real 1 MB body
+        # races with the server closing the connection (a broken pipe instead of the 413).
+        conn = http.client.HTTPConnection(self.base.removeprefix("http://"), timeout=10)
+        try:
+            conn.putrequest("POST", "/api/evaluate")
+            conn.putheader("Content-Type", "application/json")
+            conn.putheader("Content-Length", "1000001")
+            conn.endheaders()
+            resp = conn.getresponse()
+            resp.read()
+            self.assertEqual(resp.status, 413)
+        finally:
+            conn.close()
 
     def test_saved_builds_over_http(self):
         body = {"class": "Mage", "race": "Human", "level": 60, "alloc": {"1": 1}}

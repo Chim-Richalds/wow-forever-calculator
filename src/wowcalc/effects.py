@@ -35,6 +35,15 @@ which effects it cannot:
                    of Natural Instinct, Champion of the Light, Spiritual Guidance and Mental
                    Quickness). Aura 174's EffectMiscValue_0 is a school mask; only 126 (every
                    magic school) is modelled. NOT checked in game: how the result is rounded.
+  cc_duration      aura 232: "Reduces the duration of <crowd control> effects on you by N%".
+                   EffectMiscValue_0 is a SpellMechanic ID, named from the build's own
+                   SpellMechanic table (12 stunned, 5 fleeing, 9 silenced, 2 disoriented,
+                   7 rooted, 11 ensnared in 1.60.1.70532). DECODED, but only when the
+                   tooltip names that crowd control and, if it says "reduces", the values
+                   are negative: Iron Will's data says charmed with values +3..+15 (the old
+                   Classic resist chance) while its text says Stun and Fear, so it is left
+                   unsupported until checked in game. Not a sheet figure: listed beside
+                   the sheet. Not checked in game: how two such talents would stack.
   spell_modifier   auras 107/108: change particular spells (class mask), not the
                    character sheet. Recognised, NOT modelled.
   script           auras 4, 42, 109, 111, 112: implemented in game code; the data
@@ -74,6 +83,18 @@ SHEET_ADD_AURAS = {
 }
 AURA_AP_FROM_STAT = 598
 AURA_REGEN_WHILE_CASTING = 134
+AURA_MECHANIC_DURATION = 232
+# SpellMechanic ID -> words a talent's text uses for it. Checked against the six talents that
+# carry aura 232; "movement impairing" covers both rooted and ensnared (Surefooted).
+MECHANIC_WORDS = {
+    1: ("charm",),
+    2: ("disorient",),
+    5: ("fear",),
+    7: ("movement impairing", "root"),
+    9: ("silence",),
+    11: ("movement impairing", "snare"),
+    12: ("stun",),
+}
 AURA_SPELL_DAMAGE_FROM_STAT = 174
 AURA_HEALING_FROM_STAT = 175
 ALL_MAGIC_SCHOOLS = 126
@@ -86,7 +107,8 @@ ALL_STATS = tuple(STAT_BITS.values())
 STAT_PERCENT, SPELL_MODIFIER, SCRIPT, UNSUPPORTED = "stat_percent", "spell_modifier", "script", "unsupported"
 SHEET_ADD, AP_FROM_STAT = "sheet_add", "ap_from_stat"
 SP_FROM_STAT = "sp_from_stat"
-MODELLED_KINDS = frozenset({STAT_PERCENT, SHEET_ADD, AP_FROM_STAT, SP_FROM_STAT})
+CC_DURATION = "cc_duration"
+MODELLED_KINDS = frozenset({STAT_PERCENT, SHEET_ADD, AP_FROM_STAT, SP_FROM_STAT, CC_DURATION})
 
 
 @dataclass(frozen=True)
@@ -98,13 +120,13 @@ class TalentEffect:
     stats: tuple[str, ...] = ()
     by_rank: dict[int, float] = field(default_factory=dict)  # rank -> value (a percent for stat_percent)
     note: str = ""
-    figures: tuple[str, ...] = ()  # sheet_add: the sheet figures it raises; sp_from_stat: spell_power or healing (stats holds the source stat for ap_from_stat and sp_from_stat)
+    figures: tuple[str, ...] = ()  # sheet_add: the sheet figures it raises; sp_from_stat: spell_power or healing; cc_duration: the mechanic's name (stats holds the source stat for ap_from_stat and sp_from_stat)
 
     @property
     def modelled(self) -> bool:
         if self.kind in (STAT_PERCENT, AP_FROM_STAT, SP_FROM_STAT):
             return bool(self.stats) and bool(self.by_rank)
-        return self.kind == SHEET_ADD and bool(self.figures) and bool(self.by_rank)
+        return self.kind in (SHEET_ADD, CC_DURATION) and bool(self.figures) and bool(self.by_rank)
 
 
 def _int(value, default=0) -> int:
@@ -141,6 +163,10 @@ class EffectBook:
                 for vals in ds.iter_values("Spell"):
                     if len(vals) > max(i_id, i_desc) and vals[i_id] in spell_ids:
                         self.text[vals[i_id]] = vals[i_desc]
+
+        self.mechanics: dict[int, str] = {}  # SpellMechanic ID -> state name ("stunned")
+        if ds.has_table("SpellMechanic") and {"ID", "StateName_lang"} <= set(ds.columns("SpellMechanic")):
+            self.mechanics = {_int(r["ID"]): r["StateName_lang"] for r in ds.rows("SpellMechanic")}
 
         self.scaling: dict[tuple[str, int], list[dict]] = defaultdict(list)
         for r in ds.rows("TraitDefinitionEffectPoints"):
@@ -239,6 +265,8 @@ class EffectBook:
             if not values:
                 return make(UNSUPPORTED, values_note, stats, keep_values=False)
             return make(STAT_PERCENT, "", stats)
+        if aura == AURA_MECHANIC_DURATION:
+            return self._decode_mechanic_duration(row, make, values, values_note)
         if aura in SPELL_MODIFIER_AURAS:
             return make(SPELL_MODIFIER, "changes particular spells, not the character sheet")
         if aura in SCRIPT_AURAS:
@@ -246,6 +274,24 @@ class EffectBook:
         if aura == 0:
             return make(UNSUPPORTED, "no aura (an instant effect)")
         return make(UNSUPPORTED, f"aura {aura} is not decoded yet")
+
+    def _decode_mechanic_duration(self, row: dict, make, values: dict[int, float], values_note: str) -> TalentEffect:
+        mechanic = _int(row.get("EffectMiscValue_0"), -1)
+        name = self.mechanics.get(mechanic, f"mechanic {mechanic}")
+        if not values:
+            return make(UNSUPPORTED, f"{name} duration: {values_note}", keep_values=False)
+        words = MECHANIC_WORDS.get(mechanic)
+        if words is None:
+            return make(UNSUPPORTED, f"changes the duration of {name} effects; no tooltip check for this kind of effect yet")
+        text = self.text.get(row["SpellID"], "").lower()
+        problems = []
+        if not any(w in text for w in words):
+            problems.append(f"the data says {name} effects but the talent text does not mention them")
+        if "reduc" in text and any(v > 0 for v in values.values()):
+            problems.append("the values are positive, which would lengthen the effect, but the text says it reduces")
+        if problems:
+            return make(UNSUPPORTED, "; ".join(problems) + " (needs an in-game check)")
+        return make(CC_DURATION, "", figures=(name,))
 
 
 def decode_stats(misc0: int, misc1: int) -> tuple[tuple[str, ...], str]:

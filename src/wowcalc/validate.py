@@ -61,6 +61,7 @@ REQUIRED_COLUMNS: dict[str, frozenset[str]] = {
     "TraitCost": frozenset({"ID", "Amount", "TraitCurrencyID"}),
     "TraitTreeXTraitCost": frozenset({"TraitTreeID", "TraitCostID"}),
     "CharBaseInfo": frozenset({"RaceID", "ClassID"}),
+    "SpellMechanic": frozenset({"ID", "StateName_lang"}),
 }
 
 # Issue codes that block regardless of what the baseline looked like.

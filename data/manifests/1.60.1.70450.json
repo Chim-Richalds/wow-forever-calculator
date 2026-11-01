@@ -692,6 +692,23 @@
       "status": "downloaded-needs-validation",
       "addedAfterInstall": true,
       "addedAt": "2026-10-25T15:54:36.268870+00:00"
+    },
+    "SpellMechanic": {
+      "url": "https://wago.tools/db2/SpellMechanic/csv?build=1.60.1.70450",
+      "file": "data/raw/1.60.1.70450/SpellMechanic.csv",
+      "sha256": "b8ef3056b17d534a23574081d73507d8b8565e45b27d8100604aaaee3f0bb7a6",
+      "bytes": 443,
+      "columns": [
+        "ID",
+        "StateName_lang"
+      ],
+      "rows": 36,
+      "malformedRows": 0,
+      "duplicateHeaders": [],
+      "contentType": "text/csv; charset=UTF-8",
+      "status": "downloaded-needs-validation",
+      "addedAfterInstall": true,
+      "addedAt": "2026-11-01T10:07:22.583777+00:00"
     }
   },
   "failures": [],
@@ -723,6 +740,12 @@
       "at": "2026-10-25T15:54:36.268870+00:00",
       "tables": [
         "SpellMisc"
+      ]
+    },
+    {
+      "at": "2026-11-01T10:07:22.583777+00:00",
+      "tables": [
+        "SpellMechanic"
       ]
     }
   ]

@@ -81,6 +81,7 @@ def base_tables():
         "TraitTreeXTraitCost": rows(["ID", "TraitTreeID", "TraitCostID"], ["1", "1", "4039"], ["2", "2", "4039"]),
         "CharBaseInfo": rows(["ID", "RaceID", "ClassID", "OtherFactionRaceID"],
                              ["1", "1", "1", "0"], ["2", "1", "2", "0"], ["3", "2", "1", "0"]),
+        "SpellMechanic": rows(["ID", "StateName_lang"], ["5", "fleeing"], ["12", "stunned"]),
     }
 
 

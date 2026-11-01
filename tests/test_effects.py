@@ -12,7 +12,7 @@ from effect_fixtures import add_curve, add_effect, write_effects  # noqa: E402
 from fixtures import TempCase  # noqa: E402
 from wowcalc.dataset import Dataset  # noqa: E402
 from wowcalc.effects import (  # noqa: E402
-    ALL_STATS, AP_FROM_STAT, SP_FROM_STAT, SCRIPT, condition_in, SHEET_ADD, SPELL_MODIFIER, STAT_PERCENT, UNSUPPORTED, EffectBook, TalentEffect, decode_stats,
+    ALL_STATS, AP_FROM_STAT, CC_DURATION, SP_FROM_STAT, SCRIPT, condition_in, SHEET_ADD, SPELL_MODIFIER, STAT_PERCENT, UNSUPPORTED, EffectBook, TalentEffect, decode_stats,
     render_tooltip,
 )
 from wowcalc.fetch import TABLES  # noqa: E402
@@ -357,6 +357,54 @@ class RenderTests(unittest.TestCase):
 # Real data (skipped unless a complete build is present)
 # --------------------------------------------------------------------------
 
+class MechanicDurationTests(DecodeCase):
+    """Aura 232: the duration of one kind of crowd control on you (EffectMiscValue_0 = SpellMechanic ID)."""
+
+    def with_mechanic(self, text, mechanic=12, values=(-5, -10), drop_names=False):
+        def mutate(t):
+            add_effect(t, 1, aura=232, base=values[-1] if values else -10, misc0=mechanic, misc1=0)
+            if values:
+                add_curve(t, 1, 0, values)
+            for spell in t["Spell"][1]:
+                if spell["ID"] == "3001":
+                    spell["Description_lang"] = text
+            if drop_names:
+                del t["SpellMechanic"]
+        return self.one(mutate)
+
+    def test_a_reduction_named_in_the_text_is_decoded(self):
+        e = self.with_mechanic("Reduces the duration of Stun effects on you by $s1%.")
+        self.assertEqual((e.kind, e.figures, e.by_rank, e.modelled), (CC_DURATION, ("stunned",), {1: -5.0, 2: -10.0}, True))
+
+    def test_the_name_comes_from_the_builds_table(self):
+        e = self.with_mechanic("Reduces the duration of Fear effects on you by $s1%.", mechanic=5)
+        self.assertEqual(e.figures, ("fleeing",))
+
+    def test_without_the_names_table_the_mechanic_is_named_by_number(self):
+        e = self.with_mechanic("Reduces the duration of Stun effects on you by $s1%.", drop_names=True)
+        self.assertEqual((e.kind, e.figures), (CC_DURATION, ("mechanic 12",)))
+
+    def test_a_mechanic_the_text_does_not_name_is_refused(self):
+        e = self.with_mechanic("Reduces the duration of Fear effects on you by $s1%.", mechanic=12)
+        self.assertEqual((e.kind, e.modelled), (UNSUPPORTED, False))
+        self.assertIn("does not mention", e.note)
+
+    def test_positive_values_on_a_reduction_are_refused(self):
+        e = self.with_mechanic("Reduces the duration of Stun effects on you by $s1%.", values=(3, 6))
+        self.assertEqual(e.kind, UNSUPPORTED)
+        self.assertIn("values are positive", e.note)
+
+    def test_a_mechanic_without_a_tooltip_check_is_refused(self):
+        e = self.with_mechanic("Reduces the duration of Bleed effects on you by $s1%.", mechanic=15)
+        self.assertEqual(e.kind, UNSUPPORTED)
+        self.assertIn("no tooltip check", e.note)
+
+    def test_no_rank_values_is_refused_and_names_the_mechanic(self):
+        e = self.with_mechanic("Reduces the duration of Stun effects on you by $s1%.", values=())
+        self.assertEqual((e.kind, e.by_rank), (UNSUPPORTED, {}))
+        self.assertIn("stunned duration", e.note)
+
+
 PINNED = "1.60.1.70450"
 REAL_ROOT = Path(os.environ.get("WOWCALC_DATA", REPO / "data"))
 REAL = REAL_ROOT / "raw" / PINNED
@@ -453,7 +501,7 @@ class RealDataTests(unittest.TestCase):
         """Evidence for each decoded aura: the talent text names the figure the aura is taken to raise,
         and the rank values match the number in the text at the top rank."""
         words = {"parry": "parry", "dodge": "dodge", "block": "block", "melee_hit": "hit", "spell_hit": "hit",
-                 "melee_crit": "crit", "spell_crit": "crit"}
+                 "melee_crit": "crit", "spell_crit": "crit", "casting_regen": "while casting"}
         checked = 0
         for tree in self.model.trees.values():
             for node in tree.nodes.values():
@@ -465,6 +513,27 @@ class RealDataTests(unittest.TestCase):
                         self.assertIn(words[figure], text, (tree.class_name, self.names[node.spell_id], figure))
                     checked += 1
         self.assertGreaterEqual(checked, 25)
+
+    def cc(self, name, class_name):
+        return {e.effect_index: (e.kind, e.figures, e.by_rank) for e in self.book.decode(self.talent(name, class_name)) if e.aura == 232}
+
+    def test_crowd_control_durations(self):
+        # Mechanic names from the build's SpellMechanic table; each matches the talent's text.
+        r3 = {1: -5.0, 2: -10.0, 3: -15.0}
+        self.assertEqual(self.cc("Silent Resolve", "Priest"), {1: (CC_DURATION, ("stunned",), r3), 2: (CC_DURATION, ("fleeing",), r3),
+                                                               3: (CC_DURATION, ("silenced",), r3)})
+        r10 = {1: -10.0, 2: -20.0, 3: -30.0}
+        self.assertEqual(self.cc("Surefooted", "Hunter"), {0: (CC_DURATION, ("ensnared",), r10), 1: (CC_DURATION, ("rooted",), r10)})
+        r15 = {1: -15.0, 2: -30.0}
+        self.assertEqual(self.cc("Unyielding Faith", "Paladin"), {0: (CC_DURATION, ("fleeing",), r15), 1: (CC_DURATION, ("disoriented",), r15)})
+
+    def test_iron_will_data_disagrees_with_its_text(self):
+        # Text: "Stun and Fear" durations. Data: charmed at +3..+15 (Classic's resist chance) and stunned with no rank values.
+        e0, e1 = self.book.decode(self.talent("Iron Will", "Warrior"))
+        self.assertEqual((e0.kind, e1.kind), (UNSUPPORTED, UNSUPPORTED))
+        self.assertIn("charmed", e0.note)
+        self.assertIn("positive", e0.note)
+        self.assertIn("no scaling data", e1.note)
 
     def test_activated_abilities_and_conditional_bonuses_are_not_counted(self):
         # All three carry a crit / block / hit aura but are not permanent, unconditional bonuses.
