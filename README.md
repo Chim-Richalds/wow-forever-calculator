@@ -20,6 +20,7 @@ PYTHONPATH=src python3 -m wowcalc.update apply       # install it and make it ac
 PYTHONPATH=src python3 -m wowcalc.update complete    # add tables an installed build lacks
 PYTHONPATH=src python3 -m wowcalc.diff               # what changed between builds
 PYTHONPATH=src python3 -m wowcalc.rates fit          # refit the stat rates
+PYTHONPATH=src python3 -m wowcalc.talentinfo unmodelled --out docs/unmodelled_effects.tsv   # what is not valued yet
 ```
 
 Raw tables go in `data/raw/<build>/` with hashes in `data/manifests/`. They are not kept in git.

@@ -15,20 +15,34 @@ Druid	Balance	Nature's Splendor	1223083	1	2	107	spell_modifier	changes particula
 Druid	Balance	Insect Swarm	5570	1	0	3	unsupported	aura 3 is not decoded yet	The enemy target is swarmed by insects, decreasing their chance to hit with attacks by $s2% and causing $o1 Nature damage over $d.
 Druid	Balance	Insect Swarm	5570	1	1	54	unsupported	not always on: an ability that lasts a limited time	The enemy target is swarmed by insects, decreasing their chance to hit with attacks by $s2% and causing $o1 Nature damage over $d.
 Druid	Balance	Vengeance	16909	5	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the critical strike damage bonus of your Arcane and Nature spells by $m1%.
-Druid	Balance	Improved Starfire	16850	5	0	107	spell_modifier	changes particular spells, not the character sheet	"Reduces the cast time of Starfire by $/1000;S1 sec and Starfire has a $s2% chance to stun its target for $16922d. "
-Druid	Balance	Improved Starfire	16850	5	1	42	script	implemented in game code; see the tooltip text	"Reduces the cast time of Starfire by $/1000;S1 sec and Starfire has a $s2% chance to stun its target for $16922d. "
+Druid	Balance	Improved Starfire	16850	5	0	107	spell_modifier	changes particular spells, not the character sheet	"Reduces the cast time of Starfire by $/1000;S1 sec and Starfire has a $s2% chance to stun its target for $16922d.
+"
+Druid	Balance	Improved Starfire	16850	5	1	42	script	implemented in game code; see the tooltip text	"Reduces the cast time of Starfire by $/1000;S1 sec and Starfire has a $s2% chance to stun its target for $16922d.
+"
 Druid	Balance	Overgrowth	17245	2	0	4	script	implemented in game code; see the tooltip text	Increases the maximum number of targets you may have affected by Entangling Roots by $s1.
 Druid	Balance	Nature's Grace	16880	1	0	42	script	implemented in game code; see the tooltip text	All non-periodic spell criticals grace you with a blessing of nature, increasing your spellcasting speed and reducing your global cooldown by $m1% for $16886d.
 Druid	Balance	Eclipse	408248	3	0	4	script	implemented in game code; see the tooltip text	Your Wrath spell reduces the cast time of your next $s3 Starfire spells by ${$m2/-1000}.2 sec. Stores up to $408255u charges. Lasts $408255d.
 Druid	Balance	Eclipse	408248	3	1	4	script	implemented in game code; see the tooltip text	Your Wrath spell reduces the cast time of your next $s3 Starfire spells by ${$m2/-1000}.2 sec. Stores up to $408255u charges. Lasts $408255d.
 Druid	Balance	Eclipse	408248	3	2	4	script	implemented in game code; see the tooltip text	Your Wrath spell reduces the cast time of your next $s3 Starfire spells by ${$m2/-1000}.2 sec. Stores up to $408255u charges. Lasts $408255d.
 Druid	Balance	Eclipse	408248	3	3	4	script	implemented in game code; see the tooltip text	Your Wrath spell reduces the cast time of your next $s3 Starfire spells by ${$m2/-1000}.2 sec. Stores up to $408255u charges. Lasts $408255d.
-Druid	Balance	Moonkin Form	24858	1	0	36	unsupported	aura 36 is not decoded yet	"Shapeshift into Moonkin Form, increasing Omen of Clarity's chance to trigger by $s5%, Armor contribution from items by $24905s1%, and all party or raid members within $24907a1 yards have their spell Critical Strike chance increased by $24907s1%.  Also protects the caster from Polymorph effects and prevents the use of healing spells.  The act of shapeshifting frees the caster of Polymorph and Movement Impairing effects."
-Druid	Balance	Moonkin Form	24858	1	1	77	unsupported	aura 77 is not decoded yet	"Shapeshift into Moonkin Form, increasing Omen of Clarity's chance to trigger by $s5%, Armor contribution from items by $24905s1%, and all party or raid members within $24907a1 yards have their spell Critical Strike chance increased by $24907s1%.  Also protects the caster from Polymorph effects and prevents the use of healing spells.  The act of shapeshifting frees the caster of Polymorph and Movement Impairing effects."
-Druid	Balance	Moonkin Form	24858	1	2	0	unsupported	no aura (an instant effect)	"Shapeshift into Moonkin Form, increasing Omen of Clarity's chance to trigger by $s5%, Armor contribution from items by $24905s1%, and all party or raid members within $24907a1 yards have their spell Critical Strike chance increased by $24907s1%.  Also protects the caster from Polymorph effects and prevents the use of healing spells.  The act of shapeshifting frees the caster of Polymorph and Movement Impairing effects."
-Druid	Balance	Moonkin Form	24858	1	3	4	script	implemented in game code; see the tooltip text	"Shapeshift into Moonkin Form, increasing Omen of Clarity's chance to trigger by $s5%, Armor contribution from items by $24905s1%, and all party or raid members within $24907a1 yards have their spell Critical Strike chance increased by $24907s1%.  Also protects the caster from Polymorph effects and prevents the use of healing spells.  The act of shapeshifting frees the caster of Polymorph and Movement Impairing effects."
-Druid	Balance	Moonkin Form	24858	1	4	108	spell_modifier	changes particular spells, not the character sheet	"Shapeshift into Moonkin Form, increasing Omen of Clarity's chance to trigger by $s5%, Armor contribution from items by $24905s1%, and all party or raid members within $24907a1 yards have their spell Critical Strike chance increased by $24907s1%.  Also protects the caster from Polymorph effects and prevents the use of healing spells.  The act of shapeshifting frees the caster of Polymorph and Movement Impairing effects."
-Druid	Balance	Moonkin Form	24858	1	5	108	spell_modifier	changes particular spells, not the character sheet	"Shapeshift into Moonkin Form, increasing Omen of Clarity's chance to trigger by $s5%, Armor contribution from items by $24905s1%, and all party or raid members within $24907a1 yards have their spell Critical Strike chance increased by $24907s1%.  Also protects the caster from Polymorph effects and prevents the use of healing spells.  The act of shapeshifting frees the caster of Polymorph and Movement Impairing effects."
+Druid	Balance	Moonkin Form	24858	1	0	36	unsupported	aura 36 is not decoded yet	"Shapeshift into Moonkin Form, increasing Omen of Clarity's chance to trigger by $s5%, Armor contribution from items by $24905s1%, and all party or raid members within $24907a1 yards have their spell Critical Strike chance increased by $24907s1%.  Also protects the caster from Polymorph effects and prevents the use of healing spells.
+
+The act of shapeshifting frees the caster of Polymorph and Movement Impairing effects."
+Druid	Balance	Moonkin Form	24858	1	1	77	unsupported	aura 77 is not decoded yet	"Shapeshift into Moonkin Form, increasing Omen of Clarity's chance to trigger by $s5%, Armor contribution from items by $24905s1%, and all party or raid members within $24907a1 yards have their spell Critical Strike chance increased by $24907s1%.  Also protects the caster from Polymorph effects and prevents the use of healing spells.
+
+The act of shapeshifting frees the caster of Polymorph and Movement Impairing effects."
+Druid	Balance	Moonkin Form	24858	1	2	0	unsupported	no aura (an instant effect)	"Shapeshift into Moonkin Form, increasing Omen of Clarity's chance to trigger by $s5%, Armor contribution from items by $24905s1%, and all party or raid members within $24907a1 yards have their spell Critical Strike chance increased by $24907s1%.  Also protects the caster from Polymorph effects and prevents the use of healing spells.
+
+The act of shapeshifting frees the caster of Polymorph and Movement Impairing effects."
+Druid	Balance	Moonkin Form	24858	1	3	4	script	implemented in game code; see the tooltip text	"Shapeshift into Moonkin Form, increasing Omen of Clarity's chance to trigger by $s5%, Armor contribution from items by $24905s1%, and all party or raid members within $24907a1 yards have their spell Critical Strike chance increased by $24907s1%.  Also protects the caster from Polymorph effects and prevents the use of healing spells.
+
+The act of shapeshifting frees the caster of Polymorph and Movement Impairing effects."
+Druid	Balance	Moonkin Form	24858	1	4	108	spell_modifier	changes particular spells, not the character sheet	"Shapeshift into Moonkin Form, increasing Omen of Clarity's chance to trigger by $s5%, Armor contribution from items by $24905s1%, and all party or raid members within $24907a1 yards have their spell Critical Strike chance increased by $24907s1%.  Also protects the caster from Polymorph effects and prevents the use of healing spells.
+
+The act of shapeshifting frees the caster of Polymorph and Movement Impairing effects."
+Druid	Balance	Moonkin Form	24858	1	5	108	spell_modifier	changes particular spells, not the character sheet	"Shapeshift into Moonkin Form, increasing Omen of Clarity's chance to trigger by $s5%, Armor contribution from items by $24905s1%, and all party or raid members within $24907a1 yards have their spell Critical Strike chance increased by $24907s1%.  Also protects the caster from Polymorph effects and prevents the use of healing spells.
+
+The act of shapeshifting frees the caster of Polymorph and Movement Impairing effects."
 Druid	Feral Combat	Ferocity	16934	5	0	107	spell_modifier	changes particular spells, not the character sheet	Reduces the cost of your Maul, Primal Bite, Swipe, Claw, and Rake abilities by $/10;s1 Rage or Energy.
 Druid	Feral Combat	Ferocity	16934	5	1	107	spell_modifier	changes particular spells, not the character sheet	Reduces the cost of your Maul, Primal Bite, Swipe, Claw, and Rake abilities by $/10;s1 Rage or Energy.
 Druid	Feral Combat	Heart of the Wild	17003	5	1	4	script	implemented in game code; see the tooltip text	Increases your Intellect by $s1%.  In addition, while in Bear Form or Dire Bear Form your Stamina is increased by $s2% and while in Cat Form your Strength is increased by $s3%.
@@ -44,8 +58,14 @@ Druid	Feral Combat	Shredding Attacks	16966	3	0	107	spell_modifier	changes partic
 Druid	Feral Combat	Shredding Attacks	16966	3	1	107	spell_modifier	changes particular spells, not the character sheet	Reduces the Energy cost of your Shred ability by $m1 and reduces the Rage cost of your Lacerate ability by ${$m2/-10}.
 Druid	Feral Combat	Savage Fury	16998	2	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the damage caused by your Claw, Rake, Shred, Maul, and Swipe abilities by $s1%.
 Druid	Feral Combat	Savage Fury	16998	2	1	108	spell_modifier	changes particular spells, not the character sheet	Increases the damage caused by your Claw, Rake, Shred, Maul, and Swipe abilities by $s1%.
-Druid	Feral Combat	Feral Charge	1238122	1	0	0	unsupported	no aura (an instant effect)	"$?a5487|a9634[|CFFFFFFFFRequires Bear Form, Dire Bear Form|R][|CFFFF2020Requires Bear Form, Dire Bear Form|R] Charge an enemy, immobilizing them and interrupting any spell they are casting for $19675d.  $@spelltooltip414924"
-Druid	Feral Combat	Feral Charge	1238122	1	1	0	unsupported	no aura (an instant effect)	"$?a5487|a9634[|CFFFFFFFFRequires Bear Form, Dire Bear Form|R][|CFFFF2020Requires Bear Form, Dire Bear Form|R] Charge an enemy, immobilizing them and interrupting any spell they are casting for $19675d.  $@spelltooltip414924"
+Druid	Feral Combat	Feral Charge	1238122	1	0	0	unsupported	no aura (an instant effect)	"$?a5487|a9634[|CFFFFFFFFRequires Bear Form, Dire Bear Form|R][|CFFFF2020Requires Bear Form, Dire Bear Form|R]
+Charge an enemy, immobilizing them and interrupting any spell they are casting for $19675d.
+
+$@spelltooltip414924"
+Druid	Feral Combat	Feral Charge	1238122	1	1	0	unsupported	no aura (an instant effect)	"$?a5487|a9634[|CFFFFFFFFRequires Bear Form, Dire Bear Form|R][|CFFFF2020Requires Bear Form, Dire Bear Form|R]
+Charge an enemy, immobilizing them and interrupting any spell they are casting for $19675d.
+
+$@spelltooltip414924"
 Druid	Feral Combat	Sharpened Claws	16942	2	0	290	unsupported	not always on: only while in Bear Form	Increases your critical strike chance while in Bear Form, Dire Bear Form, or Cat Form by $s1%.
 Druid	Feral Combat	Shifting Power	1322605	1	0	0	unsupported	no aura (an instant effect)	Instantly convert $c Mana into $s2 Energy. Shifting Power's cost is reduced by effects that reduce the cost of Shapeshifting.
 Druid	Feral Combat	Primal Bite	407995	1	0	0	unsupported	no aura (an instant effect)	Bite the target, dealing $s2% normal damage plus $s1 and generating a high amount of threat.
@@ -61,11 +81,15 @@ Druid	Feral Combat	Natural Reaction	417051	5	1	4	script	implemented in game code
 Druid	Feral Combat	Natural Reaction	417051	5	2	4	script	implemented in game code; see the tooltip text	Increases your dodge chance by $m1%, and gives you a $m2% chance to gain ${$417053m1/10} Rage each time you dodge.
 Druid	Feral Combat	Natural Reaction	417051	5	3	4	script	implemented in game code; see the tooltip text	Increases your dodge chance by $m1%, and gives you a $m2% chance to gain ${$417053m1/10} Rage each time you dodge.
 Druid	Feral Combat	Rend and Tear	1223246	5	0	4	script	implemented in game code; see the tooltip text	Increases damage done by your melee abilities on Bleeding targets by $m1%.
-Druid	Feral Combat	Berserk	417141	1	0	107	spell_modifier	changes particular spells, not the character sheet	"$?a5487|a9634|a3025[|CFFFFFFFFReuires Cat Form, Bear Form, Dire Bear Form|R][|CFFFF2020Requires Cat Form, Bear Form, Dire Bear Form|R] Causes your Primal Bite ability to strike up to $s3 targets, removes its cooldown, and increases the critical strike chance of your Combo Point-generating abilities by $s1%. Clears and grants immunity to Fear effects for the duration. Lasts $d."
-Druid	Feral Combat	Berserk	417141	1	1	108	spell_modifier	changes particular spells, not the character sheet	"$?a5487|a9634|a3025[|CFFFFFFFFReuires Cat Form, Bear Form, Dire Bear Form|R][|CFFFF2020Requires Cat Form, Bear Form, Dire Bear Form|R] Causes your Primal Bite ability to strike up to $s3 targets, removes its cooldown, and increases the critical strike chance of your Combo Point-generating abilities by $s1%. Clears and grants immunity to Fear effects for the duration. Lasts $d."
-Druid	Feral Combat	Berserk	417141	1	2	107	spell_modifier	changes particular spells, not the character sheet	"$?a5487|a9634|a3025[|CFFFFFFFFReuires Cat Form, Bear Form, Dire Bear Form|R][|CFFFF2020Requires Cat Form, Bear Form, Dire Bear Form|R] Causes your Primal Bite ability to strike up to $s3 targets, removes its cooldown, and increases the critical strike chance of your Combo Point-generating abilities by $s1%. Clears and grants immunity to Fear effects for the duration. Lasts $d."
-Druid	Feral Combat	Berserk	417141	1	3	77	unsupported	aura 77 is not decoded yet	"$?a5487|a9634|a3025[|CFFFFFFFFReuires Cat Form, Bear Form, Dire Bear Form|R][|CFFFF2020Requires Cat Form, Bear Form, Dire Bear Form|R] Causes your Primal Bite ability to strike up to $s3 targets, removes its cooldown, and increases the critical strike chance of your Combo Point-generating abilities by $s1%. Clears and grants immunity to Fear effects for the duration. Lasts $d."
-Druid	Restoration	Nature's Focus	17063	5	0	108	spell_modifier	changes particular spells, not the character sheet	Gives you a $m1% chance to avoid interruption caused by damage while casting Arcane and Nature spells.
+Druid	Feral Combat	Berserk	417141	1	0	107	spell_modifier	changes particular spells, not the character sheet	"$?a5487|a9634|a3025[|CFFFFFFFFReuires Cat Form, Bear Form, Dire Bear Form|R][|CFFFF2020Requires Cat Form, Bear Form, Dire Bear Form|R]
+Causes your Primal Bite ability to strike up to $s3 targets, removes its cooldown, and increases the critical strike chance of your Combo Point-generating abilities by $s1%. Clears and grants immunity to Fear effects for the duration. Lasts $d."
+Druid	Feral Combat	Berserk	417141	1	1	108	spell_modifier	changes particular spells, not the character sheet	"$?a5487|a9634|a3025[|CFFFFFFFFReuires Cat Form, Bear Form, Dire Bear Form|R][|CFFFF2020Requires Cat Form, Bear Form, Dire Bear Form|R]
+Causes your Primal Bite ability to strike up to $s3 targets, removes its cooldown, and increases the critical strike chance of your Combo Point-generating abilities by $s1%. Clears and grants immunity to Fear effects for the duration. Lasts $d."
+Druid	Feral Combat	Berserk	417141	1	2	107	spell_modifier	changes particular spells, not the character sheet	"$?a5487|a9634|a3025[|CFFFFFFFFReuires Cat Form, Bear Form, Dire Bear Form|R][|CFFFF2020Requires Cat Form, Bear Form, Dire Bear Form|R]
+Causes your Primal Bite ability to strike up to $s3 targets, removes its cooldown, and increases the critical strike chance of your Combo Point-generating abilities by $s1%. Clears and grants immunity to Fear effects for the duration. Lasts $d."
+Druid	Feral Combat	Berserk	417141	1	3	77	unsupported	aura 77 is not decoded yet	"$?a5487|a9634|a3025[|CFFFFFFFFReuires Cat Form, Bear Form, Dire Bear Form|R][|CFFFF2020Requires Cat Form, Bear Form, Dire Bear Form|R]
+Causes your Primal Bite ability to strike up to $s3 targets, removes its cooldown, and increases the critical strike chance of your Combo Point-generating abilities by $s1%. Clears and grants immunity to Fear effects for the duration. Lasts $d."
+Druid	Restoration	Nature's Focus	17063	5	0	108	spell_modifier	changes particular spells, not the character sheet	Gives your Arcane and Nature spells a $m1% chance to not lose casting time when you take damage.
 Druid	Restoration	Furor	17056	5	0	4	script	implemented in game code; see the tooltip text	Gives you a $m1% chance to gain $/10;17057s1 Rage when shapeshifting into Bear Form or Dire Bear Form. Shapeshifting into Cat Form restores ${100*($m2/100)}% of the Energy you had when last in Cat Form, plus ${10*($m2/100)} Energy per second spent outside Bear Form or Dire Bear Form, up to ${100*($m2/100)} Energy.
 Druid	Restoration	Furor	17056	5	1	4	script	implemented in game code; see the tooltip text	Gives you a $m1% chance to gain $/10;17057s1 Rage when shapeshifting into Bear Form or Dire Bear Form. Shapeshifting into Cat Form restores ${100*($m2/100)}% of the Energy you had when last in Cat Form, plus ${10*($m2/100)} Energy per second spent outside Bear Form or Dire Bear Form, up to ${100*($m2/100)} Energy.
 Druid	Restoration	Naturalist	17069	5	0	107	spell_modifier	changes particular spells, not the character sheet	Reduces the cast time of your Healing Touch spell by $/1000;S1 sec and increases all damage you deal by $m2%.
@@ -152,7 +176,6 @@ Hunter	Survival	Survivalist	19255	5	0	133	unsupported	aura 133 is not decoded ye
 Hunter	Survival	Improved Wing Clip	19228	3	0	42	script	implemented in game code; see the tooltip text	Gives your Wing Clip ability a $s1% chance to immobilize the target for $19229d.
 Hunter	Survival	Clever Traps	19239	2	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the duration of Freezing and Frost trap effects by $s1% and the damage of Immolation and Explosive trap effects by $s2%.
 Hunter	Survival	Clever Traps	19239	2	1	108	spell_modifier	changes particular spells, not the character sheet	Increases the duration of Freezing and Frost trap effects by $s1% and the damage of Immolation and Explosive trap effects by $s2%.
-Hunter	Survival	Surefooted	19290	3	3	55	unsupported	a 3-rank talent with no scaling data for this effect	Increases your hit chance by $m3% and reduces the duration of movement impairing effects on you by $m2%.
 Hunter	Survival	Deterrence	19263	1	0	47	unsupported	not always on: an ability that lasts a limited time	When activated, increases your Dodge and Parry chance by $s1% for $d.
 Hunter	Survival	Deterrence	19263	1	1	49	unsupported	not always on: an ability that lasts a limited time	When activated, increases your Dodge and Parry chance by $s1% for $d.
 Hunter	Survival	Survival Tactics	19376	2	0	107	spell_modifier	changes particular spells, not the character sheet	Increases your chance to hit with your Trap and Feign Death abilities by $s1%.
@@ -169,27 +192,57 @@ Hunter	Survival	Strider Kick	1317257	1	0	0	unsupported	no aura (an instant effec
 Hunter	Survival	Strider Kick	1317257	1	1	0	unsupported	no aura (an instant effect)	A powerful kick that deals $s2% melee weapon damage and increases movement speed by $s3% for $d.
 Hunter	Survival	Strider Kick	1317257	1	2	31	unsupported	aura 31 is not decoded yet	A powerful kick that deals $s2% melee weapon damage and increases movement speed by $s3% for $d.
 Hunter	Survival	Lacerating Strikes	1310533	1	0	4	script	implemented in game code; see the tooltip text	Your Mongoose Bite also causes the target to Bleed for damage equal to $s1% of the damage done by Mongoose Bite over $1310536d
-Mage		Arcane Wrath	1326079	1	0	0	unsupported	no aura (an instant effect)	Launches a projectile of pure Arcane energy at the enemy target, causing $s1 Arcane damage. This spell gains additional Spell Damage equal to $s2% of your maximum Mana.
-Mage		Arcane Wrath	1326079	1	1	0	unsupported	no aura (an instant effect)	Launches a projectile of pure Arcane energy at the enemy target, causing $s1 Arcane damage. This spell gains additional Spell Damage equal to $s2% of your maximum Mana.
+Mage		Frost Warding	11189	2	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the Armor and resistances granted by your Frost Armor and Ice Armor spells by $s1%, gives your Frost Ward a $s2% chance to negate the warded damage spell, and increases the amount absorbed by your Ice Barrier and Frost Ward by $s3%.
+Mage		Frost Warding	11189	2	1	107	spell_modifier	changes particular spells, not the character sheet	Increases the Armor and resistances granted by your Frost Armor and Ice Armor spells by $s1%, gives your Frost Ward a $s2% chance to negate the warded damage spell, and increases the amount absorbed by your Ice Barrier and Frost Ward by $s3%.
+Mage		Frost Warding	11189	2	2	108	spell_modifier	changes particular spells, not the character sheet	Increases the Armor and resistances granted by your Frost Armor and Ice Armor spells by $s1%, gives your Frost Ward a $s2% chance to negate the warded damage spell, and increases the amount absorbed by your Ice Barrier and Frost Ward by $s3%.
+Mage		Improved Frostbolt	11070	5	0	107	spell_modifier	changes particular spells, not the character sheet	Reduces the casting time of your Frostbolt and Frost Blast spells by $/1000;S1 sec.
+Mage		Ice Shards	11207	5	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the critical strike damage bonus of your Frost spells by $s1%.
+Mage		Frostbite	11071	3	0	42	script	implemented in game code; see the tooltip text	Gives your Chill effects a $s1% chance to Freeze the target for $12494d.
+Mage		Improved Frost Nova	11165	2	0	107	spell_modifier	changes particular spells, not the character sheet	Reduces the cooldown of your Frost Nova spell by $/1000;s1 sec.
+Mage		Permafrost	11175	3	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the duration of your Chill effects by $s1% and reduces the target's speed by an additional $s2%.
+Mage		Permafrost	11175	3	1	107	spell_modifier	changes particular spells, not the character sheet	Increases the duration of your Chill effects by $s1% and reduces the target's speed by an additional $s2%.
+Mage		Frost Channeling	11160	3	0	108	spell_modifier	changes particular spells, not the character sheet	Reduces the mana cost of your Frost spells by $s1% and reduces the threat caused by your Frost spells by $s2%.
+Mage		Improved Blizzard	11185	3	0	4	script	implemented in game code; see the tooltip text	Adds a Chill effect to your Blizzard spell. This effect lowers the target's movement speed by $m1% for $12484d.
+Mage		Ice Lance	1312002	1	0	0	unsupported	no aura (an instant effect)	Deals $s1 Frost damage to an enemy target. Deals $s2% increased damage to Frozen targets.
+Mage		Ice Lance	1312002	1	1	0	unsupported	no aura (an instant effect)	Deals $s1 Frost damage to an enemy target. Deals $s2% increased damage to Frozen targets.
+Mage		Ice Lance	1312002	1	2	0	unsupported	no aura (an instant effect)	Deals $s1 Frost damage to an enemy target. Deals $s2% increased damage to Frozen targets.
+Mage		Ice Lance	1312002	1	3	0	unsupported	no aura (an instant effect)	Deals $s1 Frost damage to an enemy target. Deals $s2% increased damage to Frozen targets.
+Mage		Arctic Reach	16757	2	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the range of your Frostbolt, Frost Blast, and Blizzard spells and the radius of your Frost Nova and Cone of Cold spells by $s1%.
+Mage		Arctic Reach	16757	2	1	108	spell_modifier	changes particular spells, not the character sheet	Increases the range of your Frostbolt, Frost Blast, and Blizzard spells and the radius of your Frost Nova and Cone of Cold spells by $s1%.
+Mage		Ice Block	11958	1	0	12	unsupported	aura 12 is not decoded yet	You become encased in a block of ice, protecting you from all physical attacks and spells for $d, but during that time you cannot attack, move, or cast spells.
+Mage		Ice Block	11958	1	1	39	unsupported	aura 39 is not decoded yet	You become encased in a block of ice, protecting you from all physical attacks and spells for $d, but during that time you cannot attack, move, or cast spells.
+Mage		Ice Block	11958	1	2	39	unsupported	aura 39 is not decoded yet	You become encased in a block of ice, protecting you from all physical attacks and spells for $d, but during that time you cannot attack, move, or cast spells.
+Mage		Shatter	11170	3	0	4	script	implemented in game code; see the tooltip text	Increases the critical strike chance of all your spells against Frozen targets by $m1%.
+Mage		Improved Cone of Cold	11190	3	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the damage dealt by your Cone of Cold spell by $s1%.
+Mage		Cold Snap	12472	1	0	0	unsupported	no aura (an instant effect)	Finishes the remaining cooldown on all your other Frost spells.
+Mage		Fingers of Frost	400647	2	0	4	script	implemented in game code; see the tooltip text	Gives your Chill effects a $s2% chance to grant you the Fingers of Frost effect, which treats your next $m1 $lspell:spells; cast as if the target were Frozen. Lasts $400669d.
+Mage		Fingers of Frost	400647	2	1	4	script	implemented in game code; see the tooltip text	Gives your Chill effects a $s2% chance to grant you the Fingers of Frost effect, which treats your next $m1 $lspell:spells; cast as if the target were Frozen. Lasts $400669d.
+Mage		Winter's Chill	11180	5	0	42	script	implemented in game code; see the tooltip text	Gives your Frostbolt, Frost Blast, and Fingers of Frost empowered Ice Lance spells a $m2% chance to apply Winter's Chill, increasing the target's damage taken from your next Cone of Cold by $12579s1% and it gains an additional $s3% of your spell damage, stacking up to $s1 times.
+Mage		Winter's Chill	11180	5	1	4	script	implemented in game code; see the tooltip text	Gives your Frostbolt, Frost Blast, and Fingers of Frost empowered Ice Lance spells a $m2% chance to apply Winter's Chill, increasing the target's damage taken from your next Cone of Cold by $12579s1% and it gains an additional $s3% of your spell damage, stacking up to $s1 times.
+Mage		Winter's Chill	11180	5	2	4	script	implemented in game code; see the tooltip text	Gives your Frostbolt, Frost Blast, and Fingers of Frost empowered Ice Lance spells a $m2% chance to apply Winter's Chill, increasing the target's damage taken from your next Cone of Cold by $12579s1% and it gains an additional $s3% of your spell damage, stacking up to $s1 times.
+Mage		Ice Barrier	11426	1	0	69	unsupported	aura 69 is not decoded yet	Shield yourself, absorbing ${$s1+($SPFR*0.1)*($11189s3/100+1)} damage and increasing your Frost damage by $1326891s1% for $d. While shielded, your Frost damage is increased by an additional $s2% and you do not lose casting time when you take damage.
+Mage		Ice Barrier	11426	1	1	108	spell_modifier	changes particular spells, not the character sheet	Shield yourself, absorbing ${$s1+($SPFR*0.1)*($11189s3/100+1)} damage and increasing your Frost damage by $1326891s1% for $d. While shielded, your Frost damage is increased by an additional $s2% and you do not lose casting time when you take damage.
+Mage		Ice Barrier	11426	1	2	108	spell_modifier	changes particular spells, not the character sheet	Shield yourself, absorbing ${$s1+($SPFR*0.1)*($11189s3/100+1)} damage and increasing your Frost damage by $1326891s1% for $d. While shielded, your Frost damage is increased by an additional $s2% and you do not lose casting time when you take damage.
 Mage	Arcane	Wand Specialization	6057	2	0	79	unsupported	damage done: only with particular equipment (wands); not modelled	Increases your damage with Wands by $s1%.
-Mage	Arcane	Arcane Focus	11222	5	0	107	spell_modifier	changes particular spells, not the character sheet	Improves your chance to hit with Arcane spells by $s1%.
-Mage	Arcane	Improved Channeling	11237	5	0	108	spell_modifier	changes particular spells, not the character sheet	Gives you a $m1% chance to avoid interruption caused by damage while channeling Arcane Missiles and a $m2% chance while casting Arcane Blast or Arcane Wrath.
-Mage	Arcane	Improved Channeling	11237	5	1	108	spell_modifier	changes particular spells, not the character sheet	Gives you a $m1% chance to avoid interruption caused by damage while channeling Arcane Missiles and a $m2% chance while casting Arcane Blast or Arcane Wrath.
-Mage	Arcane	Missile Barrage	400588	2	0	42	script	implemented in game code; see the tooltip text	Gives your Arcane Blast spell a $m1% chance, your Arcane Missile hits a ${$m1/4}% chance, and your Arcane Wrath, Fireball, Frostbolt, and Frostfire Bolt spells a ${$m1/2}% chance to reduce the channeled duration of your next Arcane Missiles spell by $400589s1%, reduce the Mana cost by $400589s3%, and missiles fire every ${$m2/10}.1 sec.
-Mage	Arcane	Missile Barrage	400588	2	1	4	script	implemented in game code; see the tooltip text	Gives your Arcane Blast spell a $m1% chance, your Arcane Missile hits a ${$m1/4}% chance, and your Arcane Wrath, Fireball, Frostbolt, and Frostfire Bolt spells a ${$m1/2}% chance to reduce the channeled duration of your next Arcane Missiles spell by $400589s1%, reduce the Mana cost by $400589s3%, and missiles fire every ${$m2/10}.1 sec.
+Mage	Arcane	Improved Channeling	11237	5	0	108	spell_modifier	changes particular spells, not the character sheet	Gives your Arcane Missiles spell a $m1% chance and your Arcane Blast and Arcane Wrath spells a $m2% chance to not lose casting time when you take damage.
+Mage	Arcane	Improved Channeling	11237	5	1	108	spell_modifier	changes particular spells, not the character sheet	Gives your Arcane Missiles spell a $m1% chance and your Arcane Blast and Arcane Wrath spells a $m2% chance to not lose casting time when you take damage.
+Mage	Arcane	Arcane Resilience	28574	2	0	268	unsupported	aura 268 is not decoded yet	Increases your Armor by an amount equal to $s1% of your Intellect.
 Mage	Arcane	Arcane Subtlety	11210	2	0	108	spell_modifier	changes particular spells, not the character sheet	Reduces your target's resistance to all your spells by $s2 and reduces the threat caused by your Arcane spells by $s1%.
 Mage	Arcane	Arcane Subtlety	11210	2	1	123	unsupported	aura 123 is not decoded yet	Reduces your target's resistance to all your spells by $s2 and reduces the threat caused by your Arcane spells by $s1%.
 Mage	Arcane	Magic Absorption	29441	2	0	4	script	implemented in game code; see the tooltip text	Increases all your resistances by $s2 and causes all spells you fully resist to restore $s1% of your total mana. Cannot trigger more often than 1 time per sec.
 Mage	Arcane	Magic Absorption	29441	2	1	22	unsupported	aura 22 is not decoded yet	Increases all your resistances by $s2 and causes all spells you fully resist to restore $s1% of your total mana. Cannot trigger more often than 1 time per sec.
 Mage	Arcane	Arcane Concentration	11213	5	0	42	script	implemented in game code; see the tooltip text	Gives you a $m1% chance of entering a Clearcasting state after any damage spell hits a target.  The Clearcasting state reduces the mana cost of your next damage spell by $/10;12536s1%.
 Mage	Arcane	Arcane Concentration	11213	5	1	4	script	implemented in game code; see the tooltip text	Gives you a $m1% chance of entering a Clearcasting state after any damage spell hits a target.  The Clearcasting state reduces the mana cost of your next damage spell by $/10;12536s1%.
-Mage	Arcane	Arcane Resilience	28574	2	0	268	unsupported	aura 268 is not decoded yet	Increases your Armor by an amount equal to $s1% of your Intellect.
+Mage	Arcane	Missile Barrage	400588	2	0	42	script	implemented in game code; see the tooltip text	Gives your Arcane Blast spell a $m1% chance, and your Arcane Wrath, Fireball, Frostbolt, Frost Blast, and Frostfire Bolt spells a ${$m1/2}% chance to reduce the channeled duration of your next Arcane Missiles spell by $400589s1%, reduce the Mana cost by $400589s3%, and missiles fire every ${$m2/10}.1 sec.
+Mage	Arcane	Missile Barrage	400588	2	1	4	script	implemented in game code; see the tooltip text	Gives your Arcane Blast spell a $m1% chance, and your Arcane Wrath, Fireball, Frostbolt, Frost Blast, and Frostfire Bolt spells a ${$m1/2}% chance to reduce the channeled duration of your next Arcane Missiles spell by $400589s1%, reduce the Mana cost by $400589s3%, and missiles fire every ${$m2/10}.1 sec.
 Mage	Arcane	Arcane Geometry	11247	2	0	107	spell_modifier	changes particular spells, not the character sheet	Increases the range of your Arcane spells by $m1 yards.
 Mage	Arcane	Arcane Impact	11242	3	0	107	spell_modifier	changes particular spells, not the character sheet	Increases the critical strike chance of your Arcane spells by $m1%.
 Mage	Arcane	Arcane Blast	400574	1	0	0	unsupported	no aura (an instant effect)	Blasts the target with energy, dealing $s1 Arcane damage. Each time you cast Arcane Blast, you gain $400573s1% of your Intellect as Spell Damage and the mana cost of Arcane Blast is increased by $400573s2%. Effect stacks up to $400573u times and lasts $400573d from time of initial application.
 Mage	Arcane	Arcane Shielding	11252	2	0	108	spell_modifier	changes particular spells, not the character sheet	Decreases the Mana lost per point of damage taken when your Mana Shield spell is active by $m1% and increases the resistances granted by your Mage Armor spell by $m2%.
 Mage	Arcane	Arcane Shielding	11252	2	1	108	spell_modifier	changes particular spells, not the character sheet	Decreases the Mana lost per point of damage taken when your Mana Shield spell is active by $m1% and increases the resistances granted by your Mage Armor spell by $m2%.
 Mage	Arcane	Improved Counterspell	11255	2	0	4	script	implemented in game code; see the tooltip text	Your Counterspell also Silences the target for ${$m1/1000} sec.
+Mage	Arcane	Arcane Wrath	1326079	1	0	0	unsupported	no aura (an instant effect)	Launches a projectile of pure Arcane energy at the enemy target, causing $s1 Arcane damage. This spell gains additional Spell Damage equal to $s2% of your maximum Mana.
+Mage	Arcane	Arcane Wrath	1326079	1	1	0	unsupported	no aura (an instant effect)	Launches a projectile of pure Arcane energy at the enemy target, causing $s1 Arcane damage. This spell gains additional Spell Damage equal to $s2% of your maximum Mana.
 Mage	Arcane	Presence of Mind	12043	1	0	108	spell_modifier	changes particular spells, not the character sheet	When activated, your next Mage spell with a casting time less than 10 sec becomes an instant cast spell.
 Mage	Arcane	Arcane Mind	11232	5	1	108	spell_modifier	changes particular spells, not the character sheet	Increases your Intellect by $m1% and increases the critical strike damage bonus of your Arcane spells by $m2%.
 Mage	Arcane	Arcane Instability	15058	3	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the damage done by your spells by $m1% and your critical strike chance by $m2%.
@@ -197,10 +250,8 @@ Mage	Arcane	Arcane Instability	15058	3	1	108	spell_modifier	changes particular s
 Mage	Arcane	Arcane Power	12042	1	0	108	spell_modifier	changes particular spells, not the character sheet	For the next $d, your spells deal $s1% more damage while costing $s2% more mana to cast.
 Mage	Arcane	Arcane Power	12042	1	1	108	spell_modifier	changes particular spells, not the character sheet	For the next $d, your spells deal $s1% more damage while costing $s2% more mana to cast.
 Mage	Arcane	Arcane Power	12042	1	2	108	spell_modifier	changes particular spells, not the character sheet	For the next $d, your spells deal $s1% more damage while costing $s2% more mana to cast.
-Mage	Fire	Improved Fire Blast	11078	2	0	107	spell_modifier	changes particular spells, not the character sheet	Reduces the cooldown of your Fire Blast spell by ${$s1/-1000} sec and increases its range by $s2 yards.
-Mage	Fire	Improved Fire Blast	11078	2	1	107	spell_modifier	changes particular spells, not the character sheet	Reduces the cooldown of your Fire Blast spell by ${$s1/-1000} sec and increases its range by $s2 yards.
-Mage	Fire	Incineration	18459	3	0	107	spell_modifier	changes particular spells, not the character sheet	Increases the critical strike chance of your Fire Blast, Ice Lance, Arcane Blast, and Scorch spells by $s1%.
-Mage	Fire	Improved Fireball	11069	5	0	107	spell_modifier	changes particular spells, not the character sheet	Reduces the casting time of your Fireball and Frostfire Bolt spells by $/1000;S1 sec.
+Mage	Fire	Incineration	18459	5	0	107	spell_modifier	changes particular spells, not the character sheet	Increases the critical strike chance of your Fire Blast, Ice Lance, Arcane Blast, and Scorch spells by $s1%.
+Mage	Fire	Accelerant	11069	5	0	107	spell_modifier	changes particular spells, not the character sheet	Reduces the casting time of your Fireball, Frostfire Bolt, and Arcane Wrath spells by $/1000;S1 sec.
 Mage	Fire	Ignite	11119	5	0	4	script	implemented in game code; see the tooltip text	Your critical strikes from Fire damage spells cause the target to burn for an additional $m1% of your spell's damage over $412538d.
 Mage	Fire	Flame Throwing	11100	2	0	107	spell_modifier	changes particular spells, not the character sheet	Increases the range of your Fire spells by $s1 yards.
 Mage	Fire	Impact	11103	3	0	42	script	implemented in game code; see the tooltip text	Gives your Fire spells a $m1% chance to stun the target for $12355d.
@@ -208,47 +259,19 @@ Mage	Fire	Burning Soul	11083	3	0	108	spell_modifier	changes particular spells, n
 Mage	Fire	Improved Flamestrike	11108	3	0	107	spell_modifier	changes particular spells, not the character sheet	Increases the critical strike chance of your Flamestrike spell by $s1%.
 Mage	Fire	Pyroblast	11366	1	0	0	unsupported	no aura (an instant effect)	Hurls an immense fiery boulder that causes $s1 Fire damage and an additional $o2 Fire damage over $d.
 Mage	Fire	Pyroblast	11366	1	1	3	unsupported	aura 3 is not decoded yet	Hurls an immense fiery boulder that causes $s1 Fire damage and an additional $o2 Fire damage over $d.
+Mage	Fire	Improved Fire Blast	11078	2	0	107	spell_modifier	changes particular spells, not the character sheet	Reduces the cooldown of your Fire Blast spell by ${$s1/-1000} sec and increases its range by $s2 yards.
+Mage	Fire	Improved Fire Blast	11078	2	1	107	spell_modifier	changes particular spells, not the character sheet	Reduces the cooldown of your Fire Blast spell by ${$s1/-1000} sec and increases its range by $s2 yards.
 Mage	Fire	Improved Scorch	11095	3	0	109	script	implemented in game code; see the tooltip text	Your Scorch spell has a $m1% chance to cause your target to be vulnerable to Fire damage. This vulnerability increases all Fire damage you deal to your target by $22959s1% and lasts $22959d, stacking up to $22959u times.
 Mage	Fire	Improved Fire Ward	11094	2	0	107	spell_modifier	changes particular spells, not the character sheet	Causes your Fire Ward to have a $s1% chance to reflect Fire spells while active.
 Mage	Fire	Heating Up	400624	1	0	4	script	implemented in game code; see the tooltip text	Non-periodic critical strikes with Fireball, Frostfire Bolt, Fire Blast, and Scorch reduce the cast time of your next Pyroblast cast within $400625d by $400625s1%, stacking up to $400625s2 times. Fire Blast grants an additional stack every time it deals damage.
 Mage	Fire	Master of Elements	29074	3	0	4	script	implemented in game code; see the tooltip text	Your Fire and Frost critical strikes will refund $s1% of their base mana cost.
-Mage	Fire	Critical Mass	11115	5	0	107	spell_modifier	changes particular spells, not the character sheet	Increases the critical strike chance of your Fire spells by $s1%.
+Mage	Fire	Critical Mass	11115	3	0	107	spell_modifier	changes particular spells, not the character sheet	Increases the critical strike chance of your Fire spells by $s1%.
 Mage	Fire	Blast Wave	11113	1	0	0	unsupported	no aura (an instant effect)	A wave of flame radiates outward from the caster, damaging all enemies caught within the blast for $s1 Fire damage, and Dazing them for $s2% reduced movement speed for $d.
 Mage	Fire	Blast Wave	11113	1	1	33	unsupported	aura 33 is not decoded yet	A wave of flame radiates outward from the caster, damaging all enemies caught within the blast for $s1 Fire damage, and Dazing them for $s2% reduced movement speed for $d.
 Mage	Fire	Fire Power	11124	3	0	4	script	implemented in game code; see the tooltip text	Increases the damage done by your Fire spells by $s1% per your Fire effects on the target, up to a maximum increase of ${$s1*4}%. Effects which mix multiple schools of magic do not qualify.
 Mage	Fire	Fire Power	11124	3	1	4	script	implemented in game code; see the tooltip text	Increases the damage done by your Fire spells by $s1% per your Fire effects on the target, up to a maximum increase of ${$s1*4}%. Effects which mix multiple schools of magic do not qualify.
 Mage	Fire	Combustion	11129	1	0	4	script	implemented in game code; see the tooltip text	When activated, this spell causes each of your Fire damage spell hits to increase your critical strike chance with Fire damage spells by $28682s1%.  This effect lasts until you have caused $n non-periodic critical strikes with Fire spells.
 Mage	Fire	Combustion	11129	1	1	0	unsupported	no aura (an instant effect)	When activated, this spell causes each of your Fire damage spell hits to increase your critical strike chance with Fire damage spells by $28682s1%.  This effect lasts until you have caused $n non-periodic critical strikes with Fire spells.
-Mage	Frost	Frost Warding	11189	2	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the Armor and resistance given by your Frost Armor and Ice Armor spells by $s1%. In addition, gives your Frost Ward a $s2% chance to reflect Frost spells and effects while active.
-Mage	Frost	Frost Warding	11189	2	1	107	spell_modifier	changes particular spells, not the character sheet	Increases the Armor and resistance given by your Frost Armor and Ice Armor spells by $s1%. In addition, gives your Frost Ward a $s2% chance to reflect Frost spells and effects while active.
-Mage	Frost	Improved Frostbolt	11070	5	0	107	spell_modifier	changes particular spells, not the character sheet	Reduces the casting time of your Frostbolt and Frost Blast spells by $/1000;S1 sec.
-Mage	Frost	Elemental Precision	29438	5	0	107	spell_modifier	changes particular spells, not the character sheet	Improves your chance to hit with Frost and Fire spells by $s1%.
-Mage	Frost	Ice Shards	11207	5	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the critical strike damage bonus of your Frost spells by $s1%.
-Mage	Frost	Permafrost	11175	3	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the duration of your Chill effects by $s1% and reduces the target's speed by an additional $s2%.
-Mage	Frost	Permafrost	11175	3	1	107	spell_modifier	changes particular spells, not the character sheet	Increases the duration of your Chill effects by $s1% and reduces the target's speed by an additional $s2%.
-Mage	Frost	Improved Frost Nova	11165	2	0	107	spell_modifier	changes particular spells, not the character sheet	Reduces the cooldown of your Frost Nova spell by $/1000;s1 sec.
-Mage	Frost	Frostbite	11071	3	0	42	script	implemented in game code; see the tooltip text	Gives your Chill effects a $s1% chance to Freeze the target for $12494d.
-Mage	Frost	Piercing Ice	11151	3	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the damage done by your Frost spells by $s1%.
-Mage	Frost	Piercing Ice	11151	3	1	108	spell_modifier	changes particular spells, not the character sheet	Increases the damage done by your Frost spells by $s1%.
-Mage	Frost	Frost Channeling	11160	3	0	108	spell_modifier	changes particular spells, not the character sheet	Reduces the mana cost of your Frost spells by $s1% and reduces the threat caused by your Frost spells by $s2%.
-Mage	Frost	Ice Lance	1312002	1	0	0	unsupported	no aura (an instant effect)	Deals $s1 Frost damage to an enemy target. Deals $s2% increased damage to Frozen targets.
-Mage	Frost	Ice Lance	1312002	1	1	0	unsupported	no aura (an instant effect)	Deals $s1 Frost damage to an enemy target. Deals $s2% increased damage to Frozen targets.
-Mage	Frost	Ice Lance	1312002	1	2	0	unsupported	no aura (an instant effect)	Deals $s1 Frost damage to an enemy target. Deals $s2% increased damage to Frozen targets.
-Mage	Frost	Ice Lance	1312002	1	3	0	unsupported	no aura (an instant effect)	Deals $s1 Frost damage to an enemy target. Deals $s2% increased damage to Frozen targets.
-Mage	Frost	Improved Blizzard	11185	3	0	4	script	implemented in game code; see the tooltip text	Adds a Chill effect to your Blizzard spell. This effect lowers the target's movement speed by $m1% for $12484d.
-Mage	Frost	Arctic Reach	16757	2	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the range of your Frostbolt, Frost Blast, and Blizzard spells and the radius of your Frost Nova and Cone of Cold spells by $s1%.
-Mage	Frost	Arctic Reach	16757	2	1	108	spell_modifier	changes particular spells, not the character sheet	Increases the range of your Frostbolt, Frost Blast, and Blizzard spells and the radius of your Frost Nova and Cone of Cold spells by $s1%.
-Mage	Frost	Ice Block	11958	1	0	12	unsupported	aura 12 is not decoded yet	You become encased in a block of ice, protecting you from all physical attacks and spells for $d, but during that time you cannot attack, move, or cast spells.
-Mage	Frost	Ice Block	11958	1	1	39	unsupported	aura 39 is not decoded yet	You become encased in a block of ice, protecting you from all physical attacks and spells for $d, but during that time you cannot attack, move, or cast spells.
-Mage	Frost	Ice Block	11958	1	2	39	unsupported	aura 39 is not decoded yet	You become encased in a block of ice, protecting you from all physical attacks and spells for $d, but during that time you cannot attack, move, or cast spells.
-Mage	Frost	Shatter	11170	3	0	4	script	implemented in game code; see the tooltip text	Increases the critical strike chance of all your spells against Frozen targets by $m1%.
-Mage	Frost	Improved Cone of Cold	11190	3	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the damage dealt by your Cone of Cold spell by $s1%.
-Mage	Frost	Cold Snap	12472	1	0	0	unsupported	no aura (an instant effect)	Finishes the remaining cooldown on all your other Frost spells.
-Mage	Frost	Fingers of Frost	400647	2	0	4	script	implemented in game code; see the tooltip text	Gives your Chill effects a $s2% chance to grant you the Fingers of Frost effect, which treats your next $m1 $lspell:spells; cast as if the target were Frozen. Lasts $400669d.
-Mage	Frost	Fingers of Frost	400647	2	1	4	script	implemented in game code; see the tooltip text	Gives your Chill effects a $s2% chance to grant you the Fingers of Frost effect, which treats your next $m1 $lspell:spells; cast as if the target were Frozen. Lasts $400669d.
-Mage	Frost	Winter's Chill	11180	5	0	42	script	implemented in game code; see the tooltip text	Gives your Frost damage spells a $m2% chance to apply the Winter's Chill effect, which increases the damage done by your Cone of Cold spell to the target by $12579s1%, stacking up to $s1 times.
-Mage	Frost	Winter's Chill	11180	5	1	4	script	implemented in game code; see the tooltip text	Gives your Frost damage spells a $m2% chance to apply the Winter's Chill effect, which increases the damage done by your Cone of Cold spell to the target by $12579s1%, stacking up to $s1 times.
-Mage	Frost	Ice Barrier	11426	1	0	69	unsupported	aura 69 is not decoded yet	"Instantly shields you, absorbing $s1 damage. Lasts $d. While the shield holds, your spellcasts will not be interrupted or delayed from taking damage. "
 Paladin	Holy	Healing Light	20237	3	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the amount healed by your Holy Light, Flash of Light, and Holy Shock spells by $s1%.
 Paladin	Holy	Spiritual Focus	20205	2	0	108	spell_modifier	changes particular spells, not the character sheet	Gives your Flash of Light, Holy Light, and Light's Vigil spells a $s1% chance to not lose casting time when you take damage.
 Paladin	Holy	Improved Seals	20224	3	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the damage done by your Seals and Judgements by $s1%.
@@ -300,8 +323,12 @@ Paladin	Retribution	Vindication	9452	3	0	4	script	implemented in game code; see 
 Paladin	Retribution	Vindication	9452	3	1	4	script	implemented in game code; see the tooltip text	Gives your damaging melee attacks a chance to reduce the target's Attack Power by ${$m1/-3*$440667m1}, and increase your Attack Power by $m1% for $440667d.
 Paladin	Retribution	Sanctified Judgement	1311074	3	0	4	script	implemented in game code; see the tooltip text	Gives your Judgement ability a $m1% chance to return $m2% of the Mana cost of the judged seal.
 Paladin	Retribution	Sanctified Judgement	1311074	3	1	4	script	implemented in game code; see the tooltip text	Gives your Judgement ability a $m1% chance to return $m2% of the Mana cost of the judged seal.
-Paladin	Retribution	Seal of Command	20375	1	0	42	script	implemented in game code; see the tooltip text	"Gives the Paladin a chance to deal additional Holy damage equal to $20424s1% of normal weapon damage.  Only one Seal can be active on the Paladin at any one time.  Lasts $d.  Unleashing this Seal's energy will judge an enemy, instantly causing $/2;20467s1 Holy damage, $20467s1 if the target is stunned or incapacitated."
-Paladin	Retribution	Seal of Command	20375	1	2	4	script	implemented in game code; see the tooltip text	"Gives the Paladin a chance to deal additional Holy damage equal to $20424s1% of normal weapon damage.  Only one Seal can be active on the Paladin at any one time.  Lasts $d.  Unleashing this Seal's energy will judge an enemy, instantly causing $/2;20467s1 Holy damage, $20467s1 if the target is stunned or incapacitated."
+Paladin	Retribution	Seal of Command	20375	1	0	42	script	implemented in game code; see the tooltip text	"Gives the Paladin a chance to deal additional Holy damage equal to $20424s1% of normal weapon damage.  Only one Seal can be active on the Paladin at any one time.  Lasts $d.
+
+Unleashing this Seal's energy will judge an enemy, instantly causing $/2;20467s1 Holy damage, $20467s1 if the target is stunned or incapacitated."
+Paladin	Retribution	Seal of Command	20375	1	2	4	script	implemented in game code; see the tooltip text	"Gives the Paladin a chance to deal additional Holy damage equal to $20424s1% of normal weapon damage.  Only one Seal can be active on the Paladin at any one time.  Lasts $d.
+
+Unleashing this Seal's energy will judge an enemy, instantly causing $/2;20467s1 Holy damage, $20467s1 if the target is stunned or incapacitated."
 Paladin	Retribution	Pursuit of Justice	26022	2	0	31	unsupported	aura 31 is not decoded yet	Increases movement speed and mounted movement speed by $s1%.  This does not stack with other movement speed increasing effects.
 Paladin	Retribution	Pursuit of Justice	26022	2	1	172	unsupported	aura 172 is not decoded yet	Increases movement speed and mounted movement speed by $s1%.  This does not stack with other movement speed increasing effects.
 Paladin	Retribution	Eye for an Eye	9799	2	0	4	script	implemented in game code; see the tooltip text	All critical strikes against you cause $s1% of the damage taken to the attacker as well. The damage caused by Eye for an Eye will not exceed 50% of the Paladin's total health.
@@ -334,7 +361,7 @@ Priest	Discipline	Divine Aegis	431622	3	0	4	script	implemented in game code; see
 Priest	Discipline	Divine Aegis	431622	3	1	4	script	implemented in game code; see the tooltip text	Your non-periodic critical heals create a protective shield on the target, absorbing $s1% of the amount healed. Shields up to ${$s2*$pl} damage and lasts $431624d.
 Priest	Discipline	Power Infusion	10060	1	0	136	unsupported	aura 136 is not decoded yet	Infuses the target with power, increasing their spell damage and healing done by $s2% for $d.
 Priest	Discipline	Power Infusion	10060	1	1	79	unsupported	damage done: an ability or form, not a passive talent	Infuses the target with power, increasing their spell damage and healing done by $s2% for $d.
-Priest	Holy	Twilight Focus	14913	3	0	108	spell_modifier	changes particular spells, not the character sheet	Gives you a $s1% chance to avoid interruption caused by damage while casting any spell.
+Priest	Holy	Twilight Focus	14913	3	0	108	spell_modifier	changes particular spells, not the character sheet	Gives your spells a $s1% chance to not lose casting time when you take damage.
 Priest	Holy	Improved Renew	14908	3	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the amount healed by your Renew spell by $s1%.
 Priest	Holy	Holy Specialization	14889	5	0	107	spell_modifier	changes particular spells, not the character sheet	Increases the critical effect chance of your Holy spells by $s1%.
 Priest	Holy	Divine Fury	18530	5	0	107	spell_modifier	changes particular spells, not the character sheet	Reduces the casting time of your Smite, Holy Fire, Heal, and Greater Heal spells by $/1000;S1 sec.
@@ -369,9 +396,18 @@ Priest	Shadow	Dark Inspiration	1326159	5	0	4	script	implemented in game code; se
 Priest	Shadow	Vampiric Embrace	15286	1	0	4	script	implemented in game code; see the tooltip text	Afflicts your target with Shadow energy that causes all party members to be healed for $s1% of any Shadow spell damage you deal for $d.
 Priest	Shadow	Shadow Weaving	15257	3	0	42	script	implemented in game code; see the tooltip text	Your Shadow damage spells have a $s1% chance to increase the Shadow damage the target takes from you by $15258s1% for $15258d, stacking up to $15258u times.
 Priest	Shadow	Silence	15487	1	0	27	unsupported	aura 27 is not decoded yet	Silences the target, preventing them from casting spells for $d and interrupting their spellcasts for $1241057d.
-Priest	Shadow	Devouring Contagion	1309950	2	0	108	spell_modifier	changes particular spells, not the character sheet	"Reduces the mana cost of your Devouring Plague by $s1%.  Targets that die while Devouring Plague is active spreads it, jumping to $s3 nearby enemies within $s2 yds for the remaining duration. "
-Priest	Shadow	Devouring Contagion	1309950	2	1	4	script	implemented in game code; see the tooltip text	"Reduces the mana cost of your Devouring Plague by $s1%.  Targets that die while Devouring Plague is active spreads it, jumping to $s3 nearby enemies within $s2 yds for the remaining duration. "
-Priest	Shadow	Devouring Contagion	1309950	2	2	4	script	implemented in game code; see the tooltip text	"Reduces the mana cost of your Devouring Plague by $s1%.  Targets that die while Devouring Plague is active spreads it, jumping to $s3 nearby enemies within $s2 yds for the remaining duration. "
+Priest	Shadow	Devouring Contagion	1309950	2	0	108	spell_modifier	changes particular spells, not the character sheet	"Reduces the mana cost of your Devouring Plague by $s1%.
+
+Targets that die while Devouring Plague is active spreads it, jumping to $s3 nearby enemies within $s2 yds for the remaining duration.
+"
+Priest	Shadow	Devouring Contagion	1309950	2	1	4	script	implemented in game code; see the tooltip text	"Reduces the mana cost of your Devouring Plague by $s1%.
+
+Targets that die while Devouring Plague is active spreads it, jumping to $s3 nearby enemies within $s2 yds for the remaining duration.
+"
+Priest	Shadow	Devouring Contagion	1309950	2	2	4	script	implemented in game code; see the tooltip text	"Reduces the mana cost of your Devouring Plague by $s1%.
+
+Targets that die while Devouring Plague is active spreads it, jumping to $s3 nearby enemies within $s2 yds for the remaining duration.
+"
 Priest	Shadow	Early Demise	1310076	2	0	4	script	implemented in game code; see the tooltip text	Increases Shadow Word: Death's critical strike chance on targets at or below $s2% health by $s1%.
 Priest	Shadow	Early Demise	1310076	2	1	4	script	implemented in game code; see the tooltip text	Increases Shadow Word: Death's critical strike chance on targets at or below $s2% health by $s1%.
 Priest	Shadow	Shadowform	15473	1	0	36	unsupported	aura 36 is not decoded yet	Assume Shadowform, increasing your Shadow damage by $s2%, reducing the Mana cost of all Shadow spells by $m4%, increasing the critical strike damage bonus of your Shadow spells by $m5%, and reducing Physical damage taken by you by $s3%. However, you may not cast healing spells while in this form.
@@ -402,10 +438,30 @@ Rogue	Assassination	Mutilate	1310707	1	2	0	unsupported	no aura (an instant effec
 Rogue	Assassination	Mutilate	1310707	1	3	0	unsupported	no aura (an instant effect)	Instantly attacks with both weapons for $1310706s2% weapon damage plus an additional ${$1310706m1*$1310706m2/100} with each weapon. Damage increased by $m4% against Poisoned targets. Awards $m1 Combo $LPoint:Points;.
 Rogue	Assassination	Improved Kidney Shot	14174	2	0	107	spell_modifier	changes particular spells, not the character sheet	Enemies Stunned by your Kidney Shot ability take $s1% increased damage from your poisons and attacks.
 Rogue	Assassination	Seal Fate	14186	5	0	4	script	implemented in game code; see the tooltip text	Your critical strikes from abilities that add Combo Points have a $m1% chance to add an additional Combo Point.
-Rogue	Assassination	Venom	1310703	1	0	0	unsupported	no aura (an instant effect)	"Finishing move that increases the damage of your Poisons by $m2% and your chance to apply Poisons by $m4%. Lasts longer per combo point:    1 point  : 9 sec    2 points: 12 sec    3 points: 15 sec    4 points: 18 sec    5 points: 21 sec"
-Rogue	Assassination	Venom	1310703	1	1	108	spell_modifier	changes particular spells, not the character sheet	"Finishing move that increases the damage of your Poisons by $m2% and your chance to apply Poisons by $m4%. Lasts longer per combo point:    1 point  : 9 sec    2 points: 12 sec    3 points: 15 sec    4 points: 18 sec    5 points: 21 sec"
-Rogue	Assassination	Venom	1310703	1	2	108	spell_modifier	changes particular spells, not the character sheet	"Finishing move that increases the damage of your Poisons by $m2% and your chance to apply Poisons by $m4%. Lasts longer per combo point:    1 point  : 9 sec    2 points: 12 sec    3 points: 15 sec    4 points: 18 sec    5 points: 21 sec"
-Rogue	Assassination	Venom	1310703	1	3	107	spell_modifier	changes particular spells, not the character sheet	"Finishing move that increases the damage of your Poisons by $m2% and your chance to apply Poisons by $m4%. Lasts longer per combo point:    1 point  : 9 sec    2 points: 12 sec    3 points: 15 sec    4 points: 18 sec    5 points: 21 sec"
+Rogue	Assassination	Venom	1310703	1	0	0	unsupported	no aura (an instant effect)	"Finishing move that increases the damage of your Poisons by $m2% and your chance to apply Poisons by $m4%. Lasts longer per combo point:
+   1 point  : 9 sec
+   2 points: 12 sec
+   3 points: 15 sec
+   4 points: 18 sec
+   5 points: 21 sec"
+Rogue	Assassination	Venom	1310703	1	1	108	spell_modifier	changes particular spells, not the character sheet	"Finishing move that increases the damage of your Poisons by $m2% and your chance to apply Poisons by $m4%. Lasts longer per combo point:
+   1 point  : 9 sec
+   2 points: 12 sec
+   3 points: 15 sec
+   4 points: 18 sec
+   5 points: 21 sec"
+Rogue	Assassination	Venom	1310703	1	2	108	spell_modifier	changes particular spells, not the character sheet	"Finishing move that increases the damage of your Poisons by $m2% and your chance to apply Poisons by $m4%. Lasts longer per combo point:
+   1 point  : 9 sec
+   2 points: 12 sec
+   3 points: 15 sec
+   4 points: 18 sec
+   5 points: 21 sec"
+Rogue	Assassination	Venom	1310703	1	3	107	spell_modifier	changes particular spells, not the character sheet	"Finishing move that increases the damage of your Poisons by $m2% and your chance to apply Poisons by $m4%. Lasts longer per combo point:
+   1 point  : 9 sec
+   2 points: 12 sec
+   3 points: 15 sec
+   4 points: 18 sec
+   5 points: 21 sec"
 Rogue	Combat	Improved Eviscerate	14162	3	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the damage done by your Eviscerate ability by $m1%.
 Rogue	Combat	Improved Sinister Strike	13732	2	0	107	spell_modifier	changes particular spells, not the character sheet	Reduces the Energy cost of your Sinister Strike ability by $s1.
 Rogue	Combat	Puncturing Wounds	1224716	3	0	107	spell_modifier	changes particular spells, not the character sheet	Increases the critical strike chance of your Backstab by $m1% and your Mutilate by $m3%, and gives Backstab a $m2% chance to add an additional Combo Point.
@@ -419,9 +475,42 @@ Rogue	Combat	Improved Kick	13754	2	0	42	script	implemented in game code; see the
 Rogue	Combat	Flawless Execution	1310711	1	0	107	spell_modifier	changes particular spells, not the character sheet	Reduces the Energy cost of your Eviscerate ability by $m1.
 Rogue	Combat	Dual Wield Specialization	13715	5	0	122	unsupported	aura 122 is not decoded yet	Increases the damage done by your off-hand weapon by $s1%.
 Rogue	Combat	Blade Flurry	13877	1	0	319	unsupported	aura 319 is not decoded yet	Increases your melee attack speed by $s1% and your melee attacks strike an additional nearby opponent. Lasts $d.
-Rogue	Combat	Hack and Slash	13960	5	0	4	script	implemented in game code; see the tooltip text	"Gives your melee weapon attacks a benefit depending on the weapon.      |CFFFFFFFFAxe/Sword:|R Your successful     melee attacks have a $s3% chance     to trigger an extra attack on the      target.      |CFFFFFFFFDagger/Fist:|R Increases your     critical strike chance by $s1%.      |CFFFFFFFFMace:|R Your attacks ignore $s2% of     your target's armor."
-Rogue	Combat	Hack and Slash	13960	5	1	4	script	implemented in game code; see the tooltip text	"Gives your melee weapon attacks a benefit depending on the weapon.      |CFFFFFFFFAxe/Sword:|R Your successful     melee attacks have a $s3% chance     to trigger an extra attack on the      target.      |CFFFFFFFFDagger/Fist:|R Increases your     critical strike chance by $s1%.      |CFFFFFFFFMace:|R Your attacks ignore $s2% of     your target's armor."
-Rogue	Combat	Hack and Slash	13960	5	2	4	script	implemented in game code; see the tooltip text	"Gives your melee weapon attacks a benefit depending on the weapon.      |CFFFFFFFFAxe/Sword:|R Your successful     melee attacks have a $s3% chance     to trigger an extra attack on the      target.      |CFFFFFFFFDagger/Fist:|R Increases your     critical strike chance by $s1%.      |CFFFFFFFFMace:|R Your attacks ignore $s2% of     your target's armor."
+Rogue	Combat	Hack and Slash	13960	5	0	4	script	implemented in game code; see the tooltip text	"Gives your melee weapon attacks a benefit depending on the weapon.
+
+    |CFFFFFFFFAxe/Sword:|R Your successful
+    melee attacks have a $s3% chance
+    to trigger an extra attack on the 
+    target.
+
+    |CFFFFFFFFDagger/Fist:|R Increases your
+    critical strike chance by $s1%.
+
+    |CFFFFFFFFMace:|R Your attacks ignore $s2% of
+    your target's armor."
+Rogue	Combat	Hack and Slash	13960	5	1	4	script	implemented in game code; see the tooltip text	"Gives your melee weapon attacks a benefit depending on the weapon.
+
+    |CFFFFFFFFAxe/Sword:|R Your successful
+    melee attacks have a $s3% chance
+    to trigger an extra attack on the 
+    target.
+
+    |CFFFFFFFFDagger/Fist:|R Increases your
+    critical strike chance by $s1%.
+
+    |CFFFFFFFFMace:|R Your attacks ignore $s2% of
+    your target's armor."
+Rogue	Combat	Hack and Slash	13960	5	2	4	script	implemented in game code; see the tooltip text	"Gives your melee weapon attacks a benefit depending on the weapon.
+
+    |CFFFFFFFFAxe/Sword:|R Your successful
+    melee attacks have a $s3% chance
+    to trigger an extra attack on the 
+    target.
+
+    |CFFFFFFFFDagger/Fist:|R Increases your
+    critical strike chance by $s1%.
+
+    |CFFFFFFFFMace:|R Your attacks ignore $s2% of
+    your target's armor."
 Rogue	Combat	Weapon Expertise	30919	2	0	240	unsupported	aura 240 is not decoded yet	Reduces the chance for your attacks to be Dodged or Parried by $m1%.
 Rogue	Combat	Aggression	18427	3	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the damage of your Sinister Strike, Backstab, and Eviscerate abilities by $s1%.
 Rogue	Combat	Adrenaline Rush	13750	1	0	110	unsupported	aura 110 is not decoded yet	Increases your Energy regeneration rate by $s1% for $d.
@@ -468,18 +557,19 @@ Shaman	Elemental	Elemental Alacrity	16578	3	0	107	spell_modifier	changes particu
 Shaman	Elemental	Call of Flame	16038	3	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the damage done by your Fire Totems and by your Flame Shock, Fire Nova, and Lava Burst spells by $m1%, as well as increases the duration of your Flame Shock spell by ${$m3/1000} sec.
 Shaman	Elemental	Call of Flame	16038	3	1	108	spell_modifier	changes particular spells, not the character sheet	Increases the damage done by your Fire Totems and by your Flame Shock, Fire Nova, and Lava Burst spells by $m1%, as well as increases the duration of your Flame Shock spell by ${$m3/1000} sec.
 Shaman	Elemental	Call of Flame	16038	3	2	107	spell_modifier	changes particular spells, not the character sheet	Increases the damage done by your Fire Totems and by your Flame Shock, Fire Nova, and Lava Burst spells by $m1%, as well as increases the duration of your Flame Shock spell by ${$m3/1000} sec.
-Shaman	Elemental	Elemental Focus	16164	1	0	42	script	implemented in game code; see the tooltip text	Gives you a $h% chance to enter a Clearcasting state after casting any Fire, Frost, or Nature damage spell.  The Clearcasting state reduces the mana cost of your next damage spell by $16246s1%.
+Shaman	Elemental	Elemental Focus	16164	1	0	42	script	implemented in game code; see the tooltip text	Gives you a $s1% chance to enter a Clearcasting state after casting any Fire, Frost, or Nature damage spell.  The Clearcasting state reduces the mana cost of your next damage spell by $16246s1%.
 Shaman	Elemental	Trial by Fire	16086	2	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the damage done by your Fire Nova spell by $m1% and reduces its cooldown by ${$m2/-1000} sec, and increases the duration of your Magma Totem by ${$m3/1000} sec.
 Shaman	Elemental	Trial by Fire	16086	2	1	107	spell_modifier	changes particular spells, not the character sheet	Increases the damage done by your Fire Nova spell by $m1% and reduces its cooldown by ${$m2/-1000} sec, and increases the duration of your Magma Totem by ${$m3/1000} sec.
 Shaman	Elemental	Trial by Fire	16086	2	2	107	spell_modifier	changes particular spells, not the character sheet	Increases the damage done by your Fire Nova spell by $m1% and reduces its cooldown by ${$m2/-1000} sec, and increases the duration of your Magma Totem by ${$m3/1000} sec.
-Shaman	Elemental	Eye of the Storm	29062	3	0	108	spell_modifier	changes particular spells, not the character sheet	Reduces the pushback suffered from damaging attacks while casting Lightning Bolt, Chain Lightning, and Lava Burst by $m1%.
+Shaman	Elemental	Eye of the Storm	29062	3	0	108	spell_modifier	changes particular spells, not the character sheet	Gives your Lightning Bolt, Chain Lightning, and Lava Burst spells a $m1% chance to not lose casting time when you take damage.
 Shaman	Elemental	Earthbound	1222988	1	0	4	script	implemented in game code; see the tooltip text	Your Earthbind Totem Immobilizes nearby targets for $1238289d when cast.
 Shaman	Elemental	Elemental Reach	28999	2	0	107	spell_modifier	changes particular spells, not the character sheet	Increases the range of your Lightning Bolt, Chain Lightning, Fire Nova, and Lava Burst spells by $m1 yards and reduces the cooldown of Totemic Projection by ${$m3/-1000} sec.
 Shaman	Elemental	Elemental Reach	28999	2	1	4	script	implemented in game code; see the tooltip text	Increases the range of your Lightning Bolt, Chain Lightning, Fire Nova, and Lava Burst spells by $m1 yards and reduces the cooldown of Totemic Projection by ${$m3/-1000} sec.
 Shaman	Elemental	Elemental Reach	28999	2	2	107	spell_modifier	changes particular spells, not the character sheet	Increases the range of your Lightning Bolt, Chain Lightning, Fire Nova, and Lava Burst spells by $m1 yards and reduces the cooldown of Totemic Projection by ${$m3/-1000} sec.
 Shaman	Elemental	Lava Burst	408490	1	0	0	unsupported	no aura (an instant effect)	You hurl molten lava at the target, dealing $s1 Fire damage. If your Flame Shock is on the target, Lava Burst deals $s2% increased damage.
 Shaman	Elemental	Lava Burst	408490	1	1	0	unsupported	no aura (an instant effect)	You hurl molten lava at the target, dealing $s1 Fire damage. If your Flame Shock is on the target, Lava Burst deals $s2% increased damage.
-Shaman	Elemental	Lightning Overload	408438	3	0	4	script	implemented in game code; see the tooltip text	"Gives your Lightning Bolt and Chain Lightning spells a $m1% chance to cast a second, similar spell on the same target at no additional cost that causes half damage and no threat. "
+Shaman	Elemental	Lightning Overload	408438	3	0	4	script	implemented in game code; see the tooltip text	"Gives your Lightning Bolt and Chain Lightning spells a $m1% chance to cast a second, similar spell on the same target at no additional cost that causes half damage and no threat.
+"
 Shaman	Elemental	Elemental Fury	16089	5	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the critical strike damage bonus of your Searing and Magma Totems and your Fire, Frost, and Nature spells by $m1%.
 Shaman	Elemental	Elemental Mastery	16166	1	0	107	spell_modifier	changes particular spells, not the character sheet	Gain mastery over Fire and Lightning, reducing the cast time of Lightning Bolt and Lava Burst by ${$m1/-1000}.1 sec, and removing the cooldown from Chain Lightning. Lasts $d.
 Shaman	Elemental	Elemental Mastery	16166	1	1	108	spell_modifier	changes particular spells, not the character sheet	Gain mastery over Fire and Lightning, reducing the cast time of Lightning Bolt and Lava Burst by ${$m1/-1000}.1 sec, and removing the cooldown from Chain Lightning. Lasts $d.
@@ -517,9 +607,13 @@ Shaman	Restoration	Improved Reincarnation	16184	2	0	107	spell_modifier	changes p
 Shaman	Restoration	Improved Reincarnation	16184	2	1	133	unsupported	aura 133 is not decoded yet	Reduces the cooldown of your Reincarnation spell by ${$m1/-60000} min, increases your maximum health by $m2%, and increases the amount of health and Mana you reincarnate with by an additional $m3%.
 Shaman	Restoration	Improved Reincarnation	16184	2	2	107	spell_modifier	changes particular spells, not the character sheet	Reduces the cooldown of your Reincarnation spell by ${$m1/-60000} min, increases your maximum health by $m2%, and increases the amount of health and Mana you reincarnate with by an additional $m3%.
 Shaman	Restoration	Ancestral Healing	16176	3	0	4	script	implemented in game code; see the tooltip text	Increases your target's armor value by $m1% for $16177d after getting a critical effect from one of your healing spells.
-Shaman	Restoration	Healing Focus	16181	3	0	108	spell_modifier	changes particular spells, not the character sheet	Gives you a $m1% chance to avoid interruption caused by damage while casting any healing spell.
-Shaman	Restoration	Water Shield	408510	1	0	42	script	implemented in game code; see the tooltip text	"The caster is surrounded by $n globes of water. When a spell, melee, or ranged attack hits the caster or when one of the caster's spells gets a critical result, $408511s1% of maximum mana is restored to the caster, expending one water globe. Only one globe will activate every few seconds.  Lasts $d.  Only one Elemental Shield can be active on the Shaman at any one time."
-Shaman	Restoration	Water Shield	408510	1	1	4	script	implemented in game code; see the tooltip text	"The caster is surrounded by $n globes of water. When a spell, melee, or ranged attack hits the caster or when one of the caster's spells gets a critical result, $408511s1% of maximum mana is restored to the caster, expending one water globe. Only one globe will activate every few seconds.  Lasts $d.  Only one Elemental Shield can be active on the Shaman at any one time."
+Shaman	Restoration	Healing Focus	16181	3	0	108	spell_modifier	changes particular spells, not the character sheet	Gives your healing spells a $m1% chance to not lose casting time when you take damage.
+Shaman	Restoration	Water Shield	408510	1	0	42	script	implemented in game code; see the tooltip text	"The caster is surrounded by $n globes of water. When a spell, melee, or ranged attack hits the caster or when one of the caster's spells gets a critical result, $408511s1% of maximum mana is restored to the caster, expending one water globe. Only one globe will activate every few seconds.  Lasts $d.
+
+Only one Elemental Shield can be active on the Shaman at any one time."
+Shaman	Restoration	Water Shield	408510	1	1	4	script	implemented in game code; see the tooltip text	"The caster is surrounded by $n globes of water. When a spell, melee, or ranged attack hits the caster or when one of the caster's spells gets a critical result, $408511s1% of maximum mana is restored to the caster, expending one water globe. Only one globe will activate every few seconds.  Lasts $d.
+
+Only one Elemental Shield can be active on the Shaman at any one time."
 Shaman	Restoration	Tidal Mastery	16194	5	0	107	spell_modifier	changes particular spells, not the character sheet	Increases the critical effect chance of your healing spells by $m1%.
 Shaman	Restoration	Restorative Totems	16187	5	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the effect of your Mana Spring Totem by $m1% and increases the effect of your Healing Stream Totem by $m2%.
 Shaman	Restoration	Restorative Totems	16187	5	1	108	spell_modifier	changes particular spells, not the character sheet	Increases the effect of your Mana Spring Totem by $m1% and increases the effect of your Healing Stream Totem by $m2%.
@@ -539,8 +633,9 @@ Warlock	Affliction	Soul Harvest	437032	2	0	4	script	implemented in game code; se
 Warlock	Affliction	Soul Harvest	437032	2	1	4	script	implemented in game code; see the tooltip text	Killing a non-trivial target afflicted by your Drain Soul increases your Mana regeneration by $m1% for $1242853d and allows $m2% of normal Mana regeneration to continue while casting.
 Warlock	Affliction	Improved Drains	403511	3	0	108	spell_modifier	changes particular spells, not the character sheet	Increases health drained or damage done by your Drain Life, Drain Soul, and Wrack spells by $m1%.
 Warlock	Affliction	Amplify Curse	18288	1	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the effect of your next Curse of Weakness or Bane of Agony by $s1%, or your next Curse of Exhaustion by $s2%.  Lasts $d.
+Warlock	Affliction	Amplify Curse	18288	1	1	107	spell_modifier	changes particular spells, not the character sheet	Increases the effect of your next Curse of Weakness or Bane of Agony by $s1%, or your next Curse of Exhaustion by $s2%.  Lasts $d.
 Warlock	Affliction	Improved Bane of Agony	18827	2	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the damage done by your Bane of Agony by $s1%.
-Warlock	Affliction	Fel Concentration	17783	3	0	108	spell_modifier	changes particular spells, not the character sheet	Gives you a $s1% chance to avoid interruption caused by damage while channeling or casting your Drain Life, Drain Mana, Drain Soul, or Wrack spells.
+Warlock	Affliction	Fel Concentration	17783	3	0	108	spell_modifier	changes particular spells, not the character sheet	Gives your Drain Life, Drain Mana, Drain Soul, and Wrack spells a $s1% chance to not lose casting time when you take damage.
 Warlock	Affliction	Pandemic	427712	3	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the critical strike damage bonus of your Corruption, Bane of Agony, Bane of Doom, Drain Soul, Drain Life, Siphon Life, and Wrack spells by $m1%.
 Warlock	Affliction	Malevolence	1310949	5	0	107	spell_modifier	changes particular spells, not the character sheet	Increases the critical effect chance of your Shadow spells by $s1%.
 Warlock	Affliction	Nightfall	18094	2	0	4	script	implemented in game code; see the tooltip text	Gives your Corruption, Drain Soul, Drain Life, and Wrack spells a $m1% chance to cause you to enter a Shadow Trance after damaging the opponent. The Shadow Trance reduces the casting time of your next Shadow Bolt spell by $17941s1%.
@@ -567,7 +662,15 @@ Warlock	Demonology	Demonic Energies	1225214	2	0	4	script	implemented in game cod
 Warlock	Demonology	Demonic Energies	1225214	2	1	4	script	implemented in game code; see the tooltip text	You heal your pet for $s1% of all spell damage you deal. When you gain Mana from Life Tap, your summoned demon gains $m2% of the Mana you gain.
 Warlock	Demonology	Improved Sayaad	18754	3	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the effect of your Succubus' and Incubus' Lash of Pain and Soothing Kiss spells by $s1%, and increases the duration of your Succubus' and Incubus' Seduction and Lesser Invisibility spells by $s2%.
 Warlock	Demonology	Improved Sayaad	18754	3	1	108	spell_modifier	changes particular spells, not the character sheet	Increases the effect of your Succubus' and Incubus' Lash of Pain and Soothing Kiss spells by $s1%, and increases the duration of your Succubus' and Incubus' Seduction and Lesser Invisibility spells by $s2%.
-Warlock	Demonology	Demonic Sacrifice	18788	1	0	0	unsupported	no aura (an instant effect)	"When activated, sacrifices your summoned Demon to enhance the opposing aspect of your power, granting you an effect that lasts $18789d. The effect is canceled if any Demon is summoned.  Imp: Increases your Shadow damage by $18789s1%.  Voidwalker: Restores $18792s1% of your total Mana every $18792t1 sec.  Succubus/Incubus: Increases your Fire damage by $18791s1%.  Felhunter: Restores $18790s1% of your total Health every $18790t1 sec."
+Warlock	Demonology	Demonic Sacrifice	18788	1	0	0	unsupported	no aura (an instant effect)	"When activated, sacrifices your summoned Demon to enhance the opposing aspect of your power, granting you an effect that lasts $18789d. The effect is canceled if any Demon is summoned.
+
+Imp: Increases your Shadow damage by $18789s1%.
+
+Voidwalker: Restores $18792s1% of your total Mana every $18792t1 sec.
+
+Succubus/Incubus: Increases your Fire damage by $18791s1%.
+
+Felhunter: Restores $18790s1% of your total Health every $18790t1 sec."
 Warlock	Demonology	Master Summoner	18709	2	0	107	spell_modifier	changes particular spells, not the character sheet	Reduces the casting time of your Imp, Voidwalker, Succubus, Incubus, and Felhunter Summoning spells by $/1000;s1 sec and the Mana cost by $s2%.
 Warlock	Demonology	Master Summoner	18709	2	1	108	spell_modifier	changes particular spells, not the character sheet	Reduces the casting time of your Imp, Voidwalker, Succubus, Incubus, and Felhunter Summoning spells by $/1000;s1 sec and the Mana cost by $s2%.
 Warlock	Demonology	Decimation	440870	2	0	4	script	implemented in game code; see the tooltip text	Reduces the cooldown of your Soul Fire spell by $m2%. When you cast Shadow Bolt or Searing Pain on an enemy below $m3% health, they deal $m4% increased damage, and for the next $440873d your Soul Fire spell has its cast time reduced by $m1% and costs no Soul Shards.
@@ -582,11 +685,44 @@ Warlock	Demonology	Improved Felhunter	1225217	3	0	108	spell_modifier	changes par
 Warlock	Demonology	Improved Felhunter	1225217	3	1	107	spell_modifier	changes particular spells, not the character sheet	Increases the Attack Power reduction of your Felhunter's Tainted Blood, the healing of its Devour Magic, and the detection level of its Paranoia by $s1%, and reduces the cooldown of its Spell Lock by ${$m2/-1000} sec.
 Warlock	Demonology	Soul Link	19028	1	0	0	unsupported	no aura (an instant effect)	When active, $18814s1% of all damage taken by the caster is taken by your Imp, Voidwalker, Succubus, Incubus, or Felhunter Demon instead. In addition, both the Demon and the master will inflict $25228s1% more damage. Lasts as long as the Demon is active.
 Warlock	Demonology	Demonic Knowledge	412732	3	0	4	script	implemented in game code; see the tooltip text	Increases your spell damage and your Demon pet's spell damage by up to $s1% of your level while you have a summoned Demon pet active.
-Warlock	Demonology	Master Demonologist	23785	5	0	4	script	implemented in game code; see the tooltip text	"Grants both the Warlock and the summoned demon an effect as long as that demon is active.  Imp - Increases Fire damage done by $m1%.  Voidwalker - Reduces Physical damage taken by $m2%.  Succubus/Incubus - Increases Shadow damage done by $m3%.  Felhunter - Reduces Magic damage taken by $m4%."
-Warlock	Demonology	Master Demonologist	23785	5	1	4	script	implemented in game code; see the tooltip text	"Grants both the Warlock and the summoned demon an effect as long as that demon is active.  Imp - Increases Fire damage done by $m1%.  Voidwalker - Reduces Physical damage taken by $m2%.  Succubus/Incubus - Increases Shadow damage done by $m3%.  Felhunter - Reduces Magic damage taken by $m4%."
-Warlock	Demonology	Master Demonologist	23785	5	2	4	script	implemented in game code; see the tooltip text	"Grants both the Warlock and the summoned demon an effect as long as that demon is active.  Imp - Increases Fire damage done by $m1%.  Voidwalker - Reduces Physical damage taken by $m2%.  Succubus/Incubus - Increases Shadow damage done by $m3%.  Felhunter - Reduces Magic damage taken by $m4%."
-Warlock	Demonology	Master Demonologist	23785	5	3	4	script	implemented in game code; see the tooltip text	"Grants both the Warlock and the summoned demon an effect as long as that demon is active.  Imp - Increases Fire damage done by $m1%.  Voidwalker - Reduces Physical damage taken by $m2%.  Succubus/Incubus - Increases Shadow damage done by $m3%.  Felhunter - Reduces Magic damage taken by $m4%."
-Warlock	Demonology	Demonic Pact	425464	1	0	4	script	implemented in game code; see the tooltip text	"Your Demonic Sacrifice effect is no longer cancelled by summoning a different Demon pet. Resummoning the sacrificed pet will still cancel the effect. "
+Warlock	Demonology	Master Demonologist	23785	5	0	4	script	implemented in game code; see the tooltip text	"Grants both the Warlock and the summoned demon an effect as long as that demon is active.
+
+Imp - Increases Fire damage done by $m1%.
+
+Voidwalker - Reduces Physical damage taken by $m2%.
+
+Succubus/Incubus - Increases Shadow damage done by $m3%.
+
+Felhunter - Reduces Magic damage taken by $m4%."
+Warlock	Demonology	Master Demonologist	23785	5	1	4	script	implemented in game code; see the tooltip text	"Grants both the Warlock and the summoned demon an effect as long as that demon is active.
+
+Imp - Increases Fire damage done by $m1%.
+
+Voidwalker - Reduces Physical damage taken by $m2%.
+
+Succubus/Incubus - Increases Shadow damage done by $m3%.
+
+Felhunter - Reduces Magic damage taken by $m4%."
+Warlock	Demonology	Master Demonologist	23785	5	2	4	script	implemented in game code; see the tooltip text	"Grants both the Warlock and the summoned demon an effect as long as that demon is active.
+
+Imp - Increases Fire damage done by $m1%.
+
+Voidwalker - Reduces Physical damage taken by $m2%.
+
+Succubus/Incubus - Increases Shadow damage done by $m3%.
+
+Felhunter - Reduces Magic damage taken by $m4%."
+Warlock	Demonology	Master Demonologist	23785	5	3	4	script	implemented in game code; see the tooltip text	"Grants both the Warlock and the summoned demon an effect as long as that demon is active.
+
+Imp - Increases Fire damage done by $m1%.
+
+Voidwalker - Reduces Physical damage taken by $m2%.
+
+Succubus/Incubus - Increases Shadow damage done by $m3%.
+
+Felhunter - Reduces Magic damage taken by $m4%."
+Warlock	Demonology	Demonic Pact	425464	1	0	4	script	implemented in game code; see the tooltip text	"Your Demonic Sacrifice effect is no longer cancelled by summoning a different Demon pet. Resummoning the sacrificed pet will still cancel the effect.
+"
 Warlock	Destruction	Destructive Reach	17917	2	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the range of your Destruction spells by $s1%.
 Warlock	Destruction	Improved Shadow Bolt	17793	5	0	4	script	implemented in game code; see the tooltip text	Your Shadow Bolt critical strikes increase Shadow damage taken by the target from your attacks by $m1% for $17794d.
 Warlock	Destruction	Bane	17788	5	0	107	spell_modifier	changes particular spells, not the character sheet	Reduces the casting time of your Shadow Bolt, Immolate, and Incinerate spells by $/1000;S1 sec and your Soul Fire spell by $/1000;S2 sec.
@@ -597,7 +733,7 @@ Warlock	Destruction	Aftermath	18119	5	1	108	spell_modifier	changes particular sp
 Warlock	Destruction	Ruin	17959	5	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the critical strike damage bonus of your Destruction spells by $s1%.
 Warlock	Destruction	Shadowburn	17877	1	0	86	unsupported	aura 86 is not decoded yet	Instantly blasts the target for $s2 Shadow damage.  If a non-trivial target dies within $d of being hit with Shadowburn, the caster gains a Soul Shard.
 Warlock	Destruction	Shadowburn	17877	1	1	0	unsupported	no aura (an instant effect)	Instantly blasts the target for $s2 Shadow damage.  If a non-trivial target dies within $d of being hit with Shadowburn, the caster gains a Soul Shard.
-Warlock	Destruction	Intensity	18135	3	0	108	spell_modifier	changes particular spells, not the character sheet	Gives you a $s1% chance to resist interruption caused by damage while casting or channeling any Destruction spell.
+Warlock	Destruction	Intensity	18135	3	0	108	spell_modifier	changes particular spells, not the character sheet	Gives your Destruction spells a $s1% chance to not lose casting time when you take damage.
 Warlock	Destruction	Agonizing Flames	17927	3	0	107	spell_modifier	changes particular spells, not the character sheet	Increases the critical strike chance of your Searing Pain spell by $m1% and the damage done by all your Destruction spells by $m2%.
 Warlock	Destruction	Agonizing Flames	17927	3	1	108	spell_modifier	changes particular spells, not the character sheet	Increases the critical strike chance of your Searing Pain spell by $m1% and the damage done by all your Destruction spells by $m2%.
 Warlock	Destruction	Agonizing Flames	17927	3	2	108	spell_modifier	changes particular spells, not the character sheet	Increases the critical strike chance of your Searing Pain spell by $m1% and the damage done by all your Destruction spells by $m2%.
@@ -630,9 +766,42 @@ Warrior	Arms	Two-Handed Weapon Specialization	12163	3	0	79	unsupported	damage do
 Warrior	Arms	Impale	16493	2	0	108	spell_modifier	changes particular spells, not the character sheet	Increases the critical strike damage bonus of your abilities by $s1%.
 Warrior	Arms	Bloodthrill	1289682	5	0	42	script	implemented in game code; see the tooltip text	Grants your Main Hand melee attacks against enemies afflicted by your Rend a $s1% chance to allow an activation of Overpower.
 Warrior	Arms	Sweeping Strikes	12292	1	0	4	script	implemented in game code; see the tooltip text	Your next $n melee attacks strike an additional nearby opponent.
-Warrior	Arms	Weaponmaster	1290261	5	0	4	script	implemented in game code; see the tooltip text	"Gives your melee weapon attacks a benefit depending on the weapon.      |CFFFFFFFFAxe/Polearm:|R Increases your     critical strike chance by $s1%.      |CFFFFFFFFMace/Staff:|R Your attacks ignore     $s2% of your target's armor.      |CFFFFFFFFSword:|R Your successful melee      attacks have a $s3% chance to      trigger an extra attack on the      target."
-Warrior	Arms	Weaponmaster	1290261	5	1	4	script	implemented in game code; see the tooltip text	"Gives your melee weapon attacks a benefit depending on the weapon.      |CFFFFFFFFAxe/Polearm:|R Increases your     critical strike chance by $s1%.      |CFFFFFFFFMace/Staff:|R Your attacks ignore     $s2% of your target's armor.      |CFFFFFFFFSword:|R Your successful melee      attacks have a $s3% chance to      trigger an extra attack on the      target."
-Warrior	Arms	Weaponmaster	1290261	5	2	4	script	implemented in game code; see the tooltip text	"Gives your melee weapon attacks a benefit depending on the weapon.      |CFFFFFFFFAxe/Polearm:|R Increases your     critical strike chance by $s1%.      |CFFFFFFFFMace/Staff:|R Your attacks ignore     $s2% of your target's armor.      |CFFFFFFFFSword:|R Your successful melee      attacks have a $s3% chance to      trigger an extra attack on the      target."
+Warrior	Arms	Weaponmaster	1290261	5	0	4	script	implemented in game code; see the tooltip text	"Gives your melee weapon attacks a benefit depending on the weapon.
+
+    |CFFFFFFFFAxe/Polearm:|R Increases your
+    critical strike chance by $s1%.
+
+    |CFFFFFFFFMace/Staff:|R Your attacks ignore
+    $s2% of your target's armor.
+
+    |CFFFFFFFFSword:|R Your successful melee 
+    attacks have a $s3% chance to 
+    trigger an extra attack on the 
+    target."
+Warrior	Arms	Weaponmaster	1290261	5	1	4	script	implemented in game code; see the tooltip text	"Gives your melee weapon attacks a benefit depending on the weapon.
+
+    |CFFFFFFFFAxe/Polearm:|R Increases your
+    critical strike chance by $s1%.
+
+    |CFFFFFFFFMace/Staff:|R Your attacks ignore
+    $s2% of your target's armor.
+
+    |CFFFFFFFFSword:|R Your successful melee 
+    attacks have a $s3% chance to 
+    trigger an extra attack on the 
+    target."
+Warrior	Arms	Weaponmaster	1290261	5	2	4	script	implemented in game code; see the tooltip text	"Gives your melee weapon attacks a benefit depending on the weapon.
+
+    |CFFFFFFFFAxe/Polearm:|R Increases your
+    critical strike chance by $s1%.
+
+    |CFFFFFFFFMace/Staff:|R Your attacks ignore
+    $s2% of your target's armor.
+
+    |CFFFFFFFFSword:|R Your successful melee 
+    attacks have a $s3% chance to 
+    trigger an extra attack on the 
+    target."
 Warrior	Arms	Improved Slam	12862	2	0	107	spell_modifier	changes particular spells, not the character sheet	Reduces the global cooldown and cast time of your Slam ability by ${$m1/-1000}.2 sec. In addition, Slam no longer interrupts or delays your melee swing and Slam's cooldown is reduced by ${$m3/-1000}.1 sec.
 Warrior	Arms	Improved Slam	12862	2	1	107	spell_modifier	changes particular spells, not the character sheet	Reduces the global cooldown and cast time of your Slam ability by ${$m1/-1000}.2 sec. In addition, Slam no longer interrupts or delays your melee swing and Slam's cooldown is reduced by ${$m3/-1000}.1 sec.
 Warrior	Arms	Improved Slam	12862	2	2	107	spell_modifier	changes particular spells, not the character sheet	Reduces the global cooldown and cast time of your Slam ability by ${$m1/-1000}.2 sec. In addition, Slam no longer interrupts or delays your melee swing and Slam's cooldown is reduced by ${$m3/-1000}.1 sec.

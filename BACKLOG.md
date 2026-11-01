@@ -25,7 +25,7 @@ Principles that apply to everything below: data-driven, versioned, traceable, ne
 
 ## Modelling more talents  [offline]
 
-The full list is `docs/unmodelled_effects.tsv` (regenerate it after each change). Of 469 talents, 41 are fully modelled and 18 partly (2026-11-01). What is left, by type:
+The full list is `docs/unmodelled_effects.tsv` (regenerate it after each change and each new build: `python -m wowcalc.talentinfo unmodelled --out docs/unmodelled_effects.tsv`). Of 467 talents, 43 are fully modelled and 17 partly (build 1.60.1.70707, 2026-11-01). What is left, by type:
 
 - [ ] Auras decoded for the sheet but still conditional: 54, 290, 55, 49, 47, 51 (abilities with a duration, a single form).
 - [ ] Undecoded auras: 77 (16, forms and abilities: Moonkin Form, Berserk, Bestial Wrath), 332 (10, single spells: Improved Slam, Improved Ghost Wolf), 33 (4, effects on the enemy such as Mind Flay's slow; relabel them as such). Read the tooltips first; never assume the meaning from the aura number.
@@ -63,7 +63,6 @@ Goal: less code saying the same thing, with no loss of coverage of real behaviou
 ## Data upkeep  [offline]
 
 - [ ] Builds come from Blizzard's `wowf` product (WoW Forever's own). Until 2026-11-01 the calculator tracked `wow_classic_beta`, which stopped at 1.60.1.70532 on 2026-10-22 while `wowf` moved on (70707 on 2026-10-30). If updates ever stop again, compare the products on https://wago.tools/api/builds.
-- [ ] `docs/unmodelled_effects.tsv` is still from 1.60.1.70532 and has no generator; add one (`python -m wowcalc.talentinfo` is the natural home) and regenerate it for 1.60.1.70707 (Mage rework: Accelerant, Precision, removed Piercing Ice and Arcane Focus).
 - [ ] When a new build appears: `python -m wowcalc.update prepare` and `apply`, then `python -m wowcalc.diff`, then re-run `python -m wowcalc.rates fit` and the data checks in the UI. Spec names are tied to spells, so a moved talent shows up in the Data tab's "Specialization names" check.
 - [ ] Per-level stat rates (`data/external/PlayerExpectedStat.csv`): refetch when the build changes. Last checked against build 1.60.1.70532 (2026-11-01): identical to the 1.60.1.70450 copy.
 

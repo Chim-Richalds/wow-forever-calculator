@@ -9,6 +9,11 @@ not), the value at every rank, and the description rendered for every rank so it
 compared with the in-game tooltip. With --base N it also shows what a stat of N becomes
 at each rank.
 
+    python -m wowcalc.talentinfo unmodelled --out docs/unmodelled_effects.tsv
+
+The third form lists every effect of every placed talent that the calculator does not
+value, with the reason (tab-separated; without --out it prints).
+
 The second form builds a character stat table. It does not check that the talents form
 a legal build (use wowcalc.allocation for that); it says so when they do not.
 """
@@ -16,6 +21,8 @@ a legal build (use wowcalc.allocation for that); it says so when they do not.
 from __future__ import annotations
 
 import argparse
+import csv
+import io
 from decimal import Decimal
 from pathlib import Path
 
@@ -23,6 +30,7 @@ from .allocation import check
 from .basestats import load_base_stats
 from .rates import RatesError, load_rates
 from .sheetbase import SheetBaseError, load_sheet_base
+from .specs import SpecError, load_spec_names, name_trees
 from .dataset import Dataset
 from .effects import STAT_PERCENT, EffectBook, render_tooltip
 from .fetch import TABLES
@@ -69,6 +77,35 @@ def describe(ds: Dataset, tree: ClassTree, node: Node, label: str, book: EffectB
                 ladder = [apply_percents(base, [e.by_rank[r]]) for r in sorted(e.by_rank)]
                 lines.append(f"  with a base of {base} {'/'.join(e.stats)}, ranks 0..{node.max_ranks}: {base} > " + " > ".join(map(str, ladder)))
     return lines
+
+
+UNMODELLED_HEADER = ("class", "spec", "talent", "spell_id", "ranks", "effect", "aura", "kind", "why", "tooltip")
+
+
+def unmodelled_rows(model: TreeModel, book: EffectBook, names: dict[str, str], spells: dict[str, dict],
+                    spec_names: dict[str, list] | None = None) -> list[tuple]:
+    """One row per effect the calculator does not value, for every placed talent: by class, then
+    specialization, then position in the tree. A talent with no effects at all gets one row."""
+    out = []
+    for tree in sorted(model.trees.values(), key=lambda t: t.class_name):
+        specs = [None] * len(tree.sub_trees)
+        if spec_names and tree.class_name in spec_names:
+            specs, _ = name_trees(tree, spec_names[tree.class_name], names)
+        rows = []
+        for node in tree.nodes.values():
+            if not node.entries or not node.spell_id:
+                continue
+            spec = specs[node.sub_tree] if 0 <= node.sub_tree < len(specs) and specs[node.sub_tree] else ""
+            text = spells.get(node.spell_id, {}).get("Description_lang", "")
+            head = (tree.class_name, spec, names.get(node.spell_id, node.spell_id), node.spell_id, node.max_ranks)
+            effects = book.decode(node)
+            if not effects:
+                rows.append(((spec, node.y, node.x), head + (-1, "", "none", "the talent has no effects in the data", text)))
+            for e in effects:
+                if not e.modelled:
+                    rows.append(((spec, node.y, node.x, e.effect_index), head + (e.effect_index, e.aura, e.kind, e.note or e.kind, text)))
+        out.extend(r for _, r in sorted(rows, key=lambda r: r[0]))
+    return out
 
 
 def _load(args) -> tuple[Dataset, TreeModel, str] | None:
@@ -118,13 +155,15 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--shield", action="store_true", help="the character wears a shield (shows block)")
     ap.add_argument("--attacker-level", type=int, help="with --shield: also show block chance against an attacker of this level")
     ap.add_argument("--vs-player", action="store_true", help="the attacker is a player (0.2%% per level instead of 0.5%% for a mob)")
+    ap.add_argument("--out", type=Path, help="unmodelled: write the list to this file")
     ap.add_argument("--build")
     ap.add_argument("--data-dir", type=Path, default=repo_root / "data")
     args = ap.parse_args(argv)
 
     words = args.command_or_talent
     sheet_mode = bool(words) and words[0] == "sheet"
-    if not words or (sheet_mode and len(words) > 1):
+    list_mode = bool(words) and words[0] == "unmodelled"
+    if not words or ((sheet_mode or list_mode) and len(words) > 1):
         ap.print_usage()
         return 2
 
@@ -135,6 +174,25 @@ def main(argv: list[str] | None = None) -> int:
     names = spell_names(ds)
     spells = {r["ID"]: r for r in ds.rows("Spell")}
     book = EffectBook.for_model(ds, model)
+
+    if list_mode:
+        spec_file = args.data_dir / "external" / "spec_names.tsv"
+        try:
+            spec_names = load_spec_names(spec_file) if spec_file.is_file() else {}
+        except SpecError as exc:
+            print(f"WARNING: no specialization names: {exc}")
+            spec_names = {}
+        rows = unmodelled_rows(model, book, names, spells, spec_names)
+        buf = io.StringIO()
+        writer = csv.writer(buf, delimiter="\t")
+        writer.writerow(UNMODELLED_HEADER)
+        writer.writerows(rows)
+        if args.out:
+            args.out.write_text(buf.getvalue(), encoding="utf-8", newline="")
+            print(f"{len(rows)} effect(s) not valued in build {build}; written to {args.out}")
+        else:
+            print(buf.getvalue(), end="")
+        return 0
 
     if not sheet_mode:
         status = 0

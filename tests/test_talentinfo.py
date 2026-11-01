@@ -120,6 +120,26 @@ class InfoCommandTests(InfoCase):
         self.assertIn("aura 108, spell_modifier", out)
         self.assertNotIn("with a base of", out)
 
+    def test_the_unmodelled_list(self):
+        self.install()
+        code, out = self.run_cli("unmodelled")
+        self.assertEqual(code, 0)
+        rows = [line.split("\t") for line in out.splitlines()]
+        self.assertEqual(rows[0], ["class", "spec", "talent", "spell_id", "ranks", "effect", "aura", "kind", "why", "tooltip"])
+        listed = {(r[2], r[5], r[7]) for r in rows[1:]}
+        self.assertIn(("Talent 2", "0", "spell_modifier"), listed)
+        self.assertIn(("Talent 5", "1", "script"), listed)
+        self.assertFalse({t for t, _, _ in listed} & {"Talent 1"})          # fully valued: not listed
+        self.assertNotIn(("Talent 2", "1", "sheet_add"), listed)           # the valued part of Talent 2
+
+    def test_the_unmodelled_list_to_a_file(self):
+        self.install()
+        target = self.root / "list.tsv"
+        code, out = self.run_cli("unmodelled", "--out", str(target))
+        self.assertEqual(code, 0)
+        self.assertIn(f"written to {target}", out)
+        self.assertTrue(target.read_text(encoding="utf-8").startswith("class\tspec\ttalent"))
+
     def test_several_talents_and_a_miss(self):
         self.install()
         code, out = self.run_cli("Talent 1", "Nonexistent", "Talent 7")
