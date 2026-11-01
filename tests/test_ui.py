@@ -139,10 +139,10 @@ class IconWiring(WorkbenchCase):
         self.assertEqual((info["cached"], info["wanted"], info["spellmisc"]), (1, 2, True))   # wanted: 111 and 999; 222 is overridden
 
     def test_icons_are_optional(self):
-        (self.data / "raw" / BUILD / "SpellMisc.csv").unlink()
+        # SpellMisc is a required table (spell flags), but its icon column is not.
+        (self.data / "raw" / BUILD / "SpellMisc.csv").write_text("ID,SpellID,Attributes_0\n1,3001,464\n", encoding="utf-8")
         bench = Workbench(self.data, BUILD)
         self.assertEqual(set(self.icons_of(bench).values()), {None})
-        self.assertFalse(bench.status()["icons"]["spellmisc"])
 
     def test_served_over_http_with_a_matching_policy(self):
         IconCache(self.data / "icons").add("111", PNG, "t")

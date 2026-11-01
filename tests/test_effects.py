@@ -8,12 +8,12 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "src"))
 
-from effect_fixtures import add_curve, add_effect, write_effects  # noqa: E402
+from effect_fixtures import ACTIVE, add_curve, add_effect, write_effects  # noqa: E402
 from fixtures import TempCase  # noqa: E402
 from wowcalc.dataset import Dataset  # noqa: E402
 from wowcalc.effects import (  # noqa: E402
-    ALL_STATS, AP_FROM_STAT, CC_DURATION, SP_FROM_STAT, SCRIPT, condition_in, SHEET_ADD, SPELL_MODIFIER, STAT_PERCENT, UNSUPPORTED, EffectBook, TalentEffect, decode_stats,
-    render_tooltip,
+    ALL_STATS, AP_FROM_STAT, CC_DURATION, DAMAGE_DONE, DAMAGE_TAKEN, THREAT, SP_FROM_STAT, SCRIPT, condition_in, SHEET_ADD, SPELL_MODIFIER, STAT_PERCENT, UNSUPPORTED, EffectBook, TalentEffect, decode_stats,
+    render_tooltip, decode_schools, effect_phrase, schools_label,
 )
 from wowcalc.fetch import TABLES  # noqa: E402
 from wowcalc.trees import Node, load_model  # noqa: E402
@@ -214,8 +214,8 @@ class DecodeTests(DecodeCase):
         self.assertEqual((e.kind, e.modelled), (UNSUPPORTED, False))
 
     def test_an_unlisted_aura_says_so(self):
-        e = self.one(lambda t: add_effect(t, 4, aura=79), node_id="4")
-        self.assertEqual((e.kind, e.note), (UNSUPPORTED, "aura 79 is not decoded yet"))
+        e = self.one(lambda t: add_effect(t, 4, aura=77), node_id="4")
+        self.assertEqual((e.kind, e.note), (UNSUPPORTED, "aura 77 is not decoded yet"))
 
     def test_an_effect_with_no_aura(self):
         e = self.one(lambda t: add_effect(t, 4, aura=0), node_id="4")
@@ -405,6 +405,84 @@ class MechanicDurationTests(DecodeCase):
         self.assertIn("stunned duration", e.note)
 
 
+class SchoolPercentTests(DecodeCase):
+    """Auras 10 (threat), 79 (damage done), 87 (damage taken): a percent for the schools in a bit mask."""
+
+    def school(self, text, aura=10, mask=16, values=(-10, -20), index=0, target=1, attrs=None, drop=None):
+        def mutate(t):
+            add_effect(t, 1, index=index, aura=aura, base=values[-1], misc0=mask, misc1=0, target=target)
+            add_curve(t, 1, index, values)
+            for spell in t["Spell"][1]:
+                if spell["ID"] == "3001":
+                    spell["Description_lang"] = text
+            if attrs:
+                t["SpellMisc"][1][0]["Attributes_0"] = attrs
+            if drop:
+                del t[drop]
+        return self.one(mutate)
+
+    def test_a_school_threat_reduction_is_decoded(self):
+        e = self.school("Reduces the threat caused by your Frost spells by $s1%.")
+        self.assertEqual((e.kind, e.figures, e.what, e.by_rank, e.modelled), (THREAT, ("Frost",), "Frost", {1: -10.0, 2: -20.0}, True))
+
+    def test_damage_done_and_taken(self):
+        e = self.school("Increases the damage done by your Arcane and Nature spells by $m1%.", aura=79, mask=72, values=(2, 4))
+        self.assertEqual((e.kind, e.figures, e.what), (DAMAGE_DONE, ("Nature", "Arcane"), "Nature, Arcane"))
+        e = self.school("Reduces all damage taken by $s1%.", aura=87, mask=127)
+        self.assertEqual((e.kind, e.what), (DAMAGE_TAKEN, "all schools"))
+
+    def test_the_value_is_matched_to_its_own_phrase(self):
+        # Effect 1's phrase is the part after effect 0's value: the mana cost clause does not count.
+        e = self.school("Reduces the mana cost of your Fire spells by $s1% and reduces the threat caused by your Frost spells by $s2%.", index=1)
+        self.assertEqual((e.kind, e.figures), (THREAT, ("Frost",)))
+
+    def test_an_ability_or_form_is_refused(self):
+        e = self.school("Reduces the threat caused by your Frost spells by $s1%.", attrs=ACTIVE)
+        self.assertEqual(e.kind, UNSUPPORTED)
+        self.assertIn("not a passive talent", e.note)
+
+    def test_without_spell_flags_nothing_is_assumed(self):
+        e = self.school("Reduces the threat caused by your Frost spells by $s1%.", drop="SpellMisc")
+        self.assertIn("cannot tell whether it is always on", e.note)
+
+    def test_an_effect_on_someone_else_is_refused(self):
+        e = self.school("Increases your pet's damage by $s1%.", aura=79, mask=127, values=(5, 10), target=5)
+        self.assertIn("not to you", e.note)
+
+    def test_text_that_disagrees_is_refused(self):
+        cases = [
+            ("Reduces the threat caused by your Fire spells by $s1%.", 10, 16, (-10, -20), "the text names Fire but the data says Frost"),
+            ("Increases the threat caused by your Frost spells by $s1%.", 10, 16, (-10, -20), "says it increases but the values are negative"),
+            ("Reduces the mana cost of your Frost spells by $s1%.", 10, 16, (-10, -20), "not about threat"),
+            ("Reduces all damage you deal by $s1%.", 87, 127, (-10, -20), "not about damage taken"),
+            ("Increases all damage taken by $s1%.", 79, 127, (2, 4), "not about damage done"),
+            ("Increases all damage you deal by $s1% while a shield is equipped.", 79, 127, (2, 4), "only while a shield"),
+            ("Increases all damage you deal by $s1% in Defensive Stance.", 79, 127, (2, 4), "only in Defensive Stance"),
+            ("Increases your damage with Wands by $s1%.", 79, 126, (2, 4), "particular equipment (wands)"),
+            ("Increases all damage you deal by an amount.", 79, 127, (2, 4), "does not show this effect's value"),
+        ]
+        for text, aura, mask, values, why in cases:
+            e = self.school(text, aura=aura, mask=mask, values=values)
+            self.assertEqual(e.kind, UNSUPPORTED, text)
+            self.assertIn(why, e.note, text)
+
+    def test_school_masks(self):
+        names = dict(enumerate(["Physical", "Holy", "Fire", "Nature", "Frost", "Shadow", "Arcane"]))
+        self.assertEqual(decode_schools(28, names), (("Fire", "Nature", "Frost"), ""))
+        self.assertIn("unknown school bits", decode_schools(128, names)[1])
+        self.assertIn("Resistances", decode_schools(16, {})[1])
+        every = set(names.values())
+        self.assertEqual(schools_label(tuple(names.values()), every), "all schools")
+        self.assertEqual(schools_label(tuple(names[i] for i in range(1, 7)), every), "all magic schools")
+
+    def test_effect_phrase(self):
+        text = "Reduces the cast time of your Hammer of Wrath by ${$m1/-1000}.1 sec, and reduces all threat you generate by $m2% while Righteous Fury is not active."
+        phrase, segment, verb = effect_phrase(text, 1)
+        self.assertEqual((phrase, verb), ("reduces all threat you generate by ", "reduc"))
+        self.assertIn("while Righteous Fury", segment)
+        self.assertIsNone(effect_phrase(text, 2))
+
+
 PINNED = "1.60.1.70450"
 REAL_ROOT = Path(os.environ.get("WOWCALC_DATA", REPO / "data"))
 REAL = REAL_ROOT / "raw" / PINNED
@@ -526,6 +604,40 @@ class RealDataTests(unittest.TestCase):
         self.assertEqual(self.cc("Surefooted", "Hunter"), {0: (CC_DURATION, ("ensnared",), r10), 1: (CC_DURATION, ("rooted",), r10)})
         r15 = {1: -15.0, 2: -30.0}
         self.assertEqual(self.cc("Unyielding Faith", "Paladin"), {0: (CC_DURATION, ("fleeing",), r15), 1: (CC_DURATION, ("disoriented",), r15)})
+
+    def test_threat_and_damage_percents(self):
+        # (talent, class, effect index) -> (kind, schools shown, top-rank value). Each school list matches the tooltip.
+        expected = {
+            ("Frost Channeling", "Mage", 1): (THREAT, "Frost", -30.0),
+            ("Burning Soul", "Mage", 1): (THREAT, "Fire", -30.0),
+            ("Subtlety", "Druid", 0): (THREAT, "Nature, Arcane", -30.0),
+            ("Silent Resolve", "Priest", 0): (THREAT, "Holy, Shadow", -30.0),  # text: "your spells"
+            ("Natural Grace", "Shaman", 0): (THREAT, "all magic schools", -15.0),
+            ("Suppression", "Warlock", 2): (THREAT, "all schools", -20.0),
+            ("Naturalist", "Druid", 1): (DAMAGE_DONE, "all schools", 5.0),
+            ("Moonfury", "Druid", 0): (DAMAGE_DONE, "Nature, Arcane", 10.0),
+            ("Darkness", "Priest", 0): (DAMAGE_DONE, "Shadow", 10.0),
+            ("Searing Light", "Priest", 0): (DAMAGE_DONE, "Holy", 5.0),
+            ("Spell Warding", "Priest", 0): (DAMAGE_TAKEN, "all magic schools", -10.0),
+            ("Elemental Warding", "Shaman", 0): (DAMAGE_TAKEN, "Fire, Nature, Frost", -10.0),
+            ("Molten Skin", "Warlock", 0): (DAMAGE_TAKEN, "all schools", -10.0),
+        }
+        for (name, class_name, index), (kind, what, top) in expected.items():
+            e = [x for x in self.book.decode(self.talent(name, class_name)) if x.effect_index == index][0]
+            self.assertEqual((e.kind, e.what, e.by_rank[max(e.by_rank)]), (kind, what, top), name)
+
+    def test_conditional_threat_and_damage_talents_are_not_counted(self):
+        for name, class_name, why in (("Shadowform", "Priest", "not a passive talent"), ("Death Wish", "Warrior", "not a passive talent"),
+                                      ("Power Infusion", "Priest", "not a passive talent"), ("Bestial Wrath", "Hunter", "not a passive talent"),
+                                      ("Bastion", "Warrior", "shield"), ("Defiance", "Warrior", "shield"),
+                                      ("Instrument of Law", "Paladin", "Righteous Fury"), ("Spirit Weapons", "Shaman", "Rockbiter"),
+                                      ("Two-Handed Weapon Specialization", "Warrior", "equipment"), ("Wand Specialization", "Mage", "wands"),
+                                      ("Lone Wolf", "Hunter", "does not show this effect's value")):
+            effects = [e for e in self.book.decode(self.talent(name, class_name)) if e.aura in (10, 79, 87)]
+            self.assertTrue(effects, name)
+            for e in effects:
+                self.assertEqual(e.kind, UNSUPPORTED, name)
+                self.assertIn(why, e.note, name)
 
     def test_iron_will_data_disagrees_with_its_text(self):
         # Text: "Stun and Fear" durations. Data: charmed at +3..+15 (Classic's resist chance) and stunned with no rank values.

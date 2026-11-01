@@ -14,7 +14,7 @@ from fixtures import TempCase  # noqa: E402
 from basestats_fixtures import row, tsv, warrior  # noqa: E402
 from wowcalc.basestats import parse_base_stats  # noqa: E402
 from wowcalc.dataset import Dataset  # noqa: E402
-from wowcalc.effects import AP_FROM_STAT, CC_DURATION, SP_FROM_STAT, SHEET_ADD, SCRIPT, SPELL_MODIFIER, STAT_PERCENT, UNSUPPORTED, EffectBook, TalentEffect  # noqa: E402
+from wowcalc.effects import AP_FROM_STAT, CC_DURATION, THREAT, SP_FROM_STAT, SHEET_ADD, SCRIPT, SPELL_MODIFIER, STAT_PERCENT, UNSUPPORTED, EffectBook, TalentEffect  # noqa: E402
 from fractions import Fraction as F  # noqa: E402
 from wowcalc.derived import ArmorRule, AssumedRules, PoolRule  # noqa: E402
 from wowcalc.rates import AttackPowerRule, Interval, RateTable  # noqa: E402
@@ -105,11 +105,13 @@ class SheetTests(unittest.TestCase):
         sheet = self.sheet([RankedTalent("n", "s", "Both", 1, (effect,))])
         self.assertEqual((sheet.lines["strength"].total, sheet.lines["stamina"].total, sheet.lines["agility"].total), (66, 66, 60))
 
-    def test_crowd_control_durations_are_listed_beside_the_sheet(self):
-        stun = TalentEffect("s", 1, 232, CC_DURATION, (), {1: -5.0, 2: -10.0}, figures=("stunned",))
-        fear = TalentEffect("s", 2, 232, CC_DURATION, (), {1: -5.0, 2: -10.0}, figures=("fleeing",))
-        sheet = self.sheet([RankedTalent("n", "s", "Silent Resolve", 2, (stun, fear))])
-        self.assertEqual(sheet.crowd_control, [("Silent Resolve", "stunned", Decimal("-10.0")), ("Silent Resolve", "fleeing", Decimal("-10.0"))])
+    def test_other_effects_are_listed_beside_the_sheet(self):
+        stun = TalentEffect("s", 1, 232, CC_DURATION, (), {1: -5.0, 2: -10.0}, figures=("stunned",), what="stunned")
+        threat = TalentEffect("s", 0, 10, THREAT, (), {1: -10.0, 2: -20.0}, figures=("Holy", "Shadow"), what="Holy, Shadow")
+        sheet = self.sheet([RankedTalent("n", "s", "Silent Resolve", 2, (threat, stun))])
+        self.assertEqual([(o.label, o.kind, o.text, o.percent) for o in sheet.other_effects],
+                         [("Silent Resolve", THREAT, "Threat (Holy, Shadow)", Decimal("-20.0")),
+                          ("Silent Resolve", CC_DURATION, "Duration of stunned effects on you", Decimal("-10.0"))])
         self.assertEqual(sheet.not_modelled, [])
         self.assertEqual({s: l.total for s, l in sheet.lines.items()}, {s: l.total for s, l in self.sheet([]).lines.items()})
 

@@ -709,6 +709,25 @@
       "status": "downloaded-needs-validation",
       "addedAfterInstall": true,
       "addedAt": "2026-11-01T10:07:22.583777+00:00"
+    },
+    "Resistances": {
+      "url": "https://wago.tools/db2/Resistances/csv?build=1.60.1.70450",
+      "file": "data/raw/1.60.1.70450/Resistances.csv",
+      "sha256": "b1e1a1a4dbbd15d3b3c03fab02477f85ab18f494140250a106da2dbff0b046be",
+      "bytes": 139,
+      "columns": [
+        "ID",
+        "Name_lang",
+        "Flags",
+        "FizzleSoundID"
+      ],
+      "rows": 7,
+      "malformedRows": 0,
+      "duplicateHeaders": [],
+      "contentType": "text/csv; charset=UTF-8",
+      "status": "downloaded-needs-validation",
+      "addedAfterInstall": true,
+      "addedAt": "2026-11-01T10:31:27.904849+00:00"
     }
   },
   "failures": [],
@@ -746,6 +765,12 @@
       "at": "2026-11-01T10:07:22.583777+00:00",
       "tables": [
         "SpellMechanic"
+      ]
+    },
+    {
+      "at": "2026-11-01T10:31:27.904849+00:00",
+      "tables": [
+        "Resistances"
       ]
     }
   ]

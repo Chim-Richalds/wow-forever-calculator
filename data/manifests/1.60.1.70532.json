@@ -634,6 +634,74 @@
       "status": "downloaded-needs-validation",
       "addedAfterInstall": true,
       "addedAt": "2026-11-01T10:07:12.012685+00:00"
+    },
+    "Resistances": {
+      "url": "https://wago.tools/db2/Resistances/csv?build=1.60.1.70532",
+      "file": "data/raw/1.60.1.70532/Resistances.csv",
+      "sha256": "b1e1a1a4dbbd15d3b3c03fab02477f85ab18f494140250a106da2dbff0b046be",
+      "bytes": 139,
+      "columns": [
+        "ID",
+        "Name_lang",
+        "Flags",
+        "FizzleSoundID"
+      ],
+      "rows": 7,
+      "malformedRows": 0,
+      "duplicateHeaders": [],
+      "contentType": "text/csv; charset=UTF-8",
+      "status": "downloaded-needs-validation",
+      "addedAfterInstall": true,
+      "addedAt": "2026-11-01T10:31:17.261597+00:00"
+    },
+    "SpellMisc": {
+      "url": "https://wago.tools/db2/SpellMisc/csv?build=1.60.1.70532",
+      "file": "data/raw/1.60.1.70532/SpellMisc.csv",
+      "sha256": "10a931ac94aed435d93567962c7b415b5a94cb68ade5d6d39f939e86c26d6a5b",
+      "bytes": 3029409,
+      "columns": [
+        "ID",
+        "Attributes_0",
+        "Attributes_1",
+        "Attributes_2",
+        "Attributes_3",
+        "Attributes_4",
+        "Attributes_5",
+        "Attributes_6",
+        "Attributes_7",
+        "Attributes_8",
+        "Attributes_9",
+        "Attributes_10",
+        "Attributes_11",
+        "Attributes_12",
+        "Attributes_13",
+        "Attributes_14",
+        "Attributes_15",
+        "Attributes_16",
+        "DifficultyID",
+        "CastingTimeIndex",
+        "DurationIndex",
+        "PvPDurationIndex",
+        "RangeIndex",
+        "SchoolMask",
+        "Speed",
+        "LaunchDelay",
+        "MinDuration",
+        "SpellIconFileDataID",
+        "ActiveIconFileDataID",
+        "ContentTuningID",
+        "ShowFutureSpellPlayerConditionID",
+        "SpellVisualScript",
+        "ActiveSpellVisualScript",
+        "SpellID"
+      ],
+      "rows": 31942,
+      "malformedRows": 0,
+      "duplicateHeaders": [],
+      "contentType": "text/csv; charset=UTF-8",
+      "status": "downloaded-needs-validation",
+      "addedAfterInstall": true,
+      "addedAt": "2026-11-01T10:31:17.261597+00:00"
     }
   },
   "failures": [],
@@ -642,6 +710,13 @@
       "at": "2026-11-01T10:07:12.012685+00:00",
       "tables": [
         "SpellMechanic"
+      ]
+    },
+    {
+      "at": "2026-11-01T10:31:17.261597+00:00",
+      "tables": [
+        "Resistances",
+        "SpellMisc"
       ]
     }
   ]

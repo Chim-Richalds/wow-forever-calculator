@@ -44,6 +44,18 @@ which effects it cannot:
                    Classic resist chance) while its text says Stun and Fear, so it is left
                    unsupported until checked in game. Not a sheet figure: listed beside
                    the sheet. Not checked in game: how two such talents would stack.
+  threat           aura 10, damage_done aura 79, damage_taken aura 87: "+/-N% threat / damage
+                   done / damage taken" for the schools in EffectMiscValue_0 (a bit mask; bit
+                   1 << ID names the school in the build's Resistances table: Physical, Holy,
+                   Fire, Nature, Frost, Shadow, Arcane). DECODED only for a passive talent
+                   (SpellMisc Attributes_0 & 0x40; checked against 7 passive talents and 9
+                   abilities and forms) that applies to you (ImplicitTarget_0 = 1), and only
+                   when the phrase in the text that shows the value says the same thing: the
+                   right subject (threat, damage done, damage taken), no condition (a
+                   duration, "while ...", a stance or form, a weapon, wand or shield), the
+                   same schools if it names any, and "increases" or "reduces" matching the
+                   sign. Not sheet figures: listed beside the sheet, one line per talent.
+                   Not checked in game: how several of them combine.
   spell_modifier   auras 107/108: change particular spells (class mask), not the
                    character sheet. Recognised, NOT modelled.
   script           auras 4, 42, 109, 111, 112: implemented in game code; the data
@@ -108,7 +120,12 @@ STAT_PERCENT, SPELL_MODIFIER, SCRIPT, UNSUPPORTED = "stat_percent", "spell_modif
 SHEET_ADD, AP_FROM_STAT = "sheet_add", "ap_from_stat"
 SP_FROM_STAT = "sp_from_stat"
 CC_DURATION = "cc_duration"
-MODELLED_KINDS = frozenset({STAT_PERCENT, SHEET_ADD, AP_FROM_STAT, SP_FROM_STAT, CC_DURATION})
+THREAT, DAMAGE_DONE, DAMAGE_TAKEN = "threat", "damage_done", "damage_taken"
+SCHOOL_KINDS = {10: THREAT, 79: DAMAGE_DONE, 87: DAMAGE_TAKEN}  # aura -> kind; all three carry a school mask
+OTHER_KINDS = frozenset({CC_DURATION, THREAT, DAMAGE_DONE, DAMAGE_TAKEN})  # decoded, but not sheet figures
+MODELLED_KINDS = frozenset({STAT_PERCENT, SHEET_ADD, AP_FROM_STAT, SP_FROM_STAT}) | OTHER_KINDS
+SPELL_ATTR0_PASSIVE = 0x40
+TARGET_CASTER = 1
 
 
 @dataclass(frozen=True)
@@ -120,13 +137,14 @@ class TalentEffect:
     stats: tuple[str, ...] = ()
     by_rank: dict[int, float] = field(default_factory=dict)  # rank -> value (a percent for stat_percent)
     note: str = ""
-    figures: tuple[str, ...] = ()  # sheet_add: the sheet figures it raises; sp_from_stat: spell_power or healing; cc_duration: the mechanic's name (stats holds the source stat for ap_from_stat and sp_from_stat)
+    figures: tuple[str, ...] = ()  # sheet_add: the sheet figures it raises; sp_from_stat: spell_power or healing; cc_duration: the mechanic's name; threat/damage_*: school names (stats holds the source stat for ap_from_stat and sp_from_stat)
+    what: str = ""  # OTHER_KINDS: what it applies to, for display ("stunned", "Frost", "all magic schools")
 
     @property
     def modelled(self) -> bool:
         if self.kind in (STAT_PERCENT, AP_FROM_STAT, SP_FROM_STAT):
             return bool(self.stats) and bool(self.by_rank)
-        return self.kind in (SHEET_ADD, CC_DURATION) and bool(self.figures) and bool(self.by_rank)
+        return (self.kind == SHEET_ADD or self.kind in OTHER_KINDS) and bool(self.figures) and bool(self.by_rank)
 
 
 def _int(value, default=0) -> int:
@@ -167,6 +185,18 @@ class EffectBook:
         self.mechanics: dict[int, str] = {}  # SpellMechanic ID -> state name ("stunned")
         if ds.has_table("SpellMechanic") and {"ID", "StateName_lang"} <= set(ds.columns("SpellMechanic")):
             self.mechanics = {_int(r["ID"]): r["StateName_lang"] for r in ds.rows("SpellMechanic")}
+
+        self.schools: dict[int, str] = {}  # Resistances ID -> school name; the mask bit is 1 << ID
+        if ds.has_table("Resistances") and {"ID", "Name_lang"} <= set(ds.columns("Resistances")):
+            self.schools = {_int(r["ID"]): r["Name_lang"] for r in ds.rows("Resistances")}
+
+        self.passive: dict[str, bool] = {}  # spell id -> SpellMisc says passive
+        if ds.has_table("SpellMisc") and {"SpellID", "Attributes_0"} <= set(ds.columns("SpellMisc")):
+            mcols = ds.columns("SpellMisc")
+            i_sp, i_a0 = mcols.index("SpellID"), mcols.index("Attributes_0")
+            for vals in ds.iter_values("SpellMisc"):
+                if len(vals) > max(i_sp, i_a0) and vals[i_sp] in spell_ids:
+                    self.passive[vals[i_sp]] = bool(_int(vals[i_a0]) & SPELL_ATTR0_PASSIVE)
 
         self.scaling: dict[tuple[str, int], list[dict]] = defaultdict(list)
         for r in ds.rows("TraitDefinitionEffectPoints"):
@@ -223,9 +253,9 @@ class EffectBook:
         values, values_note = self._values(node, definition, index, _float(row.get("EffectBasePointsF")))
 
         def make(kind: str, note: str = "", stats: tuple[str, ...] = (), keep_values: bool = True,
-                 figures: tuple[str, ...] = ()) -> TalentEffect:
+                 figures: tuple[str, ...] = (), what: str = "") -> TalentEffect:
             return TalentEffect(spell, index, aura, kind, stats, dict(values) if keep_values else {},
-                                note or values_note, figures)
+                                note or values_note, figures, what)
 
         if aura == AURA_REGEN_WHILE_CASTING:
             if not values:
@@ -267,6 +297,8 @@ class EffectBook:
             return make(STAT_PERCENT, "", stats)
         if aura == AURA_MECHANIC_DURATION:
             return self._decode_mechanic_duration(row, make, values, values_note)
+        if aura in SCHOOL_KINDS:
+            return self._decode_school_percent(row, index, SCHOOL_KINDS[aura], make, values, values_note)
         if aura in SPELL_MODIFIER_AURAS:
             return make(SPELL_MODIFIER, "changes particular spells, not the character sheet")
         if aura in SCRIPT_AURAS:
@@ -274,6 +306,31 @@ class EffectBook:
         if aura == 0:
             return make(UNSUPPORTED, "no aura (an instant effect)")
         return make(UNSUPPORTED, f"aura {aura} is not decoded yet")
+
+    def _decode_school_percent(self, row: dict, index: int, kind: str, make, values: dict[int, float], values_note: str) -> TalentEffect:
+        def refuse(why: str) -> TalentEffect:
+            return make(UNSUPPORTED, f"{KIND_LABEL[kind]}: {why}", keep_values=bool(values))
+
+        spell = row["SpellID"]
+        if spell not in self.passive:
+            return refuse("cannot tell whether it is always on (SpellMisc is not in this build)")
+        if not self.passive[spell]:
+            return refuse("an ability or form, not a passive talent")
+        if _int(row.get("ImplicitTarget_0"), -1) != TARGET_CASTER:
+            return refuse(f"applies to target type {row.get('ImplicitTarget_0')!r}, not to you")
+        if not values:
+            return refuse(values_note)
+        schools, why = decode_schools(_int(row.get("EffectMiscValue_0")), self.schools)
+        if why:
+            return refuse(why)
+        found = effect_phrase(self.text.get(spell, ""), index)
+        if found is None:
+            return refuse("the talent text does not show this effect's value")
+        phrase, segment, verb = found
+        problems = phrase_problems(kind, phrase, segment, verb, schools, set(self.schools.values()), values)
+        if problems:
+            return refuse("; ".join(problems))
+        return make(kind, "", figures=schools, what=schools_label(schools, set(self.schools.values())))
 
     def _decode_mechanic_duration(self, row: dict, make, values: dict[int, float], values_note: str) -> TalentEffect:
         mechanic = _int(row.get("EffectMiscValue_0"), -1)
@@ -291,7 +348,7 @@ class EffectBook:
             problems.append("the values are positive, which would lengthen the effect, but the text says it reduces")
         if problems:
             return make(UNSUPPORTED, "; ".join(problems) + " (needs an in-game check)")
-        return make(CC_DURATION, "", figures=(name,))
+        return make(CC_DURATION, "", figures=(name,), what=name)
 
 
 def decode_stats(misc0: int, misc1: int) -> tuple[tuple[str, ...], str]:
@@ -344,6 +401,93 @@ def condition_in(description: str, keywords: tuple[str, ...] = ()) -> str:
 
 
 _PLACEHOLDER = re.compile(r"\$[sm](\d)")
+_SENTENCES = re.compile(r"(?<=[.!?])\s+")
+_VERB = re.compile(r"\b(increas|improv|reduc|decreas|lower)\w*", re.I)
+_EQUIPMENT = re.compile(r"\b(wands?|weapons?|shields?)\b", re.I)
+_STANCE_OR_FORM = re.compile(r"\bin [\w ]*?\b(stance|form)\b", re.I)
+_TAKEN = re.compile(r"\btak(e|en)\b", re.I)
+KIND_LABEL = {THREAT: "threat", DAMAGE_DONE: "damage done", DAMAGE_TAKEN: "damage taken", CC_DURATION: "duration"}
+
+
+def describe_other(kind: str, what: str) -> str:
+    """How an OTHER_KINDS effect reads beside the sheet ("Threat (Frost)")."""
+    if kind == CC_DURATION:
+        return f"Duration of {what} effects on you"
+    return f"{KIND_LABEL[kind].capitalize()} ({what})"
+
+
+def decode_schools(mask: int, names: dict[int, str]) -> tuple[tuple[str, ...], str]:
+    """(school names, problem) for a school bit mask; names maps Resistances ID -> name."""
+    if not names:
+        return (), "no school names (Resistances is not in this build)"
+    if mask <= 0:
+        return (), f"no school in mask {mask}"
+    known = sum(1 << i for i in names)
+    if mask & ~known:
+        return (), f"unknown school bits in mask {mask}"
+    return tuple(names[i] for i in sorted(names) if mask & (1 << i)), ""
+
+
+def schools_label(schools: tuple[str, ...], all_names: set[str]) -> str:
+    """'all schools', 'all magic schools' (everything but Physical) or the names."""
+    if set(schools) == all_names:
+        return "all schools"
+    if "Physical" in all_names and set(schools) == all_names - {"Physical"}:
+        return "all magic schools"
+    return ", ".join(schools)
+
+
+def effect_phrase(text: str, index: int) -> tuple[str, str, str] | None:
+    """The words in the description that go with effect `index` (shown as $s<index+1> or $m<index+1>).
+
+    Returns (phrase, segment, verb): the segment is the sentence from the previous other
+    effect's value to the next one; the phrase runs from the last verb before this value up
+    to it ("reduces the threat caused by your Frost spells by "). None if the text does not
+    show this effect's value."""
+    for sentence in _SENTENCES.split(text):
+        marks = list(_PLACEHOLDER.finditer(sentence))
+        mine = [m for m in marks if int(m.group(1)) == index + 1]
+        if not mine:
+            continue
+        m = mine[0]
+        others = [p for p in marks if int(p.group(1)) != index + 1]
+        start = max((p.end() for p in others if p.start() < m.start()), default=0)
+        end = min((p.start() for p in others if p.start() > m.end()), default=len(sentence))
+        lead = sentence[start:m.start()]
+        verbs = list(_VERB.finditer(lead))
+        phrase = lead[verbs[-1].start():] if verbs else lead
+        return phrase, sentence[start:end], (verbs[-1].group(1).lower() if verbs else "")
+    return None
+
+
+def phrase_problems(kind: str, phrase: str, segment: str, verb: str, schools: tuple[str, ...],
+                    all_names: set[str], values: dict[int, float]) -> list[str]:
+    """Why the text does not back this reading of the data (empty: it does)."""
+    out = []
+    low = phrase.lower()
+    if kind == THREAT and "threat" not in low:
+        out.append("the text next to the value is not about threat")
+    if kind == DAMAGE_DONE and ("damage" not in low or _TAKEN.search(low)):
+        out.append("the text next to the value is not about damage done")
+    if kind == DAMAGE_TAKEN and ("damage" not in low or not _TAKEN.search(low)):
+        out.append("the text next to the value is not about damage taken")
+    reason = condition_in(segment)
+    if reason:
+        out.append(f"not always on: {reason}")
+    elif _STANCE_OR_FORM.search(segment):
+        out.append("not always on: only " + _STANCE_OR_FORM.search(segment).group(0))
+    elif _EQUIPMENT.search(segment):
+        out.append(f"only with particular equipment ({_EQUIPMENT.search(segment).group(1).lower()}); not modelled")
+    named = {n for n in all_names if re.search(rf"\b{re.escape(n)}\b", phrase, re.I)}
+    if named and named != set(schools):
+        out.append(f"the text names {', '.join(sorted(named))} but the data says {', '.join(schools)}")
+    if not verb:
+        out.append("the text does not say whether it increases or reduces")
+    elif verb in ("increas", "improv") and any(v < 0 for v in values.values()):
+        out.append("the text says it increases but the values are negative")
+    elif verb in ("reduc", "decreas", "lower") and any(v > 0 for v in values.values()):
+        out.append("the text says it reduces but the values are positive")
+    return out
 
 
 def render_tooltip(text: str, effects: list[TalentEffect], rank: int) -> tuple[str, bool]:

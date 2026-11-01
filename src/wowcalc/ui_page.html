@@ -539,7 +539,7 @@ function renderSheet() {
   const side = [];
   if (ar.base != null && ar.damage_reduction != null) side.push(`Damage reduction against your own level: <strong>${fmt(ar.damage_reduction)}%</strong>`);
   if (sh.block_value != null) side.push(`Block value from Strength: <strong>${sh.block_value}</strong> (the shield's own value is not included)`);
-  for (const [label, name, pct] of sh.crowd_control || []) side.push(`Duration of ${esc(name)} effects on you: <strong>${signed(pct)}%</strong> (${esc(label)})`);
+  for (const o of sh.other_effects || []) side.push(`${esc(o.text)}: <strong>${signed(o.percent)}%</strong> (${esc(o.label)})`);
   if (sh.block_against) side.push(`Block chance against a level ${sh.block_against.level} ${sh.block_against.player ? "player" : "mob"}: <strong>${fmt(sh.block_against.chance)}%</strong>`);
   const focused = document.activeElement && ["armorgear", "spellgear", "healinggear"].includes(document.activeElement.id) ? document.activeElement.id : null;
   const keep = !!focused;

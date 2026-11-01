@@ -82,6 +82,10 @@ def base_tables():
         "CharBaseInfo": rows(["ID", "RaceID", "ClassID", "OtherFactionRaceID"],
                              ["1", "1", "1", "0"], ["2", "1", "2", "0"], ["3", "2", "1", "0"]),
         "SpellMechanic": rows(["ID", "StateName_lang"], ["5", "fleeing"], ["12", "stunned"]),
+        "Resistances": rows(["ID", "Name_lang", "Flags", "FizzleSoundID"], ["0", "Physical", "1", "0"], ["1", "Holy", "0", "0"],
+                            ["2", "Fire", "0", "0"], ["3", "Nature", "0", "0"], ["4", "Frost", "0", "0"], ["5", "Shadow", "0", "0"],
+                            ["6", "Arcane", "0", "0"]),
+        "SpellMisc": rows(["ID", "Attributes_0", "SpellIconFileDataID", "SpellID"], ["1", "464", "0", "5000"]),
     }
 
 

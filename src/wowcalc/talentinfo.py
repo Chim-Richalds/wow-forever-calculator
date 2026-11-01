@@ -272,8 +272,8 @@ def main(argv: list[str] | None = None) -> int:
         print("\nNOTE: --attacker-level needs --shield and a class that can block")
     if sheet.block_value_from_strength is not None:
         print(f"{'block value':12} {sheet.block_value_from_strength:>8}  (from Strength only; the shield's own block value is not included)")
-    for label, name, pct in sheet.crowd_control:
-        print(f"{'duration':12} {float(pct):>+7.0f}%  ({name} effects on you, from {label})")
+    for o in sheet.other_effects:
+        print(f"{'other':12} {float(o.percent):>+7g}%  {o.text}, from {o.label}")
     for note in [sheet_base_note, rates_note, *sheet.notes]:
         if note:
             print(f"\nNOTE: {note}")

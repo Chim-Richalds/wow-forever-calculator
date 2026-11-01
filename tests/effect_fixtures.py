@@ -8,7 +8,9 @@ from fixtures import write_dataset
 from tree_fixtures import mini_tables
 
 EFFECT_COLUMNS = ["ID", "SpellID", "EffectIndex", "Effect", "EffectAura", "EffectBasePointsF",
-                  "EffectMiscValue_0", "EffectMiscValue_1"]
+                  "EffectMiscValue_0", "EffectMiscValue_1", "ImplicitTarget_0"]
+SCHOOLS = ["Physical", "Holy", "Fire", "Nature", "Frost", "Shadow", "Arcane"]
+PASSIVE, ACTIVE = "464", "327680"  # SpellMisc Attributes_0 of a passive talent and of an ability
 
 
 def effect_tables(mutate=None):
@@ -19,16 +21,18 @@ def effect_tables(mutate=None):
     t["SpellName"] = (["ID", "Name_lang"], [dict(ID=str(3000 + i), Name_lang=f"Talent {i}") for i in range(1, 8)])
     t["Spell"] = (["ID", "NameSubtext_lang", "Description_lang", "AuraDescription_lang"],
                   [dict(ID=str(3000 + i), Description_lang=f"Does thing {i}.") for i in range(1, 8)])
+    t["Resistances"] = (["ID", "Name_lang"], [dict(ID=str(i), Name_lang=n) for i, n in enumerate(SCHOOLS)])
+    t["SpellMisc"] = (["ID", "SpellID", "Attributes_0"], [dict(ID=str(i), SpellID=str(3000 + i), Attributes_0=PASSIVE) for i in range(1, 8)])
     t["SpellMechanic"] = (["ID", "StateName_lang"], [dict(ID="5", StateName_lang="fleeing"), dict(ID="12", StateName_lang="stunned")])
     if mutate:
         mutate(t)
     return t
 
 
-def add_effect(t, node, index=0, aura=137, base=2, misc0=0, misc1=8, row_id=None):
+def add_effect(t, node, index=0, aura=137, base=2, misc0=0, misc1=8, row_id=None, target=1):
     t["SpellEffect"][1].append(dict(ID=str(row_id or 9000 + len(t["SpellEffect"][1])), SpellID=str(3000 + node),
                                     EffectIndex=str(index), Effect="6", EffectAura=str(aura), EffectBasePointsF=str(base),
-                                    EffectMiscValue_0=str(misc0), EffectMiscValue_1=str(misc1)))
+                                    EffectMiscValue_0=str(misc0), EffectMiscValue_1=str(misc1), ImplicitTarget_0=str(target)))
 
 
 def add_curve(t, node, index, values, curve_id=None, operation=0, first_rank=1):

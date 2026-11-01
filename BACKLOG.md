@@ -19,16 +19,19 @@ Principles that apply to everything below: data-driven, versioned, traceable, ne
 - [ ] **Block.** The 5% base, the level-difference rule and Strength to block value are taken from the game's own text, not tested. Check with a shield on a Warrior, Paladin and Shaman.
 - [ ] **Specialization names.** Look through all 27 trees in the UI and confirm each name (`data/external/spec_names.tsv`), especially the two Protection trees.
 - [ ] **Iron Will.** The text says it reduces Stun and Fear durations by up to 15%. The data says charmed (+3 .. +15, which looks like Classic's resist chance) and stunned (no rank values). Check the stun and fear durations with 0 and 5 ranks. Left unsupported until then.
-- [ ] **Crowd control stacking.** Each class has one talent per kind of crowd control today, so how two reductions combine is untested. Check if a buff or item ever adds a second one.
+- [ ] **Stacking of threat, damage and crowd control percents.** Each is listed per talent, not summed. Check how two combine (added or multiplied), e.g. Naturalist with Moonfury on a Nature spell.
+- [ ] **Silent Resolve threat schools.** The text says "your spells"; the data says Holy and Shadow only. Check threat on a non-Holy, non-Shadow spell if a Priest has one.
 - [ ] **Surefooted spell hit.** Effect 3 (aura 55, spell hit, base 3) has no rank values; the tooltip only mentions the melee hit. Check spell hit at 1 and 3 ranks.
 - [ ] **Hit and spell hit.** The Hit row merges melee and spell hit when they are equal. Confirm with a talent that raises only one of them.
 
 ## Modelling more talents  [offline]
 
-The full list is `docs/unmodelled_effects.tsv` (regenerate it after each change). Of 469 talents, 32 are fully modelled and 16 partly (2026-11-01). What is left, by type:
+The full list is `docs/unmodelled_effects.tsv` (regenerate it after each change). Of 469 talents, 41 are fully modelled and 18 partly (2026-11-01). What is left, by type:
 
 - [ ] Auras decoded for the sheet but still conditional: 54, 290, 55, 49, 47, 51 (abilities with a duration, a single form).
-- [ ] Undecoded auras that look like they touch the sheet: 79 (16, looks like a damage percent), 77 (16), 332 (10), 10 (9), 87 (5), 33 (4). Read the tooltips first; never assume the meaning from the aura number.
+- [ ] Undecoded auras: 77 (16, forms and abilities: Moonkin Form, Berserk, Bestial Wrath), 332 (10, single spells: Improved Slam, Improved Ghost Wolf), 33 (4, effects on the enemy such as Mind Flay's slow; relabel them as such). Read the tooltips first; never assume the meaning from the aura number.
+- [ ] Damage done, threat and damage taken that depend on equipment (Weapon and Wand Specializations, Bastion, Defiance) or a state (Lone Wolf, Instrument of Law, Spirit Weapons): need gear and state inputs.
+- [ ] Apply the passive-spell check (SpellMisc) to the older sheet decoders too, alongside the text check they use now.
 - [ ] Spell modifiers (auras 107 and 108, about 300 effects): they change particular spells (cost, damage, cast time), not the sheet. Needs a different engine and a model of the spells.
 - [ ] Scripts (auras 4, 42, 109, 190 effects): the data holds numbers only; the tooltip says what they mean.
 - [ ] Instant effects (no aura, 74).
@@ -40,7 +43,7 @@ The full list is `docs/unmodelled_effects.tsv` (regenerate it after each change)
 - [ ] Show Spell power and Healing rows at levels with no exported panel when the base is unknown (today they appear only if a talent contributes).
 - [ ] Two talent icons are missing (357 of 359 cached). Find which and why (possibly encrypted in the game files).
 - [ ] Per-class defaults (race, level) remembered between visits.
-- [ ] Crowd control durations (Silent Resolve, Surefooted, Unyielding Faith) appear beside the sheet but not in the Values tab, which only compares sheet figures.
+- [ ] Threat, damage done, damage taken and crowd control durations appear beside the sheet but not in the Values tab, which only compares sheet figures.
 
 ## Codebase clean-up  [offline]
 
@@ -70,3 +73,4 @@ Goal: less code saying the same thing, with no loss of coverage of real behaviou
 - Parry row appears only where it applies; Hit row merges melee and spell hit.
 - Mana regeneration while casting, as a percentage only.
 - Crowd control durations (aura 232), named from the build's SpellMechanic table and checked against each tooltip.
+- Threat, damage done and damage taken percents (auras 10, 79, 87) for passive talents, with schools from the build's Resistances table.
