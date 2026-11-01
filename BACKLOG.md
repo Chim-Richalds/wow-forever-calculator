@@ -51,10 +51,10 @@ Goal: less code saying the same thing, with no loss of coverage of real behaviou
 
 - [ ] **Tests.** 880 tests across 19 files (about 8,200 lines). Remove duplicates and tests that check implementation details rather than behaviour; merge near-identical cases into table-driven tests. Before deleting a test, confirm what it guards is covered elsewhere.
 - [ ] **Redundant sections in `src/wowcalc/`.** Look for logic repeated across modules (CSV and table loading, build/version handling, report formatting in `diff.py`, `update.py`, `validate.py` and `rates.py`) and pull it into one place.
-- [ ] **One-off scripts.** `scripts/` holds 22 investigation scripts (Purification, Chain Heal, tree 1082), many hard-coded to old builds. Keep what the pipeline still uses, fold anything useful into the package, and delete the rest along with their outputs in `data/processed/`.
-- [ ] **Stray files at the repo root.** `check_builds.py` is a copy of `scripts/check_builds.py`; `base_stats.meta.json` is a copy of `data/external/base_stats.meta.json`; `icon_ids.txt` looks like a leftover. Confirm and remove.
-- [ ] **Compiled files in git.** Six `__pycache__/*.pyc` files are tracked even though `.gitignore` excludes them. Untrack them (`git rm --cached`).
-- [ ] **Rate fit summary.** `rates fit` prints the panel attack power fit (Mage, Priest, Warlock at 2 per Strength) and then says it was replaced by the reference (1 per Strength). The calculator uses 1; print the value in use, with the panel fit as a note.
+- [x] **One-off scripts.** Removed the 20 investigation scripts (Purification, Chain Heal, tree 1082; superseded by `wowcalc.fetch`, `validate`, `rules` and `effects`) and their outputs in `data/processed/`. Kept `scripts/probe_tables.py`, now defaulting to the active build.
+- [x] **Stray files at the repo root.** Removed (two exact copies, and `icon_ids.txt`, which `python -m wowcalc.icons list` regenerates).
+- [x] **Compiled files in git.** Untracked.
+- [x] **Rate fit summary.** Prints the attack power rule in use, with the panel fit as a note.
 
 ## Talent tree backgrounds  [needs-source]
 

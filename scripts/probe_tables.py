@@ -18,7 +18,7 @@ export answers HTTP 400; that is useful to know too.
 Run from the repo root (with PYTHONPATH=src):
 
     python3 scripts/probe_tables.py
-    python3 scripts/probe_tables.py --version 1.60.1.70450
+    python3 scripts/probe_tables.py --version 1.60.1.70532   # default: the active build
     python3 scripts/probe_tables.py --group per-level     # only the per-level stat rate tables
 
 Writes nothing under data/ except data/probe/<build>-tables.txt, a text sample of
@@ -36,6 +36,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from wowcalc import transport  # noqa: E402
 from wowcalc.fetch import WAGO_TABLE_URL, validate_csv  # noqa: E402
+from wowcalc.update import get_active  # noqa: E402
 
 CANDIDATES = {
     "race and class combinations": [
@@ -78,11 +79,15 @@ def probe(table: str, version: str) -> dict:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--version", default="1.60.1.70450")
+    ap.add_argument("--version", help="the build to probe (default: the active build)")
     ap.add_argument("--group", action="append", metavar="WORDS",
                     help="only the groups whose name contains these words, e.g. --group per-level (repeatable)")
     args = ap.parse_args()
     root = Path(__file__).resolve().parents[1]
+    args.version = args.version or get_active(root / "data")
+    if not args.version:
+        print("No build is installed; pass --version.")
+        return 2
 
     found = []
     print(f"Probing Wago for build {args.version}\n")
