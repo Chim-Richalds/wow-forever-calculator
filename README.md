@@ -13,6 +13,8 @@ Plain Python 3 with no packages (developed and tested on 3.13). Your own files g
 
 ## Get or update the game data
 
+In the page: **Data and confidence → Update to the newest build** checks, downloads, validates and installs the newest build, then reloads. A build that fails validation is never installed; new warnings ask for confirmation first. The same steps from the command line:
+
 ```
 PYTHONPATH=src python3 -m wowcalc.update status      # what is installed and what is available
 PYTHONPATH=src python3 -m wowcalc.update prepare     # fetch and check the latest build (waits in staging)

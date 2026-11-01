@@ -584,10 +584,22 @@ def host_name(header: str) -> str:
     return header.rsplit(":", 1)[0] if ":" in header else header
 
 
-def make_handler(bench: Workbench):
+def make_handler(bench: Workbench, updater: "UpdateJob | None" = None):
+    """The request handler. The loaded build lives in `current`, so the update job can swap in a
+    newly installed build while the server runs; requests already in flight finish on the old one."""
+    from .update import UpdateError
+    from .updater import UpdateJob
+
+    current = {"bench": bench}
+
+    def installed(version: str) -> None:
+        current["bench"] = Workbench(bench.data_dir, version)
+
+    job = updater or UpdateJob(bench.data_dir, installed)
+
     class Handler(BaseHTTPRequestHandler):
         server_version = "wowcalc"
-        server_icons = bench.icons
+        update_job = job
 
         def log_message(self, fmt, *args):  # quiet: the console is for the person using it
             pass
@@ -614,7 +626,7 @@ def make_handler(bench: Workbench):
                 if method == "GET" and url.path in ("/", "/index.html"):
                     return self._send(200, PAGE.read_bytes(), "text/html; charset=utf-8")
                 if method == "GET" and url.path.startswith("/icons/"):
-                    found = self.server_icons.read(url.path[len("/icons/"):])
+                    found = current["bench"].icons.read(url.path[len("/icons/"):])
                     if found is None:
                         raise UiError(404, "no such icon")
                     return self._send(200, found[0], found[1])
@@ -629,7 +641,16 @@ def make_handler(bench: Workbench):
                         body = json.loads(self.rfile.read(length) or b"{}")
                     except ValueError:
                         raise UiError(400, "the request body is not valid JSON") from None
-                status, payload = route(bench, method, url.path, body)
+                if url.path == "/api/update":
+                    if method == "GET":
+                        return self._send(200, {**job.snapshot(), "build": current["bench"].build})
+                    if method == "POST":
+                        try:
+                            return self._send(202, job.start(acknowledge=bool((body or {}).get("acknowledge"))))
+                        except UpdateError as exc:
+                            raise UiError(409, str(exc)) from None
+                    raise UiError(405, "use GET or POST")
+                status, payload = route(current["bench"], method, url.path, body)
                 self._send(status, payload)
             except UiError as exc:
                 self._send(exc.status, {"error": exc.message})

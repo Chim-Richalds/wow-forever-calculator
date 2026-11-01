@@ -223,7 +223,7 @@ const keysIn = (objs) => {
 };
 
 const S = { meta: null, tree: null, nodes: new Map(), cls: null, race: null, alloc: {}, adjust: {}, result: null, tab: "sheet",
-  mode: "now", sort: null, seq: 0, timer: null, status: null };
+  mode: "now", sort: null, seq: 0, timer: null, status: null, updating: false };
 
 async function api(method, path, body) {
   const res = await fetch(path, { method, headers: body ? { "Content-Type": "application/json" } : {}, body: body ? JSON.stringify(body) : undefined });
@@ -589,11 +589,57 @@ async function renderData() {
   const checks = st.checks.map((c) => `<li>${c.ok ? '<span class="ok">Passed</span>' : '<span class="bad">Needs a look</span>'} – ${esc(c.name)}${c.ok ? "" : "<ul>" + c.problems.map((p) => `<li>${esc(p)}</li>`).join("") + "</ul>"}</li>`).join("");
   const conf = st.confidence.map((c) => `<tr><td>${esc(c.item)}</td><td><span class="pill ${esc(c.status.replace(/ /g, "-"))}">${esc(c.status)}</span></td><td class="tiny" style="text-align:left">${esc(c.detail)}</td></tr>`).join("");
   $("pane-data").innerHTML = `
+    <div id="updatebox"></div>
     <p>Game build <strong class="num">${esc(st.build)}</strong>${st.references ? `. Outside reference: <span class="tiny">${esc(st.references.source || "")}</span>` : ""}</p>
     ${st.icons ? `<p class="tiny">Talent icons: ${st.icons.cached} of ${st.icons.wanted} cached${st.icons.spellmisc ? "" : " (spell icon table not installed: python -m wowcalc.update complete)"}${st.icons.cached < st.icons.wanted ? ". Add more with python -m wowcalc.icons import or fetch." : "."}</p>` : ""}
     <h3 class="sub">Data checks</h3><ul class="notes" style="color:inherit">${checks}</ul>
     <h3 class="sub">What the numbers rest on</h3>
     <div style="overflow-x:auto"><table><thead><tr><th>Item</th><th>Status</th><th style="text-align:left">Detail</th></tr></thead><tbody>${conf}</tbody></table></div>`;
+  pollUpdate();
+}
+
+// ------------------------------------------------------------------ one-click update
+// The server checks, downloads, validates and installs; the page polls and reloads once the
+// build it started installing is in. A failed check never installs anything.
+async function startUpdate(acknowledge) {
+  try {
+    S.updating = true;
+    renderUpdate(await api("POST", "/api/update", { acknowledge }));
+    setTimeout(pollUpdate, 1000);
+  } catch (e) { S.updating = false; toast(e.message); }
+}
+async function pollUpdate() {
+  let u;
+  try { u = await api("GET", "/api/update"); } catch (e) { return; }
+  renderUpdate(u);
+  if (u.state === "running") { S.updating = true; setTimeout(pollUpdate, 1000); return; }
+  if (u.state === "installed" && S.updating) { S.updating = false; setTimeout(() => location.reload(), 1500); }
+  else S.updating = false;
+}
+function renderUpdate(u) {
+  const box = $("updatebox");
+  if (!box) return;
+  const list = (items, cls) => items && items.length ? `<ul class="notes" style="color:inherit">${items.map((i) => `<li${cls ? ` class="${cls}"` : ""}>${esc(i)}</li>`).join("")}</ul>` : "";
+  const summary = u.summary && u.summary.length ? `<details><summary class="tiny">What changed${u.version ? " in " + esc(u.version) : ""}</summary><pre class="tiny" style="white-space:pre-wrap">${esc(u.summary.join("\n"))}</pre></details>` : "";
+  const btn = (label, ack, primary) => `<button type="button" class="btn${primary ? " primary" : ""}" data-update="${ack ? "ack" : "go"}">${label}</button>`;
+  let h = '<h3 class="sub">Updates</h3>';
+  if (u.state === "running") {
+    h += `<p>Updating… this takes about half a minute.</p><pre class="tiny" style="white-space:pre-wrap">${esc((u.log || []).slice(-6).join("\n"))}</pre>`;
+  } else if (u.state === "needs_ack") {
+    h += `<p>${esc(u.message)}</p>${list(u.warnings)}${summary}<p>${btn("Install anyway", true, true)}</p>`;
+  } else if (u.state === "blocked") {
+    h += `<p class="bad">${esc(u.message)}</p>${list(u.blockers)}${summary}<p>${btn("Check again", false)}</p>`;
+  } else if (u.state === "installed") {
+    h += `<p class="ok">${esc(u.message)}${S.updating ? " Reloading…" : ""}</p>${summary}<p>${btn("Check for a newer build", false)}</p>`;
+  } else if (u.state === "current") {
+    h += `<p>${esc(u.message)}</p><p>${btn("Check again", false)}</p>`;
+  } else if (u.state === "failed") {
+    h += `<p class="bad">The update did not finish: ${esc(u.message)}</p><p>${btn("Try again", false)}</p>`;
+  } else {
+    h += `<p class="hint">Checks for a newer game build, downloads and checks it, installs it if it passes, and reloads.</p><p>${btn("Update to the newest build", false, true)}</p>`;
+  }
+  box.innerHTML = h;
+  box.querySelectorAll("[data-update]").forEach((b) => b.addEventListener("click", () => { b.disabled = true; startUpdate(b.dataset.update === "ack"); }));
 }
 
 // ------------------------------------------------------------------ saved builds

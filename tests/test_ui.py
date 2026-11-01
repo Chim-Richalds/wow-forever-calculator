@@ -510,6 +510,23 @@ class ServerTests(WorkbenchCase):
         self.assertIn("127.0.0.1", json.loads(body)["error"])
         self.assertEqual(self.call("GET", "/api/meta", headers={"Host": "localhost:1234"})[0], 200)
 
+    def test_update_status_and_refused_confirmation(self):
+        status, body, _ = self.call("GET", "/api/update")
+        self.assertEqual(status, 200)
+        self.assertEqual((json.loads(body)["state"], json.loads(body)["build"]), ("idle", BUILD))
+        status, body, _ = self.call("POST", "/api/update", {"acknowledge": True})   # nothing is waiting
+        self.assertEqual(status, 409)
+        self.assertIn("Nothing is waiting", json.loads(body)["error"])
+
+    def test_an_installed_build_is_served_without_a_restart(self):
+        import shutil
+        newer = "1.60.1.70999"
+        shutil.copytree(self.data / "raw" / BUILD, self.data / "raw" / newer)
+        self.server.RequestHandlerClass.update_job.on_installed(newer)
+        self.assertEqual(json.loads(self.call("GET", "/api/update")[1])["build"], newer)
+        self.assertEqual(json.loads(self.call("GET", "/api/status")[1])["build"], newer)
+        self.assertEqual(self.call("GET", "/api/tree/Mage")[0], 200)
+
     def test_an_oversized_body_is_refused(self):
         # Refused from the declared length, before any body is read. Sending a real 1 MB body
         # races with the server closing the connection (a broken pipe instead of the 413).
