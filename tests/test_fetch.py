@@ -5,11 +5,13 @@ Run: python -m unittest discover -s tests
 import hashlib
 import http.server
 import json
+import socket
 import sys
 import tempfile
 import threading
 import unittest
 import urllib.error
+from unittest import mock
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -474,6 +476,85 @@ class TransportTests(unittest.TestCase):
                 self.assertEqual((data / "staging" / V / "TraitTree.csv").read_bytes(), b"ID,Name\n1,a\n")
         finally:
             fetch_mod.WAGO_TABLE_URL = original
+
+
+class _FakeSock:
+    def __init__(self):
+        self.timeout = "unset"
+
+    def settimeout(self, value):
+        self.timeout = value
+
+
+class IPv6CheckTests(unittest.TestCase):
+    """The per-host IPv6 decision in transport._create_connection."""
+
+    V6 = (socket.AF_INET6, socket.SOCK_STREAM, 6, "", ("2001:db8::1", 443, 0, 0))
+    V4 = (socket.AF_INET, socket.SOCK_STREAM, 6, "", ("192.0.2.1", 443))
+
+    def setUp(self):
+        transport.reset_ipv6_cache()
+        self.calls = []  # (families tried, timeout) per connect attempt
+        self.v6_works = True
+        patches = [
+            mock.patch.object(transport.socket, "getaddrinfo", return_value=[self.V6, self.V4]),
+            mock.patch.object(transport, "_connect_any", side_effect=self._connect_any),
+        ]
+        for p in patches:
+            p.start()
+            self.addCleanup(p.stop)
+        self.addCleanup(transport.reset_ipv6_cache)
+
+    def _connect_any(self, infos, timeout, source_address):
+        families = [i[0] for i in infos]
+        self.calls.append((families, timeout))
+        if families[0] == socket.AF_INET6 and not self.v6_works:
+            raise TimeoutError("timed out")
+        return _FakeSock()
+
+    def test_working_ipv6_is_kept(self):
+        sock = transport._create_connection(("wago.tools", 443), 60.0)
+        self.assertEqual(self.calls[0], ([socket.AF_INET6], transport.IPV6_PROBE_TIMEOUT))
+        self.assertEqual(sock.timeout, 60.0)  # probe timeout not left on the socket
+        transport._create_connection(("wago.tools", 443), 60.0)
+        self.assertEqual(self.calls[1], ([socket.AF_INET6, socket.AF_INET], 60.0))
+
+    def test_dead_ipv6_switches_host_to_ipv4(self):
+        self.v6_works = False
+        with self.assertLogs(transport.log, "WARNING"):
+            transport._create_connection(("wago.tools", 443), 60.0)
+        self.assertEqual(self.calls, [([socket.AF_INET6], transport.IPV6_PROBE_TIMEOUT),
+                                      ([socket.AF_INET], 60.0)])
+        self.calls.clear()
+        transport._create_connection(("wago.tools", 443), 60.0)
+        self.assertEqual(self.calls, [([socket.AF_INET], 60.0)])  # no IPv6 attempt
+
+    def test_decision_is_per_host(self):
+        self.v6_works = False
+        with self.assertLogs(transport.log, "WARNING"):
+            transport._create_connection(("wago.tools", 443), 60.0)
+        self.calls.clear()
+        self.v6_works = True
+        transport._create_connection(("other.example", 443), 60.0)
+        self.assertEqual(self.calls[0][0], [socket.AF_INET6])  # other host still checked
+
+    def test_nothing_decided_when_offline(self):
+        def offline(infos, timeout, source_address):
+            raise OSError("network unreachable")
+        transport._connect_any.side_effect = offline
+        with self.assertRaises(OSError):
+            transport._create_connection(("wago.tools", 443), 60.0)
+        self.assertNotIn("wago.tools", transport._ipv6_ok)
+
+    def test_single_family_host_is_not_checked(self):
+        transport.socket.getaddrinfo.return_value = [self.V4]
+        transport._create_connection(("v4only.example", 443), 60.0)
+        self.assertEqual(self.calls, [([socket.AF_INET], 60.0)])
+        self.assertNotIn("v4only.example", transport._ipv6_ok)
+
+    def test_probe_never_longer_than_request_timeout(self):
+        transport._create_connection(("wago.tools", 443), 2.0)
+        self.assertEqual(self.calls[0][1], 2.0)
 
 
 if __name__ == "__main__":
