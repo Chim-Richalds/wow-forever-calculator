@@ -8,6 +8,18 @@ from pathlib import Path
 from .builds import VERSION_RE, BuildInfo
 
 
+def as_int(value, default: int = 0) -> int:
+    """A table cell as an integer: "12", "12.0" and 12 all give 12; anything else gives `default`.
+    Whole-number text is parsed exactly (large IDs do not go through float)."""
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        try:
+            return int(float(value))
+        except (TypeError, ValueError, OverflowError):
+            return default
+
+
 class DatasetError(Exception):
     """A table is missing, unreadable, or has no header."""
 

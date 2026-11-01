@@ -276,7 +276,8 @@ class CompleteResult:
     failures: tuple[dict, ...] = ()
 
 
-def _write_json_atomic(path: Path, obj) -> None:
+def write_json_atomic(path: Path, obj) -> None:
+    """Write `obj` as JSON through a temporary file, so a crash never leaves half a file."""
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_name(path.name + ".tmp")
     tmp.write_text(json.dumps(obj, indent=2) + "\n", encoding="utf-8")
@@ -360,7 +361,7 @@ def complete_build(
             entry["addedAt"] = stamp
         manifest["tables"] = {**entries, **new_entries}
         manifest.setdefault("completions", []).append({"at": stamp, "tables": list(new_entries)})
-        _write_json_atomic(manifest_path, manifest)
+        write_json_atomic(manifest_path, manifest)
         return CompleteResult(version, True, tuple(new_entries))
     finally:
         shutil.rmtree(work, ignore_errors=True)

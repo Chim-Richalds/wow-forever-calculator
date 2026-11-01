@@ -47,7 +47,6 @@ from fractions import Fraction
 from typing import Iterable, Mapping
 
 from .basestats import BaseStatTable
-from .derived import PoolRule
 from .perlevel import mana_total
 from .rates import RateTable, StatEffects
 from .sheetbase import SheetBase, SheetBaseError

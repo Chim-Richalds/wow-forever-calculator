@@ -23,7 +23,7 @@ from .allocation import check
 from .basestats import load_base_stats
 from .rates import RatesError, load_rates
 from .sheetbase import SheetBaseError, load_sheet_base
-from .dataset import Dataset, DatasetError
+from .dataset import Dataset
 from .effects import STAT_PERCENT, EffectBook, render_tooltip
 from .fetch import TABLES
 from .stats import SHEET_STATS, apply_percents, build_sheet, ranked

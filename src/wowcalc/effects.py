@@ -77,6 +77,7 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 
 from .dataset import Dataset
+from .dataset import as_int as _int
 from .trees import Node, TreeModel
 
 AURA_STAT_PERCENT = 137
@@ -145,13 +146,6 @@ class TalentEffect:
         if self.kind in (STAT_PERCENT, AP_FROM_STAT, SP_FROM_STAT):
             return bool(self.stats) and bool(self.by_rank)
         return (self.kind == SHEET_ADD or self.kind in OTHER_KINDS) and bool(self.figures) and bool(self.by_rank)
-
-
-def _int(value, default=0) -> int:
-    try:
-        return int(float(value))
-    except (TypeError, ValueError):
-        return default
 
 
 def _float(value, default=0.0) -> float:

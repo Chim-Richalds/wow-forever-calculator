@@ -38,6 +38,7 @@ from pathlib import Path
 from typing import Iterable
 
 from .dataset import Dataset, DatasetError
+from .dataset import as_int as _int
 
 GRID = 600  # nodes sit on a 600-unit grid in both directions
 
@@ -156,16 +157,6 @@ class TreeModel:
         for tree in self.trees.values():
             out.extend(f"{tree.class_name} (tree {tree.tree_id}): {a}" for a in tree.anomalies)
         return out
-
-
-def _int(value: str, default: int = 0) -> int:
-    try:
-        return int(value)
-    except (TypeError, ValueError):
-        try:
-            return int(float(value))
-        except (TypeError, ValueError):
-            return default
 
 
 def _grid_anomalies(nodes: dict[str, Node]) -> list[str]:

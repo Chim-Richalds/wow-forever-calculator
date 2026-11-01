@@ -31,7 +31,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
@@ -45,7 +44,7 @@ from .builds import (
 from .dataset import DatasetError, list_builds, open_dataset
 from .diff import ChangeReport, compare_datasets, format_report
 from .fetch import (
-    TABLES, FetchBytes, FetchError, _default_fetch_bytes, complete_build, fetch_build, promote_staged,
+    TABLES, FetchBytes, FetchError, _default_fetch_bytes, complete_build, fetch_build, promote_staged, write_json_atomic,
 )
 from .validate import (
     GateResult, Thresholds, ValidationReport, _print_report, evaluate_gates, validate_dataset,
@@ -71,13 +70,6 @@ class AcknowledgementRequired(UpdateError):
 # --------------------------------------------------------------------------
 # Active pointer
 # --------------------------------------------------------------------------
-
-def _write_json(path: Path, obj) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = path.with_name(path.name + ".tmp")
-    tmp.write_text(json.dumps(obj, indent=2) + "\n", encoding="utf-8")
-    os.replace(tmp, path)
-
 
 def read_state(data_dir: Path) -> dict | None:
     path = Path(data_dir) / ACTIVE_FILE
@@ -112,7 +104,7 @@ def _write_active(data_dir: Path, version: str, previous: str | None, via: str,
     })
     state["active"] = version
     state["updatedAt"] = stamp
-    _write_json(Path(data_dir) / ACTIVE_FILE, state)
+    write_json_atomic(Path(data_dir) / ACTIVE_FILE, state)
 
 
 def missing_tables(data_dir: Path, version: str) -> tuple[str, ...]:
@@ -187,7 +179,7 @@ def _write_reports(data_dir: Path, a: Assessment, now: datetime | None = None) -
     out = Path(data_dir) / "reports"
     written = []
     path = out / f"{a.version}.validation.json"
-    _write_json(path, {
+    write_json_atomic(path, {
         "generatedAt": stamp, "baseline": a.baseline,
         "validation": a.candidate.to_dict(), "gates": a.gates.to_dict(),
         "ruleChecks": [{"ruleId": c.rule_id, "status": c.verification_status, "state": c.state,
@@ -196,7 +188,7 @@ def _write_reports(data_dir: Path, a: Assessment, now: datetime | None = None) -
     written.append(path)
     if a.changes is not None:
         path = out / f"{a.version}.changes.json"
-        _write_json(path, {"generatedAt": stamp, "changes": a.changes.to_dict()})
+        write_json_atomic(path, {"generatedAt": stamp, "changes": a.changes.to_dict()})
         written.append(path)
     return written
 

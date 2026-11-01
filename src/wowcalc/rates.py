@@ -31,7 +31,6 @@ import argparse
 import json
 import statistics
 import sys
-from collections import Counter
 from dataclasses import dataclass, field
 from decimal import ROUND_HALF_UP, Decimal
 from fractions import Fraction
@@ -39,7 +38,7 @@ from pathlib import Path
 
 from .basestats import BaseStatTable, load_base_stats
 from .derived import ArmorRule, AssumedRules, PoolRule, fit_armor, fit_pool
-from .perlevel import ClientModel, fit_client, load_expected, mana_total
+from .perlevel import ClientModel, fit_client, load_expected
 from .sheetbase import Figure, SheetBase, load_sheet_base
 
 LEVEL = 60

@@ -40,7 +40,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Iterable
 
-from .dataset import Dataset, DatasetError, list_builds, open_dataset
+from .dataset import Dataset, DatasetError, open_dataset
 
 SCHEMA_VERSION = 2
 INVALIDATING = ("effect", "ranks", "scaling")

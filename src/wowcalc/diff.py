@@ -464,6 +464,11 @@ def _compare_definitions(om: _Model, nm: _Model, r: ChangeReport) -> None:
                     f"{'placed' if placed else 'unplaced'}: {_diff_text(diffs)}"})
 
 
+def _spell_name(om: _Model, nm: _Model, sid: str) -> str:
+    """A spell's name in the new build, else the old one, else its ID."""
+    return nm.spell_names.get(sid) or om.spell_names.get(sid) or f"spell {sid}"
+
+
 def _compare_spells(old: Dataset, new: Dataset, om: _Model, nm: _Model, spells: set[str], r: ChangeReport) -> None:
     if not spells:
         return
@@ -471,15 +476,12 @@ def _compare_spells(old: Dataset, new: Dataset, om: _Model, nm: _Model, spells: 
     nrows = {d["ID"]: d for d in _stream_dicts(new, "Spell", "ID", spells)}
     fields = [f for f in SPELL_TEXT_FIELDS if f in old.columns("Spell") and f in new.columns("Spell")]
 
-    def name(sid: str) -> str:
-        return nm.spell_names.get(sid) or om.spell_names.get(sid) or f"spell {sid}"
-
     for sid in sorted(spells, key=_id_key):
         o_present, n_present = sid in orows, sid in nrows
         if o_present != n_present:
             r.spell_presence_changes.append({
                 "spellId": sid, "presentNow": n_present,
-                "text": f"{name(sid)} (spell {sid}): spell data {'appeared' if n_present else 'disappeared'}"})
+                "text": f"{_spell_name(om, nm, sid)} (spell {sid}): spell data {'appeared' if n_present else 'disappeared'}"})
             continue
         if sid in om.spell_names or sid in nm.spell_names:
             on, nn = om.spell_names.get(sid, ""), nm.spell_names.get(sid, "")
@@ -494,7 +496,7 @@ def _compare_spells(old: Dataset, new: Dataset, om: _Model, nm: _Model, spells: 
                     x, y = _excerpt(a, b)
                     r.spell_text_changes.append({
                         "spellId": sid, "field": f, "old": a, "new": b,
-                        "text": f"{name(sid)} (spell {sid}): {f} changed: {x!r} -> {y!r}"})
+                        "text": f"{_spell_name(om, nm, sid)} (spell {sid}): {f} changed: {x!r} -> {y!r}"})
 
 
 def _compare_effects(old: Dataset, new: Dataset, om: _Model, nm: _Model, spells: set[str], r: ChangeReport) -> None:
@@ -504,21 +506,18 @@ def _compare_effects(old: Dataset, new: Dataset, om: _Model, nm: _Model, spells:
     nrows = {d["ID"]: d for d in _stream_dicts(new, "SpellEffect", "SpellID", spells)}
     added, removed, changed = _compare_keyed(orows, nrows)
 
-    def name(sid: str) -> str:
-        return nm.spell_names.get(sid) or om.spell_names.get(sid) or f"spell {sid}"
-
     for d in added:
         r.effects_added.append({"effectId": d["ID"], "spellId": d["SpellID"], "index": d.get("EffectIndex", ""),
-                                "text": f"{name(d['SpellID'])} (spell {d['SpellID']}): effect {d.get('EffectIndex', '?')} added "
+                                "text": f"{_spell_name(om, nm, d['SpellID'])} (spell {d['SpellID']}): effect {d.get('EffectIndex', '?')} added "
                                         f"(Effect {d.get('Effect', '?')}, Aura {d.get('EffectAura', '?')}, "
                                         f"base {d.get('EffectBasePointsF', '?')})"})
     for d in removed:
         r.effects_removed.append({"effectId": d["ID"], "spellId": d["SpellID"], "index": d.get("EffectIndex", ""),
-                                  "text": f"{name(d['SpellID'])} (spell {d['SpellID']}): effect {d.get('EffectIndex', '?')} removed"})
+                                  "text": f"{_spell_name(om, nm, d['SpellID'])} (spell {d['SpellID']}): effect {d.get('EffectIndex', '?')} removed"})
     for o, n, diffs in changed:
         r.effects_changed.append({
             "effectId": n["ID"], "spellId": n["SpellID"], "index": n.get("EffectIndex", ""), "changes": diffs,
-            "text": f"{name(n['SpellID'])} (spell {n['SpellID']}): effect {n.get('EffectIndex', '?')}: {_diff_text(diffs)}"})
+            "text": f"{_spell_name(om, nm, n['SpellID'])} (spell {n['SpellID']}): effect {n.get('EffectIndex', '?')}: {_diff_text(diffs)}"})
 
 
 def _compare_scaling(old: Dataset, new: Dataset, om: _Model, nm: _Model, defs: set[str], r: ChangeReport) -> None:
