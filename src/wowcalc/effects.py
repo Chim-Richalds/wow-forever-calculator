@@ -218,7 +218,13 @@ class EffectBook:
         spell, definition = node.spell_id, node.entries[0].definition_id
         out = []
         for row in sorted(self.effects.get(spell, []), key=lambda r: _int(r["EffectIndex"])):
-            out.append(self._decode_effect(row, node, definition))
+            effect = self._decode_effect(row, node, definition)
+            # Second check for the sheet decoders, which judge "always on" from the text: a spell the
+            # game flags as not passive (an ability or form) is never a permanent sheet bonus.
+            if effect.modelled and effect.kind not in OTHER_KINDS and self.passive.get(spell) is False:
+                effect = TalentEffect(effect.spell_id, effect.effect_index, effect.aura, UNSUPPORTED, effect.stats, {},
+                                      "an ability or form, not a passive talent (SpellMisc)")
+            out.append(effect)
         return out
 
     # ---- internals ----

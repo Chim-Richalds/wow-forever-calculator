@@ -309,6 +309,22 @@ class ConditionalDecodeTests(DecodeCase):
         self.assertEqual(self.with_text("Increases your chance to Block by 2%.", aura=51).figures, ("block",))
         self.assertEqual(self.with_text("Improves melee critical strikes by 2%.", aura=52).figures, ("melee_crit",))
 
+    def test_a_sheet_bonus_on_an_ability_is_refused(self):
+        def mutate(t):
+            add_effect(t, 1, aura=47, misc0=0, misc1=0)
+            add_curve(t, 1, 0, (2, 4))
+            t["SpellMisc"][1][0]["Attributes_0"] = ACTIVE
+        e = self.one(mutate)
+        self.assertEqual((e.kind, e.modelled), (UNSUPPORTED, False))
+        self.assertIn("not a passive talent", e.note)
+
+    def test_without_spell_flags_the_text_check_alone_decides(self):
+        def mutate(t):
+            add_effect(t, 1, aura=47, misc0=0, misc1=0)
+            add_curve(t, 1, 0, (2, 4))
+            del t["SpellMisc"]
+        self.assertEqual(self.one(mutate).kind, SHEET_ADD)
+
     def test_the_condition_guard_does_not_touch_stat_percent_talents(self):
         def mutate(t):
             add_effect(t, 1)

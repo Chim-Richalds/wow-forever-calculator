@@ -30,7 +30,7 @@ The full list is `docs/unmodelled_effects.tsv` (regenerate it after each change 
 - [ ] Auras decoded for the sheet but still conditional: 54, 290, 55, 49, 47, 51 (abilities with a duration, a single form).
 - [ ] Undecoded auras: 77 (16, forms and abilities: Moonkin Form, Berserk, Bestial Wrath), 332 (10, single spells: Improved Slam, Improved Ghost Wolf), 33 (4, effects on the enemy such as Mind Flay's slow; relabel them as such). Read the tooltips first; never assume the meaning from the aura number.
 - [ ] Damage done, threat and damage taken that depend on equipment (Weapon and Wand Specializations, Bastion, Defiance) or a state (Lone Wolf, Instrument of Law, Spirit Weapons): need gear and state inputs.
-- [ ] Apply the passive-spell check (SpellMisc) to the older sheet decoders too, alongside the text check they use now.
+- [x] The passive-spell check (SpellMisc) also guards the sheet decoders. On 1.60.1.70707 all 55 counted sheet effects are on passive spells, so nothing changed.
 - [ ] Spell modifiers (auras 107 and 108, about 300 effects): they change particular spells (cost, damage, cast time), not the sheet. Needs a different engine and a model of the spells.
 - [ ] Scripts (auras 4, 42, 109, 190 effects): the data holds numbers only; the tooltip says what they mean.
 - [ ] Instant effects (no aura, 74).
