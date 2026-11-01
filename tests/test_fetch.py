@@ -108,7 +108,7 @@ class FetchSuccessTests(TempData):
         self.assertFalse((self.data / "staging" / f"{V}.partial").exists())
         manifest = json.loads((staged / "manifest.json").read_text())
         self.assertEqual(manifest["build"], V)
-        self.assertEqual(manifest["product"], "wow_classic_beta")
+        self.assertEqual(manifest["product"], CFG.product)
         self.assertEqual(manifest["retrievedAt"], FIXED_NOW.isoformat())
         self.assertEqual(manifest["failures"], [])
 

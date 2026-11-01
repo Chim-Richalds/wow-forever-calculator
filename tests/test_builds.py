@@ -30,19 +30,19 @@ TACT_SAMPLE = (
 GOOD_CSV = "TitleText_lang,ID,TraitSystemID\n,1058,0\n,1082,0\n"
 
 def _entry(version, created="2026-01-01 00:00:00"):
-    return {"product": "wow_classic_beta", "version": version, "created_at": created,
+    return {"product": CFG.product, "version": version, "created_at": created,
             "build_config": "cfg_" + version, "product_config": "p", "cdn_config": "c", "is_bgdl": False}
 
 
 # Shape matches the real response: dict keyed by product, array NOT in date order
 # (5.5.0 entries first), plus a malformed entry that must be skipped.
 BUILDS_SAMPLE = json.dumps({
-    "wow_classic_beta": [
+    CFG.product: [
         _entry("5.5.0.62071", "2025-07-18 01:19:04"),
         _entry("1.60.1.70374"),
         _entry("1.60.1.70425", "2026-10-16 00:50:05"),
         _entry("1.60.1.70338"),
-        {"product": "wow_classic_beta", "version": "garbage"},
+        {"product": CFG.product, "version": "garbage"},
         "not-a-dict",
     ],
     "wow": [_entry("12.0.0.99999")],

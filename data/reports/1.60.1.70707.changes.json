@@ -1,0 +1,989 @@
+{
+  "generatedAt": "2026-11-01T10:53:31.427172+00:00",
+  "changes": {
+    "old_version": "1.60.1.70532",
+    "new_version": "1.60.1.70707",
+    "schema": {},
+    "tables": {
+      "TraitTree": {
+        "old": 17,
+        "new": 17,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitNode": {
+        "old": 558,
+        "new": 556,
+        "added": 0,
+        "removed": 2,
+        "changed": 7,
+        "keyed": true
+      },
+      "TraitNodeEntry": {
+        "old": 659,
+        "new": 659,
+        "added": 0,
+        "removed": 0,
+        "changed": 3,
+        "keyed": true
+      },
+      "TraitNodeXTraitNodeEntry": {
+        "old": 561,
+        "new": 559,
+        "added": 0,
+        "removed": 2,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitDefinition": {
+        "old": 659,
+        "new": 659,
+        "added": 0,
+        "removed": 0,
+        "changed": 2,
+        "keyed": true
+      },
+      "TraitDefinitionEffectPoints": {
+        "old": 644,
+        "new": 646,
+        "added": 2,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitEdge": {
+        "old": 99,
+        "new": 99,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "CurvePoint": {
+        "old": 41758,
+        "new": 41769,
+        "added": 15,
+        "removed": 4,
+        "changed": 10,
+        "keyed": true
+      },
+      "SpellName": {
+        "old": 31962,
+        "new": 32030,
+        "added": 68,
+        "removed": 0,
+        "changed": 6,
+        "keyed": true
+      },
+      "Spell": {
+        "old": 31962,
+        "new": 32030,
+        "added": 68,
+        "removed": 0,
+        "changed": 74,
+        "keyed": true
+      },
+      "SpellEffect": {
+        "old": 42726,
+        "new": 42859,
+        "added": 136,
+        "removed": 3,
+        "changed": 68,
+        "keyed": true
+      },
+      "ChrClasses": {
+        "old": 9,
+        "new": 9,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "ChrRaces": {
+        "old": 58,
+        "new": 58,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "SkillLineXTraitTree": {
+        "old": 9,
+        "new": 9,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "SkillRaceClassInfo": {
+        "old": 186,
+        "new": 186,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitCond": {
+        "old": 172,
+        "new": 172,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitNodeGroup": {
+        "old": 372,
+        "new": 372,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitNodeGroupXTraitNode": {
+        "old": 2151,
+        "new": 2145,
+        "added": 7,
+        "removed": 13,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitNodeGroupXTraitCond": {
+        "old": 171,
+        "new": 171,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitNodeXTraitCond": {
+        "old": 1,
+        "new": 1,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitCurrency": {
+        "old": 2,
+        "new": 2,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitCurrencySource": {
+        "old": 187,
+        "new": 187,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitTreeXTraitCurrency": {
+        "old": 13,
+        "new": 13,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitCost": {
+        "old": 11,
+        "new": 11,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitTreeXTraitCost": {
+        "old": 13,
+        "new": 13,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "CharBaseInfo": {
+        "old": 56,
+        "new": 56,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "SpellMechanic": {
+        "old": 36,
+        "new": 36,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "Resistances": {
+        "old": 7,
+        "new": 7,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "SpellMisc": {
+        "old": 31942,
+        "new": 32010,
+        "added": 68,
+        "removed": 0,
+        "changed": 125,
+        "keyed": true
+      }
+    },
+    "trees_added": [],
+    "trees_removed": [],
+    "trees_renamed": [],
+    "nodes_added": [],
+    "nodes_removed": [
+      {
+        "nodeId": "105773",
+        "treeId": "1112",
+        "label": "Piercing Ice [node 105773]",
+        "text": "Piercing Ice [node 105773] from tree 1112"
+      },
+      {
+        "nodeId": "105814",
+        "treeId": "1112",
+        "label": "Arcane Focus [node 105814]",
+        "text": "Arcane Focus [node 105814] from tree 1112"
+      }
+    ],
+    "nodes_moved": [
+      {
+        "nodeId": "105771",
+        "treeId": "1112",
+        "label": "Improved Blizzard [node 105771]",
+        "old": {
+          "tree": "1112",
+          "x": "10880",
+          "y": "3330"
+        },
+        "new": {
+          "tree": "1112",
+          "x": "9680",
+          "y": "3330"
+        },
+        "text": "Improved Blizzard [node 105771]: (10880, 3330) -> (9680, 3330)"
+      },
+      {
+        "nodeId": "105772",
+        "treeId": "1112",
+        "label": "Frost Channeling [node 105772]",
+        "old": {
+          "tree": "1112",
+          "x": "9680",
+          "y": "3330"
+        },
+        "new": {
+          "tree": "1112",
+          "x": "9080",
+          "y": "3330"
+        },
+        "text": "Frost Channeling [node 105772]: (9680, 3330) -> (9080, 3330)"
+      },
+      {
+        "nodeId": "105774",
+        "treeId": "1112",
+        "label": "Frostbite [node 105774]",
+        "old": {
+          "tree": "1112",
+          "x": "10880",
+          "y": "2730"
+        },
+        "new": {
+          "tree": "1112",
+          "x": "9680",
+          "y": "2730"
+        },
+        "text": "Frostbite [node 105774]: (10880, 2730) -> (9680, 2730)"
+      },
+      {
+        "nodeId": "105776",
+        "treeId": "1112",
+        "label": "Permafrost [node 105776]",
+        "old": {
+          "tree": "1112",
+          "x": "9680",
+          "y": "2730"
+        },
+        "new": {
+          "tree": "1112",
+          "x": "10880",
+          "y": "2730"
+        },
+        "text": "Permafrost [node 105776]: (9680, 2730) -> (10880, 2730)"
+      },
+      {
+        "nodeId": "105797",
+        "treeId": "1112",
+        "label": "Improved Fire Blast [node 105797]",
+        "old": {
+          "tree": "1112",
+          "x": "5020",
+          "y": "2130"
+        },
+        "new": {
+          "tree": "1112",
+          "x": "6820",
+          "y": "3330"
+        },
+        "text": "Improved Fire Blast [node 105797]: (5020, 2130) -> (6820, 3330)"
+      },
+      {
+        "nodeId": "105802",
+        "treeId": "1112",
+        "label": "Arcane Resilience [node 105802]",
+        "old": {
+          "tree": "1112",
+          "x": "2820",
+          "y": "2130"
+        },
+        "new": {
+          "tree": "1112",
+          "x": "2220",
+          "y": "2130"
+        },
+        "text": "Arcane Resilience [node 105802]: (2820, 2130) -> (2220, 2130)"
+      },
+      {
+        "nodeId": "105813",
+        "treeId": "1112",
+        "label": "Improved Channeling [node 105813]",
+        "old": {
+          "tree": "1112",
+          "x": "2220",
+          "y": "2130"
+        },
+        "new": {
+          "tree": "1112",
+          "x": "1620",
+          "y": "2130"
+        },
+        "text": "Improved Channeling [node 105813]: (2220, 2130) -> (1620, 2130)"
+      }
+    ],
+    "entry_changes": [
+      {
+        "nodeId": "105778",
+        "treeId": "1112",
+        "label": "Precision [node 105778]",
+        "kind": "max_ranks",
+        "text": "Precision [node 105778]: max ranks 5 -> 3",
+        "entryId": "130507",
+        "old": "5",
+        "new": "3"
+      },
+      {
+        "nodeId": "105784",
+        "treeId": "1112",
+        "label": "Critical Mass [node 105784]",
+        "kind": "max_ranks",
+        "text": "Critical Mass [node 105784]: max ranks 5 -> 3",
+        "entryId": "130513",
+        "old": "5",
+        "new": "3"
+      },
+      {
+        "nodeId": "105796",
+        "treeId": "1112",
+        "label": "Incineration [node 105796]",
+        "kind": "max_ranks",
+        "text": "Incineration [node 105796]: max ranks 3 -> 5",
+        "entryId": "130525",
+        "old": "3",
+        "new": "5"
+      },
+      {
+        "nodeId": "105802",
+        "treeId": "1112",
+        "label": "Arcane Resilience [node 105802]",
+        "kind": "spell",
+        "text": "Arcane Resilience [node 105802]: spell 400588 (Missile Barrage) -> 28574 (Arcane Resilience)",
+        "entryId": "130531",
+        "old": "400588",
+        "new": "28574"
+      },
+      {
+        "nodeId": "105809",
+        "treeId": "1112",
+        "label": "Missile Barrage [node 105809]",
+        "kind": "spell",
+        "text": "Missile Barrage [node 105809]: spell 28574 (Arcane Resilience) -> 400588 (Missile Barrage)",
+        "entryId": "130538",
+        "old": "28574",
+        "new": "400588"
+      }
+    ],
+    "edges_added": [],
+    "edges_removed": [],
+    "definitions_added": [],
+    "definitions_removed": [],
+    "definitions_changed": [
+      {
+        "definitionId": "135332",
+        "placed": true,
+        "changes": {
+          "SpellID": [
+            "400588",
+            "28574"
+          ]
+        },
+        "text": "Definition 135332 (Arcane Resilience), placed: SpellID '400588' -> '28574'"
+      },
+      {
+        "definitionId": "135339",
+        "placed": true,
+        "changes": {
+          "SpellID": [
+            "28574",
+            "400588"
+          ]
+        },
+        "text": "Definition 135339 (Missile Barrage), placed: SpellID '28574' -> '400588'"
+      }
+    ],
+    "spell_text_changes": [
+      {
+        "spellId": "11069",
+        "field": "Name_lang",
+        "old": "Improved Fireball",
+        "new": "Accelerant",
+        "text": "spell 11069: Name_lang 'Improved Fireball' -> 'Accelerant'"
+      },
+      {
+        "spellId": "11069",
+        "field": "Description_lang",
+        "old": "Reduces the casting time of your Fireball and Frostfire Bolt spells by $/1000;S1 sec.",
+        "new": "Reduces the casting time of your Fireball, Frostfire Bolt, and Arcane Wrath spells by $/1000;S1 sec.",
+        "text": "Accelerant (spell 11069): Description_lang changed: '\u2026ing time of your Fireball and Frostfire Bolt spells by $/1000;S1 sec.' -> '\u2026ing time of your Fireball, Frostfire Bolt, and Arcane Wrath spells by \u2026'"
+      },
+      {
+        "spellId": "11180",
+        "field": "Description_lang",
+        "old": "Gives your Frost damage spells a $m2% chance to apply the Winter's Chill effect, which increases the damage done by your Cone of Cold spell to the target by $12579s1%, stacking up to $s1 times.",
+        "new": "Gives your Frostbolt, Frost Blast, and Fingers of Frost empowered Ice Lance spells a $m2% chance to apply Winter's Chill, increasing the target's damage taken from your next Cone of Cold by $12579s1% and it gains an additional $s3% of your spell damage, stacking up to $s1 times.",
+        "text": "Winter's Chill (spell 11180): Description_lang changed: 'Gives your Frost damage spells a $m2% chance to apply the Win\u2026' -> 'Gives your Frostbolt, Frost Blast, and Fingers of Frost empow\u2026'"
+      },
+      {
+        "spellId": "11189",
+        "field": "Description_lang",
+        "old": "Increases the Armor and resistance given by your Frost Armor and Ice Armor spells by $s1%. In addition, gives your Frost Ward a $s2% chance to reflect Frost spells and effects while active.",
+        "new": "Increases the Armor and resistances granted by your Frost Armor and Ice Armor spells by $s1%, gives your Frost Ward a $s2% chance to negate the warded damage spell, and increases the amount absorbed by your Ice Barrier and Frost Ward by $s3%.",
+        "text": "Frost Warding (spell 11189): Description_lang changed: '\u2026 the Armor and resistance given by your Frost Armor and Ice Armor spel\u2026' -> '\u2026 the Armor and resistances granted by your Frost Armor and Ice Armor s\u2026'"
+      },
+      {
+        "spellId": "11237",
+        "field": "Description_lang",
+        "old": "Gives you a $m1% chance to avoid interruption caused by damage while channeling Arcane Missiles and a $m2% chance while casting Arcane Blast or Arcane Wrath.",
+        "new": "Gives your Arcane Missiles spell a $m1% chance and your Arcane Blast and Arcane Wrath spells a $m2% chance to not lose casting time when you take damage.",
+        "text": "Improved Channeling (spell 11237): Description_lang changed: 'Gives you a $m1% chance to avoid interruption caused b\u2026' -> 'Gives your Arcane Missiles spell a $m1% chance and you\u2026'"
+      },
+      {
+        "spellId": "11426",
+        "field": "Description_lang",
+        "old": "Instantly shields you, absorbing $s1 damage. Lasts $d. While the shield holds, your spellcasts will not be interrupted or delayed from taking damage.\r\n",
+        "new": "Shield yourself, absorbing ${$s1+($SPFR*0.1)*($11189s3/100+1)} damage and increasing your Frost damage by $1326891s1% for $d. While shielded, your Frost damage is increased by an additional $s2% and you do not lose casting time when you take damage.",
+        "text": "Ice Barrier (spell 11426): Description_lang changed: 'Instantly shields you, absorbing $s1 damage. \u2026' -> 'Shield yourself, absorbing ${$s1+($SPFR*0.1)*\u2026'"
+      },
+      {
+        "spellId": "11426",
+        "field": "AuraDescription_lang",
+        "old": "Absorbs $w1 damage.",
+        "new": "Absorbs $w1 damage and increases Frost damage dealt by ${$w2}%.",
+        "text": "Ice Barrier (spell 11426): AuraDescription_lang changed: 'Absorbs $w1 damage.' -> 'Absorbs $w1 damage and increases Frost damage dealt by ${$w2}%.'"
+      },
+      {
+        "spellId": "14913",
+        "field": "Description_lang",
+        "old": "Gives you a $s1% chance to avoid interruption caused by damage while casting any spell.",
+        "new": "Gives your spells a $s1% chance to not lose casting time when you take damage.",
+        "text": "Twilight Focus (spell 14913): Description_lang changed: 'Gives you a $s1% chance to avoid interruption caused b\u2026' -> 'Gives your spells a $s1% chance to not lose casting ti\u2026'"
+      },
+      {
+        "spellId": "16164",
+        "field": "Description_lang",
+        "old": "Gives you a $h% chance to enter a Clearcasting state after casting any Fire, Frost, or Nature damage spell.  The Clearcasting state reduces the mana cost of your next damage spell by $16246s1%.",
+        "new": "Gives you a $s1% chance to enter a Clearcasting state after casting any Fire, Frost, or Nature damage spell.  The Clearcasting state reduces the mana cost of your next damage spell by $16246s1%.",
+        "text": "Elemental Focus (spell 16164): Description_lang changed: 'Gives you a $h% chance to enter a Clearcasting state after\u2026' -> 'Gives you a $s1% chance to enter a Clearcasting state afte\u2026'"
+      },
+      {
+        "spellId": "16181",
+        "field": "Description_lang",
+        "old": "Gives you a $m1% chance to avoid interruption caused by damage while casting any healing spell.",
+        "new": "Gives your healing spells a $m1% chance to not lose casting time when you take damage.",
+        "text": "Healing Focus (spell 16181): Description_lang changed: 'Gives you a $m1% chance to avoid interruption caused b\u2026' -> 'Gives your healing spells a $m1% chance to not lose ca\u2026'"
+      },
+      {
+        "spellId": "17063",
+        "field": "Description_lang",
+        "old": "Gives you a $m1% chance to avoid interruption caused by damage while casting Arcane and Nature spells.",
+        "new": "Gives your Arcane and Nature spells a $m1% chance to not lose casting time when you take damage.",
+        "text": "Nature's Focus (spell 17063): Description_lang changed: 'Gives you a $m1% chance to avoid interruption caused b\u2026' -> 'Gives your Arcane and Nature spells a $m1% chance to n\u2026'"
+      },
+      {
+        "spellId": "17783",
+        "field": "Description_lang",
+        "old": "Gives you a $s1% chance to avoid interruption caused by damage while channeling or casting your Drain Life, Drain Mana, Drain Soul, or Wrack spells.",
+        "new": "Gives your Drain Life, Drain Mana, Drain Soul, and Wrack spells a $s1% chance to not lose casting time when you take damage.",
+        "text": "Fel Concentration (spell 17783): Description_lang changed: 'Gives you a $s1% chance to avoid interruption caused b\u2026' -> 'Gives your Drain Life, Drain Mana, Drain Soul, and Wra\u2026'"
+      },
+      {
+        "spellId": "18135",
+        "field": "Description_lang",
+        "old": "Gives you a $s1% chance to resist interruption caused by damage while casting or channeling any Destruction spell.",
+        "new": "Gives your Destruction spells a $s1% chance to not lose casting time when you take damage.",
+        "text": "Intensity (spell 18135): Description_lang changed: 'Gives you a $s1% chance to resist interruption caused \u2026' -> 'Gives your Destruction spells a $s1% chance to not los\u2026'"
+      },
+      {
+        "spellId": "18223",
+        "field": "AuraDescription_lang",
+        "old": "Movement speed slowed by $s1%.",
+        "new": "Movement speed slowed by $w1%.",
+        "text": "Curse of Exhaustion (spell 18223): AuraDescription_lang changed: '\u2026ovement speed slowed by $s1%.' -> '\u2026ovement speed slowed by $w1%.'"
+      },
+      {
+        "spellId": "29062",
+        "field": "Description_lang",
+        "old": "Reduces the pushback suffered from damaging attacks while casting Lightning Bolt, Chain Lightning, and Lava Burst by $m1%.",
+        "new": "Gives your Lightning Bolt, Chain Lightning, and Lava Burst spells a $m1% chance to not lose casting time when you take damage.",
+        "text": "Eye of the Storm (spell 29062): Description_lang changed: 'Reduces the pushback suffered from damaging a\u2026' -> 'Gives your Lightning Bolt, Chain Lightning, a\u2026'"
+      },
+      {
+        "spellId": "29438",
+        "field": "Name_lang",
+        "old": "Elemental Precision",
+        "new": "Precision",
+        "text": "spell 29438: Name_lang 'Elemental Precision' -> 'Precision'"
+      },
+      {
+        "spellId": "29438",
+        "field": "Description_lang",
+        "old": "Improves your chance to hit with Frost and Fire spells by $s1%.",
+        "new": "Improves your chance to hit with all spells by $s1%.",
+        "text": "Precision (spell 29438): Description_lang changed: '\u2026 your chance to hit with Frost and Fire spells by $s1%.' -> '\u2026 your chance to hit with all spells by $s1%.'"
+      },
+      {
+        "spellId": "400588",
+        "field": "Description_lang",
+        "old": "Gives your Arcane Blast spell a $m1% chance, your Arcane Missile hits a ${$m1/4}% chance, and your Arcane Wrath, Fireball, Frostbolt, and Frostfire Bolt spells a ${$m1/2}% chance to reduce the channeled duration of your next Arcane Missiles spell by $400589s1%, reduce the Mana cost by $400589s3%, and missiles fire every ${$m2/10}.1 sec.",
+        "new": "Gives your Arcane Blast spell a $m1% chance, and your Arcane Wrath, Fireball, Frostbolt, Frost Blast, and Frostfire Bolt spells a ${$m1/2}% chance to reduce the channeled duration of your next Arcane Missiles spell by $400589s1%, reduce the Mana cost by $400589s3%, and missiles fire every ${$m2/10}.1 sec.",
+        "text": "Missile Barrage (spell 400588): Description_lang changed: '\u2026ast spell a $m1% chance, your Arcane Missile hits a ${$m1/4}% chance, \u2026' -> '\u2026ast spell a $m1% chance, and your Arcane Wrath, Fireball, Frostbolt, F\u2026'"
+      },
+      {
+        "spellId": "1225435",
+        "field": "Description_lang",
+        "old": "You discover $s1% more Scarce materials from Mining, Herbalism, and Skinning.",
+        "new": "You are $s1% more likely to discover Scarce materials from Mining, Herbalism, and Skinning.",
+        "text": "Bountiful Harvest (spell 1225435): Description_lang changed: 'You discover $s1% more Scarce materials from Mini\u2026' -> 'You are $s1% more likely to discover Scarce mater\u2026'"
+      }
+    ],
+    "spell_presence_changes": [],
+    "effects_added": [
+      {
+        "effectId": "1364855",
+        "spellId": "11180",
+        "index": "2",
+        "text": "Winter's Chill (spell 11180): effect 2 added (Effect 6, Aura 4, base 7)"
+      },
+      {
+        "effectId": "1364979",
+        "spellId": "11426",
+        "index": "1",
+        "text": "Ice Barrier (spell 11426): effect 1 added (Effect 6, Aura 108, base 3)"
+      },
+      {
+        "effectId": "1364980",
+        "spellId": "11426",
+        "index": "2",
+        "text": "Ice Barrier (spell 11426): effect 2 added (Effect 6, Aura 108, base 3)"
+      },
+      {
+        "effectId": "1365208",
+        "spellId": "11189",
+        "index": "2",
+        "text": "Frost Warding (spell 11189): effect 2 added (Effect 6, Aura 108, base 0)"
+      },
+      {
+        "effectId": "1365363",
+        "spellId": "18288",
+        "index": "1",
+        "text": "Amplify Curse (spell 18288): effect 1 added (Effect 6, Aura 107, base -20)"
+      },
+      {
+        "effectId": "1366114",
+        "spellId": "19290",
+        "index": "3",
+        "text": "Surefooted (spell 19290): effect 3 added (Effect 6, Aura 55, base 3)"
+      }
+    ],
+    "effects_removed": [
+      {
+        "effectId": "1349371",
+        "spellId": "19290",
+        "index": "3",
+        "text": "Surefooted (spell 19290): effect 3 removed"
+      }
+    ],
+    "effects_changed": [
+      {
+        "effectId": "688786",
+        "spellId": "11069",
+        "index": "0",
+        "changes": {
+          "EffectSpellClassMask_1": [
+            "4096",
+            "36864"
+          ]
+        },
+        "text": "Accelerant (spell 11069): effect 0: EffectSpellClassMask_1 '4096' -> '36864'"
+      },
+      {
+        "effectId": "689702",
+        "spellId": "11189",
+        "index": "1",
+        "changes": {
+          "EffectBasePointsF": [
+            "10",
+            "0"
+          ]
+        },
+        "text": "Frost Warding (spell 11189): effect 1: EffectBasePointsF '10' -> '0'"
+      },
+      {
+        "effectId": "690494",
+        "spellId": "14913",
+        "index": "0",
+        "changes": {
+          "EffectSpellClassMask_3": [
+            "1048576",
+            "1074790400"
+          ]
+        },
+        "text": "Twilight Focus (spell 14913): effect 0: EffectSpellClassMask_3 '1048576' -> '1074790400'"
+      },
+      {
+        "effectId": "694887",
+        "spellId": "16164",
+        "index": "0",
+        "changes": {
+          "EffectBasePointsF": [
+            "0",
+            "10"
+          ]
+        },
+        "text": "Elemental Focus (spell 16164): effect 0: EffectBasePointsF '0' -> '10'"
+      },
+      {
+        "effectId": "695823",
+        "spellId": "18288",
+        "index": "0",
+        "changes": {
+          "EffectSpellClassMask_0": [
+            "33792",
+            "32768"
+          ]
+        },
+        "text": "Amplify Curse (spell 18288): effect 0: EffectSpellClassMask_0 '33792' -> '32768'"
+      },
+      {
+        "effectId": "696992",
+        "spellId": "19416",
+        "index": "0",
+        "changes": {
+          "EffectSpellClassMask_2": [
+            "8192",
+            "2105344"
+          ]
+        },
+        "text": "Efficiency (spell 19416): effect 0: EffectSpellClassMask_2 '8192' -> '2105344'"
+      },
+      {
+        "effectId": "704780",
+        "spellId": "29438",
+        "index": "0",
+        "changes": {
+          "EffectAura": [
+            "107",
+            "55"
+          ],
+          "EffectMiscValue_0": [
+            "16",
+            "0"
+          ],
+          "EffectSpellClassMask_0": [
+            "12714743",
+            "0"
+          ],
+          "EffectSpellClassMask_1": [
+            "4096",
+            "0"
+          ]
+        },
+        "text": "Precision (spell 29438): effect 0: EffectAura '107' -> '55'; EffectMiscValue_0 '16' -> '0'; EffectSpellClassMask_0 '12714743' -> '0'; EffectSpellClassMask_1 '4096' -> '0'"
+      },
+      {
+        "effectId": "1323534",
+        "spellId": "1299346",
+        "index": "0",
+        "changes": {
+          "EffectBasePointsF": [
+            "30",
+            "15"
+          ]
+        },
+        "text": "Trueshot Aura (spell 1299346): effect 0: EffectBasePointsF '30' -> '15'"
+      }
+    ],
+    "effect_points_changed": [
+      {
+        "id": "25206",
+        "kind": "added",
+        "definitionId": "135310",
+        "text": "Frost Warding: scaling link added (effect 2, curve 127228)"
+      },
+      {
+        "id": "25207",
+        "kind": "added",
+        "definitionId": "134452",
+        "text": "Surefooted: scaling link added (effect 3, curve 127736)"
+      }
+    ],
+    "curve_changes": [
+      {
+        "curveId": "83078",
+        "oldPoints": 5,
+        "newPoints": 3,
+        "differing": 3,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "1"
+            ],
+            "new": [
+              "1",
+              "2"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "2"
+            ],
+            "new": [
+              "2",
+              "4"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "3"
+            ],
+            "new": [
+              "3",
+              "6"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Precision"
+        ],
+        "text": "Curve 83078 (Precision): 5 -> 3 points"
+      },
+      {
+        "curveId": "83083",
+        "oldPoints": 5,
+        "newPoints": 3,
+        "differing": 0,
+        "examples": [],
+        "usedBy": [
+          "Critical Mass"
+        ],
+        "text": "Curve 83083 (Critical Mass): 5 -> 3 points"
+      },
+      {
+        "curveId": "83095",
+        "oldPoints": 3,
+        "newPoints": 5,
+        "differing": 0,
+        "examples": [],
+        "usedBy": [
+          "Incineration"
+        ],
+        "text": "Curve 83095 (Incineration): 3 -> 5 points"
+      },
+      {
+        "curveId": "83108",
+        "oldPoints": 2,
+        "newPoints": 2,
+        "differing": 2,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "25"
+            ],
+            "new": [
+              "1",
+              "20"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "50"
+            ],
+            "new": [
+              "2",
+              "40"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Missile Barrage"
+        ],
+        "text": "Curve 83108 (Missile Barrage): 2 of 2 points differ"
+      },
+      {
+        "curveId": "110350",
+        "oldPoints": 3,
+        "newPoints": 3,
+        "differing": 3,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "10"
+            ],
+            "new": [
+              "1",
+              "20"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "20"
+            ],
+            "new": [
+              "2",
+              "40"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "30"
+            ],
+            "new": [
+              "3",
+              "60"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Champion of the Light"
+        ],
+        "text": "Curve 110350 (Champion of the Light): 3 of 3 points differ"
+      },
+      {
+        "curveId": "126757",
+        "oldPoints": 2,
+        "newPoints": 2,
+        "differing": 2,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "20"
+            ],
+            "new": [
+              "1",
+              "25"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "40"
+            ],
+            "new": [
+              "2",
+              "50"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Arcane Resilience"
+        ],
+        "text": "Curve 126757 (Arcane Resilience): 2 of 2 points differ"
+      },
+      {
+        "curveId": "127228",
+        "oldPoints": 0,
+        "newPoints": 2,
+        "differing": 0,
+        "examples": [],
+        "usedBy": [
+          "Frost Warding"
+        ],
+        "text": "Curve 127228 (Frost Warding): 0 -> 2 points"
+      },
+      {
+        "curveId": "127736",
+        "oldPoints": 0,
+        "newPoints": 3,
+        "differing": 0,
+        "examples": [],
+        "usedBy": [
+          "Surefooted"
+        ],
+        "text": "Curve 127736 (Surefooted): 0 -> 3 points"
+      }
+    ],
+    "issue_value_changes": [],
+    "notes": [
+      "2 spells moved from one talent slot to another (28574 (Arcane Resilience), 400588 (Missile Barrage)). Talent slots (nodes and definitions) are not stable identities in this build pair; anything tied to a talent should be keyed by spell, not by slot."
+    ],
+    "counts": {
+      "trees_added": 0,
+      "trees_removed": 0,
+      "trees_renamed": 0,
+      "nodes_added": 0,
+      "nodes_removed": 2,
+      "nodes_moved": 7,
+      "entry_changes": 5,
+      "edges_added": 0,
+      "edges_removed": 0,
+      "definitions_added": 0,
+      "definitions_removed": 0,
+      "definitions_changed": 2,
+      "spell_text_changes": 19,
+      "spell_presence_changes": 0,
+      "effects_added": 6,
+      "effects_removed": 1,
+      "effects_changed": 8,
+      "effect_points_changed": 2,
+      "curve_changes": 8
+    }
+  }
+}

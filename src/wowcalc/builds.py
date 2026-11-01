@@ -47,7 +47,9 @@ TIMEOUT = 20
 class Config:
     """Which game product we track. Never hard-code these in logic."""
 
-    product: str = "wow_classic_beta"
+    # WoW Forever's own product. It replaced wow_classic_beta, which stopped at 1.60.1.70532
+    # (2026-10-22) while wowf carried on (70245 from 2026-10-13, 70707 on 2026-10-30).
+    product: str = "wowf"
     region: str = "us"
     probe_table: str = "TraitTree"  # small table used to test availability
 
