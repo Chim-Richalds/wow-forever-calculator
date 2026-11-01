@@ -12,7 +12,7 @@ from effect_fixtures import ACTIVE, add_curve, add_effect, write_effects  # noqa
 from fixtures import TempCase  # noqa: E402
 from wowcalc.dataset import Dataset  # noqa: E402
 from wowcalc.effects import (  # noqa: E402
-    ALL_STATS, AP_FROM_STAT, CC_DURATION, DAMAGE_DONE, DAMAGE_TAKEN, THREAT, SP_FROM_STAT, SCRIPT, condition_in, SHEET_ADD, SPELL_MODIFIER, STAT_PERCENT, UNSUPPORTED, EffectBook, TalentEffect, decode_stats,
+    ABILITY, ALL_STATS, AP_FROM_STAT, CC_DURATION, DAMAGE_DONE, DAMAGE_TAKEN, THREAT, SP_FROM_STAT, SCRIPT, condition_in, SHEET_ADD, SPELL_MODIFIER, STAT_PERCENT, UNSUPPORTED, EffectBook, TalentEffect, decode_stats,
     render_tooltip, decode_schools, effect_phrase, schools_label,
 )
 from wowcalc.fetch import TABLES  # noqa: E402
@@ -315,8 +315,8 @@ class ConditionalDecodeTests(DecodeCase):
             add_curve(t, 1, 0, (2, 4))
             t["SpellMisc"][1][0]["Attributes_0"] = ACTIVE
         e = self.one(mutate)
-        self.assertEqual((e.kind, e.modelled), (UNSUPPORTED, False))
-        self.assertIn("not a passive talent", e.note)
+        self.assertEqual((e.kind, e.modelled, e.by_rank), (ABILITY, False, {1: 2.0, 2: 4.0}))   # values kept for reference
+        self.assertIn("an ability or form", e.note)
 
     def test_without_spell_flags_the_text_check_alone_decides(self):
         def mutate(t):
@@ -454,8 +454,8 @@ class SchoolPercentTests(DecodeCase):
 
     def test_an_ability_or_form_is_refused(self):
         e = self.school("Reduces the threat caused by your Frost spells by $s1%.", attrs=ACTIVE)
-        self.assertEqual(e.kind, UNSUPPORTED)
-        self.assertIn("not a passive talent", e.note)
+        self.assertEqual(e.kind, ABILITY)
+        self.assertIn("an ability or form", e.note)
 
     def test_without_spell_flags_nothing_is_assumed(self):
         e = self.school("Reduces the threat caused by your Frost spells by $s1%.", drop="SpellMisc")
@@ -643,8 +643,8 @@ class RealDataTests(unittest.TestCase):
             self.assertEqual((e.kind, e.what, e.by_rank[max(e.by_rank)]), (kind, what, top), name)
 
     def test_conditional_threat_and_damage_talents_are_not_counted(self):
-        for name, class_name, why in (("Shadowform", "Priest", "not a passive talent"), ("Death Wish", "Warrior", "not a passive talent"),
-                                      ("Power Infusion", "Priest", "not a passive talent"), ("Bestial Wrath", "Hunter", "not a passive talent"),
+        for name, class_name, why in (("Shadowform", "Priest", "an ability or form"), ("Death Wish", "Warrior", "an ability or form"),
+                                      ("Power Infusion", "Priest", "an ability or form"), ("Bestial Wrath", "Hunter", "an ability or form"),
                                       ("Bastion", "Warrior", "shield"), ("Defiance", "Warrior", "shield"),
                                       ("Instrument of Law", "Paladin", "Righteous Fury"), ("Spirit Weapons", "Shaman", "Rockbiter"),
                                       ("Two-Handed Weapon Specialization", "Warrior", "equipment"), ("Wand Specialization", "Mage", "wands"),
@@ -652,7 +652,7 @@ class RealDataTests(unittest.TestCase):
             effects = [e for e in self.book.decode(self.talent(name, class_name)) if e.aura in (10, 79, 87)]
             self.assertTrue(effects, name)
             for e in effects:
-                self.assertEqual(e.kind, UNSUPPORTED, name)
+                self.assertEqual(e.kind, ABILITY if why == "an ability or form" else UNSUPPORTED, name)
                 self.assertIn(why, e.note, name)
 
     def test_iron_will_data_disagrees_with_its_text(self):
@@ -664,14 +664,15 @@ class RealDataTests(unittest.TestCase):
         self.assertIn("no scaling data", e1.note)
 
     def test_activated_abilities_and_conditional_bonuses_are_not_counted(self):
-        # All three carry a crit / block / hit aura but are not permanent, unconditional bonuses.
-        for name, class_name, why in (("Intimidation", "Hunter", "limited time"), ("Holy Shield", "Paladin", "limited time"),
-                                      ("Sharpened Claws", "Druid", "only while"), ("Furious Precision", "Warrior", "off-hand")):
+        # All four carry a crit / block / hit aura but are not permanent, unconditional bonuses: two are
+        # abilities (the game's passive flag is clear), two are passive with a condition in the text.
+        for name, class_name, kind, why in (("Intimidation", "Hunter", ABILITY, "an ability or form"), ("Holy Shield", "Paladin", ABILITY, "an ability or form"),
+                                            ("Sharpened Claws", "Druid", UNSUPPORTED, "only while"), ("Furious Precision", "Warrior", UNSUPPORTED, "off-hand")):
             node = self.talent(name, class_name)
             effects = [e for e in self.book.decode(node) if e.aura in (290, 51, 52, 54)]
             self.assertTrue(effects, name)
             for e in effects:
-                self.assertEqual((e.kind, e.modelled), (UNSUPPORTED, False), name)
+                self.assertEqual((e.kind, e.modelled), (kind, False), name)
                 self.assertIn(why, e.note, name)
 
     def test_shield_specialization_and_cruelty_are_decoded(self):

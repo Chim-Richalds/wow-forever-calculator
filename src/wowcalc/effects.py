@@ -56,6 +56,8 @@ which effects it cannot:
                    same schools if it names any, and "increases" or "reduces" matching the
                    sign. Not sheet figures: listed beside the sheet, one line per talent.
                    Not checked in game: how several of them combine.
+  ability          any effect of a talent whose spell is not passive (SpellMisc Attributes_0 &
+                   0x40 clear): an ability or form. NOT modelled; needs a combat model.
   spell_modifier   auras 107/108: change particular spells (class mask), not the
                    character sheet. Recognised, NOT modelled.
   script           auras 4, 42, 109, 111, 112: implemented in game code; the data
@@ -121,6 +123,7 @@ STAT_PERCENT, SPELL_MODIFIER, SCRIPT, UNSUPPORTED = "stat_percent", "spell_modif
 SHEET_ADD, AP_FROM_STAT = "sheet_add", "ap_from_stat"
 SP_FROM_STAT = "sp_from_stat"
 CC_DURATION = "cc_duration"
+ABILITY = "ability"  # an effect of a spell the game does not flag as passive
 THREAT, DAMAGE_DONE, DAMAGE_TAKEN = "threat", "damage_done", "damage_taken"
 SCHOOL_KINDS = {10: THREAT, 79: DAMAGE_DONE, 87: DAMAGE_TAKEN}  # aura -> kind; all three carry a school mask
 OTHER_KINDS = frozenset({CC_DURATION, THREAT, DAMAGE_DONE, DAMAGE_TAKEN})  # decoded, but not sheet figures
@@ -221,9 +224,12 @@ class EffectBook:
             effect = self._decode_effect(row, node, definition)
             # Second check for the sheet decoders, which judge "always on" from the text: a spell the
             # game flags as not passive (an ability or form) is never a permanent sheet bonus.
-            if effect.modelled and effect.kind not in OTHER_KINDS and self.passive.get(spell) is False:
-                effect = TalentEffect(effect.spell_id, effect.effect_index, effect.aura, UNSUPPORTED, effect.stats, {},
-                                      "an ability or form, not a passive talent (SpellMisc)")
+            if self.passive.get(spell) is False:
+                # An ability or form (SpellMisc): its effects apply when cast or while it is active, so
+                # none is a permanent bonus. This is also a second check on the sheet decoders, which
+                # judge "always on" from the text.
+                effect = TalentEffect(effect.spell_id, effect.effect_index, effect.aura, ABILITY, effect.stats, dict(effect.by_rank),
+                                      "an ability or form: applies when cast or while active (needs a combat model)")
             out.append(effect)
         return out
 
@@ -314,8 +320,6 @@ class EffectBook:
         spell = row["SpellID"]
         if spell not in self.passive:
             return refuse("cannot tell whether it is always on (SpellMisc is not in this build)")
-        if not self.passive[spell]:
-            return refuse("an ability or form, not a passive talent")
         if _int(row.get("ImplicitTarget_0"), -1) != TARGET_CASTER:
             return refuse(f"applies to target type {row.get('ImplicitTarget_0')!r}, not to you")
         if not values:
