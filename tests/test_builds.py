@@ -132,14 +132,10 @@ class AvailabilityTests(unittest.TestCase):
     def test_html_is_unknown_not_missing(self):
         self.assertIs(self.check("<!DOCTYPE html><html>challenge</html>"), Availability.UNKNOWN)
 
-    def test_header_only_is_not_available(self):
-        self.assertIs(self.check("TitleText_lang,ID,TraitSystemID\n"), Availability.NOT_AVAILABLE)
-
-    def test_empty_body_is_not_available(self):
-        self.assertIs(self.check(""), Availability.NOT_AVAILABLE)
-
-    def test_wrong_columns_not_available(self):
-        self.assertIs(self.check("foo,bar\n1,2\n"), Availability.NOT_AVAILABLE)
+    def test_no_usable_table_is_not_available(self):
+        for why, body in (("header only", "TitleText_lang,ID,TraitSystemID\n"), ("empty", ""), ("wrong columns", "foo,bar\n1,2\n")):
+            with self.subTest(why):
+                self.assertIs(self.check(body), Availability.NOT_AVAILABLE)
 
 
 class InstalledTests(unittest.TestCase):

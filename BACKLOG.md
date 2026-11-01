@@ -49,8 +49,9 @@ The full list is `docs/unmodelled_effects.tsv` (regenerate it after each change)
 
 Goal: less code saying the same thing, with no loss of coverage of real behaviour. Do it in small steps, and keep the full test run green after each one.
 
-- [ ] **Tests.** 880 tests across 19 files (about 8,200 lines). Remove duplicates and tests that check implementation details rather than behaviour; merge near-identical cases into table-driven tests. Before deleting a test, confirm what it guards is covered elsewhere.
-- [ ] **Redundant sections in `src/wowcalc/`.** Look for logic repeated across modules (CSV and table loading, build/version handling, report formatting in `diff.py`, `update.py`, `validate.py` and `rates.py`) and pull it into one place.
+- [x] **Tests.** Checked all 901: no copied tests, and only the IPv6 tests call internals (on purpose). Merged the two groups that checked one behaviour with different inputs into table-driven tests (895 now). Other near-identical tests document distinct behaviour and stay. Further cuts would lose coverage; revisit only with a coverage tool.
+- [x] **Redundant sections in `src/wowcalc/`.** One integer parser (`dataset.as_int`), one atomic JSON writer (`fetch.write_json_atomic`), one spell name helper in `diff.py`; unused imports removed. No other copied logic found.
+- [ ] `wowcalc.icons tables` only adds SpellMisc, which every build now fetches as a required table; drop the command or fold it into `update complete`.
 - [x] **One-off scripts.** Removed the 20 investigation scripts (Purification, Chain Heal, tree 1082; superseded by `wowcalc.fetch`, `validate`, `rules` and `effects`) and their outputs in `data/processed/`. Kept `scripts/probe_tables.py`, now defaulting to the active build.
 - [x] **Stray files at the repo root.** Removed (two exact copies, and `icon_ids.txt`, which `python -m wowcalc.icons list` regenerates).
 - [x] **Compiled files in git.** Untracked.

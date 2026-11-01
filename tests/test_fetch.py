@@ -74,26 +74,11 @@ class ValidateCsvTests(unittest.TestCase):
         self.assertEqual(facts["malformedRows"], 0)
         self.assertEqual(facts["duplicateHeaders"], [])
 
-    def test_rejects_empty(self):
-        with self.assertRaises(ValueError):
-            validate_csv(b"")
-
-    def test_rejects_html(self):
-        for body in (b"<!DOCTYPE html><html></html>", b"  \n<html>x</html>"):
-            with self.assertRaises(ValueError):
+    def test_rejects_what_is_not_a_table(self):
+        for why, body in (("empty", b""), ("html", b"<!DOCTYPE html><html></html>"), ("html after blank lines", b"  \n<html>x</html>"),
+                          ("one column", b"ID\n1\n"), ("header only", b"ID,Name\n"), ("not UTF-8", b"ID,Name\n1,\xff\xfe\n")):
+            with self.subTest(why), self.assertRaises(ValueError):
                 validate_csv(body)
-
-    def test_rejects_single_column_header(self):
-        with self.assertRaises(ValueError):
-            validate_csv(b"ID\n1\n")
-
-    def test_rejects_header_only(self):
-        with self.assertRaises(ValueError):
-            validate_csv(b"ID,Name\n")
-
-    def test_rejects_invalid_utf8(self):
-        with self.assertRaises(ValueError):
-            validate_csv(b"ID,Name\n1,\xff\xfe\n")
 
     def test_bom_stripped(self):
         self.assertEqual(validate_csv(b"\xef\xbb\xbfID,Name\n1,a\n")["columns"], ["ID", "Name"])
