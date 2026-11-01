@@ -1,0 +1,260 @@
+{
+  "generatedAt": "2026-10-31T01:40:54.767653+00:00",
+  "changes": {
+    "old_version": "1.60.1.70450",
+    "new_version": "1.60.1.70532",
+    "schema": {},
+    "tables": {
+      "TraitTree": {
+        "old": 17,
+        "new": 17,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitNode": {
+        "old": 558,
+        "new": 558,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitNodeEntry": {
+        "old": 659,
+        "new": 659,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitNodeXTraitNodeEntry": {
+        "old": 561,
+        "new": 561,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitDefinition": {
+        "old": 659,
+        "new": 659,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitDefinitionEffectPoints": {
+        "old": 644,
+        "new": 644,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitEdge": {
+        "old": 99,
+        "new": 99,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "CurvePoint": {
+        "old": 41758,
+        "new": 41758,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "SpellName": {
+        "old": 31962,
+        "new": 31962,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "Spell": {
+        "old": 31962,
+        "new": 31962,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "SpellEffect": {
+        "old": 42726,
+        "new": 42726,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "ChrClasses": {
+        "old": 9,
+        "new": 9,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "ChrRaces": {
+        "old": 58,
+        "new": 58,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "SkillLineXTraitTree": {
+        "old": 9,
+        "new": 9,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "SkillRaceClassInfo": {
+        "old": 186,
+        "new": 186,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitCond": {
+        "old": 172,
+        "new": 172,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitNodeGroup": {
+        "old": 372,
+        "new": 372,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitNodeGroupXTraitNode": {
+        "old": 2151,
+        "new": 2151,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitNodeGroupXTraitCond": {
+        "old": 171,
+        "new": 171,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitNodeXTraitCond": {
+        "old": 1,
+        "new": 1,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitCurrency": {
+        "old": 2,
+        "new": 2,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitCurrencySource": {
+        "old": 187,
+        "new": 187,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitTreeXTraitCurrency": {
+        "old": 13,
+        "new": 13,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitCost": {
+        "old": 11,
+        "new": 11,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitTreeXTraitCost": {
+        "old": 13,
+        "new": 13,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "CharBaseInfo": {
+        "old": 56,
+        "new": 56,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      }
+    },
+    "trees_added": [],
+    "trees_removed": [],
+    "trees_renamed": [],
+    "nodes_added": [],
+    "nodes_removed": [],
+    "nodes_moved": [],
+    "entry_changes": [],
+    "edges_added": [],
+    "edges_removed": [],
+    "definitions_added": [],
+    "definitions_removed": [],
+    "definitions_changed": [],
+    "spell_text_changes": [],
+    "spell_presence_changes": [],
+    "effects_added": [],
+    "effects_removed": [],
+    "effects_changed": [],
+    "effect_points_changed": [],
+    "curve_changes": [],
+    "issue_value_changes": [],
+    "notes": [],
+    "counts": {
+      "trees_added": 0,
+      "trees_removed": 0,
+      "trees_renamed": 0,
+      "nodes_added": 0,
+      "nodes_removed": 0,
+      "nodes_moved": 0,
+      "entry_changes": 0,
+      "edges_added": 0,
+      "edges_removed": 0,
+      "definitions_added": 0,
+      "definitions_removed": 0,
+      "definitions_changed": 0,
+      "spell_text_changes": 0,
+      "spell_presence_changes": 0,
+      "effects_added": 0,
+      "effects_removed": 0,
+      "effects_changed": 0,
+      "effect_points_changed": 0,
+      "curve_changes": 0
+    }
+  }
+}

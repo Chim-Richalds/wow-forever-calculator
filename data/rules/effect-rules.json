@@ -31,7 +31,7 @@
         "text": "b83a54cd9ccad7c8"
       },
       "fingerprint_build": "1.60.1.70338",
-      "last_confirmed_build": "1.60.1.70450"
+      "last_confirmed_build": "1.60.1.70532"
     },
     {
       "rule_id": "shaman.purification.effect_1",
@@ -62,7 +62,7 @@
         "text": "b83a54cd9ccad7c8"
       },
       "fingerprint_build": "1.60.1.70338",
-      "last_confirmed_build": "1.60.1.70450"
+      "last_confirmed_build": "1.60.1.70532"
     }
   ]
 }
