@@ -331,6 +331,23 @@ class EvaluateTests(WorkbenchCase):
         ids = {v["id"] for v in self.ev()["values"]}
         self.assertNotIn("3", ids)          # no modelled effect
 
+    def test_effects_beside_the_sheet_are_values_too(self):
+        from decimal import Decimal
+        from types import SimpleNamespace
+        from wowcalc.stats import SHEET_STATS, OtherEffect
+        def sheet(*others):
+            empty = SimpleNamespace(total=None)
+            return SimpleNamespace(lines={s: empty for s in ("health", "mana") + SHEET_STATS}, figures={}, attack_power=empty,
+                                   armor=empty, spell_power=empty, healing=empty, other_effects=list(others))
+        a = OtherEffect("Frost Channeling", "threat", "Threat (Frost)", Decimal("-30"))
+        b = OtherEffect("Other", "threat", "Threat (Frost)", Decimal("-10"))
+        both, without = Workbench.metrics(sheet(a, b)), Workbench.metrics(sheet(b))
+        self.assertEqual(both, {"other:threat:Threat (Frost)": Decimal("-40")})
+        self.assertEqual(Workbench.difference(both, without), {"other:threat:Threat (Frost)": -30})   # the talent's own percent
+        alone = Workbench.metrics(sheet(a))
+        self.assertEqual(Workbench.difference(alone, Workbench.metrics(sheet())), {"other:threat:Threat (Frost)": -30})  # absent is 0
+        self.assertEqual(Workbench.difference({"intellect": 61}, {}), {})   # a sheet figure absent on one side stays unknown
+
     def test_values_can_be_switched_off(self):
         self.assertNotIn("values", self.ev(values=False))
 

@@ -214,6 +214,13 @@ const LABEL = { strength: "Strength", agility: "Agility", stamina: "Stamina", in
 const PERCENT = new Set(["melee_crit", "spell_crit", "melee_hit", "spell_hit", "dodge", "parry", "block", "casting_regen"]);
 const STATS = ["health", "mana", "strength", "agility", "stamina", "intellect", "spirit"];
 const ORDER = [...STATS, "melee_crit", "spell_crit", "melee_hit", "spell_hit", "dodge", "parry", "block", "casting_regen", "attack_power", "armor", "spell_power", "healing"];
+// Effects beside the sheet come as "other:<kind>:<text>" keys, after the fixed ones.
+const isOther = (k) => k.startsWith("other:");
+const labelOf = (k) => (isOther(k) ? k.split(":").slice(2).join(":") : LABEL[k]);
+const keysIn = (objs) => {
+  const present = new Set(objs.flatMap((o) => Object.keys(o).filter((k) => o[k] != null)));
+  return [...ORDER.filter((k) => present.has(k)), ...[...present].filter(isOther).sort()];
+};
 
 const S = { meta: null, tree: null, nodes: new Map(), cls: null, race: null, alloc: {}, adjust: {}, result: null, tab: "sheet",
   mode: "now", sort: null, seq: 0, timer: null, status: null };
@@ -231,7 +238,7 @@ function toast(text) {
 const fmt = (v, dp = 2) => (v == null ? "–" : Number(v).toFixed(dp));
 const signed = (v, dp = 0) => (v == null ? "" : (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(dp));
 function metricText(key, v, withSign) {
-  const pct = PERCENT.has(key);
+  const pct = PERCENT.has(key) || isOther(key);
   const dp = pct ? 2 : 0;
   const body = withSign ? signed(v, dp) : fmt(v, dp);
   return body + (pct && v != null ? "%" : "");
@@ -433,7 +440,7 @@ function tipHtml(n) {
   if (next) h += `<p class="dim">Next rank: ${esc(next.text)}</p>`;
   const lines = [];
   if (val) {
-    const part = (o) => ORDER.filter((k) => o[k] != null).map((k) => `${LABEL[k]} ${metricText(k, o[k], true)}`).join(", ");
+    const part = (o) => keysIn([o]).map((k) => `${esc(labelOf(k))} ${metricText(k, o[k], true)}`).join(", ");
     if (have && part(val.now)) lines.push("Worth now: " + part(val.now));
     if (part(val.next)) lines.push("Next rank adds: " + part(val.next));
   }
@@ -554,11 +561,11 @@ function renderSheet() {
 
 function renderValues() {
   const vals = S.result.values.filter((v) => Object.keys(v[S.mode]).length);
-  const cols = ORDER.filter((k) => vals.some((v) => v[S.mode][k] != null));
+  const cols = keysIn(vals.map((v) => v[S.mode]));
   const maxima = Object.fromEntries(cols.map((k) => [k, Math.max(...vals.map((v) => Math.abs(v[S.mode][k] || 0)))]));
   let rows = vals.slice();
   if (S.sort) rows.sort((a, b) => Math.abs((b[S.mode][S.sort] || 0)) - Math.abs((a[S.mode][S.sort] || 0)));
-  const head = cols.map((k) => `<th scope="col"><button type="button" data-sort="${k}" title="Sort by ${LABEL[k]}">${LABEL[k]}${S.sort === k ? " ↓" : ""}</button></th>`).join("");
+  const head = cols.map((k) => `<th scope="col"><button type="button" data-sort="${esc(k)}" title="Sort by ${esc(labelOf(k))}">${esc(labelOf(k))}${S.sort === k ? " ↓" : ""}</button></th>`).join("");
   const body = rows.map((v) => `<tr><td>${esc(v.name)} <span class="tiny num">${v.ranks}/${v.max}</span></td>${cols.map((k) => {
     const x = v[S.mode][k]; if (x == null) return "<td></td>";
     const w = maxima[k] ? Math.round(Math.abs(x) / maxima[k] * 100) : 0;

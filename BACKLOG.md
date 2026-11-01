@@ -42,7 +42,7 @@ The full list is `docs/unmodelled_effects.tsv` (regenerate it after each change 
 - [ ] Show Spell power and Healing rows at levels with no exported panel when the base is unknown (today they appear only if a talent contributes).
 - [ ] Two talent icons are missing (357 of 359 cached). Find which and why (possibly encrypted in the game files).
 - [ ] Per-class defaults (race, level) remembered between visits.
-- [ ] Threat, damage done, damage taken and crowd control durations appear beside the sheet but not in the Values tab, which only compares sheet figures.
+- [x] Threat, damage done, damage taken and crowd control durations are in the Values tab (each talent's own percent).
 
 ## Codebase clean-up  [offline]
 

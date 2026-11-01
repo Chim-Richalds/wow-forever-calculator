@@ -385,14 +385,22 @@ class Workbench:
             line = getattr(sheet, name)
             if line.total is not None:
                 out[name] = line.total
+        # Effects beside the sheet, keyed "other:<kind>:<text>". Talents that share one are added
+        # here only so that with-minus-without gives each talent its own percent; the sheet does
+        # not claim the game adds them.
+        for o in sheet.other_effects:
+            key = f"other:{o.kind}:{o.text}"
+            out[key] = out.get(key, 0) + o.percent
         return out
 
     @staticmethod
     def difference(a: dict, b: dict) -> dict:
-        """a - b for every metric, leaving out the ones that did not move."""
+        """a - b for every metric, leaving out the ones that did not move. A sheet figure missing on
+        one side is unknown there and is left out; an effect beside the sheet that is missing is 0."""
         out = {}
-        for key in a.keys() & b.keys():
-            d = a[key] - b[key]
+        others = {k for k in a.keys() | b.keys() if k.startswith("other:")}
+        for key in (a.keys() & b.keys()) | others:
+            d = a.get(key, 0) - b.get(key, 0)
             if d:
                 out[key] = num(d)
         return out
