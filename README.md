@@ -27,6 +27,8 @@ PYTHONPATH=src python3 -m wowcalc.talentinfo unmodelled --out docs/unmodelled_ef
 
 Raw tables go in `data/raw/<build>/` with hashes in `data/manifests/`. They are not kept in git.
 
+Blizzard changes talents with **server hotfixes** between builds. Tables are downloaded with those hotfixes applied (Wago's `useHotfixes=1`), and rows a hotfix deletes are removed by the calculator (Wago's export keeps them). A dataset with hotfixes is named after the build and the newest hotfix it includes, e.g. `1.60.1.70707-hf202610311059`; a newer hotfix set is an update like a newer build. Reading the hotfix list takes a few minutes (Wago serves it 25 rows a page).
+
 ## Icons
 
 ```

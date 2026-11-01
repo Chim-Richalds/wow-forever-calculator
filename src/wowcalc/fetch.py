@@ -34,9 +34,10 @@ from pathlib import Path
 from typing import Callable
 
 from . import transport
-from .builds import BuildInfo, Config, Status, check_for_updates
+from .builds import HOTFIX_ADDED, HOTFIX_DELETED, BuildInfo, BuildSourceError, Config, Status, check_for_updates, hotfix_statuses
 
-WAGO_TABLE_URL = "https://wago.tools/db2/{table}/csv?build={version}"
+# useHotfixes=1: the tables as the server serves them, with its hotfixes applied.
+WAGO_TABLE_URL = "https://wago.tools/db2/{table}/csv?build={version}&useHotfixes=1"
 SOURCE = "Wago.Tools DB2 CSV exports"
 DOWNLOAD_TIMEOUT = 60.0
 
@@ -159,22 +160,50 @@ def _sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
+def _drop_rows(body: bytes, ids: set[str]) -> tuple[bytes, int]:
+    """The CSV without the rows whose ID is in `ids` (hotfix deletions), and how many went."""
+    if not ids:
+        return body, 0
+    text = body.decode("utf-8-sig")
+    newline = "\r\n" if "\r\n" in text else "\n"
+    rows = list(csv.reader(io.StringIO(text, newline="")))
+    header, data = rows[0], rows[1:]
+    i = header.index("ID") if "ID" in header else None
+    if i is None:
+        raise ValueError("cannot apply hotfix deletions: the table has no ID column")
+    kept = [r for r in data if not (len(r) > i and r[i] in ids)]
+    out = io.StringIO()
+    csv.writer(out, lineterminator=newline).writerows([header, *kept])
+    return out.getvalue().encode("utf-8"), len(data) - len(kept)
+
+
 def _download_table(table: str, version: str, data_dir: Path, fetch: FetchBytes):
     """Download and structurally check one table.
 
     Returns (body, entry). On success `body` is the file content and `entry` is
     its manifest record; on failure `body` is None and `entry` records the error.
     """
-    url = WAGO_TABLE_URL.format(table=table, version=version)
+    info = BuildInfo.from_version(version)
+    url = WAGO_TABLE_URL.format(table=table, version=info.base)
+    hotfixes: dict = {}
     try:
         response = fetch(url)
+        validate_csv(response.body)
+        if info.hotfix:
+            statuses = hotfix_statuses(info, table, lambda u: fetch(u).body.decode("utf-8"))
+            deleted = {r for r, st in statuses.items() if st == HOTFIX_DELETED}
+            body, removed = _drop_rows(response.body, deleted)
+            response = transport.Response(body, response.content_type)
+            hotfixes = {"hotfixRecords": len(statuses), "hotfixDeletedRows": removed,
+                        "hotfixOtherStatus": sum(1 for st in statuses.values() if st not in (HOTFIX_ADDED, HOTFIX_DELETED))}
         facts = validate_csv(response.body)
     except urllib.error.HTTPError as exc:  # must precede OSError (subclass)
         exc.close()
         return None, {"url": url, "status": "failed", "error": f"HTTP {exc.code} {exc.reason}"}
-    except (OSError, ValueError) as exc:
+    except (OSError, ValueError, BuildSourceError) as exc:
         return None, {"url": url, "status": "failed", "error": str(exc) or type(exc).__name__}
     return response.body, {
+        **hotfixes,
         "url": url,
         "file": (Path(Path(data_dir).name) / "raw" / version / f"{table}.csv").as_posix(),
         "sha256": _sha256_bytes(response.body),

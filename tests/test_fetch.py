@@ -119,7 +119,7 @@ class FetchSuccessTests(TempData):
         self.assertEqual(entry["bytes"], len(GOOD))
         self.assertEqual(entry["rows"], 2)
         self.assertEqual(entry["file"], f"data/raw/{V}/TraitTree.csv")  # final location
-        self.assertEqual(entry["url"], f"https://wago.tools/db2/TraitTree/csv?build={V}")
+        self.assertEqual(entry["url"], f"https://wago.tools/db2/TraitTree/csv?build={V}&useHotfixes=1")
         self.assertEqual(entry["contentType"], "text/csv; charset=UTF-8")
         self.assertEqual(entry["status"], "downloaded-needs-validation")
 
@@ -409,6 +409,16 @@ class PromoteTests(TempData):
         (self.data / "manifests" / f"{V}.json").write_text("{}")  # left by a crash
         promote_staged(V, self.data)
         self.assertEqual(json.loads((self.data / "manifests" / f"{V}.json").read_text())["build"], V)
+
+
+class DropRowsTests(unittest.TestCase):
+    def test_drops_by_id_and_keeps_quoting_and_line_endings(self):
+        from wowcalc.fetch import _drop_rows
+        body = b'ID,Name,Text\r\n1,a,"two\r\nlines"\r\n2,b,x\r\n3,c,"q ""quoted"""\r\n'
+        out, n = _drop_rows(body, {"2"})
+        self.assertEqual(n, 1)
+        self.assertEqual(out, b'ID,Name,Text\r\n1,a,"two\r\nlines"\r\n3,c,"q ""quoted"""\r\n')
+        self.assertEqual(_drop_rows(body, set()), (body, 0))
 
 
 class TransportTests(unittest.TestCase):

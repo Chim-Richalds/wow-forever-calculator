@@ -624,7 +624,7 @@ function renderUpdate(u) {
   const btn = (label, ack, primary) => `<button type="button" class="btn${primary ? " primary" : ""}" data-update="${ack ? "ack" : "go"}">${label}</button>`;
   let h = '<h3 class="sub">Updates</h3>';
   if (u.state === "running") {
-    h += `<p>Updating… this takes about half a minute.</p><pre class="tiny" style="white-space:pre-wrap">${esc((u.log || []).slice(-6).join("\n"))}</pre>`;
+    h += `<p>Updating… about half a minute for a new build, a few minutes when it has to read new server hotfixes.</p><pre class="tiny" style="white-space:pre-wrap">${esc((u.log || []).slice(-6).join("\n"))}</pre>`;
   } else if (u.state === "needs_ack") {
     h += `<p>${esc(u.message)}</p>${list(u.warnings)}${summary}<p>${btn("Install anyway", true, true)}</p>`;
   } else if (u.state === "blocked") {
@@ -636,7 +636,7 @@ function renderUpdate(u) {
   } else if (u.state === "failed") {
     h += `<p class="bad">The update did not finish: ${esc(u.message)}</p><p>${btn("Try again", false)}</p>`;
   } else {
-    h += `<p class="hint">Checks for a newer game build, downloads and checks it, installs it if it passes, and reloads.</p><p>${btn("Update to the newest build", false, true)}</p>`;
+    h += `<p class="hint">Checks for a newer game build or new server hotfixes, downloads and checks them, installs them if they pass, and reloads.</p><p>${btn("Update to the newest build", false, true)}</p>`;
   }
   box.innerHTML = h;
   box.querySelectorAll("[data-update]").forEach((b) => b.addEventListener("click", () => { b.disabled = true; startUpdate(b.dataset.update === "ack"); }));

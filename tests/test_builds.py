@@ -1,5 +1,6 @@
 """Offline tests for wowcalc.builds. Run: python -m unittest discover -s tests"""
 
+import html
 import http.server
 import json
 import socket
@@ -15,7 +16,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from wowcalc.builds import (  # noqa: E402
     Availability, BuildInfo, BuildSourceError, Config, Status,
     check_availability, check_for_updates, default_fetch, detect_latest,
-    installed_builds, list_wago_builds, parse_bpsv,
+    installed_builds, latest_hotfix, list_wago_builds, parse_bpsv,
 )
 
 CFG = Config()
@@ -136,6 +137,40 @@ class AvailabilityTests(unittest.TestCase):
         for why, body in (("header only", "TitleText_lang,ID,TraitSystemID\n"), ("empty", ""), ("wrong columns", "foo,bar\n1,2\n")):
             with self.subTest(why):
                 self.assertIs(self.check(body), Availability.NOT_AVAILABLE)
+
+
+class HotfixVersionTests(unittest.TestCase):
+    def test_a_hotfix_dataset_id(self):
+        b = BuildInfo.from_version("1.60.1.70707-hf202610311059")
+        self.assertEqual((b.build_id, b.base, b.hotfix), (70707, "1.60.1.70707", "202610311059"))
+        self.assertEqual(BuildInfo.from_version("1.60.1.70707").hotfix, "")
+        self.assertEqual(BuildInfo.from_version("1.60.1.70707").with_hotfix("202610311059").version, "1.60.1.70707-hf202610311059")
+        for bad in ("1.60.1.70707-hf2026", "1.60.1.70707-x"):
+            with self.assertRaises(ValueError):
+                BuildInfo.from_version(bad)
+
+    def test_order_is_build_then_hotfix_time(self):
+        ids = ["1.60.1.70707-hf202610311059", "1.60.1.70532", "1.60.1.70707", "1.60.1.70707-hf202610300800"]
+        self.assertEqual([b.version for b in sorted(map(BuildInfo.from_version, ids), key=lambda b: b.order)],
+                         ["1.60.1.70532", "1.60.1.70707", "1.60.1.70707-hf202610300800", "1.60.1.70707-hf202610311059"])
+
+    def page(self, rows):
+        data = {"props": {"hotfixes": {"data": rows}}}
+        return '<div data-page="' + html.escape(json.dumps(data)) + '"></div>'
+
+    def test_latest_hotfix_reads_the_newest_row_of_this_build_only(self):
+        def row(build, at):
+            return {"build": build, "created_at": at, "table_name": "TraitNode", "record_id": 1, "status": 1, "push_id": 1}
+        rows = [row(99999, "2026-11-02 00:00:00"),       # another build matched by the search
+                row(70707, "2026-10-31 10:59:19"), row(70707, "2026-10-30 08:00:00")]
+        b = BuildInfo.from_version("1.60.1.70707")
+        self.assertEqual(latest_hotfix(b, lambda url: self.page(rows)), "202610311059")
+        self.assertEqual(latest_hotfix(b, lambda url: self.page([])), "")
+
+    def test_an_unreadable_hotfix_page_is_an_error_not_no_hotfixes(self):
+        b = BuildInfo.from_version("1.60.1.70707")
+        with self.assertRaises(BuildSourceError):
+            latest_hotfix(b, lambda url: "<html>changed layout</html>")
 
 
 class InstalledTests(unittest.TestCase):

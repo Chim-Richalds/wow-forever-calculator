@@ -19,10 +19,12 @@ from __future__ import annotations
 
 import argparse
 import csv
+import html
 import io
 import json
 import re
 import urllib.error
+import urllib.parse
 from dataclasses import dataclass
 from enum import Enum
 from pathlib import Path
@@ -34,8 +36,12 @@ Fetch = Callable[[str], str]
 
 TACT_URL = "http://{region}.patch.battle.net:1119/{product}/versions"
 WAGO_BUILDS_URL = "https://wago.tools/api/builds"
-WAGO_TABLE_URL = "https://wago.tools/db2/{table}/csv?build={version}"
-VERSION_RE = re.compile(r"^\d+\.\d+\.\d+\.(\d+)$")
+WAGO_TABLE_URL = "https://wago.tools/db2/{table}/csv?build={version}&useHotfixes=1"
+# A dataset ID: the game build, plus "-hf<YYYYMMDDHHMM>" when it includes the server's hotfixes
+# up to that time (UTC, as first seen by Wago). Hotfixes change talents without a new build.
+VERSION_RE = re.compile(r"^(\d+\.\d+\.\d+\.(\d+))(?:-hf(\d{12}))?$")
+WAGO_HOTFIXES_URL = "https://wago.tools/hotfixes"  # ?search=<text>&page=<n>; 25 rows a page, newest first
+HOTFIX_ADDED, HOTFIX_DELETED = 1, 2  # Wago's status codes (3 Invalidate, 4 NotPublic are not applied)
 TIMEOUT = 20
 
 
@@ -60,10 +66,24 @@ class BuildSourceError(Exception):
 
 @dataclass(frozen=True)
 class BuildInfo:
-    version: str  # e.g. "1.60.1.70425"
+    version: str  # e.g. "1.60.1.70425" or "1.60.1.70707-hf202610311059"
     build_id: int  # e.g. 70425
     region: str = ""
     seqn: int | None = None
+    hotfix: str = ""  # YYYYMMDDHHMM of the newest hotfix included, or "" for none
+
+    @property
+    def base(self) -> str:
+        """The game build without the hotfix part, e.g. "1.60.1.70707"."""
+        return self.version.split("-hf")[0]
+
+    @property
+    def order(self) -> tuple[int, str]:
+        """Sort key: build first, then hotfix time (no hotfixes sorts first)."""
+        return (self.build_id, self.hotfix)
+
+    def with_hotfix(self, stamp: str) -> "BuildInfo":
+        return BuildInfo.from_version(f"{self.base}-hf{stamp}" if stamp else self.base, self.region, self.seqn)
 
     @property
     def version_line(self) -> str:
@@ -75,7 +95,7 @@ class BuildInfo:
         match = VERSION_RE.match(version.strip())
         if not match:
             raise ValueError(f"Not a valid version string: {version!r}")
-        return cls(version.strip(), int(match.group(1)), region, seqn)
+        return cls(version.strip(), int(match.group(2)), region, seqn, match.group(3) or "")
 
 
 class Availability(Enum):
@@ -182,9 +202,65 @@ def detect_latest(config: Config, fetch: Fetch = default_fetch) -> BuildInfo:
 # Availability: Wago.Tools
 # --------------------------------------------------------------------------
 
+def latest_hotfix(build: BuildInfo, fetch: Fetch = default_fetch) -> str:
+    """YYYYMMDDHHMM of the newest server hotfix Wago has seen for this build, or "" if none.
+
+    Read from the first page of Wago's hotfix list (newest first), searched by build number.
+    The search also matches other builds whose IDs contain the number, so rows are filtered
+    by their build field."""
+    rows, _ = hotfix_page(str(build.build_id), 1, fetch)
+    seen = [_stamp(r["created_at"]) for r in rows if r["build"] == build.build_id]
+    return max(seen) if seen else ""
+
+
+def hotfix_page(search: str, page: int, fetch: Fetch = default_fetch) -> tuple[list[dict], int]:
+    """One page of Wago's hotfix list: (rows, last page). Raises BuildSourceError."""
+    url = WAGO_HOTFIXES_URL + "?" + urllib.parse.urlencode({"search": search, "page": page})
+    try:
+        text = fetch(url)
+    except OSError as exc:
+        raise BuildSourceError(f"Hotfix list request failed: {exc}") from exc
+    match = re.search(r'data-page="([^"]+)"', text)
+    if not match:
+        raise BuildSourceError("Hotfix list page has no data (the page layout may have changed)")
+    try:
+        listing = json.loads(html.unescape(match.group(1)))["props"]["hotfixes"]
+        rows = [{"build": int(r["build"]), "table": str(r["table_name"]), "record": str(r["record_id"]),
+                 "push": int(r.get("push_id") or 0), "status": int(r["status"]), "created_at": str(r["created_at"])}
+                for r in listing["data"]]
+        return rows, int(listing.get("last_page") or 1)
+    except (ValueError, KeyError, TypeError) as exc:
+        raise BuildSourceError(f"Unusable hotfix list: {exc}") from exc
+
+
+def _stamp(created_at: str) -> str:
+    stamp = re.sub(r"\D", "", created_at)[:12]  # "2026-10-31 10:59:19" -> "202610311059"
+    if len(stamp) != 12:
+        raise BuildSourceError(f"Unusable hotfix time {created_at!r}")
+    return stamp
+
+
+def hotfix_statuses(build: BuildInfo, table: str, fetch: Fetch = default_fetch) -> dict[str, int]:
+    """Record ID -> status of its newest hotfix, for one table of a hotfixed dataset, counting
+    only hotfixes up to the dataset's hotfix time. Wago's hotfixed exports apply added and changed
+    rows but keep deleted ones, so the caller drops records whose status is HOTFIX_DELETED."""
+    if not build.hotfix:
+        return {}
+    newest: dict[str, tuple[int, int]] = {}
+    page, last = 1, 1
+    while page <= last:
+        rows, last = hotfix_page(f"{build.build_id} {table.lower()}", page, fetch)
+        for r in rows:
+            if r["build"] == build.build_id and r["table"].lower() == table.lower() and _stamp(r["created_at"]) <= build.hotfix:
+                if r["record"] not in newest or r["push"] > newest[r["record"]][0]:
+                    newest[r["record"]] = (r["push"], r["status"])
+        page += 1
+    return {record: status for record, (_, status) in newest.items()}
+
+
 def check_availability(version: str, config: Config, fetch: Fetch = default_fetch) -> Availability:
     """Is the probe table exported by Wago for this build, with real content?"""
-    url = WAGO_TABLE_URL.format(table=config.probe_table, version=version)
+    url = WAGO_TABLE_URL.format(table=config.probe_table, version=BuildInfo.from_version(version).base)
     try:
         body = fetch(url)
     except urllib.error.HTTPError as exc:  # must precede OSError (subclass)
@@ -297,7 +373,7 @@ def installed_builds(data_dir: Path) -> list[BuildInfo]:
         for child in raw.iterdir():
             if child.is_dir() and VERSION_RE.match(child.name):
                 found.append(BuildInfo.from_version(child.name))
-    return sorted(found, key=lambda b: b.build_id)
+    return sorted(found, key=lambda b: b.order)
 
 
 # --------------------------------------------------------------------------

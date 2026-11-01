@@ -63,6 +63,7 @@ Goal: less code saying the same thing, with no loss of coverage of real behaviou
 ## Data upkeep  [offline]
 
 - [ ] Builds come from Blizzard's `wowf` product (WoW Forever's own). Until 2026-11-01 the calculator tracked `wow_classic_beta`, which stopped at 1.60.1.70532 on 2026-10-22 while `wowf` moved on (70707 on 2026-10-30). If updates ever stop again, compare the products on https://wago.tools/api/builds.
+- [ ] Server hotfixes are part of the data (since 2026-11-01): datasets are `<build>-hf<YYYYMMDDHHMM>`. Wago's hotfixed export keeps deleted rows, so deletions are applied from the hotfix list (status 2); statuses 3 (Invalidate) and 4 (NotPublic) are counted in the manifest (`hotfixOtherStatus`) but not applied: on 1.60.1.70707-hf202610311059 there are 99 such records (CurvePoint, Spell, SpellName, SpellEffect, SpellMisc) and none touches a talent spell, effect or scaling curve. Make the update review warn if one ever does, and find out what the game does with them.
 - [ ] When a new build appears: `python -m wowcalc.update prepare` and `apply`, then `python -m wowcalc.diff`, then re-run `python -m wowcalc.rates fit` and the data checks in the UI. Spec names are tied to spells, so a moved talent shows up in the Data tab's "Specialization names" check.
 - [ ] Per-level stat rates (`data/external/PlayerExpectedStat.csv`): refetch when the build changes. Last checked against build 1.60.1.70532 (2026-11-01): identical to the 1.60.1.70450 copy.
 

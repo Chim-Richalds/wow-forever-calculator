@@ -31,6 +31,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import shutil
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
@@ -39,7 +40,7 @@ from typing import Callable
 from . import rules as rules_mod
 from .builds import (
     Availability, BuildInfo, BuildSourceError, Config, Fetch, check_availability,
-    default_fetch, detect_latest,
+    default_fetch, detect_latest, latest_hotfix,
 )
 from .dataset import DatasetError, list_builds, open_dataset
 from .diff import ChangeReport, compare_datasets, format_report
@@ -51,6 +52,46 @@ from .validate import (
 )
 
 ACTIVE_FILE = "active.json"
+HOTFIX_CHECKS_FILE = "hotfix-checks.json"  # build -> newest hotfix time already checked
+
+
+def latest_target(config: Config, fetch_text: Fetch = default_fetch) -> BuildInfo:
+    """The newest build Blizzard serves, with the newest server hotfix Wago has seen for it."""
+    build = detect_latest(config, fetch_text)
+    return build.with_hotfix(latest_hotfix(build, fetch_text))
+
+
+def _hotfix_checks(data_dir: Path) -> dict:
+    path = Path(data_dir) / HOTFIX_CHECKS_FILE
+    try:
+        return json.loads(path.read_text(encoding="utf-8")) if path.is_file() else {}
+    except ValueError:
+        return {}
+
+
+def _already_checked(data_dir: Path, target: BuildInfo, active: BuildInfo | None) -> bool:
+    """True if these hotfixes were downloaded before and changed none of our tables."""
+    return bool(active and target.hotfix and active.base == target.base
+                and _hotfix_checks(data_dir).get(target.base, "") >= target.hotfix)
+
+
+def _record_checked(data_dir: Path, target: BuildInfo) -> None:
+    checks = _hotfix_checks(data_dir)
+    checks[target.base] = target.hotfix
+    write_json_atomic(Path(data_dir) / HOTFIX_CHECKS_FILE, checks)
+
+
+def _same_tables(data_dir: Path, staged: str, active: str) -> bool:
+    """Do the staged build's tables hash the same as the active build's (every table we use)?"""
+    def hashes(path: Path) -> dict:
+        try:
+            tables = json.loads(path.read_text(encoding="utf-8")).get("tables", {})
+        except (OSError, ValueError):
+            return {}
+        return {t: e.get("sha256") for t, e in tables.items()}
+    new = hashes(Path(data_dir) / "staging" / staged / "manifest.json")
+    old = hashes(Path(data_dir) / "manifests" / f"{active}.json")
+    return bool(new) and all(new.get(t) and new.get(t) == old.get(t) for t in TABLES)
 
 
 class UpdateError(Exception):
@@ -215,7 +256,10 @@ def prepare_update(
 
     if version is None:
         try:
-            version = detect_latest(config, fetch_text).version
+            target = latest_target(config, fetch_text)
+            if _already_checked(data_dir, target, active_info):
+                raise NothingToDo(f"Build {active} is current (hotfixes up to {target.hotfix} change none of the calculator's tables).")
+            version = target.version
         except BuildSourceError as exc:
             raise UpdateError(f"Could not determine the latest build: {exc}") from exc
         detected = True
@@ -226,12 +270,12 @@ def prepare_update(
     except ValueError as exc:
         raise UpdateError(str(exc)) from exc
 
-    if active_info and target.build_id == active_info.build_id:
+    if active_info and target.order == active_info.order:
         lacking = missing_tables(data_dir, version)
         hint = (f" It lacks {len(lacking)} table(s) newer builds carry; run: python -m wowcalc.update complete"
                 if lacking else "")
         raise NothingToDo(f"Build {version} is already active.{hint}")
-    if active_info and target.build_id < active_info.build_id:
+    if active_info and target.order < active_info.order:
         if detected:
             raise NothingToDo(f"Active build {active} is newer than the latest detected build {version}.")
         raise UpdateError(f"Build {version} is older than the active build {active}. Use rollback instead.")
@@ -248,6 +292,11 @@ def prepare_update(
         if not result.ok:
             failed = "; ".join(f"{f['table']}: {f['error']}" for f in result.failures)
             raise UpdateError(f"Download failed, nothing was kept. {failed}")
+        if active and target.hotfix and BuildInfo.from_version(active).base == target.base and _same_tables(data_dir, version, active):
+            # Hotfixes that touch none of our tables: nothing to install. Remember the check.
+            shutil.rmtree(data_dir / "staging" / version)
+            _record_checked(data_dir, target)
+            raise NothingToDo(f"Build {active} is current (hotfixes up to {target.hotfix} change none of the calculator's tables).")
 
     assessment = assess(data_dir, version, active, rules_path, thresholds)
     _write_reports(data_dir, assessment, now)
@@ -289,9 +338,9 @@ def apply_update(
     active = get_active(data_dir)
     if active:
         active_info = BuildInfo.from_version(active)
-        if target.build_id == active_info.build_id:
+        if target.order == active_info.order:
             raise NothingToDo(f"Build {version} is already active.")
-        if target.build_id < active_info.build_id:
+        if target.order < active_info.order:
             raise UpdateError(f"Build {version} is older than the active build {active}. Use rollback instead.")
 
     in_staging = (data_dir / "staging" / version).is_dir()
@@ -426,7 +475,9 @@ def status(data_dir: Path, config: Config, fetch_text: Fetch = default_fetch) ->
     staged = tuple(b.version for b in list_builds(data_dir / "staging"))
     latest, err = None, ""
     try:
-        latest = detect_latest(config, fetch_text).version
+        target = latest_target(config, fetch_text)
+        active_info = BuildInfo.from_version(active) if active else None
+        latest = active if _already_checked(data_dir, target, active_info) else target.version
     except BuildSourceError as exc:
         err = str(exc)
 
@@ -434,7 +485,7 @@ def status(data_dir: Path, config: Config, fetch_text: Fetch = default_fetch) ->
         msg = f"Could not check for updates: {err}"
     elif active is None:
         msg = f"No build is installed. Latest is {latest}."
-    elif BuildInfo.from_version(latest).build_id <= BuildInfo.from_version(active).build_id:
+    elif BuildInfo.from_version(latest).order <= BuildInfo.from_version(active).order:
         msg = f"Active build {active} is current."
     elif latest in retained:
         msg = f"Build {latest} is installed but not active. Apply it to switch."

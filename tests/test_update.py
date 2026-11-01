@@ -2,11 +2,13 @@
 
 import contextlib
 import io
+import html
 import json
 import re
 import sys
 import unittest
 import urllib.error
+import urllib.parse
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -36,6 +38,7 @@ class Remote:
         self.fail = {}  # (version, table) -> HTTP status
         self.tact_error = None
         self.table_requests = []
+        self.hotfixes = {}  # build id -> [(first seen "2026-10-31 10:59:19", table, record id, status, push id), ...]
 
     def _body(self, url):
         m = WAGO.match(url)
@@ -47,7 +50,19 @@ class Remote:
         header, rows = self.builds[version][table]
         return table_csv_bytes(header, rows)
 
+    def hotfix_page(self, url):
+        q = urllib.parse.parse_qs(urllib.parse.urlsplit(url).query)
+        words = q["search"][0].split()
+        build_id = int(words[0])
+        rows = [{"push_id": push, "record_id": rec, "status": st, "build": build_id, "table_name": tbl, "created_at": t}
+                for t, tbl, rec, st, push in sorted(self.hotfixes.get(build_id, []), reverse=True)
+                if len(words) == 1 or words[1] in tbl.lower()]
+        page = {"component": "Hotfixes", "props": {"hotfixes": {"data": rows, "total": len(rows), "last_page": 1}}}
+        return '<div id="app" data-page="' + html.escape(json.dumps(page)) + '"></div>'
+
     def text(self, url):
+        if "wago.tools/hotfixes" in url:
+            return self.hotfix_page(url)
         if "patch.battle.net" in url:
             if self.tact_error:
                 raise self.tact_error
@@ -58,6 +73,8 @@ class Remote:
         return self._body(url).decode("utf-8")
 
     def bytes(self, url):
+        if "wago.tools/hotfixes" in url:
+            return transport.Response(self.hotfix_page(url).encode(), "text/html")
         return transport.Response(self._body(url), "text/csv")
 
 
@@ -115,6 +132,77 @@ class UpdateCase(TempCase):
 
     def rules(self):
         return {r["rule_id"]: r for r in R.load_rules(self.data / "rules" / "effect-rules.json")["rules"]}
+
+
+class HotfixTests(UpdateCase):
+    """Server hotfixes change tables without a new build: each set becomes its own dataset."""
+
+    STAMP = "202610311059"
+
+    def setUp(self):
+        super().setUp()
+        self.r = self.remote()
+        self.prepare(self.r)
+        self.apply()                                   # V_NEW active, with its manifest
+        self.build_id = int(V_NEW.rsplit(".", 1)[1])
+
+    def hotfix(self, mutate=None):
+        self.r.hotfixes[self.build_id] = [("2026-10-30 08:00:00", "SpellEffect", 1, 1, 10), ("2026-10-31 10:59:19", "SpellEffect", 1, 1, 11)]
+        t = base_tables()
+        if mutate:
+            mutate(t)
+        self.r.builds[V_NEW] = t
+        self.r.table_requests.clear()
+
+    def test_hotfixes_become_a_new_dataset_and_install(self):
+        self.hotfix(edit_effect)
+        a = self.prepare(self.r)
+        hf = f"{V_NEW}-hf{self.STAMP}"
+        self.assertEqual((a.version, a.baseline), (hf, V_NEW))
+        self.assertEqual(len(a.changes.effects_changed), 1)
+        self.assertEqual({v for v, _ in self.r.table_requests}, {V_NEW})   # downloaded by the game build number
+        self.apply()
+        self.assertEqual(self.active(), hf)
+        self.assertTrue((self.data / "raw" / hf).is_dir() and (self.data / "raw" / V_NEW).is_dir())   # both kept
+        self.assertIn("is current", U.status(self.data, CFG, self.r.text).message)
+
+    def test_hotfixes_that_change_none_of_our_tables_are_remembered_not_installed(self):
+        self.hotfix()
+        with self.assertRaises(U.NothingToDo) as ctx:
+            self.prepare(self.r)
+        self.assertIn("change none of the calculator's tables", str(ctx.exception))
+        self.assertFalse((self.data / "staging" / f"{V_NEW}-hf{self.STAMP}").exists())
+        self.assertEqual(self.active(), V_NEW)
+        self.r.table_requests.clear()
+        with self.assertRaises(U.NothingToDo):
+            self.prepare(self.r)
+        self.assertEqual(self.r.table_requests, [])     # not downloaded again
+        self.assertIn("is current", U.status(self.data, CFG, self.r.text).message)
+
+    def test_rows_the_hotfixes_delete_are_dropped(self):
+        effects = base_tables()["SpellEffect"][1]
+        gone, back, later = effects[0]["ID"], effects[1]["ID"], effects[2]["ID"]
+        self.r.hotfixes[self.build_id] = [
+            ("2026-10-31 10:59:19", "SpellEffect", int(gone), 2, 20),                                         # deleted
+            ("2026-10-30 08:00:00", "SpellEffect", int(back), 2, 10), ("2026-10-31 10:59:19", "SpellEffect", int(back), 1, 21),  # deleted, then back
+            ("2026-10-31 10:59:19", "SpellEffectX", int(later), 2, 22),                                        # another table
+        ]
+        self.r.builds[V_NEW] = base_tables()
+        edit_effect(self.r.builds[V_NEW])                       # so the dataset differs and installs
+        a = self.prepare(self.r)
+        staged = self.data / "staging" / a.version
+        ids = {row.split(",")[0] for row in (staged / "SpellEffect.csv").read_text().splitlines()[1:]}
+        self.assertNotIn(gone, ids)
+        self.assertTrue({back, later} <= ids)
+        entry = json.loads((staged / "manifest.json").read_text())["tables"]["SpellEffect"]
+        self.assertEqual((entry["hotfixDeletedRows"], entry["hotfixRecords"]), (1, 2))
+        self.assertEqual(entry["rows"], len(effects) - 1)
+
+    def test_status_reports_new_hotfixes(self):
+        self.hotfix(edit_effect)
+        st = U.status(self.data, CFG, self.r.text)
+        self.assertEqual(st.latest, f"{V_NEW}-hf{self.STAMP}")
+        self.assertIn("is available", st.message)
 
 
 class ActivePointerTests(UpdateCase):

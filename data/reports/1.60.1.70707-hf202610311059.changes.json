@@ -1,0 +1,3163 @@
+{
+  "generatedAt": "2026-11-01T11:56:46.702512+00:00",
+  "changes": {
+    "old_version": "1.60.1.70707",
+    "new_version": "1.60.1.70707-hf202610311059",
+    "schema": {},
+    "tables": {
+      "TraitTree": {
+        "old": 17,
+        "new": 17,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitNode": {
+        "old": 556,
+        "new": 557,
+        "added": 3,
+        "removed": 2,
+        "changed": 36,
+        "keyed": true
+      },
+      "TraitNodeEntry": {
+        "old": 659,
+        "new": 662,
+        "added": 3,
+        "removed": 0,
+        "changed": 11,
+        "keyed": true
+      },
+      "TraitNodeXTraitNodeEntry": {
+        "old": 559,
+        "new": 560,
+        "added": 3,
+        "removed": 2,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitDefinition": {
+        "old": 659,
+        "new": 662,
+        "added": 3,
+        "removed": 0,
+        "changed": 13,
+        "keyed": true
+      },
+      "TraitDefinitionEffectPoints": {
+        "old": 646,
+        "new": 653,
+        "added": 10,
+        "removed": 3,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitEdge": {
+        "old": 99,
+        "new": 99,
+        "added": 6,
+        "removed": 6,
+        "changed": 0,
+        "keyed": true
+      },
+      "CurvePoint": {
+        "old": 41769,
+        "new": 41807,
+        "added": 57,
+        "removed": 19,
+        "changed": 78,
+        "keyed": true
+      },
+      "SpellName": {
+        "old": 32030,
+        "new": 32056,
+        "added": 31,
+        "removed": 5,
+        "changed": 4,
+        "keyed": true
+      },
+      "Spell": {
+        "old": 32030,
+        "new": 32056,
+        "added": 31,
+        "removed": 5,
+        "changed": 52,
+        "keyed": true
+      },
+      "SpellEffect": {
+        "old": 42859,
+        "new": 42922,
+        "added": 71,
+        "removed": 8,
+        "changed": 109,
+        "keyed": true
+      },
+      "ChrClasses": {
+        "old": 9,
+        "new": 9,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "ChrRaces": {
+        "old": 58,
+        "new": 58,
+        "added": 0,
+        "removed": 0,
+        "changed": 9,
+        "keyed": true
+      },
+      "SkillLineXTraitTree": {
+        "old": 9,
+        "new": 9,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "SkillRaceClassInfo": {
+        "old": 186,
+        "new": 186,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitCond": {
+        "old": 172,
+        "new": 172,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitNodeGroup": {
+        "old": 372,
+        "new": 372,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitNodeGroupXTraitNode": {
+        "old": 2145,
+        "new": 2151,
+        "added": 68,
+        "removed": 62,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitNodeGroupXTraitCond": {
+        "old": 171,
+        "new": 171,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitNodeXTraitCond": {
+        "old": 1,
+        "new": 1,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitCurrency": {
+        "old": 2,
+        "new": 2,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitCurrencySource": {
+        "old": 187,
+        "new": 187,
+        "added": 0,
+        "removed": 0,
+        "changed": 1,
+        "keyed": true
+      },
+      "TraitTreeXTraitCurrency": {
+        "old": 13,
+        "new": 13,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitCost": {
+        "old": 11,
+        "new": 11,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "TraitTreeXTraitCost": {
+        "old": 13,
+        "new": 13,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "CharBaseInfo": {
+        "old": 56,
+        "new": 56,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "SpellMechanic": {
+        "old": 36,
+        "new": 36,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "Resistances": {
+        "old": 7,
+        "new": 7,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "SpellMisc": {
+        "old": 32010,
+        "new": 32038,
+        "added": 28,
+        "removed": 0,
+        "changed": 1467,
+        "keyed": true
+      }
+    },
+    "trees_added": [],
+    "trees_removed": [],
+    "trees_renamed": [],
+    "nodes_added": [
+      {
+        "nodeId": "113629",
+        "treeId": "1100",
+        "label": "Turn Evil [node 113629]",
+        "text": "Turn Evil [node 113629] in tree 1100 at (9080, 4530)"
+      },
+      {
+        "nodeId": "113630",
+        "treeId": "1100",
+        "label": "Divine Strength [node 113630]",
+        "text": "Divine Strength [node 113630] in tree 1100 at (2220, 2130)"
+      },
+      {
+        "nodeId": "113631",
+        "treeId": "1100",
+        "label": "Boundless Light [node 113631]",
+        "text": "Boundless Light [node 113631] in tree 1100 at (2220, 4530)"
+      }
+    ],
+    "nodes_removed": [
+      {
+        "nodeId": "105629",
+        "treeId": "1100",
+        "label": "One-Handed Weapon Specialization [node 105629]",
+        "text": "One-Handed Weapon Specialization [node 105629] from tree 1100"
+      },
+      {
+        "nodeId": "110880",
+        "treeId": "1100",
+        "label": "Instrument of Law [node 110880]",
+        "text": "Instrument of Law [node 110880] from tree 1100"
+      }
+    ],
+    "nodes_moved": [
+      {
+        "nodeId": "104951",
+        "treeId": "1089",
+        "label": "Predatory Discipline [node 104951]",
+        "old": {
+          "tree": "1089",
+          "x": "5020",
+          "y": "3930"
+        },
+        "new": {
+          "tree": "1089",
+          "x": "6220",
+          "y": "3930"
+        },
+        "text": "Predatory Discipline [node 104951]: (5020, 3930) -> (6220, 3930)"
+      },
+      {
+        "nodeId": "104952",
+        "treeId": "1089",
+        "label": "Predatory Strikes [node 104952]",
+        "old": {
+          "tree": "1089",
+          "x": "6220",
+          "y": "3930"
+        },
+        "new": {
+          "tree": "1089",
+          "x": "5020",
+          "y": "3930"
+        },
+        "text": "Predatory Strikes [node 104952]: (6220, 3930) -> (5020, 3930)"
+      },
+      {
+        "nodeId": "104953",
+        "treeId": "1089",
+        "label": "Rend and Tear [node 104953]",
+        "old": {
+          "tree": "1089",
+          "x": "6220",
+          "y": "5130"
+        },
+        "new": {
+          "tree": "1089",
+          "x": "5020",
+          "y": "5130"
+        },
+        "text": "Rend and Tear [node 104953]: (6220, 5130) -> (5020, 5130)"
+      },
+      {
+        "nodeId": "104954",
+        "treeId": "1089",
+        "label": "Natural Reaction [node 104954]",
+        "old": {
+          "tree": "1089",
+          "x": "5020",
+          "y": "5130"
+        },
+        "new": {
+          "tree": "1089",
+          "x": "6820",
+          "y": "5130"
+        },
+        "text": "Natural Reaction [node 104954]: (5020, 5130) -> (6820, 5130)"
+      },
+      {
+        "nodeId": "104972",
+        "treeId": "1091",
+        "label": "Improved Revive Pet [node 104972]",
+        "old": {
+          "tree": "1091",
+          "x": "2820",
+          "y": "2730"
+        },
+        "new": {
+          "tree": "1091",
+          "x": "2220",
+          "y": "2730"
+        },
+        "text": "Improved Revive Pet [node 104972]: (2820, 2730) -> (2220, 2730)"
+      },
+      {
+        "nodeId": "104973",
+        "treeId": "1091",
+        "label": "Pathfinding [node 104973]",
+        "old": {
+          "tree": "1091",
+          "x": "2220",
+          "y": "2730"
+        },
+        "new": {
+          "tree": "1091",
+          "x": "1020",
+          "y": "3330"
+        },
+        "text": "Pathfinding [node 104973]: (2220, 2730) -> (1020, 3330)"
+      },
+      {
+        "nodeId": "105324",
+        "treeId": "1100",
+        "label": "Divine Precision [node 105324]",
+        "old": {
+          "tree": "1100",
+          "x": "1020",
+          "y": "4530"
+        },
+        "new": {
+          "tree": "1100",
+          "x": "1020",
+          "y": "3930"
+        },
+        "text": "Divine Precision [node 105324]: (1020, 4530) -> (1020, 3930)"
+      },
+      {
+        "nodeId": "105325",
+        "treeId": "1100",
+        "label": "Divine Favor [node 105325]",
+        "old": {
+          "tree": "1100",
+          "x": "2220",
+          "y": "3930"
+        },
+        "new": {
+          "tree": "1100",
+          "x": "1020",
+          "y": "3330"
+        },
+        "text": "Divine Favor [node 105325]: (2220, 3930) -> (1020, 3330)"
+      },
+      {
+        "nodeId": "105327",
+        "treeId": "1100",
+        "label": "Purifying Power [node 105327]",
+        "old": {
+          "tree": "1100",
+          "x": "2220",
+          "y": "3330"
+        },
+        "new": {
+          "tree": "1100",
+          "x": "2820",
+          "y": "2730"
+        },
+        "text": "Purifying Power [node 105327]: (2220, 3330) -> (2820, 2730)"
+      },
+      {
+        "nodeId": "105329",
+        "treeId": "1100",
+        "label": "Illumination [node 105329]",
+        "old": {
+          "tree": "1100",
+          "x": "1620",
+          "y": "3930"
+        },
+        "new": {
+          "tree": "1100",
+          "x": "1620",
+          "y": "3330"
+        },
+        "text": "Illumination [node 105329]: (1620, 3930) -> (1620, 3330)"
+      },
+      {
+        "nodeId": "105330",
+        "treeId": "1100",
+        "label": "Oath of Light [node 105330]",
+        "old": {
+          "tree": "1100",
+          "x": "1020",
+          "y": "3330"
+        },
+        "new": {
+          "tree": "1100",
+          "x": "2220",
+          "y": "3930"
+        },
+        "text": "Oath of Light [node 105330]: (1020, 3330) -> (2220, 3930)"
+      },
+      {
+        "nodeId": "105331",
+        "treeId": "1100",
+        "label": "Unyielding Faith [node 105331]",
+        "old": {
+          "tree": "1100",
+          "x": "2820",
+          "y": "2730"
+        },
+        "new": {
+          "tree": "1100",
+          "x": "9680",
+          "y": "3330"
+        },
+        "text": "Unyielding Faith [node 105331]: (2820, 2730) -> (9680, 3330)"
+      },
+      {
+        "nodeId": "105332",
+        "treeId": "1100",
+        "label": "Divine Intellect [node 105332]",
+        "old": {
+          "tree": "1100",
+          "x": "2220",
+          "y": "2130"
+        },
+        "new": {
+          "tree": "1100",
+          "x": "5620",
+          "y": "2130"
+        },
+        "text": "Divine Intellect [node 105332]: (2220, 2130) -> (5620, 2130)"
+      },
+      {
+        "nodeId": "105335",
+        "treeId": "1100",
+        "label": "Spiritual Focus [node 105335]",
+        "old": {
+          "tree": "1100",
+          "x": "1620",
+          "y": "2730"
+        },
+        "new": {
+          "tree": "1100",
+          "x": "1620",
+          "y": "2130"
+        },
+        "text": "Spiritual Focus [node 105335]: (1620, 2730) -> (1620, 2130)"
+      },
+      {
+        "nodeId": "105625",
+        "treeId": "1100",
+        "label": "Templar's Bulwark [node 105625]",
+        "old": {
+          "tree": "1100",
+          "x": "5620",
+          "y": "4530"
+        },
+        "new": {
+          "tree": "1100",
+          "x": "5020",
+          "y": "3330"
+        },
+        "text": "Templar's Bulwark [node 105625]: (5620, 4530) -> (5020, 3330)"
+      },
+      {
+        "nodeId": "105628",
+        "treeId": "1100",
+        "label": "Holy Shield [node 105628]",
+        "old": {
+          "tree": "1100",
+          "x": "5620",
+          "y": "5730"
+        },
+        "new": {
+          "tree": "1100",
+          "x": "5620",
+          "y": "4530"
+        },
+        "text": "Holy Shield [node 105628]: (5620, 5730) -> (5620, 4530)"
+      },
+      {
+        "nodeId": "105630",
+        "treeId": "1100",
+        "label": "Toughness [node 105630]",
+        "old": {
+          "tree": "1100",
+          "x": "5620",
+          "y": "2130"
+        },
+        "new": {
+          "tree": "1100",
+          "x": "6820",
+          "y": "3330"
+        },
+        "text": "Toughness [node 105630]: (5620, 2130) -> (6820, 3330)"
+      },
+      {
+        "nodeId": "105632",
+        "treeId": "1100",
+        "label": "Sacred Duty [node 105632]",
+        "old": {
+          "tree": "1100",
+          "x": "6820",
+          "y": "3330"
+        },
+        "new": {
+          "tree": "1100",
+          "x": "6820",
+          "y": "2730"
+        },
+        "text": "Sacred Duty [node 105632]: (6820, 3330) -> (6820, 2730)"
+      },
+      {
+        "nodeId": "105633",
+        "treeId": "1100",
+        "label": "Improved Hammer of Justice [node 105633]",
+        "old": {
+          "tree": "1100",
+          "x": "6220",
+          "y": "3930"
+        },
+        "new": {
+          "tree": "1100",
+          "x": "5620",
+          "y": "3330"
+        },
+        "text": "Improved Hammer of Justice [node 105633]: (6220, 3930) -> (5620, 3330)"
+      },
+      {
+        "nodeId": "105634",
+        "treeId": "1100",
+        "label": "Improved Righteous Fury [node 105634]",
+        "old": {
+          "tree": "1100",
+          "x": "5620",
+          "y": "3330"
+        },
+        "new": {
+          "tree": "1100",
+          "x": "5620",
+          "y": "3930"
+        },
+        "text": "Improved Righteous Fury [node 105634]: (5620, 3330) -> (5620, 3930)"
+      },
+      {
+        "nodeId": "105636",
+        "treeId": "1100",
+        "label": "Anticipation [node 105636]",
+        "old": {
+          "tree": "1100",
+          "x": "6820",
+          "y": "2730"
+        },
+        "new": {
+          "tree": "1100",
+          "x": "6220",
+          "y": "3930"
+        },
+        "text": "Anticipation [node 105636]: (6820, 2730) -> (6220, 3930)"
+      },
+      {
+        "nodeId": "105639",
+        "treeId": "1100",
+        "label": "Stoicism [node 105639]",
+        "old": {
+          "tree": "1100",
+          "x": "1620",
+          "y": "2130"
+        },
+        "new": {
+          "tree": "1100",
+          "x": "5020",
+          "y": "4530"
+        },
+        "text": "Stoicism [node 105639]: (1620, 2130) -> (5020, 4530)"
+      },
+      {
+        "nodeId": "105693",
+        "treeId": "1100",
+        "label": "Vengeance [node 105693]",
+        "old": {
+          "tree": "1100",
+          "x": "9680",
+          "y": "4530"
+        },
+        "new": {
+          "tree": "1100",
+          "x": "10280",
+          "y": "4530"
+        },
+        "text": "Vengeance [node 105693]: (9680, 4530) -> (10280, 4530)"
+      },
+      {
+        "nodeId": "105694",
+        "treeId": "1100",
+        "label": "Repentance [node 105694]",
+        "old": {
+          "tree": "1100",
+          "x": "10280",
+          "y": "4530"
+        },
+        "new": {
+          "tree": "1100",
+          "x": "9680",
+          "y": "4530"
+        },
+        "text": "Repentance [node 105694]: (10280, 4530) -> (9680, 4530)"
+      },
+      {
+        "nodeId": "105697",
+        "treeId": "1100",
+        "label": "Two-Handed Weapon Specialization [node 105697]",
+        "old": {
+          "tree": "1100",
+          "x": "9080",
+          "y": "4530"
+        },
+        "new": {
+          "tree": "1100",
+          "x": "10880",
+          "y": "3930"
+        },
+        "text": "Two-Handed Weapon Specialization [node 105697]: (9080, 4530) -> (10880, 3930)"
+      },
+      {
+        "nodeId": "105700",
+        "treeId": "1100",
+        "label": "Sacred Arbiter [node 105700]",
+        "old": {
+          "tree": "1100",
+          "x": "10280",
+          "y": "3930"
+        },
+        "new": {
+          "tree": "1100",
+          "x": "9680",
+          "y": "3930"
+        },
+        "text": "Sacred Arbiter [node 105700]: (10280, 3930) -> (9680, 3930)"
+      },
+      {
+        "nodeId": "105701",
+        "treeId": "1100",
+        "label": "Sanctified Judgement [node 105701]",
+        "old": {
+          "tree": "1100",
+          "x": "9680",
+          "y": "3330"
+        },
+        "new": {
+          "tree": "1100",
+          "x": "10280",
+          "y": "2730"
+        },
+        "text": "Sanctified Judgement [node 105701]: (9680, 3330) -> (10280, 2730)"
+      },
+      {
+        "nodeId": "105703",
+        "treeId": "1100",
+        "label": "Conviction [node 105703]",
+        "old": {
+          "tree": "1100",
+          "x": "10280",
+          "y": "2730"
+        },
+        "new": {
+          "tree": "1100",
+          "x": "9680",
+          "y": "2730"
+        },
+        "text": "Conviction [node 105703]: (10280, 2730) -> (9680, 2730)"
+      },
+      {
+        "nodeId": "105704",
+        "treeId": "1100",
+        "label": "Holy Conduit [node 105704]",
+        "old": {
+          "tree": "1100",
+          "x": "9680",
+          "y": "2730"
+        },
+        "new": {
+          "tree": "1100",
+          "x": "2220",
+          "y": "3330"
+        },
+        "text": "Holy Conduit [node 105704]: (9680, 2730) -> (2220, 3330)"
+      },
+      {
+        "nodeId": "110871",
+        "treeId": "1100",
+        "label": "Reverence [node 110871]",
+        "old": {
+          "tree": "1100",
+          "x": "1620",
+          "y": "3330"
+        },
+        "new": {
+          "tree": "1100",
+          "x": "1620",
+          "y": "2730"
+        },
+        "text": "Reverence [node 110871]: (1620, 3330) -> (1620, 2730)"
+      },
+      {
+        "nodeId": "110872",
+        "treeId": "1100",
+        "label": "Consecrated Ground [node 110872]",
+        "old": {
+          "tree": "1100",
+          "x": "2220",
+          "y": "4530"
+        },
+        "new": {
+          "tree": "1100",
+          "x": "1020",
+          "y": "4530"
+        },
+        "text": "Consecrated Ground [node 110872]: (2220, 4530) -> (1020, 4530)"
+      },
+      {
+        "nodeId": "110873",
+        "treeId": "1100",
+        "label": "Infusion of Light [node 110873]",
+        "old": {
+          "tree": "1100",
+          "x": "1020",
+          "y": "3930"
+        },
+        "new": {
+          "tree": "1100",
+          "x": "1620",
+          "y": "3930"
+        },
+        "text": "Infusion of Light [node 110873]: (1020, 3930) -> (1620, 3930)"
+      },
+      {
+        "nodeId": "110875",
+        "treeId": "1100",
+        "label": "Shieldsworn [node 110875]",
+        "old": {
+          "tree": "1100",
+          "x": "5030",
+          "y": "3330"
+        },
+        "new": {
+          "tree": "1100",
+          "x": "5620",
+          "y": "5730"
+        },
+        "text": "Shieldsworn [node 110875]: (5030, 3330) -> (5620, 5730)"
+      },
+      {
+        "nodeId": "110878",
+        "treeId": "1100",
+        "label": "Swift Judgement [node 110878]",
+        "old": {
+          "tree": "1100",
+          "x": "5030",
+          "y": "3930"
+        },
+        "new": {
+          "tree": "1100",
+          "x": "5020",
+          "y": "3930"
+        },
+        "text": "Swift Judgement [node 110878]: (5030, 3930) -> (5020, 3930)"
+      },
+      {
+        "nodeId": "110882",
+        "treeId": "1100",
+        "label": "Champion of the Light [node 110882]",
+        "old": {
+          "tree": "1100",
+          "x": "9680",
+          "y": "5130"
+        },
+        "new": {
+          "tree": "1100",
+          "x": "10280",
+          "y": "5130"
+        },
+        "text": "Champion of the Light [node 110882]: (9680, 5130) -> (10280, 5130)"
+      },
+      {
+        "nodeId": "113563",
+        "treeId": "1089",
+        "label": "Shifting Power [node 113563]",
+        "old": {
+          "tree": "1089",
+          "x": "5020",
+          "y": "4530"
+        },
+        "new": {
+          "tree": "1089",
+          "x": "6220",
+          "y": "5730"
+        },
+        "text": "Shifting Power [node 113563]: (5020, 4530) -> (6220, 5730)"
+      }
+    ],
+    "entry_changes": [
+      {
+        "nodeId": "104917",
+        "treeId": "1089",
+        "label": "Subtlety [node 104917]",
+        "kind": "spell",
+        "text": "Subtlety [node 104917]: spell 17106 (Reflection) -> 17118 (Subtlety)",
+        "entryId": "129577",
+        "old": "17106",
+        "new": "17118"
+      },
+      {
+        "nodeId": "104918",
+        "treeId": "1089",
+        "label": "Bloom [node 104918]",
+        "kind": "spell",
+        "text": "Bloom [node 104918]: spell 414673 (Gift of the Earthmother) -> 1328621 (Bloom)",
+        "entryId": "129578",
+        "old": "414673",
+        "new": "1328621"
+      },
+      {
+        "nodeId": "104920",
+        "treeId": "1089",
+        "label": "Reflection [node 104920]",
+        "kind": "spell",
+        "text": "Reflection [node 104920]: spell 17118 (Subtlety) -> 17106 (Reflection)",
+        "entryId": "129580",
+        "old": "17118",
+        "new": "17106"
+      },
+      {
+        "nodeId": "104939",
+        "treeId": "1089",
+        "label": "Furor [node 104939]",
+        "kind": "spell",
+        "text": "Furor [node 104939]: spell 17003 (Heart of the Wild) -> 17056 (Furor)",
+        "entryId": "129599",
+        "old": "17003",
+        "new": "17056"
+      },
+      {
+        "nodeId": "104949",
+        "treeId": "1089",
+        "label": "Lacerate [node 104949]",
+        "kind": "spell",
+        "text": "Lacerate [node 104949]: spell 407995 (Primal Bite) -> 1328617 (Lacerate)",
+        "entryId": "129609",
+        "old": "407995",
+        "new": "1328617"
+      },
+      {
+        "nodeId": "104951",
+        "treeId": "1089",
+        "label": "Predatory Discipline [node 104951]",
+        "kind": "spell",
+        "text": "Predatory Discipline [node 104951]: spell 1322605 (Shifting Power) -> 1328613 (Predatory Discipline)",
+        "entryId": "129611",
+        "old": "1322605",
+        "new": "1328613"
+      },
+      {
+        "nodeId": "104956",
+        "treeId": "1089",
+        "label": "Primal Bite [node 104956]",
+        "kind": "spell",
+        "text": "Primal Bite [node 104956]: spell 417141 (Berserk) -> 407995 (Primal Bite)",
+        "entryId": "129616",
+        "old": "417141",
+        "new": "407995"
+      },
+      {
+        "nodeId": "104958",
+        "treeId": "1089",
+        "label": "Heart of the Wild [node 104958]",
+        "kind": "spell",
+        "text": "Heart of the Wild [node 104958]: spell 17056 (Furor) -> 17003 (Heart of the Wild)",
+        "entryId": "129618",
+        "old": "17056",
+        "new": "17003"
+      },
+      {
+        "nodeId": "105324",
+        "treeId": "1100",
+        "label": "Divine Precision [node 105324]",
+        "kind": "max_ranks",
+        "text": "Divine Precision [node 105324]: max ranks 3 -> 2",
+        "entryId": "130018",
+        "old": "3",
+        "new": "2"
+      },
+      {
+        "nodeId": "105330",
+        "treeId": "1100",
+        "label": "Oath of Light [node 105330]",
+        "kind": "spell",
+        "text": "Oath of Light [node 105330]: spell 1310897 (Voice of Truth) -> 1328548 (Oath of Light)",
+        "entryId": "130024",
+        "old": "1310897",
+        "new": "1328548"
+      },
+      {
+        "nodeId": "105334",
+        "treeId": "1100",
+        "label": "Improved Seals [node 105334]",
+        "kind": "max_ranks",
+        "text": "Improved Seals [node 105334]: max ranks 3 -> 5",
+        "entryId": "130028",
+        "old": "3",
+        "new": "5"
+      },
+      {
+        "nodeId": "105335",
+        "treeId": "1100",
+        "label": "Spiritual Focus [node 105335]",
+        "kind": "max_ranks",
+        "text": "Spiritual Focus [node 105335]: max ranks 2 -> 5",
+        "entryId": "130029",
+        "old": "2",
+        "new": "5"
+      },
+      {
+        "nodeId": "105639",
+        "treeId": "1100",
+        "label": "Stoicism [node 105639]",
+        "kind": "max_ranks",
+        "text": "Stoicism [node 105639]: max ranks 5 -> 2",
+        "entryId": "130363",
+        "old": "5",
+        "new": "2"
+      },
+      {
+        "nodeId": "105639",
+        "treeId": "1100",
+        "label": "Stoicism [node 105639]",
+        "kind": "spell",
+        "text": "Stoicism [node 105639]: spell 20262 (Divine Strength) -> 1328546 (Stoicism)",
+        "entryId": "130363",
+        "old": "20262",
+        "new": "1328546"
+      },
+      {
+        "nodeId": "105703",
+        "treeId": "1100",
+        "label": "Conviction [node 105703]",
+        "kind": "max_ranks",
+        "text": "Conviction [node 105703]: max ranks 5 -> 3",
+        "entryId": "130432",
+        "old": "5",
+        "new": "3"
+      },
+      {
+        "nodeId": "105802",
+        "treeId": "1112",
+        "label": "Arcane Resilience [node 105802]",
+        "kind": "max_ranks",
+        "text": "Arcane Resilience [node 105802]: max ranks 2 -> 3",
+        "entryId": "130531",
+        "old": "2",
+        "new": "3"
+      },
+      {
+        "nodeId": "105856",
+        "treeId": "1114",
+        "label": "Holy Binding [node 105856]",
+        "kind": "spell",
+        "text": "Holy Binding [node 105856]: spell 401937 (Binding Heal) -> 1328569 (Holy Binding)",
+        "entryId": "130585",
+        "old": "401937",
+        "new": "1328569"
+      },
+      {
+        "nodeId": "110871",
+        "treeId": "1100",
+        "label": "Reverence [node 110871]",
+        "kind": "max_ranks",
+        "text": "Reverence [node 110871]: max ranks 3 -> 2",
+        "entryId": "137869",
+        "old": "3",
+        "new": "2"
+      },
+      {
+        "nodeId": "110874",
+        "treeId": "1100",
+        "label": "Shield Specialization [node 110874]",
+        "kind": "max_ranks",
+        "text": "Shield Specialization [node 110874]: max ranks 3 -> 2",
+        "entryId": "137872",
+        "old": "3",
+        "new": "2"
+      },
+      {
+        "nodeId": "110875",
+        "treeId": "1100",
+        "label": "Shieldsworn [node 110875]",
+        "kind": "spell",
+        "text": "Shieldsworn [node 110875]: spell 1314103 (Improved Seal of Fury) -> 1328544 (Shieldsworn)",
+        "entryId": "137873",
+        "old": "1314103",
+        "new": "1328544"
+      },
+      {
+        "nodeId": "110879",
+        "treeId": "1100",
+        "label": "Iron Creed [node 110879]",
+        "kind": "max_ranks",
+        "text": "Iron Creed [node 110879]: max ranks 5 -> 3",
+        "entryId": "137877",
+        "old": "5",
+        "new": "3"
+      },
+      {
+        "nodeId": "110882",
+        "treeId": "1100",
+        "label": "Champion of the Light [node 110882]",
+        "kind": "max_ranks",
+        "text": "Champion of the Light [node 110882]: max ranks 3 -> 5",
+        "entryId": "137880",
+        "old": "3",
+        "new": "5"
+      },
+      {
+        "nodeId": "113563",
+        "treeId": "1089",
+        "label": "Shifting Power [node 113563]",
+        "kind": "max_ranks",
+        "text": "Shifting Power [node 113563]: max ranks 2 -> 1",
+        "entryId": "141188",
+        "old": "2",
+        "new": "1"
+      },
+      {
+        "nodeId": "113563",
+        "treeId": "1089",
+        "label": "Shifting Power [node 113563]",
+        "kind": "spell",
+        "text": "Shifting Power [node 113563]: spell 1322670 (Improved Shifting Power) -> 1322605 (Shifting Power)",
+        "entryId": "141188",
+        "old": "1322670",
+        "new": "1322605"
+      }
+    ],
+    "edges_added": [
+      {
+        "left": "105323",
+        "right": "113631",
+        "treeId": "1100",
+        "text": "Added link Holy Shock [node 105323] -> Boundless Light [node 113631]"
+      },
+      {
+        "left": "105625",
+        "right": "110878",
+        "treeId": "1100",
+        "text": "Added link Templar's Bulwark [node 105625] -> Swift Judgement [node 110878]"
+      },
+      {
+        "left": "105628",
+        "right": "110875",
+        "treeId": "1100",
+        "text": "Added link Holy Shield [node 105628] -> Shieldsworn [node 110875]"
+      },
+      {
+        "left": "105694",
+        "right": "105692",
+        "treeId": "1100",
+        "text": "Added link Repentance [node 105694] -> Unsealed Wrath [node 105692]"
+      },
+      {
+        "left": "105696",
+        "right": "105693",
+        "treeId": "1100",
+        "text": "Added link Seal of Command [node 105696] -> Vengeance [node 105693]"
+      }
+    ],
+    "edges_removed": [
+      {
+        "left": "104945",
+        "right": "104951",
+        "treeId": "1089",
+        "text": "Removed link Shredding Attacks [node 104945] -> Shifting Power [node 104951]"
+      },
+      {
+        "left": "105323",
+        "right": "105324",
+        "treeId": "1100",
+        "text": "Removed link Holy Shock [node 105323] -> Divine Precision [node 105324]"
+      },
+      {
+        "left": "105625",
+        "right": "105628",
+        "treeId": "1100",
+        "text": "Removed link Templar's Bulwark [node 105625] -> Holy Shield [node 105628]"
+      },
+      {
+        "left": "105701",
+        "right": "105693",
+        "treeId": "1100",
+        "text": "Removed link Sanctified Judgement [node 105701] -> Vengeance [node 105693]"
+      },
+      {
+        "left": "110875",
+        "right": "110878",
+        "treeId": "1100",
+        "text": "Removed link Improved Seal of Fury [node 110875] -> Swift Judgement [node 110878]"
+      }
+    ],
+    "definitions_added": [
+      {
+        "definitionId": "145960",
+        "spellId": "1328370",
+        "placed": true,
+        "text": "Definition 145960 (Turn Evil, spell 1328370), placed on a node"
+      },
+      {
+        "definitionId": "145961",
+        "spellId": "20262",
+        "placed": true,
+        "text": "Definition 145961 (Divine Strength, spell 20262), placed on a node"
+      },
+      {
+        "definitionId": "145962",
+        "spellId": "1328550",
+        "placed": true,
+        "text": "Definition 145962 (Boundless Light, spell 1328550), placed on a node"
+      }
+    ],
+    "definitions_removed": [],
+    "definitions_changed": [
+      {
+        "definitionId": "134378",
+        "placed": true,
+        "changes": {
+          "SpellID": [
+            "17106",
+            "17118"
+          ]
+        },
+        "text": "Definition 134378 (Subtlety), placed: SpellID '17106' -> '17118'"
+      },
+      {
+        "definitionId": "134379",
+        "placed": true,
+        "changes": {
+          "SpellID": [
+            "414673",
+            "1328621"
+          ]
+        },
+        "text": "Definition 134379 (Bloom), placed: SpellID '414673' -> '1328621'"
+      },
+      {
+        "definitionId": "134381",
+        "placed": true,
+        "changes": {
+          "SpellID": [
+            "17118",
+            "17106"
+          ]
+        },
+        "text": "Definition 134381 (Reflection), placed: SpellID '17118' -> '17106'"
+      },
+      {
+        "definitionId": "134400",
+        "placed": true,
+        "changes": {
+          "SpellID": [
+            "17003",
+            "17056"
+          ]
+        },
+        "text": "Definition 134400 (Furor), placed: SpellID '17003' -> '17056'"
+      },
+      {
+        "definitionId": "134410",
+        "placed": true,
+        "changes": {
+          "SpellID": [
+            "407995",
+            "1328617"
+          ]
+        },
+        "text": "Definition 134410 (Lacerate), placed: SpellID '407995' -> '1328617'"
+      },
+      {
+        "definitionId": "134412",
+        "placed": true,
+        "changes": {
+          "SpellID": [
+            "1322605",
+            "1328613"
+          ]
+        },
+        "text": "Definition 134412 (Predatory Discipline), placed: SpellID '1322605' -> '1328613'"
+      },
+      {
+        "definitionId": "134417",
+        "placed": true,
+        "changes": {
+          "SpellID": [
+            "417141",
+            "407995"
+          ]
+        },
+        "text": "Definition 134417 (Primal Bite), placed: SpellID '417141' -> '407995'"
+      },
+      {
+        "definitionId": "134419",
+        "placed": true,
+        "changes": {
+          "SpellID": [
+            "17056",
+            "17003"
+          ]
+        },
+        "text": "Definition 134419 (Heart of the Wild), placed: SpellID '17056' -> '17003'"
+      },
+      {
+        "definitionId": "134825",
+        "placed": true,
+        "changes": {
+          "SpellID": [
+            "1310897",
+            "1328548"
+          ]
+        },
+        "text": "Definition 134825 (Oath of Light), placed: SpellID '1310897' -> '1328548'"
+      },
+      {
+        "definitionId": "135164",
+        "placed": true,
+        "changes": {
+          "SpellID": [
+            "20262",
+            "1328546"
+          ]
+        },
+        "text": "Definition 135164 (Stoicism), placed: SpellID '20262' -> '1328546'"
+      },
+      {
+        "definitionId": "135386",
+        "placed": true,
+        "changes": {
+          "SpellID": [
+            "401937",
+            "1328569"
+          ]
+        },
+        "text": "Definition 135386 (Holy Binding), placed: SpellID '401937' -> '1328569'"
+      },
+      {
+        "definitionId": "142627",
+        "placed": true,
+        "changes": {
+          "SpellID": [
+            "1314103",
+            "1328544"
+          ]
+        },
+        "text": "Definition 142627 (Shieldsworn), placed: SpellID '1314103' -> '1328544'"
+      },
+      {
+        "definitionId": "145859",
+        "placed": true,
+        "changes": {
+          "SpellID": [
+            "1322670",
+            "1322605"
+          ]
+        },
+        "text": "Definition 145859 (Shifting Power), placed: SpellID '1322670' -> '1322605'"
+      }
+    ],
+    "spell_text_changes": [
+      {
+        "spellId": "5923",
+        "field": "Description_lang",
+        "old": "Increases the critical strike chance of your Holy Shock and Holy Strike spells by $m2%, and all other spells by $m1%.",
+        "new": "Increases the critical strike healing bonus of your Holy spells by $s1%.",
+        "text": "Holy Power (spell 5923): Description_lang changed: '\u2026ases the critical strike chance of your Holy Shock and Holy Strike spe\u2026' -> '\u2026ases the critical strike healing bonus of your Holy spells by $s1%.'"
+      },
+      {
+        "spellId": "9452",
+        "field": "Description_lang",
+        "old": "Gives your damaging melee attacks a chance to reduce the target's Attack Power by ${$m1/-3*$440667m1}, and increase your Attack Power by $m1% for $440667d.",
+        "new": "Gives your damaging melee attacks a chance to reduce the target's Attack Power by ${$m1/-3*$440667m1} for $440667d.",
+        "text": "Vindication (spell 9452): Description_lang changed: '\u2026er by ${$m1/-3*$440667m1}, and increase your Attack Power by $m1% for \u2026' -> '\u2026er by ${$m1/-3*$440667m1} for $440667d.'"
+      },
+      {
+        "spellId": "16757",
+        "field": "Description_lang",
+        "old": "Increases the range of your Frostbolt, Frost Blast, and Blizzard spells and the radius of your Frost Nova and Cone of Cold spells by $s1%.",
+        "new": "Increases the range of your Frostbolt, Frost Blast, Ice Lance, and Blizzard spells and the radius of your Frost Nova and Cone of Cold spells by $s1%.",
+        "text": "Arctic Reach (spell 16757): Description_lang changed: '\u2026 Frostbolt, Frost Blast, and Blizzard spells and the radius of your Fr\u2026' -> '\u2026 Frostbolt, Frost Blast, Ice Lance, and Blizzard spells and the radius\u2026'"
+      },
+      {
+        "spellId": "17007",
+        "field": "Description_lang",
+        "old": "While in Cat Form, Bear Form, or Dire Bear Form, the Leader of the Pack increases the melee and ranged Critical Strike chance of all party or raid members within $24932a1 yards by $24932s1%.",
+        "new": "While in Cat Form, Bear Form, or Dire Bear Form, the Leader of the Pack increases the Critical Strike chance of all party or raid members within $24932a1 yards by $24932s1%.",
+        "text": "Leader of the Pack (spell 17007): Description_lang changed: '\u2026f the Pack increases the melee and ranged Critical Strike chance of al\u2026' -> '\u2026f the Pack increases the Critical Strike chance of all party or raid m\u2026'"
+      },
+      {
+        "spellId": "17069",
+        "field": "Description_lang",
+        "old": "Reduces the cast time of your Healing Touch spell by $/1000;S1 sec and increases all damage you deal by $m2%.",
+        "new": "Reduces the cast time of your Healing Touch and Wild Growth spells by $/1000;S1 sec and increases all damage you deal by $m2%.",
+        "text": "Naturalist (spell 17069): Description_lang changed: '\u2026me of your Healing Touch spell by $/1000;S1 sec and increases all dama\u2026' -> '\u2026me of your Healing Touch and Wild Growth spells by $/1000;S1 sec and i\u2026'"
+      },
+      {
+        "spellId": "18562",
+        "field": "Description_lang",
+        "old": "Instantly heals a target with an active Rejuvenation or Regrowth effect for an amount equal to the full duration of the periodic effect of one of those spells.",
+        "new": "Instantly heals a target with your active Rejuvenation or Regrowth effect for an amount equal to the full duration of the periodic effect of the consumed spell.",
+        "text": "Swiftmend (spell 18562): Description_lang changed: '\u2026ntly heals a target with an active Rejuvenation or Regrowth effect for\u2026' -> '\u2026ntly heals a target with your active Rejuvenation or Regrowth effect f\u2026'"
+      },
+      {
+        "spellId": "20111",
+        "field": "Description_lang",
+        "old": "Increases the damage you deal with two-handed melee weapons by $s1%.",
+        "new": "Increases the physical damage you deal by $s1%, and reduces all threat you generate by $m2% while a two-handed melee weapon is equipped.",
+        "text": "Two-Handed Weapon Specialization (spell 20111): Description_lang changed: 'Increases the damage you deal with two-handed melee weapons\u2026' -> 'Increases the physical damage you deal by $s1%, and reduces\u2026'"
+      },
+      {
+        "spellId": "20117",
+        "field": "Description_lang",
+        "old": "Improves your chance to get a critical strike with melee attacks by $s1%.",
+        "new": "Improves your chance to get a critical strike with all spells and attacks by $m1%.",
+        "text": "Conviction (spell 20117): Description_lang changed: '\u2026t a critical strike with melee attacks by $s1%.' -> '\u2026t a critical strike with all spells and attacks by $m1%.'"
+      },
+      {
+        "spellId": "24858",
+        "field": "Description_lang",
+        "old": "Shapeshift into Moonkin Form, increasing Omen of Clarity's chance to trigger by $s5%, Armor contribution from items by $24905s1%, and all party or raid members within $24907a1 yards have their spell Critical Strike chance increased by $24907s1%.  Also protects the caster from Polymorph effects and prevents the use of healing spells.\r\n\r\nThe act of shapeshifting frees the caster of Polymorph and Movement Impairing effects.",
+        "new": "Shapeshift into Moonkin Form, increasing Omen of Clarity's chance to trigger by $s5%, Armor contribution from items by $24905s1%, and all party or raid members within $24907a1 yards have their Critical Strike chance increased by $24907s1%. Also protects the caster from Polymorph effects and prevents the use of healing spells.\r\n\r\nThe act of shapeshifting frees the caster of Polymorph and Movement Impairing effects.",
+        "text": "Moonkin Form (spell 24858): Description_lang changed: '\u202624907a1 yards have their spell Critical Strike chance increased by $24\u2026' -> '\u202624907a1 yards have their Critical Strike chance increased by $24907s1%\u2026'"
+      },
+      {
+        "spellId": "403511",
+        "field": "Description_lang",
+        "old": "Increases health drained or damage done by your Drain Life, Drain Soul, and Wrack spells by $m1%.",
+        "new": "Increases Health drained, damage done, or Mana drained by your Drain Life, Drain Soul, and Drain Mana spells by $m1%.",
+        "text": "Improved Drains (spell 403511): Description_lang changed: 'Increases health drained or damage done by your Drain L\u2026' -> 'Increases Health drained, damage done, or Mana drained \u2026'"
+      },
+      {
+        "spellId": "425280",
+        "field": "Description_lang",
+        "old": "Your heals from Flash Heal, Binding Heal, Lesser Heal, Heal, Greater Heal, and Penance gain $m1% increased critical strike chance when cast on targets with Weakened Soul, and reduce the remaining duration of Weakened Soul on their target by ${$m2/-1000} sec.",
+        "new": "Your heals from Flash Heal, Lesser Heal, Heal, Greater Heal, and Penance gain $m1% increased critical strike chance when cast on targets with Weakened Soul, and reduce the remaining duration of Weakened Soul on their target by ${$m2/-1000} sec.",
+        "text": "Renewed Hope (spell 425280): Description_lang changed: '\u2026r heals from Flash Heal, Binding Heal, Lesser Heal, Heal, Greater Heal\u2026' -> '\u2026r heals from Flash Heal, Lesser Heal, Heal, Greater Heal, and Penance \u2026'"
+      },
+      {
+        "spellId": "1224697",
+        "field": "Description_lang",
+        "old": "Increases your total Stamina by $s1% and reduces the cooldown of your Divine Shield, Divine Protection, and Templar's Bulwark spells by ${$m2/-1000} sec.",
+        "new": "Reduces the cooldown of your Divine Shield, Divine Protection, and Templar's Bulwark spells by ${$m2/-1000} sec, and reduces the duration of Forbearance by ${$m1/-1000} sec.",
+        "text": "Sacred Duty (spell 1224697): Description_lang changed: 'Increases your total Stamina by $s1% and redu\u2026' -> 'Reduces the cooldown of your Divine Shield, D\u2026'"
+      },
+      {
+        "spellId": "1310735",
+        "field": "Name_lang",
+        "old": "Twist of Light",
+        "new": "Unsealed Wrath",
+        "text": "spell 1310735: Name_lang 'Twist of Light' -> 'Unsealed Wrath'"
+      },
+      {
+        "spellId": "1310735",
+        "field": "Description_lang",
+        "old": "Reduces the Mana cost of your Seal spells by $s1%, and when you replace your Seal of Command, Seal of Righteousness, Seal of Fury, or Seal of Justice with a different Seal, you gain an Echo of that Seal. Your next melee attack applies the replaced Seal's effects, consuming the Echo.",
+        "new": "Your melee attacks store a copy of your active Seal for $1311701d, stacking up to $1311701u times. Landing an attack with a different Seal consumes all stacks, giving the stored Seal its normal chance to activate once per stack.",
+        "text": "Unsealed Wrath (spell 1310735): Description_lang changed: 'Reduces the Mana cost of your Seal spells by \u2026' -> 'Your melee attacks store a copy of your activ\u2026'"
+      },
+      {
+        "spellId": "1310904",
+        "field": "Description_lang",
+        "old": "Improves your chance to hit with Holy spells by $s1%.",
+        "new": "Improves your chance to hit with Holy spells by $s1%, and reduces the duration of Silence effects on you by $s2%.",
+        "text": "Divine Precision (spell 1310904): Description_lang changed: '\u2026 with Holy spells by $s1%.' -> '\u2026 with Holy spells by $s1%, and reduces the duration of Silence effects\u2026'"
+      },
+      {
+        "spellId": "1310911",
+        "field": "Description_lang",
+        "old": "Applies Light's Vigil to the target for $1310909d. Your next Holy Shock cast on them triggers no cooldown and causes enemy targets to suffer $1310914s1 Holy damage and refund $s2% of Light's Vigil's Mana cost, or allied targets to heal their party for $1310912s1. You may only have one Light's Vigil active per party.",
+        "new": "Applies Light's Vigil to a friendly target for $1310909d. The caster's next Holy Shock on the target incurs no cooldown and heals the target and their party for $1310912s1. Only one Vigil per Paladin may be active in each party.",
+        "text": "Light's Vigil (spell 1310911): Description_lang changed: \"Applies Light's Vigil to the target for $1310909d. Your next Holy Shoc\u2026\" -> \"Applies Light's Vigil to a friendly target for $1310909d. The caster's\u2026\""
+      },
+      {
+        "spellId": "1310994",
+        "field": "Description_lang",
+        "old": "Finishes the remaining cooldown on your Judgement ability and reduces the Mana cost of your next Judgement by $s1%.",
+        "new": "Unleash the energy of a Seal spell upon an enemy. Does not consume the Seal. Refer to individual Seals for Judgement effect. Does not share a cooldown with your Judgement ability.",
+        "text": "Swift Judgement (spell 1310994): Description_lang changed: 'Finishes the remaining cooldown on your Judge\u2026' -> 'Unleash the energy of a Seal spell upon an en\u2026'"
+      },
+      {
+        "spellId": "1310994",
+        "field": "AuraDescription_lang",
+        "old": "Mana cost of Judgement reduced by $s1%.",
+        "new": "",
+        "text": "Swift Judgement (spell 1310994): AuraDescription_lang changed: 'Mana cost of Judgement reduced by $s1%.' -> ''"
+      },
+      {
+        "spellId": "1311084",
+        "field": "Description_lang",
+        "old": "Increases your spell damage by up to $m1% of your Intellect.",
+        "new": "Increases your spell damage by up to $m1% of your Intellect, and reduces the cast time of your Hammer of Wrath by ${$m2/-1000}.1 sec.",
+        "text": "Champion of the Light (spell 1311084): Description_lang changed: '\u2026to $m1% of your Intellect.' -> '\u2026to $m1% of your Intellect, and reduces the cast time of your Hammer of\u2026'"
+      },
+      {
+        "spellId": "1311085",
+        "field": "Name_lang",
+        "old": "Instrument of Law",
+        "new": "",
+        "text": "spell 1311085: Name_lang 'Instrument of Law' -> ''"
+      }
+    ],
+    "spell_presence_changes": [
+      {
+        "spellId": "1328370",
+        "presentNow": true,
+        "text": "Turn Evil (spell 1328370): spell data appeared"
+      },
+      {
+        "spellId": "1328544",
+        "presentNow": true,
+        "text": "Shieldsworn (spell 1328544): spell data appeared"
+      },
+      {
+        "spellId": "1328546",
+        "presentNow": true,
+        "text": "Stoicism (spell 1328546): spell data appeared"
+      },
+      {
+        "spellId": "1328548",
+        "presentNow": true,
+        "text": "Oath of Light (spell 1328548): spell data appeared"
+      },
+      {
+        "spellId": "1328550",
+        "presentNow": true,
+        "text": "Boundless Light (spell 1328550): spell data appeared"
+      },
+      {
+        "spellId": "1328569",
+        "presentNow": true,
+        "text": "Holy Binding (spell 1328569): spell data appeared"
+      },
+      {
+        "spellId": "1328613",
+        "presentNow": true,
+        "text": "Predatory Discipline (spell 1328613): spell data appeared"
+      },
+      {
+        "spellId": "1328617",
+        "presentNow": true,
+        "text": "Lacerate (spell 1328617): spell data appeared"
+      },
+      {
+        "spellId": "1328621",
+        "presentNow": true,
+        "text": "Bloom (spell 1328621): spell data appeared"
+      }
+    ],
+    "effects_added": [
+      {
+        "effectId": "1367233",
+        "spellId": "1311084",
+        "index": "1",
+        "text": "Champion of the Light (spell 1311084): effect 1 added (Effect 6, Aura 107, base -1000)"
+      },
+      {
+        "effectId": "1367246",
+        "spellId": "20111",
+        "index": "1",
+        "text": "Two-Handed Weapon Specialization (spell 20111): effect 1 added (Effect 6, Aura 10, base -20)"
+      },
+      {
+        "effectId": "1367357",
+        "spellId": "1328370",
+        "index": "0",
+        "text": "Turn Evil (spell 1328370): effect 0 added (Effect 6, Aura 107, base -1500)"
+      },
+      {
+        "effectId": "1367358",
+        "spellId": "1328370",
+        "index": "1",
+        "text": "Turn Evil (spell 1328370): effect 1 added (Effect 6, Aura 107, base -1500)"
+      },
+      {
+        "effectId": "1367367",
+        "spellId": "1328370",
+        "index": "2",
+        "text": "Turn Evil (spell 1328370): effect 2 added (Effect 6, Aura 332, base 1328374)"
+      },
+      {
+        "effectId": "1367368",
+        "spellId": "1328370",
+        "index": "3",
+        "text": "Turn Evil (spell 1328370): effect 3 added (Effect 6, Aura 332, base 1328373)"
+      },
+      {
+        "effectId": "1367369",
+        "spellId": "1328370",
+        "index": "4",
+        "text": "Turn Evil (spell 1328370): effect 4 added (Effect 6, Aura 332, base 1328372)"
+      },
+      {
+        "effectId": "1367611",
+        "spellId": "1328544",
+        "index": "0",
+        "text": "Shieldsworn (spell 1328544): effect 0 added (Effect 6, Aura 107, base -4000)"
+      },
+      {
+        "effectId": "1367614",
+        "spellId": "1328546",
+        "index": "0",
+        "text": "Stoicism (spell 1328546): effect 0 added (Effect 6, Aura 232, base -20)"
+      },
+      {
+        "effectId": "1367615",
+        "spellId": "1328546",
+        "index": "1",
+        "text": "Stoicism (spell 1328546): effect 1 added (Effect 6, Aura 232, base -20)"
+      },
+      {
+        "effectId": "1367618",
+        "spellId": "1328548",
+        "index": "0",
+        "text": "Oath of Light (spell 1328548): effect 0 added (Effect 6, Aura 226, base 0)"
+      },
+      {
+        "effectId": "1367619",
+        "spellId": "1328548",
+        "index": "1",
+        "text": "Oath of Light (spell 1328548): effect 1 added (Effect 6, Aura 4, base 0)"
+      },
+      {
+        "effectId": "1367620",
+        "spellId": "1328548",
+        "index": "2",
+        "text": "Oath of Light (spell 1328548): effect 2 added (Effect 6, Aura 4, base 0)"
+      },
+      {
+        "effectId": "1367623",
+        "spellId": "1310904",
+        "index": "1",
+        "text": "Divine Precision (spell 1310904): effect 1 added (Effect 6, Aura 232, base -20)"
+      },
+      {
+        "effectId": "1367624",
+        "spellId": "1328550",
+        "index": "0",
+        "text": "Boundless Light (spell 1328550): effect 0 added (Effect 6, Aura 4, base 0)"
+      },
+      {
+        "effectId": "1367667",
+        "spellId": "1328569",
+        "index": "0",
+        "text": "Holy Binding (spell 1328569): effect 0 added (Effect 6, Aura 4, base 50)"
+      },
+      {
+        "effectId": "1367715",
+        "spellId": "1328613",
+        "index": "0",
+        "text": "Predatory Discipline (spell 1328613): effect 0 added (Effect 6, Aura 4, base 20)"
+      },
+      {
+        "effectId": "1367720",
+        "spellId": "1328617",
+        "index": "0",
+        "text": "Lacerate (spell 1328617): effect 0 added (Effect 6, Aura 3, base 4)"
+      },
+      {
+        "effectId": "1367721",
+        "spellId": "1328617",
+        "index": "1",
+        "text": "Lacerate (spell 1328617): effect 1 added (Effect 3, Aura 0, base 10)"
+      },
+      {
+        "effectId": "1367726",
+        "spellId": "1328621",
+        "index": "0",
+        "text": "Bloom (spell 1328621): effect 0 added (Effect 6, Aura 4, base 100)"
+      },
+      {
+        "effectId": "1367727",
+        "spellId": "1328621",
+        "index": "1",
+        "text": "Bloom (spell 1328621): effect 1 added (Effect 6, Aura 4, base 50)"
+      },
+      {
+        "effectId": "1368037",
+        "spellId": "403511",
+        "index": "1",
+        "text": "Improved Drains (spell 403511): effect 1 added (Effect 6, Aura 108, base 20)"
+      }
+    ],
+    "effects_removed": [
+      {
+        "effectId": "1340809",
+        "spellId": "5923",
+        "index": "1",
+        "text": "Holy Power (spell 5923): effect 1 removed"
+      }
+    ],
+    "effects_changed": [
+      {
+        "effectId": "683158",
+        "spellId": "5923",
+        "index": "0",
+        "changes": {
+          "EffectAura": [
+            "108",
+            "50"
+          ],
+          "EffectBasePointsF": [
+            "5",
+            "0"
+          ],
+          "EffectMiscValue_0": [
+            "7",
+            "2"
+          ],
+          "EffectSpellClassMask_0": [
+            "33612840",
+            "0"
+          ],
+          "EffectSpellClassMask_1": [
+            "538970752",
+            "0"
+          ],
+          "EffectSpellClassMask_2": [
+            "8256",
+            "0"
+          ],
+          "EffectSpellClassMask_3": [
+            "67108864",
+            "0"
+          ]
+        },
+        "text": "Holy Power (spell 5923): effect 0: EffectAura '108' -> '50'; EffectBasePointsF '5' -> '0'; EffectMiscValue_0 '7' -> '2'; EffectSpellClassMask_0 '33612840' -> '0'; +3 more column(s)"
+      },
+      {
+        "effectId": "694455",
+        "spellId": "16757",
+        "index": "0",
+        "changes": {
+          "EffectSpellClassMask_0": [
+            "160",
+            "131232"
+          ]
+        },
+        "text": "Arctic Reach (spell 16757): effect 0: EffectSpellClassMask_0 '160' -> '131232'"
+      },
+      {
+        "effectId": "695065",
+        "spellId": "17069",
+        "index": "0",
+        "changes": {
+          "EffectSpellClassMask_1": [
+            "33554432",
+            "67108864"
+          ]
+        },
+        "text": "Naturalist (spell 17069): effect 0: EffectSpellClassMask_1 '33554432' -> '67108864'"
+      },
+      {
+        "effectId": "698173",
+        "spellId": "20117",
+        "index": "0",
+        "changes": {
+          "EffectAura": [
+            "52",
+            "290"
+          ]
+        },
+        "text": "Conviction (spell 20117): effect 0: EffectAura '52' -> '290'"
+      },
+      {
+        "effectId": "698886",
+        "spellId": "20925",
+        "index": "1",
+        "changes": {
+          "EffectBasePointsF": [
+            "110",
+            "75"
+          ]
+        },
+        "text": "Holy Shield (spell 20925): effect 1: EffectBasePointsF '110' -> '75'"
+      },
+      {
+        "effectId": "1050496",
+        "spellId": "403511",
+        "index": "0",
+        "changes": {
+          "EffectSpellClassMask_1": [
+            "262144",
+            "0"
+          ]
+        },
+        "text": "Improved Drains (spell 403511): effect 0: EffectSpellClassMask_1 '262144' -> '0'"
+      },
+      {
+        "effectId": "1071863",
+        "spellId": "407995",
+        "index": "0",
+        "changes": {
+          "EffectBasePointsF": [
+            "26",
+            "42"
+          ]
+        },
+        "text": "Primal Bite (spell 407995): effect 0: EffectBasePointsF '26' -> '42'"
+      },
+      {
+        "effectId": "1213490",
+        "spellId": "1224697",
+        "index": "0",
+        "changes": {
+          "EffectAura": [
+            "137",
+            "107"
+          ],
+          "EffectBasePointsF": [
+            "4",
+            "-10000"
+          ],
+          "EffectMiscValue_0": [
+            "0",
+            "1"
+          ],
+          "EffectMiscValue_1": [
+            "4",
+            "0"
+          ],
+          "EffectSpellClassMask_2": [
+            "0",
+            "128"
+          ]
+        },
+        "text": "Sacred Duty (spell 1224697): effect 0: EffectAura '137' -> '107'; EffectBasePointsF '4' -> '-10000'; EffectMiscValue_0 '0' -> '1'; EffectMiscValue_1 '4' -> '0'; +1 more column(s)"
+      },
+      {
+        "effectId": "1340538",
+        "spellId": "1310735",
+        "index": "0",
+        "changes": {
+          "EffectBasePointsF": [
+            "-20",
+            "0"
+          ]
+        },
+        "text": "Unsealed Wrath (spell 1310735): effect 0: EffectBasePointsF '-20' -> '0'"
+      },
+      {
+        "effectId": "1340799",
+        "spellId": "1310904",
+        "index": "0",
+        "changes": {
+          "EffectBasePointsF": [
+            "18",
+            "8"
+          ],
+          "EffectSpellClassMask_2": [
+            "1074798592",
+            "1056768"
+          ]
+        },
+        "text": "Divine Precision (spell 1310904): effect 0: EffectBasePointsF '18' -> '8'; EffectSpellClassMask_2 '1074798592' -> '1056768'"
+      },
+      {
+        "effectId": "1340812",
+        "spellId": "1310911",
+        "index": "0",
+        "changes": {
+          "ImplicitTarget_0": [
+            "25",
+            "21"
+          ]
+        },
+        "text": "Light's Vigil (spell 1310911): effect 0: ImplicitTarget_0 '25' -> '21'"
+      },
+      {
+        "effectId": "1340980",
+        "spellId": "1310994",
+        "index": "0",
+        "changes": {
+          "EffectAura": [
+            "108",
+            "0"
+          ],
+          "Effect": [
+            "6",
+            "77"
+          ],
+          "EffectBasePointsF": [
+            "-100",
+            "0"
+          ],
+          "EffectMiscValue_0": [
+            "14",
+            "0"
+          ],
+          "EffectSpellClassMask_0": [
+            "8388608",
+            "0"
+          ],
+          "ImplicitTarget_0": [
+            "1",
+            "6"
+          ]
+        },
+        "text": "Swift Judgement (spell 1310994): effect 0: EffectAura '108' -> '0'; Effect '6' -> '77'; EffectBasePointsF '-100' -> '0'; EffectMiscValue_0 '14' -> '0'; +2 more column(s)"
+      },
+      {
+        "effectId": "1341985",
+        "spellId": "1310911",
+        "index": "1",
+        "changes": {
+          "ImplicitTarget_0": [
+            "25",
+            "21"
+          ]
+        },
+        "text": "Light's Vigil (spell 1310911): effect 1: ImplicitTarget_0 '25' -> '21'"
+      },
+      {
+        "effectId": "1342606",
+        "spellId": "1312002",
+        "index": "1",
+        "changes": {
+          "EffectBasePointsF": [
+            "200",
+            "300"
+          ]
+        },
+        "text": "Ice Lance (spell 1312002): effect 1: EffectBasePointsF '200' -> '300'"
+      },
+      {
+        "effectId": "1364979",
+        "spellId": "11426",
+        "index": "1",
+        "changes": {
+          "EffectBasePointsF": [
+            "3",
+            "5"
+          ]
+        },
+        "text": "Ice Barrier (spell 11426): effect 1: EffectBasePointsF '3' -> '5'"
+      },
+      {
+        "effectId": "1364980",
+        "spellId": "11426",
+        "index": "2",
+        "changes": {
+          "EffectBasePointsF": [
+            "3",
+            "5"
+          ]
+        },
+        "text": "Ice Barrier (spell 11426): effect 2: EffectBasePointsF '3' -> '5'"
+      }
+    ],
+    "effect_points_changed": [
+      {
+        "id": "25209",
+        "kind": "added",
+        "definitionId": "142634",
+        "text": "Champion of the Light: scaling link added (effect 1, curve 127867)"
+      },
+      {
+        "id": "25210",
+        "kind": "added",
+        "definitionId": "135227",
+        "text": "Two-Handed Weapon Specialization: scaling link added (effect 1, curve 127869)"
+      },
+      {
+        "id": "25211",
+        "kind": "added",
+        "definitionId": "145960",
+        "text": "Turn Evil: scaling link added (effect 0, curve 127913)"
+      },
+      {
+        "id": "25212",
+        "kind": "added",
+        "definitionId": "145960",
+        "text": "Turn Evil: scaling link added (effect 1, curve 127912)"
+      },
+      {
+        "id": "25213",
+        "kind": "added",
+        "definitionId": "145961",
+        "text": "Divine Strength: scaling link added (effect 0, curve 127941)"
+      },
+      {
+        "id": "25214",
+        "kind": "added",
+        "definitionId": "135164",
+        "text": "Stoicism: scaling link added (effect 1, curve 127942)"
+      },
+      {
+        "id": "25215",
+        "kind": "added",
+        "definitionId": "145962",
+        "text": "Boundless Light: scaling link added (effect 0, curve 127943)"
+      },
+      {
+        "id": "25216",
+        "kind": "added",
+        "definitionId": "134819",
+        "text": "Divine Precision: scaling link added (effect 1, curve 127944)"
+      },
+      {
+        "id": "25217",
+        "kind": "added",
+        "definitionId": "134419",
+        "text": "Heart of the Wild: scaling link added (effect 2, curve 127962)"
+      },
+      {
+        "id": "25218",
+        "kind": "added",
+        "definitionId": "135451",
+        "text": "Improved Drains: scaling link added (effect 1, curve 128033)"
+      },
+      {
+        "id": "24609",
+        "kind": "removed",
+        "definitionId": "134816",
+        "text": "Holy Power: scaling link removed (effect 1, curve 110324)"
+      },
+      {
+        "id": "25101",
+        "kind": "removed",
+        "definitionId": "134400",
+        "text": "Furor: scaling link removed (effect 2, curve 112808)"
+      },
+      {
+        "id": "25176",
+        "kind": "removed",
+        "definitionId": "145859",
+        "text": "Shifting Power: scaling link removed (effect 0, curve 124948)"
+      }
+    ],
+    "curve_changes": [
+      {
+        "curveId": "82946",
+        "oldPoints": 5,
+        "newPoints": 5,
+        "differing": 5,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "4"
+            ],
+            "new": [
+              "1",
+              "6"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "8"
+            ],
+            "new": [
+              "2",
+              "12"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "12"
+            ],
+            "new": [
+              "3",
+              "18"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Redoubt"
+        ],
+        "text": "Curve 82946 (Redoubt): 5 of 5 points differ"
+      },
+      {
+        "curveId": "82952",
+        "oldPoints": 2,
+        "newPoints": 2,
+        "differing": 2,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "2"
+            ],
+            "new": [
+              "1",
+              "-5000"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "4"
+            ],
+            "new": [
+              "2",
+              "-10000"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Sacred Duty"
+        ],
+        "text": "Curve 82952 (Sacred Duty): 2 of 2 points differ"
+      },
+      {
+        "curveId": "82954",
+        "oldPoints": 3,
+        "newPoints": 3,
+        "differing": 3,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "-2"
+            ],
+            "new": [
+              "1",
+              "-3"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "-4"
+            ],
+            "new": [
+              "2",
+              "-6"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "-6"
+            ],
+            "new": [
+              "3",
+              "-9"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Improved Righteous Fury"
+        ],
+        "text": "Curve 82954 (Improved Righteous Fury): 3 of 3 points differ"
+      },
+      {
+        "curveId": "82959",
+        "oldPoints": 5,
+        "newPoints": 2,
+        "differing": 2,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "2"
+            ],
+            "new": [
+              "1",
+              "-10"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "4"
+            ],
+            "new": [
+              "2",
+              "-20"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Stoicism"
+        ],
+        "text": "Curve 82959 (Stoicism): 5 -> 2 points"
+      },
+      {
+        "curveId": "82962",
+        "oldPoints": 5,
+        "newPoints": 5,
+        "differing": 5,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "1"
+            ],
+            "new": [
+              "1",
+              "10"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "2"
+            ],
+            "new": [
+              "2",
+              "20"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "3"
+            ],
+            "new": [
+              "3",
+              "30"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Holy Power"
+        ],
+        "text": "Curve 82962 (Holy Power): 5 of 5 points differ"
+      },
+      {
+        "curveId": "82964",
+        "oldPoints": 3,
+        "newPoints": 2,
+        "differing": 2,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "6"
+            ],
+            "new": [
+              "1",
+              "4"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "12"
+            ],
+            "new": [
+              "2",
+              "8"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Divine Precision"
+        ],
+        "text": "Curve 82964 (Divine Precision): 3 -> 2 points"
+      },
+      {
+        "curveId": "82975",
+        "oldPoints": 3,
+        "newPoints": 5,
+        "differing": 3,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "5"
+            ],
+            "new": [
+              "1",
+              "3"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "10"
+            ],
+            "new": [
+              "2",
+              "6"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "15"
+            ],
+            "new": [
+              "3",
+              "9"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Improved Seals"
+        ],
+        "text": "Curve 82975 (Improved Seals): 3 -> 5 points"
+      },
+      {
+        "curveId": "82976",
+        "oldPoints": 2,
+        "newPoints": 5,
+        "differing": 2,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "35"
+            ],
+            "new": [
+              "1",
+              "14"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "70"
+            ],
+            "new": [
+              "2",
+              "28"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Spiritual Focus"
+        ],
+        "text": "Curve 82976 (Spiritual Focus): 2 -> 5 points"
+      },
+      {
+        "curveId": "82985",
+        "oldPoints": 5,
+        "newPoints": 3,
+        "differing": 3,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "1"
+            ],
+            "new": [
+              "1",
+              "2"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "2"
+            ],
+            "new": [
+              "2",
+              "4"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "3"
+            ],
+            "new": [
+              "3",
+              "6"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Conviction"
+        ],
+        "text": "Curve 82985 (Conviction): 5 -> 3 points"
+      },
+      {
+        "curveId": "85325",
+        "oldPoints": 5,
+        "newPoints": 5,
+        "differing": 5,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "1"
+            ],
+            "new": [
+              "1",
+              "2"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "2"
+            ],
+            "new": [
+              "2",
+              "4"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "3"
+            ],
+            "new": [
+              "3",
+              "6"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Genesis"
+        ],
+        "text": "Curve 85325 (Genesis): 5 of 5 points differ"
+      },
+      {
+        "curveId": "85337",
+        "oldPoints": 5,
+        "newPoints": 5,
+        "differing": 5,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "2"
+            ],
+            "new": [
+              "1",
+              "20"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "4"
+            ],
+            "new": [
+              "2",
+              "40"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "6"
+            ],
+            "new": [
+              "3",
+              "60"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Furor"
+        ],
+        "text": "Curve 85337 (Furor): 5 of 5 points differ"
+      },
+      {
+        "curveId": "85360",
+        "oldPoints": 5,
+        "newPoints": 5,
+        "differing": 5,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "20"
+            ],
+            "new": [
+              "1",
+              "4"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "40"
+            ],
+            "new": [
+              "2",
+              "8"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "60"
+            ],
+            "new": [
+              "3",
+              "12"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Heart of the Wild"
+        ],
+        "text": "Curve 85360 (Heart of the Wild): 5 of 5 points differ"
+      },
+      {
+        "curveId": "85361",
+        "oldPoints": 5,
+        "newPoints": 5,
+        "differing": 5,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "20"
+            ],
+            "new": [
+              "1",
+              "2"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "40"
+            ],
+            "new": [
+              "2",
+              "4"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "60"
+            ],
+            "new": [
+              "3",
+              "6"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Heart of the Wild"
+        ],
+        "text": "Curve 85361 (Heart of the Wild): 5 of 5 points differ"
+      },
+      {
+        "curveId": "85363",
+        "oldPoints": 5,
+        "newPoints": 5,
+        "differing": 5,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "1"
+            ],
+            "new": [
+              "1",
+              "2"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "2"
+            ],
+            "new": [
+              "2",
+              "4"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "3"
+            ],
+            "new": [
+              "3",
+              "6"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Naturalist"
+        ],
+        "text": "Curve 85363 (Naturalist): 5 of 5 points differ"
+      },
+      {
+        "curveId": "85365",
+        "oldPoints": 3,
+        "newPoints": 3,
+        "differing": 3,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "-10"
+            ],
+            "new": [
+              "1",
+              "17"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "-20"
+            ],
+            "new": [
+              "2",
+              "33"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "-30"
+            ],
+            "new": [
+              "3",
+              "50"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Reflection"
+        ],
+        "text": "Curve 85365 (Reflection): 3 of 3 points differ"
+      },
+      {
+        "curveId": "85389",
+        "oldPoints": 3,
+        "newPoints": 3,
+        "differing": 3,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "17"
+            ],
+            "new": [
+              "1",
+              "-10"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "33"
+            ],
+            "new": [
+              "2",
+              "-20"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "50"
+            ],
+            "new": [
+              "3",
+              "-30"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Subtlety"
+        ],
+        "text": "Curve 85389 (Subtlety): 3 of 3 points differ"
+      },
+      {
+        "curveId": "97153",
+        "oldPoints": 5,
+        "newPoints": 5,
+        "differing": 5,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "1"
+            ],
+            "new": [
+              "1",
+              "2"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "2"
+            ],
+            "new": [
+              "2",
+              "4"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "3"
+            ],
+            "new": [
+              "3",
+              "6"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Genesis"
+        ],
+        "text": "Curve 97153 (Genesis): 5 of 5 points differ"
+      },
+      {
+        "curveId": "110321",
+        "oldPoints": 3,
+        "newPoints": 2,
+        "differing": 2,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "10"
+            ],
+            "new": [
+              "1",
+              "15"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "20"
+            ],
+            "new": [
+              "2",
+              "30"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Reverence"
+        ],
+        "text": "Curve 110321 (Reverence): 3 -> 2 points"
+      },
+      {
+        "curveId": "110325",
+        "oldPoints": 3,
+        "newPoints": 2,
+        "differing": 2,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "33"
+            ],
+            "new": [
+              "1",
+              "50"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "66"
+            ],
+            "new": [
+              "2",
+              "100"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Shield Specialization"
+        ],
+        "text": "Curve 110325 (Shield Specialization): 3 -> 2 points"
+      },
+      {
+        "curveId": "110326",
+        "oldPoints": 3,
+        "newPoints": 2,
+        "differing": 2,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "10"
+            ],
+            "new": [
+              "1",
+              "15"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "20"
+            ],
+            "new": [
+              "2",
+              "30"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Shield Specialization"
+        ],
+        "text": "Curve 110326 (Shield Specialization): 3 -> 2 points"
+      },
+      {
+        "curveId": "110345",
+        "oldPoints": 5,
+        "newPoints": 3,
+        "differing": 3,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "2"
+            ],
+            "new": [
+              "1",
+              "-2"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "4"
+            ],
+            "new": [
+              "2",
+              "-4"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "6"
+            ],
+            "new": [
+              "3",
+              "-6"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Iron Creed"
+        ],
+        "text": "Curve 110345 (Iron Creed): 5 -> 3 points"
+      },
+      {
+        "curveId": "110346",
+        "oldPoints": 5,
+        "newPoints": 3,
+        "differing": 3,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "5"
+            ],
+            "new": [
+              "1",
+              "10"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "10"
+            ],
+            "new": [
+              "2",
+              "20"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "15"
+            ],
+            "new": [
+              "3",
+              "30"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Iron Creed"
+        ],
+        "text": "Curve 110346 (Iron Creed): 5 -> 3 points"
+      },
+      {
+        "curveId": "110350",
+        "oldPoints": 3,
+        "newPoints": 5,
+        "differing": 3,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "20"
+            ],
+            "new": [
+              "1",
+              "12"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "40"
+            ],
+            "new": [
+              "2",
+              "24"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "60"
+            ],
+            "new": [
+              "3",
+              "36"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Champion of the Light"
+        ],
+        "text": "Curve 110350 (Champion of the Light): 3 -> 5 points"
+      },
+      {
+        "curveId": "112809",
+        "oldPoints": 5,
+        "newPoints": 5,
+        "differing": 5,
+        "examples": [
+          {
+            "order": 0,
+            "old": [
+              "1",
+              "4"
+            ],
+            "new": [
+              "1",
+              "20"
+            ]
+          },
+          {
+            "order": 1,
+            "old": [
+              "2",
+              "8"
+            ],
+            "new": [
+              "2",
+              "40"
+            ]
+          },
+          {
+            "order": 2,
+            "old": [
+              "3",
+              "12"
+            ],
+            "new": [
+              "3",
+              "60"
+            ]
+          }
+        ],
+        "usedBy": [
+          "Furor"
+        ],
+        "text": "Curve 112809 (Furor): 5 of 5 points differ"
+      },
+      {
+        "curveId": "126757",
+        "oldPoints": 2,
+        "newPoints": 3,
+        "differing": 0,
+        "examples": [],
+        "usedBy": [
+          "Arcane Resilience"
+        ],
+        "text": "Curve 126757 (Arcane Resilience): 2 -> 3 points"
+      },
+      {
+        "curveId": "127867",
+        "oldPoints": 0,
+        "newPoints": 5,
+        "differing": 0,
+        "examples": [],
+        "usedBy": [
+          "Champion of the Light"
+        ],
+        "text": "Curve 127867 (Champion of the Light): 0 -> 5 points"
+      },
+      {
+        "curveId": "127869",
+        "oldPoints": 0,
+        "newPoints": 3,
+        "differing": 0,
+        "examples": [],
+        "usedBy": [
+          "Two-Handed Weapon Specialization"
+        ],
+        "text": "Curve 127869 (Two-Handed Weapon Specialization): 0 -> 3 points"
+      },
+      {
+        "curveId": "127912",
+        "oldPoints": 0,
+        "newPoints": 2,
+        "differing": 0,
+        "examples": [],
+        "usedBy": [
+          "Turn Evil"
+        ],
+        "text": "Curve 127912 (Turn Evil): 0 -> 2 points"
+      },
+      {
+        "curveId": "127913",
+        "oldPoints": 0,
+        "newPoints": 2,
+        "differing": 0,
+        "examples": [],
+        "usedBy": [
+          "Turn Evil"
+        ],
+        "text": "Curve 127913 (Turn Evil): 0 -> 2 points"
+      },
+      {
+        "curveId": "127941",
+        "oldPoints": 0,
+        "newPoints": 5,
+        "differing": 0,
+        "examples": [],
+        "usedBy": [
+          "Divine Strength"
+        ],
+        "text": "Curve 127941 (Divine Strength): 0 -> 5 points"
+      },
+      {
+        "curveId": "127942",
+        "oldPoints": 0,
+        "newPoints": 2,
+        "differing": 0,
+        "examples": [],
+        "usedBy": [
+          "Stoicism"
+        ],
+        "text": "Curve 127942 (Stoicism): 0 -> 2 points"
+      },
+      {
+        "curveId": "127943",
+        "oldPoints": 0,
+        "newPoints": 2,
+        "differing": 0,
+        "examples": [],
+        "usedBy": [
+          "Boundless Light"
+        ],
+        "text": "Curve 127943 (Boundless Light): 0 -> 2 points"
+      },
+      {
+        "curveId": "127944",
+        "oldPoints": 0,
+        "newPoints": 2,
+        "differing": 0,
+        "examples": [],
+        "usedBy": [
+          "Divine Precision"
+        ],
+        "text": "Curve 127944 (Divine Precision): 0 -> 2 points"
+      },
+      {
+        "curveId": "127962",
+        "oldPoints": 0,
+        "newPoints": 5,
+        "differing": 0,
+        "examples": [],
+        "usedBy": [
+          "Heart of the Wild"
+        ],
+        "text": "Curve 127962 (Heart of the Wild): 0 -> 5 points"
+      },
+      {
+        "curveId": "128033",
+        "oldPoints": 0,
+        "newPoints": 3,
+        "differing": 0,
+        "examples": [],
+        "usedBy": [
+          "Improved Drains"
+        ],
+        "text": "Curve 128033 (Improved Drains): 0 -> 3 points"
+      }
+    ],
+    "issue_value_changes": [
+      {
+        "code": "orphan_foreign_key",
+        "subject": "SpellEffect.SpellID",
+        "added": [
+          "1038",
+          "1912",
+          "19977",
+          "19978",
+          "19979"
+        ],
+        "removed": [],
+        "text": "SpellEffect.SpellID: new: 1038, 1912, 19977, 19978, 19979"
+      }
+    ],
+    "notes": [
+      "6 spells moved from one talent slot to another (17003 (Heart of the Wild), 17056 (Furor), 17106 (Reflection), 17118 (Subtlety) and 2 more). Talent slots (nodes and definitions) are not stable identities in this build pair; anything tied to a talent should be keyed by spell, not by slot."
+    ],
+    "counts": {
+      "trees_added": 0,
+      "trees_removed": 0,
+      "trees_renamed": 0,
+      "nodes_added": 3,
+      "nodes_removed": 2,
+      "nodes_moved": 36,
+      "entry_changes": 24,
+      "edges_added": 5,
+      "edges_removed": 5,
+      "definitions_added": 3,
+      "definitions_removed": 0,
+      "definitions_changed": 13,
+      "spell_text_changes": 20,
+      "spell_presence_changes": 9,
+      "effects_added": 22,
+      "effects_removed": 1,
+      "effects_changed": 16,
+      "effect_points_changed": 13,
+      "curve_changes": 35
+    }
+  }
+}

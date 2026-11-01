@@ -119,7 +119,7 @@ def list_builds(directory: Path) -> list[BuildInfo]:
         for child in directory.iterdir():
             if child.is_dir() and VERSION_RE.match(child.name):
                 found.append(BuildInfo.from_version(child.name))
-    return sorted(found, key=lambda b: b.build_id)
+    return sorted(found, key=lambda b: b.order)
 
 
 def open_dataset(data_dir: Path, version: str) -> Dataset:

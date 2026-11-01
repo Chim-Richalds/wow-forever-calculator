@@ -8,7 +8,8 @@ steps as `python -m wowcalc.update prepare` and `apply`, with the same safety ru
     second start with acknowledge=True installs it;
   - anything else is installed, and `on_installed(version)` lets the server load it.
 
-The job runs in a thread because a download takes about half a minute. Only one runs
+The job runs in a thread because a download takes half a minute, or a few minutes when new
+server hotfixes have to be read. Only one runs
 at a time; the last result is kept so the page can show it after it reloads.
 """
 
