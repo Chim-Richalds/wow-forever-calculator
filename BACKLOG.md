@@ -50,7 +50,7 @@ Goal: less code saying the same thing, with no loss of coverage of real behaviou
 
 - [x] **Tests.** Checked all 901: no copied tests, and only the IPv6 tests call internals (on purpose). Merged the two groups that checked one behaviour with different inputs into table-driven tests (895 now). Other near-identical tests document distinct behaviour and stay. Further cuts would lose coverage; revisit only with a coverage tool.
 - [x] **Redundant sections in `src/wowcalc/`.** One integer parser (`dataset.as_int`), one atomic JSON writer (`fetch.write_json_atomic`), one spell name helper in `diff.py`; unused imports removed. No other copied logic found.
-- [ ] `wowcalc.icons tables` only adds SpellMisc, which every build now fetches as a required table; drop the command or fold it into `update complete`.
+- [x] `wowcalc.icons tables` removed: SpellMisc is a required table, and `update complete` adds it to older builds.
 - [x] **One-off scripts.** Removed the 20 investigation scripts (Purification, Chain Heal, tree 1082; superseded by `wowcalc.fetch`, `validate`, `rules` and `effects`) and their outputs in `data/processed/`. Kept `scripts/probe_tables.py`, now defaulting to the active build.
 - [x] **Stray files at the repo root.** Removed (two exact copies, and `icon_ids.txt`, which `python -m wowcalc.icons list` regenerates).
 - [x] **Compiled files in git.** Untracked.

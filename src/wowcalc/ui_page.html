@@ -590,7 +590,7 @@ async function renderData() {
   const conf = st.confidence.map((c) => `<tr><td>${esc(c.item)}</td><td><span class="pill ${esc(c.status.replace(/ /g, "-"))}">${esc(c.status)}</span></td><td class="tiny" style="text-align:left">${esc(c.detail)}</td></tr>`).join("");
   $("pane-data").innerHTML = `
     <p>Game build <strong class="num">${esc(st.build)}</strong>${st.references ? `. Outside reference: <span class="tiny">${esc(st.references.source || "")}</span>` : ""}</p>
-    ${st.icons ? `<p class="tiny">Talent icons: ${st.icons.cached} of ${st.icons.wanted} cached${st.icons.spellmisc ? "" : " (spell icon table not installed: python -m wowcalc.icons tables)"}${st.icons.cached < st.icons.wanted ? ". Add more with python -m wowcalc.icons import or fetch." : "."}</p>` : ""}
+    ${st.icons ? `<p class="tiny">Talent icons: ${st.icons.cached} of ${st.icons.wanted} cached${st.icons.spellmisc ? "" : " (spell icon table not installed: python -m wowcalc.update complete)"}${st.icons.cached < st.icons.wanted ? ". Add more with python -m wowcalc.icons import or fetch." : "."}</p>` : ""}
     <h3 class="sub">Data checks</h3><ul class="notes" style="color:inherit">${checks}</ul>
     <h3 class="sub">What the numbers rest on</h3>
     <div style="overflow-x:auto"><table><thead><tr><th>Item</th><th>Status</th><th style="text-align:left">Detail</th></tr></thead><tbody>${conf}</tbody></table></div>`;

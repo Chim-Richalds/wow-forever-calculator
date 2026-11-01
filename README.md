@@ -28,7 +28,6 @@ Raw tables go in `data/raw/<build>/` with hashes in `data/manifests/`. They are 
 ## Icons
 
 ```
-PYTHONPATH=src python3 -m wowcalc.icons tables
 PYTHONPATH=src python3 -m wowcalc.icons import FOLDER --listfile community-listfile.csv --only-needed
 PYTHONPATH=src python3 -m wowcalc.icons status
 ```

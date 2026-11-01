@@ -10,7 +10,6 @@ assumes a download address. You give a URL template containing `{id}` (for
 example one you have checked yourself), or import a folder of images you already
 extracted. Every file is checked to be a real image before it is kept.
 
-    python -m wowcalc.icons tables               # add SpellMisc to the active build
     python -m wowcalc.icons status
     python -m wowcalc.icons list --out ids.txt   # the file data IDs the talent trees use
     python -m wowcalc.icons import FOLDER [--listfile listfile.csv]
@@ -32,7 +31,6 @@ from . import transport
 from .dataset import Dataset
 from .trees import ClassTree
 
-OPTIONAL_TABLES: tuple[str, ...] = ("SpellMisc",)
 MANIFEST = "manifest.json"
 MAX_BYTES = 512 * 1024
 ID_OK = re.compile(r"^[1-9][0-9]{0,9}$")
@@ -258,14 +256,12 @@ def wanted_ids(ds: Dataset, model) -> set[str]:
 
 
 def main(argv: list[str] | None = None) -> int:
-    from .builds import Config
-    from .fetch import FetchError, complete_build
     from .trees import load_model
     from .update import UpdateError, get_active
 
     repo_root = Path(__file__).resolve().parents[2]
     ap = argparse.ArgumentParser(description="Talent icon cache.")
-    ap.add_argument("command", choices=("tables", "status", "list", "import", "fetch"))
+    ap.add_argument("command", choices=("status", "list", "import", "fetch"))
     ap.add_argument("folder", nargs="?", type=Path, help="for import: a folder of <fileDataID>.png/.jpg/.webp")
     ap.add_argument("--listfile", type=Path, help="community listfile (id;path): for import, match icon names; for list, write icon paths")
     ap.add_argument("--only-needed", action="store_true", help="for import: keep only icons the talent trees use")
@@ -283,18 +279,6 @@ def main(argv: list[str] | None = None) -> int:
         print("ERROR: no build is installed. Run: python -m wowcalc.update")
         return 2
     cache = IconCache(args.data_dir / "icons")
-    if args.command == "tables":
-        try:
-            result = complete_build(build, Config(), args.data_dir, tables=OPTIONAL_TABLES,
-                                    progress=lambda t, m: print(f"  {t}: {m}"))
-        except (FetchError, ValueError) as exc:
-            print(f"ERROR: {exc}")
-            return 2
-        if not result.ok:
-            print("ERROR: " + "; ".join(f"{f['table']}: {f['error']}" for f in result.failures))
-            return 2
-        print("SpellMisc added." if result.added else "SpellMisc is already there.")
-        return 0
     ds = Dataset(args.data_dir / "raw" / build, build)
     if args.command == "import":
         if args.folder is None:
@@ -331,7 +315,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "status":
         print(f"Build {build}: {len(wanted)} talent icon ids in the data; {len(wanted & have)} cached, {len(wanted - have)} missing.")
         if not ds.has_table("SpellMisc"):
-            print("SpellMisc is not installed, so spell icons are unknown. Run: python -m wowcalc.icons tables")
+            print("SpellMisc is not installed, so spell icons are unknown. Run: python -m wowcalc.update complete")
         for problem in cache.verify():
             print(f"  PROBLEM {problem}")
         return 0
