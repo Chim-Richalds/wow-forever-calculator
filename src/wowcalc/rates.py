@@ -471,9 +471,14 @@ def describe(table: RateTable) -> list[str]:
         lines.append(f"  Intellect per 1% spell crit, every caster class: {float(1 / iv.hi):.1f} .. {float(1 / iv.lo):.1f}   (used: "
                      + (", ".join(f"{c[:4]} {float(1 / v):.1f}" for c, v in sorted(table.intellect_points.items())) or f"{float(1 / iv.mid):.1f}") + ")")
     lines.append("  Attack power:")
+    def per_point(strength: int, agility: int) -> str:
+        return f"{strength} per Strength" + (f" + {agility} per Agility" if agility else "")
+
     for cls, r in sorted(table.attack_power.items()):
-        lines.append(f"    {cls:8} {r.per_strength} per Strength" + (f" + {r.per_agility} per Agility" if r.per_agility else "")
-                     + f" {r.constant:+d}" + ("   (more than one rule fits; simplest kept)" if r.ambiguous else ""))
+        used = table.attack_power_points.get(cls, (r.per_strength, r.per_agility))  # the reference wins (see AttackPowerRule use)
+        note = f"   (reference; the panel fit {per_point(r.per_strength, r.per_agility)})" if used != (r.per_strength, r.per_agility) else ""
+        lines.append(f"    {cls:8} {per_point(*used)} {r.constant:+d}" + note
+                     + ("   (more than one rule fits; simplest kept)" if r.ambiguous else ""))
     if table.armor is not None:
         lines.append(f"  Armor: {table.armor.per_agility} per Agility; damage reduction = armor / (armor + 85 x level + 400), worst gap to the panel {float(table.armor.worst_dr_error):.5f}")
     for label, rule in (("Health", table.health), ("Mana", table.mana)):
