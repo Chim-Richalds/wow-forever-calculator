@@ -355,8 +355,21 @@ function syncShield() {
 }
 function queue() { clearTimeout(S.timer); S.timer = setTimeout(evaluate, 120); }
 
+// Ranks within each talent's limits, whatever got into S.alloc: one bad rank would make every
+// request fail and leave the tree stuck on its last answer.
+function validAlloc() {
+  const out = {};
+  for (const [id, ranks] of Object.entries(S.alloc)) {
+    const n = S.nodes.get(id);
+    if (!n) { out[id] = ranks; continue; }   // not in the loaded tree (yet): leave it for the server to judge
+    const r = Math.min(Math.max(0, Math.trunc(Number(ranks) || 0)), n.max);
+    if (r) out[id] = r;
+  }
+  S.alloc = out;
+  return out;
+}
 function request() {
-  return { class: S.cls, race: S.race, level: Number($("level").value), alloc: S.alloc, adjust: S.adjust,
+  return { class: S.cls, race: S.race, level: Number($("level").value), alloc: validAlloc(), adjust: S.adjust,
     shield: $("shield").checked, attacker_level: $("attacker").value === "" ? null : Number($("attacker").value), vs_player: $("vsplayer").checked,
     conditions: [...S.conditions] };
 }
@@ -428,10 +441,13 @@ function drawTree() {
 }
 const initials = (name) => name.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join("").toUpperCase();
 
+// The last answer from the server (S.result) can be behind the clicks: requests wait 120 ms so
+// fast clicks share one. So the rank limits are checked here against the ranks as they are now.
 function step(id, by) {
   const n = S.nodes.get(id), st = S.result && S.result.nodes[id], have = S.alloc[id] || 0;
   if (by > 0) {
     if (by > 1) { S.alloc[id] = n.max; queue(); return; }
+    if (have >= n.max) { flash(id, `${n.name} is at its maximum of ${n.max} rank${n.max === 1 ? "" : "s"}.`); return; }
     if (st && !st.can_add) { flash(id, (st.why_not[0] || "This talent cannot take another rank yet.")); return; }
     S.alloc[id] = have + 1;
   } else {
