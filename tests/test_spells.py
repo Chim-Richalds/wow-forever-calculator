@@ -163,7 +163,7 @@ class RealDataTests(unittest.TestCase):
         self.assertIn("Aimed Shot", hunter)               # missed by the class lookup, found by name
         self.assertNotIn("Black Arrow", hunter)           # not in the Forever spellbook, not a talent
         self.assertNotIn("Deadly Poison II", rogue)       # old ranks of poisons
-        self.assertNotIn("Binding Heal", priest)          # replaced by the talent Holy Binding
+        self.assertIn("Binding Heal", priest)             # still a talent in this build (the 31 October hotfix replaced it)
         self.assertNotIn("Frost Blast", self.catalogue.by_class["Mage"])   # removed in 70707
         self.assertIn("Pyroblast", self.catalogue.by_class["Mage"])        # a talent ability
 
