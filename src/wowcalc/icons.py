@@ -13,6 +13,7 @@ extracted. Every file is checked to be a real image before it is kept.
     python -m wowcalc.icons status
     python -m wowcalc.icons list --out ids.txt   # the file data IDs the talent trees use
     python -m wowcalc.icons import FOLDER [--listfile listfile.csv]
+    python -m wowcalc.icons import FOLDER --talent-names   # files named after talents ("turn evil.png")
     python -m wowcalc.icons fetch --url-template "https://example.test/{id}.png"
 """
 
@@ -203,6 +204,20 @@ def load_listfile(path: Path) -> dict[str, str]:
     return names
 
 
+def talent_name_ids(ds: Dataset, model) -> dict[str, str]:
+    """Talent name (lower case) -> its icon's file data ID, for importing images saved under the
+    talent's name. A name two talents share with different icons is left out (ambiguous)."""
+    names = {r["ID"]: r["Name_lang"] for r in ds.rows("SpellName")}
+    found: dict[str, set[str]] = {}
+    for tree in model.trees.values():
+        for node_id, (icon, _) in icon_ids(ds, tree).items():
+            node = tree.nodes[node_id]
+            name = names.get(node.entries[0].spell_id, "").strip().lower() if node.entries else ""
+            if name:
+                found.setdefault(name, set()).add(icon)
+    return {name: next(iter(ids)) for name, ids in found.items() if len(ids) == 1}
+
+
 def import_folder(cache: IconCache, source: Path, names: dict[str, str] | None = None, only: set[str] | None = None) -> tuple[list[str], list[str]]:
     """Copy images from `source` and its subfolders. Returns (added ids, skipped notes).
 
@@ -219,7 +234,7 @@ def import_folder(cache: IconCache, source: Path, names: dict[str, str] | None =
         stem = path.stem
         icon_id = stem if ID_OK.match(stem) else (names or {}).get(stem.lower())
         if icon_id is None:
-            skipped.append(f"{path.name}: " + ("not in the listfile as an icon" if names else "name is not a file data ID (give --listfile to match by icon name)"))
+            skipped.append(f"{path.name}: " + ("no icon by that name in the listfile or the talent names (check the spelling)" if names else "name is not a file data ID (give --listfile to match by icon name, or --talent-names)"))
             continue
         if only is not None and icon_id not in only:
             continue
@@ -265,6 +280,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("folder", nargs="?", type=Path, help="for import: a folder of <fileDataID>.png/.jpg/.webp")
     ap.add_argument("--listfile", type=Path, help="community listfile (id;path): for import, match icon names; for list, write icon paths")
     ap.add_argument("--only-needed", action="store_true", help="for import: keep only icons the talent trees use")
+    ap.add_argument("--talent-names", action="store_true", help="for import: files are named after talents (e.g. 'turn evil.png')")
     ap.add_argument("--out", type=Path, help="for list: write the ids to this file")
     ap.add_argument("--url-template", help="for fetch: https URL containing {id}")
     ap.add_argument("--data-dir", type=Path, default=repo_root / "data")
@@ -285,8 +301,10 @@ def main(argv: list[str] | None = None) -> int:
             print("ERROR: give the folder to import")
             return 2
         try:
-            only = wanted_ids(ds, load_model(ds)) if args.only_needed else None
-            added, skipped = import_folder(cache, args.folder, load_listfile(args.listfile) if args.listfile else None, only)
+            model = load_model(ds)
+            only = wanted_ids(ds, model) if args.only_needed else None
+            names = talent_name_ids(ds, model) if args.talent_names else load_listfile(args.listfile) if args.listfile else None
+            added, skipped = import_folder(cache, args.folder, names, only)
         except (IconError, OSError) as exc:
             print(f"ERROR: {exc}")
             return 2

@@ -203,5 +203,19 @@ class IconIdTests(unittest.TestCase):
         self.assertEqual(icon_ids(FakeDs({"TraitDefinition": []}), self.tree()), {})
 
 
+    def test_talent_names_map_to_their_icons_and_shared_names_are_left_out(self):
+        from types import SimpleNamespace
+        from wowcalc.icons import talent_name_ids
+        ds = FakeDs({
+            "TraitDefinition": [],
+            "SpellMisc": [{"SpellID": "30", "SpellIconFileDataID": "111"}, {"SpellID": "31", "SpellIconFileDataID": "222"},
+                          {"SpellID": "33", "SpellIconFileDataID": "333"}],
+            "SpellName": [{"ID": "30", "Name_lang": "Turn Evil"}, {"ID": "31", "Name_lang": "Wand Specialization"},
+                          {"ID": "33", "Name_lang": "Wand Specialization"}],
+        })
+        model = SimpleNamespace(trees={"Paladin": self.tree()})
+        self.assertEqual(talent_name_ids(ds, model), {"turn evil": "111"})     # two icons for one name: ambiguous
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -33,6 +33,7 @@ Blizzard changes talents with **server hotfixes** between builds. Tables are dow
 
 ```
 PYTHONPATH=src python3 -m wowcalc.icons import FOLDER --listfile community-listfile.csv --only-needed
+PYTHONPATH=src python3 -m wowcalc.icons import FOLDER --talent-names   # images saved as 'turn evil.png'
 PYTHONPATH=src python3 -m wowcalc.icons status
 ```
 
