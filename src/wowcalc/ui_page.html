@@ -293,8 +293,9 @@ async function init() {
   cs.innerHTML = Object.keys(S.meta.classes).map((c) => `<option>${esc(c)}</option>`).join("");
   $("level").min = S.meta.levels[0]; $("level").max = S.meta.levels[1]; $("level").value = S.meta.levels[1];
   cs.addEventListener("change", () => pickClass(cs.value, true));
-  $("race").addEventListener("change", () => { S.race = $("race").value; queue(); });
+  $("race").addEventListener("change", () => { S.race = $("race").value; rememberPrefs(); queue(); });
   for (const id of ["level", "attacker"]) $(id).addEventListener("input", queue);
+  $("level").addEventListener("change", rememberPrefs);
   for (const id of ["shield", "vsplayer"]) $(id).addEventListener("change", () => { syncShield(); queue(); });
   $("reset").addEventListener("click", () => { S.alloc = {}; queue(); });
   $("save").addEventListener("click", saveBuild);
@@ -303,14 +304,32 @@ async function init() {
   document.querySelectorAll(".tabs button").forEach((b) => b.addEventListener("click", () => showTab(b.dataset.tab)));
   buildSheetSkeleton();
   await refreshBuilds();
-  await pickClass(Object.keys(S.meta.classes)[0], true);
+  const last = loadPrefs().last;
+  await pickClass(S.meta.classes[last] ? last : Object.keys(S.meta.classes)[0], true);
   for (const note of S.meta.notes) toast(note);
 }
+// Per-browser conveniences: the last class, and each class's race and level. Storage can be
+// blocked or empty (private windows); the page works the same without it.
+const PREFS_KEY = "wowcalc.prefs";
+function loadPrefs() { try { return JSON.parse(localStorage.getItem(PREFS_KEY)) || {}; } catch (_) { return {}; } }
+function rememberPrefs() {
+  if (!S.cls) return;
+  const p = loadPrefs();
+  p.last = S.cls;
+  p.classes = { ...(p.classes || {}), [S.cls]: { race: S.race, level: Number($("level").value) } };
+  try { localStorage.setItem(PREFS_KEY, JSON.stringify(p)); } catch (_) {}
+}
+
 async function pickClass(cls, reset) {
   S.cls = cls; $("class").value = cls;
   const races = S.meta.classes[cls];
   $("race").innerHTML = races.map((r) => `<option>${esc(r)}</option>`).join("");
+  const saved = reset ? ((loadPrefs().classes || {})[cls] || {}) : {};   // a loaded build keeps its own race and level
+  if (races.includes(saved.race)) S.race = saved.race;
+  const lv = Number(saved.level);
+  if (Number.isInteger(lv) && lv >= Number($("level").min) && lv <= Number($("level").max)) $("level").value = lv;
   S.race = races.includes(S.race) ? S.race : races[0]; $("race").value = S.race;
+  rememberPrefs();
   if (reset) { S.alloc = {}; }
   S.tree = await api("GET", "/api/tree/" + encodeURIComponent(cls));
   S.nodes = new Map(S.tree.nodes.map((n) => [n.id, n]));
@@ -540,8 +559,8 @@ function renderSheet() {
   if (ar.base != null) f += `<tr><td>Armor</td><td class="num">${ar.base}</td><td class="num">${ar.talents ? signed(ar.talents) : ""}</td><td class="num"><input class="adj num" id="armorgear" type="number" aria-label="Armor on your gear" value="${S.adjust.armor || 0}" title="Armor from your gear"></td><td class="num"><strong>${ar.total}</strong></td></tr>`;
   f += "</tbody></table>";
   for (const [key, label, tip, id] of [["spell_power", "Spell power", "Spell damage", "spellgear"], ["healing", "Healing", "Healing done", "healinggear"]]) {
-    const x = sh[key]; if (!x || (x.base == null && !x.talents)) continue;
-    f = f.replace("</tbody></table>", `<tr><td title="${tip}${x.from && x.from.length ? ": " + x.from.map((c) => `${c[0]} (${fmt(c[2])}% of ${c[1]})`).join(", ") : ""}">${label}</td><td class="num">${x.base ?? "–"}</td><td class="num">${x.talents ? signed(x.talents) : ""}</td><td class="num"><input class="adj num" id="${id}" type="number" aria-label="${label} on your gear" value="${S.adjust[key] || 0}" title="${label} from your gear and buffs"></td><td class="num"><strong>${x.total ?? "–"}</strong></td></tr></tbody></table>`);
+    const x = sh[key]; if (!x) continue;   // shown even when the base is unknown, so gear can be entered
+    f = f.replace("</tbody></table>", `<tr><td title="${tip}${x.from && x.from.length ? ": " + x.from.map((c) => `${c[0]} (${fmt(c[2])}% of ${c[1]})`).join(", ") : ""}">${label}</td><td class="num">${x.base ?? "–"}</td><td class="num">${x.talents ? signed(x.talents) : ""}</td><td class="num"><input class="adj num" id="${id}" type="number" aria-label="${label} on your gear" value="${S.adjust[key] || 0}" title="${label} from your gear and buffs"></td><td class="num">${x.total == null ? `<span title="No character panel figure for this class and level, so the total is not known">–</span>` : `<strong>${x.total}</strong>`}</td></tr></tbody></table>`);
   }
   const side = [];
   if (ar.base != null && ar.damage_reduction != null) side.push(`Damage reduction against your own level: <strong>${fmt(ar.damage_reduction)}%</strong>`);
