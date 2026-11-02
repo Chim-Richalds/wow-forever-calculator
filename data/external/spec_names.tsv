@@ -7,16 +7,16 @@ Mage	Fire	11366	Pyroblast
 Mage	Fire	11083	Burning Soul
 Mage	Frost	11207	Ice Shards
 Mage	Frost	11175	Permafrost
-Mage	Frost	11151	Piercing Ice
+Mage	Frost	11185	Improved Blizzard
 Druid	Balance	16845	Moonglow
 Druid	Balance	16819	Nature's Reach
 Druid	Balance	5570	Insect Swarm
 Druid	Feral Combat	1238122	Feral Charge
-Druid	Feral Combat	17003	Heart of the Wild
+Druid	Feral Combat	16947	Feral Instinct
 Druid	Feral Combat	16929	Thick Hide
 Druid	Restoration	17104	Gift of Nature
 Druid	Restoration	24968	Tranquil Spirit
-Druid	Restoration	17056	Furor
+Druid	Restoration	17106	Reflection
 Hunter	Beast Mastery	19583	Endurance Training
 Hunter	Beast Mastery	19596	Bestial Swiftness
 Hunter	Beast Mastery	19616	Unleashed Fury
@@ -26,7 +26,7 @@ Hunter	Marksmanship	415405	Rapid Killing
 Hunter	Survival	19263	Deterrence
 Hunter	Survival	19239	Clever Traps
 Hunter	Survival	19290	Surefooted
-Paladin	Holy	20257	Divine Intellect
+Paladin	Holy	20210	Illumination
 Paladin	Holy	20237	Healing Light
 Paladin	Holy	20205	Spiritual Focus
 Paladin	Protection	20127	Redoubt
