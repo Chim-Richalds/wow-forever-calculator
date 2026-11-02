@@ -230,13 +230,30 @@ class GridTests(TreeCase):
     def test_different_offsets_per_sub_tree_are_not_flagged(self):
         self.assertEqual([a for a in self.grid_tree().anomalies if "grid" in a], [])
 
-    def test_a_row_typo_is_flagged(self):
+    def test_a_slipped_digit_is_drawn_on_the_grid_and_said(self):
         t = self.grid_tree(lambda t: [r.update(PosY="39300") for r in t["TraitNode"][1] if r["ID"] == "22"])
-        self.assertTrue(any("node 22 is off the position grid (y=39300" in a for a in t.anomalies))
+        self.assertEqual((t.nodes["22"].x, t.nodes["22"].y), (1620, 3930))
+        self.assertTrue(any("node 22 is off the position grid (y=39300); drawn at y=3930 (a slipped digit" in a for a in t.anomalies))
 
-    def test_a_column_typo_is_flagged_against_its_own_sub_tree(self):
+    def test_a_small_slip_goes_to_the_nearest_free_grid_line(self):
+        t = self.grid_tree(lambda t: [r.update(PosX="5640") for r in t["TraitNode"][1] if r["ID"] == "31"])   # row 2130: 5620 is taken
+        self.assertNotIn((t.nodes["31"].x, t.nodes["31"].y), {(n.x, n.y) for n in t.nodes.values() if n.id != "31"})
+        self.assertEqual(t.nodes["31"].x % 600, 5620 % 600)
+        self.assertTrue(any("node 31 is off the position grid (x=5640); drawn at" in a for a in t.anomalies))
+
+    def test_a_column_typo_is_judged_against_its_own_sub_tree(self):
         t = self.grid_tree(lambda t: [r.update(PosX="102800") for r in t["TraitNode"][1] if r["ID"] == "31"])
-        self.assertTrue(any("node 31 is off the position grid (x=102800; sub-tree 1" in a for a in t.anomalies))
+        self.assertEqual(t.nodes["31"].x % 600, 5620 % 600)       # sub-tree 1's columns, not sub-tree 0's
+        self.assertTrue(any("node 31 is off the position grid (x=102800)" in a for a in t.anomalies))
+
+    def test_an_off_grid_copy_of_a_talent_is_left_out(self):
+        def copy(t):
+            add_row(t, "TraitNode", ID="99", TraitTreeID="100", PosX="9280", PosY="21300")
+            add_row(t, "TraitNodeGroupXTraitNode", ID="99", TraitNodeGroupID="12", TraitNodeID="99")
+            add_row(t, "TraitNodeXTraitNodeEntry", ID="99", TraitNodeID="99", TraitNodeEntryID="1001")   # node 1's talent
+        t = self.grid_tree(copy)
+        self.assertNotIn("99", t.nodes)
+        self.assertTrue(any("node 99 left out: it repeats node" in a for a in t.anomalies))
 
     def test_tiny_groups_are_not_judged(self):
         self.assertEqual([a for a in self.tree().anomalies if "grid" in a], [])  # 3 nodes per sub-tree, all consistent

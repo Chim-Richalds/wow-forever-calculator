@@ -159,6 +159,84 @@ class TreeModel:
         return out
 
 
+def _off_grid(n: Node, nodes: dict[str, Node]) -> bool:
+    """Is this node off the grid its tree (rows) or sub-tree (columns) uses?"""
+    rows = Counter(m.y % GRID for m in nodes.values())
+    cols = Counter(m.x % GRID for m in nodes.values() if m.sub_tree == n.sub_tree)
+    return (n.y % GRID != rows.most_common(1)[0][0]) or (len(cols) > 0 and n.x % GRID != cols.most_common(1)[0][0])
+
+
+def _drop_stale_duplicates(nodes: dict[str, Node]) -> list[str]:
+    """Leave out a node that repeats another node's talent spell in the same tree, when it is off the
+    grid and its twin is on it: a leftover from moving the talent (Priest Holy Specialization 105865
+    and Hunter Lightning Reflexes 104982 repeat 110855 and 110859 and sit at y=21300 and x=102800).
+    Changes `nodes` in place; returns a note per node left out."""
+    by_spell: dict[str, list[Node]] = defaultdict(list)
+    for n in nodes.values():
+        if n.entries:
+            by_spell[n.spell_id].append(n)
+    notes = []
+    for spell, twins in by_spell.items():
+        if len(twins) < 2:
+            continue
+        on = [n for n in twins if not _off_grid(n, nodes)]
+        off = [n for n in twins if _off_grid(n, nodes)]
+        if len(on) == 1 and off:
+            for n in off:
+                del nodes[n.id]
+                notes.append(f"node {n.id} left out: it repeats node {on[0].id}'s talent (spell {spell}) and sits off the "
+                             f"position grid ({n.x}, {n.y}), so it looks like a leftover; not checked in game")
+    return notes
+
+
+def _snap_to_grid(nodes: dict[str, Node]) -> list[str]:
+    """Move nodes whose position is off the grid back onto it, when the slip is plain, and say so.
+
+    The game's data has positions such as y=39300 where the tree uses 3930, or 3320 where it uses
+    3330. A coordinate off the grid is replaced by the first of these that lands on the grid and on a
+    free cell: the value divided by ten (a slipped digit), then the nearest grid line. Rows share one
+    offset across the tree; columns one per sub-tree (as in _grid_anomalies). Changes `nodes` in
+    place; returns a note per node moved, or left where it is."""
+    notes: list[str] = []
+
+    def common_offset(members: list[Node], axis: str) -> int | None:
+        values = Counter((n.x if axis == "x" else n.y) % GRID for n in members)
+        if len(members) < 3 or not values:
+            return None
+        return values.most_common(1)[0][0]
+
+    def candidates(v: int, offset: int) -> list[int]:
+        out = []
+        if v % 10 == 0 and (v // 10) % GRID == offset:
+            out.append(v // 10)
+        below = v - ((v - offset) % GRID)
+        out += sorted((below, below + GRID), key=lambda c: abs(c - v))
+        return out
+
+    for axis in ("y", "x"):
+        groups: dict[int, list[Node]] = defaultdict(list)
+        for n in nodes.values():
+            groups[0 if axis == "y" else n.sub_tree].append(n)
+        for members in groups.values():
+            offset = common_offset(members, axis)
+            if offset is None:
+                continue
+            for n in members:
+                v = n.x if axis == "x" else n.y
+                if v % GRID == offset:
+                    continue
+                taken = {(m.x, m.y) for m in nodes.values() if m.id != n.id}
+                for c in candidates(v, offset):
+                    pos = (c, n.y) if axis == "x" else (n.x, c)
+                    if pos not in taken:
+                        nodes[n.id] = Node(n.id, n.tree_id, pos[0], pos[1], n.entries, n.sub_tree)
+                        notes.append(f"node {n.id} is off the position grid ({axis}={v}); drawn at {axis}={c}"
+                                     + (" (a slipped digit, it seems)" if c * 10 == v else " (the nearest grid line)")
+                                     + "; not checked in game")
+                        break
+    return notes
+
+
 def _grid_anomalies(nodes: dict[str, Node]) -> list[str]:
     """Nodes whose position does not fit the grid their neighbours use.
 
@@ -328,6 +406,8 @@ def load_model(ds: Dataset) -> TreeModel:
                 for n in members:
                     nodes[n] = Node(n, tree_id, nodes[n].x, nodes[n].y, nodes[n].entries, index)
 
+        notes.extend(_drop_stale_duplicates(nodes))
+        notes.extend(_snap_to_grid(nodes))
         notes.extend(_grid_anomalies(nodes))
 
         edges = tuple(

@@ -57,10 +57,10 @@ Hunter	Efficiency	0	cost	percent	-15	Arcane Shot, Chimera Shot - Serpent, Concus
 Hunter	Rapid Killing	0	cooldown	flat	-120000	Rapid Fire	Rapid Fire, Fire spells	the text says Fire spells, but the mask also reaches Rapid Fire
 Hunter	Improved Arcane Shot	0	cooldown	flat	-1500	Arcane Shot	Arcane Shot, Arcane spells	
 Hunter	Mortal Shots	0	critical strike bonus	percent	30	Arcane Shot, Auto Shot, Chimera Shot - Serpent, Concussive Shot, Multi-Shot, Scatter Shot, Serpent Sting, Sniper Shot, Volley		
-Hunter	Barrage	0	damage or healing	percent	10	Multi-Shot, Volley	Multi-Shot, Volley	
-Hunter	Barrage	1	periodic damage or healing	percent			Multi-Shot, Volley	no value per rank in the data (changes particular spells, not the character sheet); reaches no spell the character casts itself; its mask matches no spell at all
 Hunter	Improved Serpent Sting	0	periodic damage or healing	percent	10	Chimera Shot - Serpent, Serpent Sting	Serpent Sting	the mask also reaches Chimera Shot - Serpent, which the text does not name
 Hunter	Improved Serpent Sting	1	damage or healing	percent		Chimera Shot - Serpent, Serpent Sting	Serpent Sting	no value per rank in the data (changes particular spells, not the character sheet); the mask also reaches Chimera Shot - Serpent, which the text does not name
+Hunter	Barrage	0	damage or healing	percent	10	Multi-Shot, Volley	Multi-Shot, Volley	
+Hunter	Barrage	1	periodic damage or healing	percent			Multi-Shot, Volley	no value per rank in the data (changes particular spells, not the character sheet); reaches no spell the character casts itself; its mask matches no spell at all
 Hunter	Improved Tracking	0	op 12	flat	5	Track Beasts, Track Demons, Track Dragonkin, Track Elementals, Track Giants, Track Hidden, Track Humanoids, Track Undead		op 12: changes the spell's own effect amounts; valued with the spells' effects (phase 4)
 Hunter	Savage Strikes	0	critical strike chance	flat	4	Counterattack, Flanking Strike, Mongoose Bite, Raptor Strike, Strider Kick, Wing Clip		
 Hunter	Clever Traps	0	duration	percent	30		Explosive Trap, Frost Trap, Frost spells	reaches no spell the character casts itself; it reaches Freezing Trap, Frost Trap, OLDFrost Trap Effect (pet abilities, poisons, totem or weapon effects: modelled later); the text names Frost Trap but no modifier of the talent reaches it
@@ -141,7 +141,6 @@ Priest	Holy Reach	1	radius	percent	20	Holy Nova, Prayer of Healing	Holy Fire, Ho
 Priest	Improved Healing	0	cost	percent	-15	Greater Heal, Heal, Lesser Heal, Penance, Prayer of Mending	Greater Heal, Heal, Lesser Heal, Penance, Prayer of Mending	
 Priest	Spiritual Healing	0	damage or healing	percent	10	Binding Heal, Contingency Plan, Desperate Prayer, Divine Grace, Flash Heal, Greater Heal, Heal, Holy Nova, Lesser Heal, Penance, Prayer of Healing, Prayer of Mending, Prayer of Spirit		
 Priest	Spiritual Healing	1	periodic damage or healing	percent	10	Renew		op 22 (periodic damage or healing), but the text does not say so
-Priest	Holy Specialization	0	critical strike chance	flat	5	Binding Heal, Desperate Prayer, Divine Grace, Flash Heal, Greater Heal, Heal, Holy Fire, Holy Nova, Lesser Heal, Penance, Prayer of Healing, Prayer of Mending, Renew, Smite	Holy spells	
 Priest	Shadow Focus	0	hit chance	flat	5	Devouring Plague, Hex of Weakness, Mind Blast, Mind Control, Mind Flay, Mind Sear, Mind Soothe, Mind Spike, Mind Vision, Psychic Scream, Shadow Word: Death, Shadow Word: Pain, Shadowguard, Silence, Touch of Weakness, Vampiric Embrace, Vampiric Touch, Void Plague	Shadow spells	
 Priest	Improved Mind Blast	0	cooldown	flat	-2500	Mind Blast	Mind Blast	
 Priest	Improved Shadow Word: Pain	0	duration	flat	6000	Shadow Word: Pain	Shadow Word: Pain, Shadow spells	
