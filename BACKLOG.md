@@ -35,7 +35,7 @@ The full list is `docs/unmodelled_effects.tsv` (regenerate it after each change 
 - [ ] Scripts (auras 4, 42, 109, 190 effects): the data holds numbers only; the tooltip says what they mean.
 - [ ] Instant effects (no aura, 74).
 - [ ] Hunter Bestial Discipline: the pet Focus part.
-- [ ] Spell damage restricted to some schools (aura 174 with a school mask other than all schools).
+- [x] Spell damage restricted to some schools (aura 174 with a mask other than all magic schools): no talent has one on 1.60.1.70707-hf202610311059. The decoder refuses it with the reason if one appears; model it then (the school names come from Resistances, as for threat and damage).
 
 ## Interface  [offline]
 
