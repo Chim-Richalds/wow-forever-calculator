@@ -18,6 +18,7 @@ sys.path.insert(0, str(REPO / "src"))
 from fixtures import TempCase, base_tables, row_for, table_csv_bytes, write_dataset  # noqa: E402
 from wowcalc import rules as R  # noqa: E402
 from wowcalc import transport, update as U  # noqa: E402
+from wowcalc.builds import BuildInfo, BuildSourceError, clear_hotfix_reads, hotfix_statuses  # noqa: E402
 from wowcalc.builds import Config  # noqa: E402
 from wowcalc.dataset import Dataset  # noqa: E402
 from wowcalc.fetch import BASE_TABLES, EXTENDED_TABLES, TABLES, fetch_build, promote_staged  # noqa: E402
@@ -51,13 +52,14 @@ class Remote:
         return table_csv_bytes(header, rows)
 
     def hotfix_page(self, url):
-        q = urllib.parse.parse_qs(urllib.parse.urlsplit(url).query)
-        words = q["search"][0].split()
-        build_id = int(words[0])
-        rows = [{"push_id": push, "record_id": rec, "status": st, "build": build_id, "table_name": tbl, "created_at": t}
-                for t, tbl, rec, st, push in sorted(self.hotfixes.get(build_id, []), reverse=True)
-                if len(words) == 1 or words[1] in tbl.lower()]
-        page = {"component": "Hotfixes", "props": {"hotfixes": {"data": rows, "total": len(rows), "last_page": 1}}}
+        # Like Wago: the search is one phrase looked for in "<push> <record> <build> <table>".
+        self.hotfix_requests = getattr(self, "hotfix_requests", 0) + 1
+        phrase = urllib.parse.parse_qs(urllib.parse.urlsplit(url).query)["search"][0].lower()
+        rows = [{"id": i, "push_id": push, "record_id": rec, "status": st, "build": build, "table_name": tbl, "created_at": t}
+                for build, items in self.hotfixes.items() for i, (t, tbl, rec, st, push) in enumerate(items)
+                if phrase in f"{push} {rec} {build} {tbl.lower()}"]
+        rows.sort(key=lambda r: r["created_at"], reverse=True)
+        page = {"component": "Hotfixes", "props": {"hotfixes": {"data": rows[:25], "total": len(rows), "last_page": max(1, -(-len(rows) // 25))}}}
         return '<div id="app" data-page="' + html.escape(json.dumps(page)) + '"></div>'
 
     def text(self, url):
@@ -141,6 +143,8 @@ class HotfixTests(UpdateCase):
 
     def setUp(self):
         super().setUp()
+        clear_hotfix_reads()
+        self.addCleanup(clear_hotfix_reads)
         self.r = self.remote()
         self.prepare(self.r)
         self.apply()                                   # V_NEW active, with its manifest
@@ -216,6 +220,31 @@ class HotfixTests(UpdateCase):
         self.r.builds[V_NEW] = base_tables()
         edit_effect(self.r.builds[V_NEW])
         self.assertEqual(self.prepare(self.r).hotfix_warnings, ())
+
+    def test_a_long_hotfix_list_with_one_timestamp_is_read_in_full(self):
+        # 130 hotfixes of one push share a timestamp: paging would be unstable, so the search is narrowed
+        self.r.hotfixes[self.build_id] = [("2026-10-31 10:59:19", "SpellEffect", 1000 + i, 2 if i % 2 else 1, 40) for i in range(130)]
+        statuses = hotfix_statuses(BuildInfo.from_version(f"{V_NEW}-hf{self.STAMP}"), "SpellEffect", self.r.text)
+        self.assertEqual((len(statuses), sum(st == 2 for st in statuses.values())), (130, 65))
+
+    def test_tables_that_share_a_name_start_share_one_read(self):
+        self.r.hotfixes[self.build_id] = [("2026-10-31 10:59:19", "Spell", 7, 2, 50), ("2026-10-31 10:59:19", "SpellEffect", 8, 2, 50)]
+        hf = BuildInfo.from_version(f"{V_NEW}-hf{self.STAMP}")
+        self.r.hotfix_requests = 0
+        self.assertEqual(hotfix_statuses(hf, "Spell", self.r.text, family="Spell"), {"7": 2})
+        first = self.r.hotfix_requests
+        self.assertEqual(hotfix_statuses(hf, "SpellEffect", self.r.text, family="Spell"), {"8": 2})
+        self.assertEqual(self.r.hotfix_requests, first)      # served from the family's read
+
+    def test_a_hotfix_list_that_does_not_add_up_is_refused(self):
+        def fetch(url):
+            page = {"props": {"hotfixes": {"data": [{"id": 1, "push_id": 1, "record_id": 5, "status": 2, "build": self.build_id,
+                                                     "table_name": "SpellEffect", "created_at": "2026-10-31 10:59:19"}],
+                                           "total": 2, "last_page": 1}}}
+            return '<div data-page="' + html.escape(json.dumps(page)) + '"></div>'
+        with self.assertRaises(BuildSourceError) as ctx:
+            hotfix_statuses(BuildInfo.from_version(f"{V_NEW}-hf{self.STAMP}"), "SpellEffect", fetch)
+        self.assertIn("read 1 rows but Wago reports 2", str(ctx.exception))
 
     def test_status_reports_new_hotfixes(self):
         self.hotfix(edit_effect)

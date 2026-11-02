@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-01T11:56:46.702512+00:00",
+  "generatedAt": "2026-11-02T17:54:48.383578+00:00",
   "changes": {
     "old_version": "1.60.1.70707",
     "new_version": "1.60.1.70707-hf202610311059",
@@ -71,25 +71,25 @@
       },
       "SpellName": {
         "old": 32030,
-        "new": 32056,
+        "new": 32052,
         "added": 31,
-        "removed": 5,
+        "removed": 9,
         "changed": 4,
         "keyed": true
       },
       "Spell": {
         "old": 32030,
-        "new": 32056,
+        "new": 32052,
         "added": 31,
-        "removed": 5,
+        "removed": 9,
         "changed": 52,
         "keyed": true
       },
       "SpellEffect": {
         "old": 42859,
-        "new": 42922,
+        "new": 42920,
         "added": 71,
-        "removed": 8,
+        "removed": 10,
         "changed": 109,
         "keyed": true
       },
@@ -143,9 +143,9 @@
       },
       "TraitNodeGroupXTraitNode": {
         "old": 2145,
-        "new": 2151,
+        "new": 2148,
         "added": 68,
-        "removed": 62,
+        "removed": 65,
         "changed": 0,
         "keyed": true
       },
@@ -235,6 +235,78 @@
         "added": 28,
         "removed": 0,
         "changed": 1467,
+        "keyed": true
+      },
+      "SpellClassOptions": {
+        "old": 6104,
+        "new": 6104,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "SkillLineAbility": {
+        "old": 7856,
+        "new": 7856,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "SpellLevels": {
+        "old": 12986,
+        "new": 12986,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "SpellPower": {
+        "old": 3475,
+        "new": 3475,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "SpellCastTimes": {
+        "old": 72,
+        "new": 72,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "SpellCooldowns": {
+        "old": 4518,
+        "new": 4518,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "SpellDuration": {
+        "old": 134,
+        "new": 134,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "SpellRange": {
+        "old": 61,
+        "new": 61,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
+        "keyed": true
+      },
+      "SpellCategories": {
+        "old": 10694,
+        "new": 10694,
+        "added": 0,
+        "removed": 0,
+        "changed": 0,
         "keyed": true
       }
     },
@@ -1458,16 +1530,14 @@
         "old": "Increases your spell damage by up to $m1% of your Intellect.",
         "new": "Increases your spell damage by up to $m1% of your Intellect, and reduces the cast time of your Hammer of Wrath by ${$m2/-1000}.1 sec.",
         "text": "Champion of the Light (spell 1311084): Description_lang changed: '\u2026to $m1% of your Intellect.' -> '\u2026to $m1% of your Intellect, and reduces the cast time of your Hammer of\u2026'"
-      },
-      {
-        "spellId": "1311085",
-        "field": "Name_lang",
-        "old": "Instrument of Law",
-        "new": "",
-        "text": "spell 1311085: Name_lang 'Instrument of Law' -> ''"
       }
     ],
     "spell_presence_changes": [
+      {
+        "spellId": "1311085",
+        "presentNow": false,
+        "text": "Instrument of Law (spell 1311085): spell data disappeared"
+      },
       {
         "spellId": "1328370",
         "presentNow": true,
@@ -3129,10 +3199,23 @@
           "1912",
           "19977",
           "19978",
-          "19979"
+          "19979",
+          "25890",
+          "25895",
+          "1311085",
+          "1325499"
         ],
         "removed": [],
-        "text": "SpellEffect.SpellID: new: 1038, 1912, 19977, 19978, 19979"
+        "text": "SpellEffect.SpellID: new: 1038, 1912, 19977, 19978, 19979, 25890 +3"
+      },
+      {
+        "code": "orphan_foreign_key",
+        "subject": "TraitDefinition.SpellID",
+        "added": [
+          "1311085"
+        ],
+        "removed": [],
+        "text": "TraitDefinition.SpellID: new: 1311085"
       }
     ],
     "notes": [
@@ -3151,8 +3234,8 @@
       "definitions_added": 3,
       "definitions_removed": 0,
       "definitions_changed": 13,
-      "spell_text_changes": 20,
-      "spell_presence_changes": 9,
+      "spell_text_changes": 19,
+      "spell_presence_changes": 10,
       "effects_added": 22,
       "effects_removed": 1,
       "effects_changed": 16,

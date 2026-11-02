@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-01T11:56:46.702512+00:00",
+  "generatedAt": "2026-11-02T17:54:48.383578+00:00",
   "baseline": "1.60.1.70707",
   "validation": {
     "version": "1.60.1.70707-hf202610311059",
@@ -12,16 +12,16 @@
       "TraitDefinitionEffectPoints": 653,
       "TraitEdge": 99,
       "CurvePoint": 41807,
-      "SpellName": 32056,
-      "Spell": 32056,
-      "SpellEffect": 42922,
+      "SpellName": 32052,
+      "Spell": 32052,
+      "SpellEffect": 42920,
       "ChrClasses": 9,
       "ChrRaces": 58,
       "SkillLineXTraitTree": 9,
       "SkillRaceClassInfo": 186,
       "TraitCond": 172,
       "TraitNodeGroup": 372,
-      "TraitNodeGroupXTraitNode": 2151,
+      "TraitNodeGroupXTraitNode": 2148,
       "TraitNodeGroupXTraitCond": 171,
       "TraitNodeXTraitCond": 1,
       "TraitCurrency": 2,
@@ -32,7 +32,16 @@
       "CharBaseInfo": 56,
       "SpellMechanic": 36,
       "Resistances": 7,
-      "SpellMisc": 32038
+      "SpellMisc": 32038,
+      "SpellClassOptions": 6104,
+      "SkillLineAbility": 7856,
+      "SpellLevels": 12986,
+      "SpellPower": 3475,
+      "SpellCastTimes": 72,
+      "SpellCooldowns": 4518,
+      "SpellDuration": 134,
+      "SpellRange": 61,
+      "SpellCategories": 10694
     },
     "columns": {
       "TraitTree": [
@@ -408,6 +417,108 @@
         "SpellVisualScript",
         "ActiveSpellVisualScript",
         "SpellID"
+      ],
+      "SpellClassOptions": [
+        "ID",
+        "SpellID",
+        "ModalNextSpell",
+        "SpellClassSet",
+        "SpellClassMask_0",
+        "SpellClassMask_1",
+        "SpellClassMask_2",
+        "SpellClassMask_3"
+      ],
+      "SkillLineAbility": [
+        "AbilityVerb_lang",
+        "AbilityAllVerb_lang",
+        "ID",
+        "SkillLine",
+        "Spell",
+        "MinSkillLineRank",
+        "ClassMask",
+        "SupercedesSpell",
+        "AcquireMethod",
+        "TrivialSkillLineRankHigh",
+        "TrivialSkillLineRankLow",
+        "Flags",
+        "NumSkillUps",
+        "UniqueBit",
+        "TradeSkillCategoryID",
+        "SkillupSkillLineID",
+        "Field_5_5_4_67090_014_0",
+        "Field_5_5_4_67090_014_1",
+        "RaceMasks_0",
+        "RaceMasks_1"
+      ],
+      "SpellLevels": [
+        "ID",
+        "DifficultyID",
+        "MaxLevel",
+        "MaxPassiveAuraLevel",
+        "BaseLevel",
+        "SpellLevel",
+        "SpellID"
+      ],
+      "SpellPower": [
+        "ID",
+        "OrderIndex",
+        "ManaCost",
+        "ManaCostPerLevel",
+        "ManaPerSecond",
+        "PowerDisplayID",
+        "AltPowerBarID",
+        "PowerCostPct",
+        "PowerCostMaxPct",
+        "OptionalCostPct",
+        "PowerPctPerSecond",
+        "PowerType",
+        "RequiredAuraSpellID",
+        "OptionalCost",
+        "SpellID"
+      ],
+      "SpellCastTimes": [
+        "ID",
+        "Base",
+        "Minimum"
+      ],
+      "SpellCooldowns": [
+        "ID",
+        "DifficultyID",
+        "CategoryRecoveryTime",
+        "RecoveryTime",
+        "StartRecoveryTime",
+        "AuraSpellID",
+        "SpellID"
+      ],
+      "SpellDuration": [
+        "ID",
+        "Duration",
+        "DurationPerLevel",
+        "MaxDuration",
+        "DurationPerResource"
+      ],
+      "SpellRange": [
+        "ID",
+        "DisplayName_lang",
+        "DisplayNameShort_lang",
+        "Flags",
+        "RangeMin_0",
+        "RangeMin_1",
+        "RangeMax_0",
+        "RangeMax_1"
+      ],
+      "SpellCategories": [
+        "ID",
+        "DifficultyID",
+        "Category",
+        "DefenseType",
+        "DiminishType",
+        "DispelType",
+        "Mechanic",
+        "PreventionType",
+        "StartRecoveryCategory",
+        "ChargeCategory",
+        "SpellID"
       ]
     },
     "missingTables": [],
@@ -441,7 +552,7 @@
         "severity": "warning",
         "code": "orphan_foreign_key",
         "subject": "SpellEffect.SpellID",
-        "message": "SpellEffect.SpellID: 19 reference(s) to 14 id(s) not in Spell",
+        "message": "SpellEffect.SpellID: 26 reference(s) to 18 id(s) not in Spell",
         "treeId": "",
         "values": [
           "1038",
@@ -449,22 +560,26 @@
           "19977",
           "19978",
           "19979",
+          "25890",
+          "25895",
           "1287872",
           "1293537",
           "1294592",
           "1299956",
           "1302846",
+          "1311085",
           "1311505",
           "1314917",
           "1314956",
-          "1321907"
+          "1321907",
+          "1325499"
         ]
       },
       {
         "severity": "warning",
         "code": "orphan_foreign_key",
         "subject": "TraitDefinition.SpellID",
-        "message": "TraitDefinition.SpellID: 7 reference(s) to 7 id(s) not in Spell",
+        "message": "TraitDefinition.SpellID: 8 reference(s) to 8 id(s) not in Spell",
         "treeId": "",
         "values": [
           "20234",
@@ -473,6 +588,7 @@
           "426158",
           "1309389",
           "1310310",
+          "1311085",
           "1322612"
         ]
       },
@@ -492,9 +608,10 @@
     "blocked": false,
     "blockers": [],
     "needsAcknowledgement": [
-      "New warning: SpellEffect.SpellID: 19 reference(s) to 14 id(s) not in Spell [new: 1038, 1912, 19977, 19978, 19979]"
+      "New warning: SpellEffect.SpellID: 26 reference(s) to 18 id(s) not in Spell [new: 1038, 1912, 19977, 19978, 19979, 25890, +3 more]",
+      "New warning: TraitDefinition.SpellID: 8 reference(s) to 8 id(s) not in Spell [new: 1311085]"
     ],
-    "carriedFromBaseline": 4
+    "carriedFromBaseline": 3
   },
   "ruleChecks": [
     {

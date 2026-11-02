@@ -208,13 +208,17 @@ def latest_hotfix(build: BuildInfo, fetch: Fetch = default_fetch) -> str:
     Read from the first page of Wago's hotfix list (newest first), searched by build number.
     The search also matches other builds whose IDs contain the number, so rows are filtered
     by their build field."""
-    rows, _ = hotfix_page(str(build.build_id), 1, fetch)
+    rows, _, _ = hotfix_page(str(build.build_id), 1, fetch)
     seen = [_stamp(r["created_at"]) for r in rows if r["build"] == build.build_id]
     return max(seen) if seen else ""
 
 
-def hotfix_page(search: str, page: int, fetch: Fetch = default_fetch) -> tuple[list[dict], int]:
-    """One page of Wago's hotfix list: (rows, last page). Raises BuildSourceError."""
+def hotfix_page(search: str, page: int, fetch: Fetch = default_fetch) -> tuple[list[dict], int, int]:
+    """One page of Wago's hotfix list: (rows, last page, total rows). Raises BuildSourceError.
+
+    The search is one phrase looked for in a line "<locale> <push> <record> <build> <table> <data>",
+    so "70707 spelleffect" finds build 70707's SpellEffect hotfixes and "5 70707 spelleffect" those
+    whose record ID ends in 5."""
     url = WAGO_HOTFIXES_URL + "?" + urllib.parse.urlencode({"search": search, "page": page})
     try:
         text = fetch(url)
@@ -225,10 +229,11 @@ def hotfix_page(search: str, page: int, fetch: Fetch = default_fetch) -> tuple[l
         raise BuildSourceError("Hotfix list page has no data (the page layout may have changed)")
     try:
         listing = json.loads(html.unescape(match.group(1)))["props"]["hotfixes"]
-        rows = [{"build": int(r["build"]), "table": str(r["table_name"]), "record": str(r["record_id"]),
-                 "push": int(r.get("push_id") or 0), "status": int(r["status"]), "created_at": str(r["created_at"])}
+        rows = [{"id": str(r.get("id", "")), "build": int(r["build"]), "table": str(r["table_name"]), "record": str(r["record_id"]),
+                 "push": int(r.get("push_id") or 0), "status": int(r["status"]), "created_at": str(r["created_at"]),
+                 "locale": str(r.get("locale") or "")}
                 for r in listing["data"]]
-        return rows, int(listing.get("last_page") or 1)
+        return rows, int(listing.get("last_page") or 1), int(listing.get("total", len(rows)))
     except (ValueError, KeyError, TypeError) as exc:
         raise BuildSourceError(f"Unusable hotfix list: {exc}") from exc
 
@@ -240,22 +245,75 @@ def _stamp(created_at: str) -> str:
     return stamp
 
 
-def hotfix_statuses(build: BuildInfo, table: str, fetch: Fetch = default_fetch) -> dict[str, int]:
+def hotfix_statuses(build: BuildInfo, table: str, fetch: Fetch = default_fetch,
+                    family: str | None = None) -> dict[str, int]:
     """Record ID -> status of its newest hotfix, for one table of a hotfixed dataset, counting
     only hotfixes up to the dataset's hotfix time. Wago's hotfixed exports apply added and changed
-    rows but keep deleted ones, so the caller drops records whose status is HOTFIX_DELETED."""
+    rows but keep deleted ones, so the caller drops records whose status is HOTFIX_DELETED.
+
+    `family` is the shortest table name to search by when several tables share a beginning
+    ("spell" for SpellEffect, SpellMisc ...): Wago's search cannot end at a table name, so one
+    read of the family serves every table in it (kept for the rest of the run)."""
     if not build.hotfix:
         return {}
+    phrase = f"{build.build_id} {(family or table).lower()}"
+    key = (phrase, build.hotfix)
+    if key not in _HOTFIX_READS:
+        _HOTFIX_READS[key] = _all_hotfix_rows(phrase, fetch)
     newest: dict[str, tuple[int, int]] = {}
-    page, last = 1, 1
-    while page <= last:
-        rows, last = hotfix_page(f"{build.build_id} {table.lower()}", page, fetch)
-        for r in rows:
-            if r["build"] == build.build_id and r["table"].lower() == table.lower() and _stamp(r["created_at"]) <= build.hotfix:
-                if r["record"] not in newest or r["push"] > newest[r["record"]][0]:
-                    newest[r["record"]] = (r["push"], r["status"])
-        page += 1
+    for r in _HOTFIX_READS[key]:
+        if r["build"] == build.build_id and r["table"].lower() == table.lower() and _stamp(r["created_at"]) <= build.hotfix:
+            if r["record"] not in newest or r["push"] > newest[r["record"]][0]:
+                newest[r["record"]] = (r["push"], r["status"])
     return {record: status for record, (_, status) in newest.items()}
+
+
+_HOTFIX_READS: dict[tuple[str, str], list[dict]] = {}   # (search phrase, hotfix time) -> rows, for one run
+
+
+def clear_hotfix_reads() -> None:
+    """Forget shared hotfix list reads (start and end of each download run)."""
+    _HOTFIX_READS.clear()
+_PAGE_READ_LIMIT = 4   # an answer of up to this many pages is read page by page, then checked
+
+
+def _all_hotfix_rows(phrase: str, fetch: Fetch) -> list[dict]:
+    """Every row of Wago's hotfix list matching `phrase`.
+
+    Rows of one push share a timestamp and the list is sorted by it alone, so its pages are not
+    stable: paging can skip some rows and repeat others. A short answer is read page by page and
+    kept if the rows add up to the total Wago reports; otherwise the search is narrowed by the end
+    of the record ID ("7 70707 spell", then "17 70707 spell", ...) and each part read the same way.
+    If the rows still do not add up, this fails rather than return an incomplete list."""
+    def key(r):
+        return (r["id"], r["table"], r["record"], r["push"], r["locale"], r["status"])
+
+    def read(suffix: str) -> list[dict]:
+        q = f"{suffix} {phrase}" if suffix else phrase
+        rows, last, total = hotfix_page(q, 1, fetch)
+        if last > 1 and last <= _PAGE_READ_LIMIT:
+            found = {key(r): r for r in rows}
+            for page in range(2, last + 1):
+                more, _, _ = hotfix_page(q, page, fetch)
+                found.update({key(r): r for r in more})
+            if len(found) == total:
+                return list(found.values())
+        elif last <= 1:
+            if len(rows) != total:
+                raise BuildSourceError(f"hotfix list for {q!r}: read {len(rows)} rows but Wago reports {total}; "
+                                       "not using an incomplete list")
+            return rows
+        if len(suffix) >= 9:
+            raise BuildSourceError(f"hotfix list for {phrase!r} cannot be read in full")
+        found = {key(r): r for r in rows if r["record"] == suffix}   # a record ID equal to the suffix: no narrower search finds it
+        for d in "0123456789":
+            found.update({key(r): r for r in read(d + suffix)})
+        if len(found) != total:
+            raise BuildSourceError(f"hotfix list for {q!r}: read {len(found)} rows but Wago reports {total}; "
+                                   "not using an incomplete list")
+        return list(found.values())
+
+    return read("")
 
 
 def check_availability(version: str, config: Config, fetch: Fetch = default_fetch) -> Availability:

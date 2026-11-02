@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import functools
 import hashlib
 import io
 import json
@@ -34,7 +35,7 @@ from pathlib import Path
 from typing import Callable
 
 from . import transport
-from .builds import HOTFIX_ADDED, HOTFIX_DELETED, BuildInfo, BuildSourceError, Config, Status, check_for_updates, hotfix_statuses
+from .builds import HOTFIX_ADDED, HOTFIX_DELETED, BuildInfo, BuildSourceError, Config, Status, check_for_updates, clear_hotfix_reads, hotfix_statuses
 
 # useHotfixes=1: the tables as the server serves them, with its hotfixes applied.
 WAGO_TABLE_URL = "https://wago.tools/db2/{table}/csv?build={version}&useHotfixes=1"
@@ -170,6 +171,12 @@ def _sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
+def _table_family(table: str) -> str:
+    """The shortest table name we fetch that `table` begins with (Spell for SpellEffect): Wago's hotfix
+    search matches the start of a table name, so tables sharing one are read together."""
+    return min((t for t in TABLES if table.lower().startswith(t.lower())), key=len, default=table)
+
+
 def _drop_rows(body: bytes, ids: set[str]) -> tuple[bytes, int]:
     """The CSV without the rows whose ID is in `ids` (hotfix deletions), and how many went."""
     if not ids:
@@ -200,7 +207,7 @@ def _download_table(table: str, version: str, data_dir: Path, fetch: FetchBytes)
         response = fetch(url)
         validate_csv(response.body)
         if info.hotfix:
-            statuses = hotfix_statuses(info, table, lambda u: fetch(u).body.decode("utf-8"))
+            statuses = hotfix_statuses(info, table, lambda u: fetch(u).body.decode("utf-8"), family=_table_family(table))
             deleted = {r for r, st in statuses.items() if st == HOTFIX_DELETED}
             body, removed = _drop_rows(response.body, deleted)
             response = transport.Response(body, response.content_type)
@@ -229,6 +236,19 @@ def _download_table(table: str, version: str, data_dir: Path, fetch: FetchBytes)
 # Fetch
 # --------------------------------------------------------------------------
 
+def _fresh_hotfix_reads(func):
+    """Hotfix list reads are shared between the tables of one run only."""
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        clear_hotfix_reads()
+        try:
+            return func(*args, **kwargs)
+        finally:
+            clear_hotfix_reads()
+    return wrapper
+
+
+@_fresh_hotfix_reads
 def fetch_build(
     version: str,
     config: Config,
@@ -324,6 +344,7 @@ def write_json_atomic(path: Path, obj) -> None:
     os.replace(tmp, path)
 
 
+@_fresh_hotfix_reads
 def complete_build(
     version: str,
     config: Config,

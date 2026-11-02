@@ -62,6 +62,11 @@ Goal: less code saying the same thing, with no loss of coverage of real behaviou
 - [x] **Compiled files in git.** Untracked.
 - [x] **Rate fit summary.** Prints the attack power rule in use, with the panel fit as a note.
 
+## Talent tree data checks  [offline, then servers]
+
+- [ ] **Talents off the position grid** (Data tab, "Talent trees"; noted 2026-11-02). The game's own data has positions that look like slipped digits: Lightning Reflexes x=102800 (likely 10280), Improved Serpent Sting y=39300 (likely 3930), Holy Specialization y=21300 (likely 2130), Amplify Curse y=3320 and Improved Life Tap y=2120 (likely 3330 and 2130). Present since at least 1.60.1.70532, not from the hotfixes. Check where the game draws each one, then decide how the calculator places them (snap to the nearest grid cell when the value is an obvious slip, and say so), never silently.
+- [x] **Paladin: condition 43433 named Instrument of Law** (node 110880), deleted by the 31 October hotfix. Cause: Wago's hotfix list pages are unstable (one push shares a timestamp), so paging missed deletions (30 of 92 in TraitNodeGroupXTraitNode alone). The list is now read in parts that each fit one page, tables sharing a name start are read together, and the rows must add up to Wago's total or the update fails. 1.60.1.70707-hf202610311059 was rebuilt (2026-11-02); the warning is gone.
+
 ## Talent tree backgrounds  [needs-source]
 
 - [ ] Searches in wow.export keep returning the modern game's assets. Find the Classic talent frame art for this build, then add an importer like the icon one (`src/wowcalc/icons.py`) and draw it behind each specialization tree. The names are already in `data/external/spec_names.tsv`.
