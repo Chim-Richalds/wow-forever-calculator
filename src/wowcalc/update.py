@@ -167,6 +167,7 @@ class Assessment:
     gates: GateResult
     changes: ChangeReport | None
     rule_checks: list
+    hotfix_warnings: tuple[str, ...] = ()  # talent rows with a hotfix status the calculator does not apply
 
     @property
     def blocked(self) -> bool:
@@ -183,6 +184,7 @@ class Assessment:
         if inv:
             names = ", ".join(c.rule_id for c in inv[:6]) + (f", +{len(inv) - 6} more" if len(inv) > 6 else "")
             items.append(f"{len(inv)} verified rule(s) will be marked needs_reverification: {names}")
+        items.extend(self.hotfix_warnings)
         return tuple(items)
 
 
@@ -212,7 +214,43 @@ def assess(
     except DatasetError as exc:
         raise UpdateError(str(exc)) from exc
     source = "staging" if (data_dir / "staging" / version).is_dir() else "raw"
-    return Assessment(version, baseline, source, candidate, gates, changes, checks)
+    warnings = tuple(_hotfix_status_warnings(data_dir, version, candidate_ds))
+    return Assessment(version, baseline, source, candidate, gates, changes, checks, warnings)
+
+
+def _hotfix_status_warnings(data_dir: Path, version: str, ds) -> list[str]:
+    """Talent data with a hotfix status other than added or deleted (Invalidate, NotPublic). The
+    calculator keeps such rows as Wago exports them; what the game does with them is not known, so
+    one that touches a talent needs a look before installing."""
+    path = data_dir / "staging" / version / "manifest.json"
+    if not path.is_file():
+        path = data_dir / "manifests" / f"{version}.json"
+    try:
+        tables = json.loads(path.read_text(encoding="utf-8")).get("tables", {})
+    except (OSError, ValueError):
+        return []
+    odd = {t: e.get("hotfixOtherRecords") or {} for t, e in tables.items() if e.get("hotfixOtherRecords")}
+    if not odd:
+        return []
+    talent_spells = {r["SpellID"] for r in ds.rows("TraitDefinition")}
+    curves = {r["CurveID"] for r in ds.rows("TraitDefinitionEffectPoints")} - {"", "0"}
+    touching = {}
+    for table, records in odd.items():
+        if table.startswith("Trait"):
+            hits = set(records)
+        elif table in ("Spell", "SpellName"):
+            hits = set(records) & talent_spells
+        elif table in ("SpellEffect", "SpellMisc"):
+            hits = {r["ID"] for r in ds.rows(table) if r["ID"] in records and r["SpellID"] in talent_spells}
+        elif table == "CurvePoint":
+            hits = {r["ID"] for r in ds.rows(table) if r["ID"] in records and r["CurveID"] in curves}
+        else:
+            hits = set()
+        if hits:
+            touching[table] = sorted(hits, key=lambda x: (len(x), x))
+    return [f"{table}: {len(ids)} talent row(s) with a hotfix status the calculator does not apply "
+            f"(Invalidate or NotPublic; kept as exported): {', '.join(ids[:8])}{' ...' if len(ids) > 8 else ''}"
+            for table, ids in sorted(touching.items())]
 
 
 def _write_reports(data_dir: Path, a: Assessment, now: datetime | None = None) -> list[Path]:

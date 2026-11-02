@@ -195,7 +195,8 @@ def _download_table(table: str, version: str, data_dir: Path, fetch: FetchBytes)
             body, removed = _drop_rows(response.body, deleted)
             response = transport.Response(body, response.content_type)
             hotfixes = {"hotfixRecords": len(statuses), "hotfixDeletedRows": removed,
-                        "hotfixOtherStatus": sum(1 for st in statuses.values() if st not in (HOTFIX_ADDED, HOTFIX_DELETED))}
+                        "hotfixOtherStatus": sum(1 for st in statuses.values() if st not in (HOTFIX_ADDED, HOTFIX_DELETED)),
+                        "hotfixOtherRecords": {r: st for r, st in sorted(statuses.items()) if st not in (HOTFIX_ADDED, HOTFIX_DELETED)}}
         facts = validate_csv(response.body)
     except urllib.error.HTTPError as exc:  # must precede OSError (subclass)
         exc.close()

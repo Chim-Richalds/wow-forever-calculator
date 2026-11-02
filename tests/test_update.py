@@ -198,6 +198,25 @@ class HotfixTests(UpdateCase):
         self.assertEqual((entry["hotfixDeletedRows"], entry["hotfixRecords"]), (1, 2))
         self.assertEqual(entry["rows"], len(effects) - 1)
 
+    def test_an_unapplied_hotfix_status_on_talent_data_needs_confirmation(self):
+        node = base_tables()["TraitNode"][1][0]["ID"]
+        self.r.hotfixes[self.build_id] = [("2026-10-31 10:59:19", "TraitNode", int(node), 3, 30)]   # Invalidate
+        self.r.builds[V_NEW] = base_tables()
+        edit_effect(self.r.builds[V_NEW])
+        a = self.prepare(self.r)
+        self.assertTrue(any("TraitNode: 1 talent row(s)" in w and node in w for w in a.needs_ack), a.needs_ack)
+        with self.assertRaises(U.AcknowledgementRequired):
+            self.apply()
+
+    def test_an_unapplied_hotfix_status_elsewhere_is_not_a_warning(self):
+        spell = "9999"                                       # not a talent spell
+        talent_spells = {r["SpellID"] for r in base_tables()["TraitDefinition"][1]}
+        self.assertNotIn(spell, talent_spells)
+        self.r.hotfixes[self.build_id] = [("2026-10-31 10:59:19", "SpellName", int(spell), 4, 31)]  # NotPublic
+        self.r.builds[V_NEW] = base_tables()
+        edit_effect(self.r.builds[V_NEW])
+        self.assertEqual(self.prepare(self.r).hotfix_warnings, ())
+
     def test_status_reports_new_hotfixes(self):
         self.hotfix(edit_effect)
         st = U.status(self.data, CFG, self.r.text)
