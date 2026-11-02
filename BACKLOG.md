@@ -40,7 +40,7 @@ The full list is `docs/unmodelled_effects.tsv` (regenerate it after each change 
 ## Interface  [offline]
 
 - [ ] Show Spell power and Healing rows at levels with no exported panel when the base is unknown (today they appear only if a talent contributes).
-- [ ] Two talent icons are missing (357 of 359 cached). Find which and why (possibly encrypted in the game files).
+- [ ] **Missing talent icons: 11 of 361** on 1.60.1.70707-hf202610311059 (noted 2026-11-02). The icon IDs are known (SpellMisc); the images are not in `data/icons`. New with the 31 October hotfix: Bloom (134206), Lacerate (132131), Predatory Discipline (1033484), Divine Precision (135933), Oath of Light (135909), Stoicism (135978), Shieldsworn (135911), Turn Evil (135983), Boundless Light (236261). Missing before: Sniper Shot (1412205), Arcane Geometry (6035311), possibly encrypted in the game files. Import with `python -m wowcalc.icons import FOLDER --listfile ... --only-needed`; `python -m wowcalc.icons list` prints the IDs needed. Consider showing the count of missing icons in the update summary.
 - [ ] Per-class defaults (race, level) remembered between visits.
 - [x] Threat, damage done, damage taken and crowd control durations are in the Values tab (each talent's own percent).
 
