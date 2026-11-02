@@ -38,6 +38,16 @@ PYTHONPATH=src python3 -m wowcalc.icons import FOLDER --talent-names   # images 
 PYTHONPATH=src python3 -m wowcalc.icons status
 ```
 
+## Tree backgrounds
+
+One image per specialization behind its tree, from Wowpedia's original-style talent backgrounds (game art, kept in `data/backgrounds/`, not in git). The wiki's image host refuses automated downloads, so save them in a browser and import the folder:
+
+```
+PYTHONPATH=src python3 -m wowcalc.backgrounds urls              # where each of the 27 images is
+PYTHONPATH=src python3 -m wowcalc.backgrounds import FOLDER     # "Talents background - mage Frost.png" or "mage frost.png"
+PYTHONPATH=src python3 -m wowcalc.backgrounds status
+```
+
 ## Tests
 
 ```

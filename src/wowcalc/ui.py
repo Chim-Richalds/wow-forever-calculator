@@ -39,6 +39,8 @@ from .basestats import load_base_stats
 from .dataset import Dataset
 from .effects import CONDITIONS, EffectBook, render_tooltip
 from .fetch import TABLES
+from .backgrounds import BackgroundCache
+from .backgrounds import file_name as background_file
 from .icons import IconCache, icon_ids
 from .rates import RatesError, load_rates
 from .specs import SpecError, load_spec_names, name_trees
@@ -203,6 +205,7 @@ class Workbench:
         except SpecError as exc:
             self.spec_problems.append(str(exc))
         self.icons = IconCache(self.data_dir / "icons")
+        self.backgrounds = BackgroundCache(self.data_dir / "backgrounds")
         self._icon_ids: dict[str, dict] = {}
 
         external = self.data_dir / "external"
@@ -301,6 +304,9 @@ class Workbench:
             })
         return {
             "class": tree.class_name, "grid": 600, "nodes": nodes, "specs": self.specs_of(tree)[0],
+            # one background image per specialization tree, when it is cached (backgrounds.py)
+            "backgrounds": [f"/backgrounds/{background_file(tree.class_name, spec)}" if spec and self.backgrounds.has(tree.class_name, spec) else None
+                            for spec in self.specs_of(tree)[0]],
             # Situations this class's talents depend on (the shield has its own box), for the page's checkboxes.
             "conditions": [{"key": k, "label": CONDITIONS[k][0]} for k in CONDITIONS
                            if k != "shield" and any(k == key for n in tree.nodes.values() for e in self.effects_of(n) for key, _ in e.requires)],
@@ -533,6 +539,8 @@ class Workbench:
         out = {"build": self.build, "checks": checks, "notes": self.load_notes, "confidence": [
             {"item": a, "status": b, "detail": c} for a, b, c in CONFIDENCE]}
         out["icons"] = self.icon_summary()
+        specs = [(t.class_name, spec) for t in self.model.trees.values() for spec in self.specs_of(t)[0] if spec]
+        out["backgrounds"] = {"cached": sum(self.backgrounds.has(*s) for s in specs), "wanted": len(specs)}
         if self.rates is not None:
             out["references"] = {k: v for k, v in self.rates.references.items() if k in ("source", "build", "status")}
         return out
@@ -712,6 +720,11 @@ def make_handler(bench: Workbench, updater: "UpdateJob | None" = None):
                 url = urlsplit(self.path)
                 if method == "GET" and url.path in ("/", "/index.html"):
                     return self._send(200, PAGE.read_bytes(), "text/html; charset=utf-8")
+                if method == "GET" and url.path.startswith("/backgrounds/"):
+                    found = current["bench"].backgrounds.read(url.path[len("/backgrounds/"):])
+                    if found is None:
+                        raise UiError(404, "no such background")
+                    return self._send(200, found, "image/png")
                 if method == "GET" and url.path.startswith("/icons/"):
                     found = current["bench"].icons.read(url.path[len("/icons/"):])
                     if found is None:

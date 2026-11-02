@@ -71,9 +71,10 @@ Goal: less code saying the same thing, with no loss of coverage of real behaviou
 - [x] **Specialization names after the hotfix** (2026-11-02): anchors replaced in `data/external/spec_names.tsv`: Mage Frost Piercing Ice -> Improved Blizzard; Druid Feral Combat Heart of the Wild -> Feral Instinct; Druid Restoration Furor -> Reflection; Paladin Holy Divine Intellect -> Illumination (the old ones were removed or moved to another tree). The Data tab check passes.
 - [x] **Paladin: condition 43433 named Instrument of Law** (node 110880), deleted by the 31 October hotfix. Cause: Wago's hotfix list pages are unstable (one push shares a timestamp), so paging missed deletions (30 of 92 in TraitNodeGroupXTraitNode alone). The list is now read in parts that each fit one page, tables sharing a name start are read together, and the rows must add up to Wago's total or the update fails. 1.60.1.70707-hf202610311059 was rebuilt (2026-11-02); the warning is gone.
 
-## Talent tree backgrounds  [needs-source]
+## Talent tree backgrounds
 
-- [ ] Searches in wow.export keep returning the modern game's assets. Find the Classic talent frame art for this build, then add an importer like the icon one (`src/wowcalc/icons.py`) and draw it behind each specialization tree. The names are already in `data/external/spec_names.tsv`.
+- [x] Source chosen (2026-11-02): Wowpedia's original-style talent backgrounds (Category:Talents_interface_backgrounds), one per specialization, all 27 present. `src/wowcalc/backgrounds.py` imports them into `data/backgrounds/` and the page draws each behind its tree under a wash of the panel colour.
+- [ ] Download the 27 images in a browser (`python -m wowcalc.backgrounds urls`) and import them (`python -m wowcalc.backgrounds import FOLDER`): the wiki's image host refuses automated downloads.
 
 ## Data upkeep  [offline]
 

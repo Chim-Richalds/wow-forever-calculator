@@ -20,3 +20,5 @@ data/ui/
 *.swp
 data/ui.log
 data/ui.pid
+# Talent tree backgrounds: game art from Wowpedia, kept locally (see src/wowcalc/backgrounds.py)
+data/backgrounds/

@@ -521,6 +521,16 @@ class ServerTests(WorkbenchCase):
         self.assertIn("127.0.0.1", json.loads(body)["error"])
         self.assertEqual(self.call("GET", "/api/meta", headers={"Host": "localhost:1234"})[0], 200)
 
+    def test_tree_backgrounds_are_offered_and_served_when_cached(self):
+        from wowcalc.backgrounds import BackgroundCache
+        tree = json.loads(self.call("GET", "/api/tree/Mage")[1])
+        self.assertTrue(all(b is None for b in tree["backgrounds"]))
+        self.assertEqual(self.call("GET", "/backgrounds/mage-frost.png")[0], 404)
+        BackgroundCache(self.data / "backgrounds").add("Mage", "Frost", b"\x89PNG\r\n\x1a\n" + b"\0" * 8, "test")
+        status, body, headers = self.call("GET", "/backgrounds/mage-frost.png")
+        self.assertEqual((status, headers["Content-Type"]), (200, "image/png"))
+        self.assertEqual(self.call("GET", "/backgrounds/..%2Fmanifest.json")[0], 404)
+
     def test_update_status_and_refused_confirmation(self):
         status, body, _ = self.call("GET", "/api/update")
         self.assertEqual(status, 200)

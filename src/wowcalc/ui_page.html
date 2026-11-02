@@ -8,6 +8,7 @@
 :root {
   --paper: #dfe6ea;
   --panel: #f5f8fa;
+  --veil: rgba(245, 248, 250, 0.72);
   --panel-2: #eaeff2;
   --ink: #16232d;
   --ink-2: #4a5b68;
@@ -26,13 +27,13 @@
 :root:not([data-theme="light"]) { color-scheme: light dark; }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #0f1a22; --panel: #17252f; --panel-2: #1d2f3b; --ink: #e3ebf0; --ink-2: #9db0bd; --rule: #2e4352;
+    --paper: #0f1a22; --panel: #17252f; --panel-2: #1d2f3b; --ink: #e3ebf0; --ink-2: #9db0bd; --rule: #2e4352; --veil: rgba(23, 37, 47, 0.55);
     --good: #5fd0bf; --good-bg: #123a36; --warn: #e9b258; --warn-bg: #3d2f12; --bad: #f08a80; --bad-bg: #44211e; --pick: #8db4ff;
   }
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --paper: #0f1a22; --panel: #17252f; --panel-2: #1d2f3b; --ink: #e3ebf0; --ink-2: #9db0bd; --rule: #2e4352;
+  --paper: #0f1a22; --panel: #17252f; --panel-2: #1d2f3b; --ink: #e3ebf0; --ink-2: #9db0bd; --rule: #2e4352; --veil: rgba(23, 37, 47, 0.55);
   --good: #5fd0bf; --good-bg: #123a36; --warn: #e9b258; --warn-bg: #3d2f12; --bad: #f08a80; --bad-bg: #44211e; --pick: #8db4ff;
 }
 * { box-sizing: border-box; }
@@ -79,6 +80,8 @@ section.card { background: var(--panel); border: 1px solid var(--rule); border-r
 .specs { display: flex; flex-wrap: wrap; gap: 20px 36px; justify-content: center; }
 .spec h3 { font-size: 15px; margin-bottom: 6px; border-bottom: 1px solid var(--rule); padding-bottom: 4px; display: flex; justify-content: space-between; }
 .canvas { position: relative; }
+/* Specialization art behind a tree, under a wash of the panel colour so names stay readable in both themes. */
+.canvas.art { background: linear-gradient(var(--veil), var(--veil)), var(--art) center top / cover no-repeat; border-radius: var(--radius); }
 .canvas svg { position: absolute; inset: 0; pointer-events: none; }
 .canvas line { stroke: var(--rule); stroke-width: 3; }
 .node { position: absolute; width: 76px; display: flex; flex-direction: column; align-items: center; gap: 3px; background: none; border: 0; padding: 0; text-align: center; }
@@ -409,6 +412,8 @@ function drawTree() {
     const box = document.createElement("div"); box.className = "spec";
     box.innerHTML = `<h3><span>${esc((S.tree.specs && S.tree.specs[key]) || `Tree ${i + 1}`)}</span> <span class="num tiny" data-spent></span></h3>`;
     const canvas = document.createElement("div"); canvas.className = "canvas"; canvas.style.width = width + "px"; canvas.style.height = height + "px";
+    const art = S.tree.backgrounds && S.tree.backgrounds[key];
+    if (art) { canvas.classList.add("art"); canvas.style.setProperty("--art", `url("${art}")`); }
     const ids = new Set(members.map((n) => n.id));
     let svg = `<svg width="${width}" height="${height}" aria-hidden="true">`;
     for (const e of S.tree.edges) {
@@ -658,6 +663,7 @@ async function renderData() {
   $("pane-data").innerHTML = `
     <div id="updatebox"></div>
     <p>Game build <strong class="num">${esc(st.build)}</strong>${st.references ? `. Outside reference: <span class="tiny">${esc(st.references.source || "")}</span>` : ""}</p>
+    ${st.backgrounds ? `<p class="tiny">Tree backgrounds: ${st.backgrounds.cached} of ${st.backgrounds.wanted} cached${st.backgrounds.cached < st.backgrounds.wanted ? ". Add them with python -m wowcalc.backgrounds import FOLDER (python -m wowcalc.backgrounds urls lists where to get them)." : "."}</p>` : ""}
     ${st.icons ? `<p class="tiny">Talent icons: ${st.icons.cached} of ${st.icons.wanted} cached${st.icons.spellmisc ? "" : " (spell icon table not installed: python -m wowcalc.update complete)"}${st.icons.cached < st.icons.wanted ? ". Add more with python -m wowcalc.icons import or fetch." : "."}</p>` : ""}
     <h3 class="sub">Data checks</h3><ul class="notes" style="color:inherit">${checks}</ul>
     <h3 class="sub">What the numbers rest on</h3>
