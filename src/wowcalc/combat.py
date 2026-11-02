@@ -242,7 +242,7 @@ MELEE_MISS_BY_LEVEL = {0: 5.0, 1: 5.5, 2: 6.0, 3: 8.0}
 DODGE_BY_LEVEL = {0: 5.0, 1: 5.5, 2: 6.0, 3: 6.5}
 GLANCE_BY_LEVEL = {0: (10.0, 5.0), 1: (20.0, 15.0), 2: (30.0, 25.0), 3: (40.0, 35.0)}   # (% of white hits, % less damage)
 CRIT_SUPPRESSION_PER_LEVEL = 1.0
-OFFHAND_DAMAGE = 0.5             # off-hand white hits do half damage (ASSUMED)
+OFFHAND_FACTOR = 0.5             # off-hand white hits do half damage (ASSUMED)
 DUAL_WIELD_MISS = 19.0           # extra miss chance on white hits while dual wielding (ASSUMED)
 RANGED_MIN_YARDS = 8
 ATTACK_CLASSES = frozenset({"Warrior", "Rogue", "Hunter"})   # their abilities are attacks, not spells           # a weapon ability with a longer range uses the ranged weapon
@@ -255,7 +255,7 @@ WEAPON_ASSUMPTIONS = (
     "you attack from behind (no parry or block); crit 1% lower per level the target is above you",
     "white hits glance: 10% of them for 5% less against your level, 40% for 35% less against a boss",
     "dual wielding: off-hand white hits do 50% damage, and white hits from either hand miss 19% more often "
-    "(special attacks do not); the Dual Wield Specialization talent is not counted yet",
+    "(special attacks do not); Dual Wield Specialization's +N% multiplies the off hand's 50% (25% -> 62.5%)",
     "abilities with no cast time and no global cooldown (Heroic Strike, Cleave, Raptor Strike) replace a swing: "
     "their 'per second' is per weapon swing; feral form attacks (Claw, Shred, Maul) are not calculated yet",
 )
@@ -287,7 +287,9 @@ def _hit_table(target: Target, hit: float, crit: float, ranged: bool, white: boo
 def weapon_numbers(combat: CombatBook, spells: dict[str, ClassSpell], mods: list[SpellModifier], class_name: str, level: int,
                    ranks: dict[str, int], attack_power: float, ranged_attack_power: float, crit: float, hit: float,
                    target: Target, changes: dict[tuple[str, str], float], main: Weapon | None,
-                   ranged: Weapon | None, offhand: Weapon | None = None) -> tuple[list[SpellNumbers], list[str]]:
+                   ranged: Weapon | None, offhand: Weapon | None = None,
+                   offhand_bonus: float = 0.0) -> tuple[list[SpellNumbers], list[str]]:
+    """`offhand_bonus`: talents' off-hand damage increase in percent (Dual Wield Specialization)."""
     """Weapon attacks: the white swing with the main-hand weapon, and every class ability with weapon damage.
     Returns (numbers, names not calculated, with the reason in brackets)."""
     bonuses: dict[str, dict[str, float]] = defaultdict(lambda: defaultdict(float))
@@ -320,7 +322,7 @@ def weapon_numbers(combat: CombatBook, spells: dict[str, ClassSpell], mods: list
     if main is not None:
         out.append(row("Melee swing (main hand)", "", main, attack_power, 1.0, 0.0, False, {}, True, False, main.speed, None, ""))
     if dual:
-        out.append(row("Melee swing (off hand)", "", offhand, attack_power, OFFHAND_DAMAGE, 0.0, False, {}, True, False,
+        out.append(row("Melee swing (off hand)", "", offhand, attack_power, OFFHAND_FACTOR * (1 + offhand_bonus / 100), 0.0, False, {}, True, False,
                        offhand.speed, None, ""))
     for name, spell in sorted(spells.items()):
         base = combat.book.base(spell, level)

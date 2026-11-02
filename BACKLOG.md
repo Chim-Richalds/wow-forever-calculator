@@ -69,7 +69,7 @@ Goal: less code saying the same thing, with no loss of coverage of real behaviou
 ## Combat model  [offline]
 
 - [x] Phases 1 (spells) and 2 (weapon attacks) done (`docs/combat-model-plan.md`).
-- [ ] Not calculated yet: ground effects (Blizzard), the Dual Wield Specialization talent, feral form attacks (Claw, Shred, Maul: form damage), attack-power scaling held in game code (Bloodthirst, Eviscerate per combo point), pet damage.
+- [ ] Not calculated yet: ground effects (Blizzard), feral form attacks (Claw, Shred, Maul: form damage), attack-power scaling held in game code (Bloodthirst, Eviscerate per combo point), pet damage.
 - [ ] Phase 3: a whole-character rate from how often you use each ability.
 
 ## Talent tree data checks  [offline, then servers]

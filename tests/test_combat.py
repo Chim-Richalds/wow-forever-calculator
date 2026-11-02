@@ -110,6 +110,10 @@ class RealDataTests(unittest.TestCase):
         self.assertAlmostEqual(off.direct_min, (50 + 1000 / 14 * 1.8) * 0.5, places=3)
         self.assertEqual((main.hit_chance, off.hit_chance), (100 - 5 - 19 - 5, 100 - 5 - 19 - 5))   # white: +19% miss
         self.assertEqual(rows["Sinister Strike"].hit_chance, 90.0)                                   # specials: not
+        bonus, _ = weapon_numbers(self.combat, self.catalogue.by_class["Rogue"], self.mods, "Rogue", 60, {}, 1000, 0,
+                                  0.0, 0.0, SAME_LEVEL, {}, sword, None, dagger, offhand_bonus=25.0)
+        boosted = next(n for n in bonus if n.spell == "Melee swing (off hand)")
+        self.assertAlmostEqual(boosted.direct_min, off.direct_min * 1.25, places=3)        # 50% -> 62.5%
         two, _ = weapon_numbers(self.combat, self.catalogue.by_class["Warrior"], self.mods, "Warrior", 60, {}, 1000, 0,
                                 0.0, 0.0, SAME_LEVEL, {}, Weapon(150, 230, 3.5, "two-hand"), None, dagger)
         self.assertNotIn("Melee swing (off hand)", {n.spell for n in two})

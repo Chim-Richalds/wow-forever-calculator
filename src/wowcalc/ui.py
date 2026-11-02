@@ -544,7 +544,7 @@ class Workbench:
             ranks = req.alloc.get(node.id, 0)
             row = {"id": node.id, "name": self.label(node), "ranks": ranks, "max": node.max_ranks, "now": {}, "next": {},
                    "damage_now": self.spell_value(req, tree, req.alloc, {k: v for k, v in req.alloc.items() if k != node.id}) if ranks else [],
-                   "damage_next": self.spell_value(req, tree, {**req.alloc, node.id: ranks + 1}, req.alloc) if ranks < node.max_ranks and spell_effects else [],
+                   "damage_next": self.spell_value(req, tree, {**req.alloc, node.id: ranks + 1}, req.alloc) if ranks < node.max_ranks else [],
                    "spells_now": self.talent_spell_effects(tree.class_name, node.spell_id, ranks) if ranks else [],
                    "spells_next": self.talent_spell_effects(tree.class_name, node.spell_id, ranks + 1) if ranks < node.max_ranks else []}
             if ranks:
@@ -635,7 +635,8 @@ class Workbench:
         w_rows, w_skipped = weapon_numbers(self._combat, spells, mods, req.class_name, req.level, ranks,
                                            float(sheet.attack_power.total or 0), float(sheet.ranged_attack_power.total or 0),
                                            total("melee_crit"), melee_hit, TARGETS[req.target], changes,
-                                           weapons.get("main"), weapons.get("ranged"), weapons.get("off"))
+                                           weapons.get("main"), weapons.get("ranged"), weapons.get("off"),
+                                           float(sum(o.percent for o in sheet.other_effects if o.kind == "offhand_damage")))
         weapon_names = {n.spell for n in w_rows} | {w.split(" (")[0] for w in w_skipped}
         skipped = [n for n in skipped if n not in weapon_names] + w_skipped
         return sorted(rows + w_rows, key=lambda n: n.spell), skipped
@@ -659,11 +660,11 @@ class Workbench:
                 continue
             if round(n.expected) != round(old.expected):
                 pct = f" ({(n.expected - old.expected) / old.expected * 100:+.1f}%)" if old.expected else ""
-                out.append(f"{n.spell} {n.expected - old.expected:+.0f} {n.kind} per cast{pct}")
+                out.append(f"{n.spell} {_delta(n.expected - old.expected)} {n.kind} per cast{pct}")
             elif n.per_second and old.per_second and round(n.per_second) != round(old.per_second):
                 # same per cast, but faster (or cheaper): say what it does per second of casting
                 pct = f" ({(n.per_second - old.per_second) / old.per_second * 100:+.1f}%)"
-                out.append(f"{n.spell} {n.per_second - old.per_second:+.0f} {n.kind} per second of casting{pct}")
+                out.append(f"{n.spell} {_delta(n.per_second - old.per_second)} {n.kind} per second of casting{pct}")
         return out
 
     def talent_spell_effects(self, class_name: str, spell_id: str, rank: int) -> list[str]:
@@ -771,6 +772,11 @@ def route(bench: Workbench, method: str, path: str, body: dict | None):
             bench.store.delete(parts[1])
             return 200, {"deleted": parts[1]}
     raise UiError(404, "not found")
+
+
+def _delta(v: float) -> str:
+    """'+12', or '+0.4' for a change under 1."""
+    return f"{v:+.1f}" if abs(v) < 1 else f"{v:+.0f}"
 
 
 def host_name(header: str) -> str:

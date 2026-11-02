@@ -141,7 +141,9 @@ CC_DURATION = "cc_duration"
 ABILITY = "ability"  # an effect of a spell the game does not flag as passive
 THREAT, DAMAGE_DONE, DAMAGE_TAKEN = "threat", "damage_done", "damage_taken"
 SCHOOL_KINDS = {10: THREAT, 79: DAMAGE_DONE, 87: DAMAGE_TAKEN}  # aura -> kind; all three carry a school mask
-OTHER_KINDS = frozenset({CC_DURATION, THREAT, DAMAGE_DONE, DAMAGE_TAKEN})  # decoded, but not sheet figures
+OFFHAND_DAMAGE = "offhand_damage"   # aura 122: "off-hand weapon damage +N%" (Dual Wield Specialization)
+AURA_OFFHAND_DAMAGE = 122
+OTHER_KINDS = frozenset({CC_DURATION, THREAT, DAMAGE_DONE, DAMAGE_TAKEN, OFFHAND_DAMAGE})  # decoded, but not sheet figures
 MODELLED_KINDS = frozenset({STAT_PERCENT, SHEET_ADD, AP_FROM_STAT, SP_FROM_STAT, ARMOR_FROM_STAT, RAP_FROM_STAT}) | OTHER_KINDS
 SPELL_ATTR0_PASSIVE = 0x40
 TARGET_CASTER = 1
@@ -349,6 +351,16 @@ class EffectBook:
             if not values:
                 return make(UNSUPPORTED, values_note, stats, keep_values=False)
             return make(STAT_PERCENT, "", stats)
+        if aura == AURA_OFFHAND_DAMAGE:
+            found = effect_phrase(self.text.get(spell, ""), index)
+            phrase = (found[0] if found else "").lower()
+            if self.passive.get(spell) is False or _int(row.get("ImplicitTarget_0"), -1) != TARGET_CASTER:
+                return make(UNSUPPORTED, "off-hand damage on an ability or someone else", keep_values=False)
+            if not re.search(r"off[- ]?hand", phrase) or "damage" not in phrase:
+                return make(UNSUPPORTED, "aura 122, but the text next to the value is not about off-hand damage", keep_values=False)
+            if not values:
+                return make(UNSUPPORTED, values_note, keep_values=False)
+            return make(OFFHAND_DAMAGE, "", figures=("off hand",), what="white hits")
         if aura == AURA_MECHANIC_DURATION:
             return self._decode_mechanic_duration(row, make, values, values_note)
         if aura in SCHOOL_KINDS:
@@ -460,11 +472,14 @@ _VERB = re.compile(r"\b(increas|improv|reduc|decreas|lower)\w*", re.I)
 _EQUIPMENT = re.compile(r"\b(wands?|weapons?|shields?|daggers?|maces?|swords?|axes?|fist weapons?|staff|staves|polearms?|bows?|guns?|crossbows?|thrown|off-?hand)\b", re.I)
 _STANCE_OR_FORM = re.compile(r"\bin [\w ]*?\b(stance|form)\b", re.I)
 _TAKEN = re.compile(r"\btak(e|en)\b", re.I)
-KIND_LABEL = {THREAT: "threat", DAMAGE_DONE: "damage done", DAMAGE_TAKEN: "damage taken", CC_DURATION: "duration"}
+KIND_LABEL = {THREAT: "threat", DAMAGE_DONE: "damage done", DAMAGE_TAKEN: "damage taken", CC_DURATION: "duration",
+              OFFHAND_DAMAGE: "off-hand weapon damage"}
 
 
 def describe_other(kind: str, what: str) -> str:
     """How an OTHER_KINDS effect reads beside the sheet ("Threat (Frost)")."""
+    if kind == OFFHAND_DAMAGE:
+        return "Off-hand weapon damage"
     if kind == CC_DURATION:
         return f"Duration of {what} effects on you"
     return f"{KIND_LABEL[kind].capitalize()} ({what})"
