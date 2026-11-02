@@ -83,7 +83,7 @@ UNMODELLED_HEADER = ("class", "spec", "talent", "spell_id", "ranks", "effect", "
 
 
 def unmodelled_rows(model: TreeModel, book: EffectBook, names: dict[str, str], spells: dict[str, dict],
-                    spec_names: dict[str, list] | None = None) -> list[tuple]:
+                    spec_names: dict[str, list] | None = None, applied: set[tuple[str, int]] = frozenset()) -> list[tuple]:
     """One row per effect the calculator does not value, for every placed talent: by class, then
     specialization, then position in the tree. A talent with no effects at all gets one row."""
     out = []
@@ -102,7 +102,7 @@ def unmodelled_rows(model: TreeModel, book: EffectBook, names: dict[str, str], s
             if not effects:
                 rows.append(((spec, node.y, node.x), head + (-1, "", "none", "the talent has no effects in the data", text)))
             for e in effects:
-                if not e.modelled:
+                if not e.modelled and (node.spell_id, e.effect_index) not in applied:
                     rows.append(((spec, node.y, node.x, e.effect_index), head + (e.effect_index, e.aura, e.kind, e.note or e.kind, text)))
         out.extend(r for _, r in sorted(rows, key=lambda r: r[0]))
     return out
@@ -184,7 +184,9 @@ def main(argv: list[str] | None = None) -> int:
         except SpecError as exc:
             print(f"WARNING: no specialization names: {exc}")
             spec_names = {}
-        rows = unmodelled_rows(model, book, names, spells, spec_names)
+        from .spells import PROPERTY_OPS, resolve
+        applied = {(m.spell_id, m.effect_index) for m in resolve(ds, model, book) if m.clean and m.op in PROPERTY_OPS and m.by_rank}
+        rows = unmodelled_rows(model, book, names, spells, spec_names, applied)
         buf = io.StringIO()
         writer = csv.writer(buf, delimiter="\t")
         writer.writerow(UNMODELLED_HEADER)
@@ -345,15 +347,27 @@ def main(argv: list[str] | None = None) -> int:
         print(f"{'other':12} {float(o.percent):>+7g}%  {o.text}, from {o.label}")
     for i in sheet.inactive:
         print(f"{'not counted':12} {i.label} ({i.text}): needs {i.needs}")
+    from .spells import PROPERTY_OPS, Catalogue, SpellBook, format_value, resolve, spell_changes
+    catalogue = Catalogue.build(ds, model, book)
+    mods = resolve(ds, model, book, catalogue)
+    applied = {(m.talent, m.effect_index) for m in mods if m.clean and m.op in PROPERTY_OPS and m.by_rank}
+    changes = spell_changes(mods, catalogue, SpellBook(ds), tree.class_name, args.level, {t.spell_id: t.ranks for t in talents})
+    if changes:
+        print("\nSpells changed by these talents (flat amounts added, then percents; order and rounding not checked in game):")
+        for c in changes:
+            print(f"  {c.spell:24} {c.prop:16} {format_value(c.prop, c.unit, c.base):>14} -> {format_value(c.prop, c.unit, c.value):14}"
+                  f"  ({', '.join(f'{t} {a}' for t, a in c.by)})")
     for note in [sheet_base_note, rates_note, *sheet.notes]:
         if note:
             print(f"\nNOTE: {note}")
     if uncertain:
         print("\nThe +/- values come from the fitted stat rates, which the panel only fixes to a range.")
-    if sheet.not_modelled:
+    shown = [(item, [(i, k, why) for i, k, why in item.parts if (item.label, i) not in applied]) for item in sheet.not_modelled]
+    shown = [(item, parts) for item, parts in shown if parts]
+    if shown:
         print("\nPart of these talents is not in the table:")
-        for item in sheet.not_modelled:
-            print(f"  - {item.label} (rank {item.ranks}): " + "; ".join(f"effect {i} {k} ({why})" for i, k, why in item.parts))
+        for item, parts in shown:
+            print(f"  - {item.label} (rank {item.ranks}): " + "; ".join(f"effect {i} {k} ({why})" for i, k, why in parts))
     return 0
 
 

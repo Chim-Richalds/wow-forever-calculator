@@ -11,7 +11,7 @@ sys.path.insert(0, str(REPO / "src"))
 from wowcalc.dataset import Dataset  # noqa: E402
 from wowcalc.effects import EffectBook  # noqa: E402
 from wowcalc.fetch import TABLES  # noqa: E402
-from wowcalc.spells import Catalogue, ClassSpell, effect_text, problem_kind, resolve  # noqa: E402
+from wowcalc.spells import Catalogue, ClassSpell, SpellBook, describe_amount, effect_text, format_value, problem_kind, resolve, spell_changes  # noqa: E402
 from wowcalc.trees import load_model  # noqa: E402
 
 
@@ -23,6 +23,17 @@ class EffectTextTests(unittest.TestCase):
         self.assertEqual(effect_text(text, 1), " sec and its Mana cost by $s2%.")
         self.assertEqual(effect_text("Reduces the global cooldown of Slam by ${$m1/-1000}.2 sec.", 0), "Reduces the global cooldown of Slam by ${$m1/-1000}.2 sec.")
         self.assertEqual(effect_text(text, 2), "")      # the text does not show effect 3
+
+
+class UnitTests(unittest.TestCase):
+    def test_amounts_and_values_in_display_units(self):
+        self.assertEqual(describe_amount("cast time", "", -500, True), "-0.5 s")
+        self.assertEqual(describe_amount("cost", "rage", -30, True), "-3 rage")      # rage modifiers are in tenths
+        self.assertEqual(describe_amount("cost", "mana", -15, False), "-15%")
+        self.assertEqual(describe_amount("range", "", 6, True), "+6 yd")
+        self.assertEqual(format_value("cooldown", "", 180000), "3 min")
+        self.assertEqual(format_value("cast time", "", 2500), "2.5 s")
+        self.assertEqual(format_value("cost", "% of base mana", 10.2), "10.2% of base mana")
 
 
 class ReachTests(unittest.TestCase):
@@ -53,7 +64,10 @@ class RealDataTests(unittest.TestCase):
     def setUpClass(cls):
         ds = Dataset(REAL, PINNED)
         model = load_model(ds)
-        cls.mods = resolve(ds, model, EffectBook.for_model(ds, model))
+        book = EffectBook.for_model(ds, model)
+        cls.catalogue = Catalogue.build(ds, model, book)
+        cls.mods = resolve(ds, model, book, cls.catalogue)
+        cls.book = SpellBook(ds)
 
     def mod(self, talent, index=0):
         return next(m for m in self.mods if m.talent == talent and m.effect_index == index)
@@ -79,6 +93,23 @@ class RealDataTests(unittest.TestCase):
         m = self.mod("Arcane Instability", 1)
         self.assertEqual(m.op, 22)
         self.assertTrue(any("does not say so" in p for p in m.problems))
+
+    def changes(self, class_name, **talents):
+        ids = {m.talent: m.spell_id for m in self.mods}
+        return {(c.spell, c.prop): (c.base, c.value) for c in spell_changes(self.mods, self.catalogue, self.book, class_name, 60,
+                                                                              {ids[t.replace("_", " ")]: r for t, r in talents.items()})}
+
+    def test_cast_time_cooldown_and_cost_changes(self):
+        mage = self.changes("Mage", Improved_Frostbolt=5, Improved_Frost_Nova=2)
+        self.assertEqual(mage[("Frostbolt", "cast time")], (3000.0, 2500.0))
+        self.assertEqual(mage[("Frost Nova", "cooldown")], (25000.0, 21000.0))
+        warrior = self.changes("Warrior", Improved_Heroic_Strike=3)
+        self.assertEqual(warrior[("Heroic Strike", "cost")], (15.0, 12.0))      # rage, stored in tenths
+
+    def test_percent_cost_changes_apply_to_every_spell_reached(self):
+        mage = self.changes("Mage", Frost_Channeling=3)
+        self.assertEqual(mage[("Frostbolt", "cost")][1], mage[("Frostbolt", "cost")][0] * 0.85)
+        self.assertNotIn(("Fireball", "cost"), mage)
 
     def test_every_modifier_is_resolved(self):
         self.assertGreater(len(self.mods), 250)

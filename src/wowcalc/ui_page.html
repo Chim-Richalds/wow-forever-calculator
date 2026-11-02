@@ -539,6 +539,7 @@ function buildSheetSkeleton() {
   $("pane-sheet").innerHTML = `
     <table aria-label="Base stats"><thead><tr><th>Stat</th><th>Base</th><th>Gear and buffs</th><th>Talents</th><th>Total</th></tr></thead><tbody>${rows}</tbody></table>
     <h3 class="sub">Combat figures</h3><div id="figures"></div>
+    <h3 class="sub" id="spellhead" hidden>Spells changed by your talents</h3><div id="spellchanges"></div>
     <ul class="notes" id="notes"></ul>
     <h3 class="sub" id="nmhead" hidden>Not valued by the calculator</h3><div id="notmodelled" class="tiny"></div>`;
   $("pane-sheet").addEventListener("input", (ev) => {
@@ -605,9 +606,19 @@ function renderSheet() {
   $("figures").innerHTML = f + side.map((s) => `<p class="tiny">${s}</p>`).join("");
   if (keep) { const el = $(focused); el.focus(); try { el.setSelectionRange(sel, sel); } catch (_) {} }
   $("notes").innerHTML = sh.notes.map((n) => `<li>${esc(n)}</li>`).join("");
+  renderSpellChanges();
   const nm = sh.not_modelled;
   $("nmhead").hidden = !nm.length;
   $("notmodelled").innerHTML = nm.map((n) => `<p><strong>${esc(n.label)}</strong> (${n.ranks}): ${esc(n.parts.map((p) => p.why).join("; "))}</p>`).join("");
+}
+
+// Spells the build's talents change (cost, cast time, cooldown, duration, range): base -> with talents.
+function renderSpellChanges() {
+  const rows = (S.result && S.result.spells) || [];
+  $("spellhead").hidden = !rows.length;
+  $("spellchanges").innerHTML = rows.length ? `<div style="overflow-x:auto"><table><thead><tr><th>Spell</th><th>Property</th><th class="num">Base</th><th class="num">With talents</th></tr></thead><tbody>${
+    rows.map((r) => `<tr><td>${esc(r.spell)}</td><td>${esc(r.prop)}</td><td class="num">${esc(r.base)}</td><td class="num" title="${esc(r.by.map((b) => `${b[0]}: ${b[1]}`).join(", "))}"><strong>${esc(r.value)}</strong></td></tr>`).join("")
+  }</tbody></table></div><p class="tiny">From the highest rank your level allows. Several talents on one property: flat amounts are added, then the percents (added together) are applied. That order and the game's rounding have not been checked in game. Hover a value to see which talents changed it.</p>` : "";
 }
 
 function renderValues() {
@@ -629,7 +640,12 @@ function renderValues() {
     </div>
     <p class="hint">Each figure is the sheet with the talent minus the sheet without it${S.mode === "next" ? ", or with one more rank minus now" : ""}. It does not check that the rest of the build stays legal.</p>
     ${rows.length ? `<div style="overflow-x:auto"><table id="values"><thead><tr><th scope="col">Talent</th>${head}</tr></thead><tbody>${body}</tbody></table></div>`
+      : S.result.values.some((v) => (v[S.mode === "now" ? "spells_now" : "spells_next"] || []).length) ? ""
       : `<p class="empty">${S.mode === "now" ? "No talent in this build has a value the calculator can work out yet. Add talents in the tree." : "No talent here has a rank left that the calculator can value."}</p>`}`;
+  const spellKey = S.mode === "now" ? "spells_now" : "spells_next";
+  const withSpells = S.result.values.filter((v) => (v[spellKey] || []).length);
+  if (withSpells.length) $("pane-values").insertAdjacentHTML("beforeend", `<h3 class="sub">Spell changes</h3><ul class="notes" style="color:inherit">${
+    withSpells.map((v) => `<li><strong>${esc(v.name)}</strong> <span class="tiny num">${S.mode === "now" ? v.ranks : v.ranks + 1}/${v.max}</span>: ${v[spellKey].map(esc).join("; ")}</li>`).join("")}</ul>`);
   $("pane-values").querySelectorAll("[data-mode]").forEach((b) => b.addEventListener("click", () => { S.mode = b.dataset.mode; renderValues(); }));
   $("pane-values").querySelectorAll("[data-sort]").forEach((b) => b.addEventListener("click", () => { S.sort = S.sort === b.dataset.sort ? null : b.dataset.sort; renderValues(); }));
 }

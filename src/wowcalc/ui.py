@@ -483,7 +483,12 @@ class Workbench:
             "legal": bool(verdict), "problems": list(verdict.problems),
             "spent": spent(tree, req.alloc), "budget": points_have, "nodes": nodes,
             "sheet": self.sheet_json(sheet, req),
+            "spells": self.spell_rows(req, tree, req.alloc),
         }
+        applied = self.applied_spell_effects(tree, req.alloc)
+        out["sheet"]["not_modelled"] = [
+            {**n, "parts": [p for p in n["parts"] if (n["label"], p["effect"]) not in applied]} for n in out["sheet"]["not_modelled"]]
+        out["sheet"]["not_modelled"] = [n for n in out["sheet"]["not_modelled"] if n["parts"]]
         if req.values:
             out["values"] = self.values(req, tree, sheet)
         return out
@@ -492,10 +497,13 @@ class Workbench:
         base = self.metrics(sheet)
         rows = []
         for node in sorted(tree.nodes.values(), key=lambda n: (n.y, n.x, n.id)):
-            if not any(e.modelled for e in self.effects_of(node)):
+            spell_effects = self.talent_spell_effects(tree.class_name, node.spell_id, node.max_ranks)
+            if not any(e.modelled for e in self.effects_of(node)) and not spell_effects:
                 continue
             ranks = req.alloc.get(node.id, 0)
-            row = {"id": node.id, "name": self.label(node), "ranks": ranks, "max": node.max_ranks, "now": {}, "next": {}}
+            row = {"id": node.id, "name": self.label(node), "ranks": ranks, "max": node.max_ranks, "now": {}, "next": {},
+                   "spells_now": self.talent_spell_effects(tree.class_name, node.spell_id, ranks) if ranks else [],
+                   "spells_next": self.talent_spell_effects(tree.class_name, node.spell_id, ranks + 1) if ranks < node.max_ranks else []}
             if ranks:
                 without = {k: v for k, v in req.alloc.items() if k != node.id}
                 row["now"] = self.difference(base, self.metrics(self.sheet_for(req, without)))
@@ -528,6 +536,46 @@ class Workbench:
         if self.rates is not None:
             out["references"] = {k: v for k, v in self.rates.references.items() if k in ("source", "build", "status")}
         return out
+
+    # ---- the spell model (spells.py) ----
+    def spell_model(self):
+        """(catalogue, modifiers, spell book), built once."""
+        if not hasattr(self, "_spell_model"):
+            from .spells import Catalogue, SpellBook, resolve
+            catalogue = Catalogue.build(self.ds, self.model, self.book)
+            self._spell_model = (catalogue, resolve(self.ds, self.model, self.book, catalogue), SpellBook(self.ds))
+        return self._spell_model
+
+    def spell_rows(self, req: Request, tree: ClassTree, alloc: dict[str, int]) -> list[dict]:
+        from .spells import format_value, spell_changes
+        catalogue, mods, book = self.spell_model()
+        ranks = {tree.nodes[n].spell_id: r for n, r in alloc.items() if r}
+        return [{"spell": c.spell, "prop": c.prop, "base": format_value(c.prop, c.unit, c.base), "value": format_value(c.prop, c.unit, c.value),
+                 "by": [list(b) for b in c.by]}
+                for c in spell_changes(mods, catalogue, book, req.class_name, req.level, ranks)]
+
+    def talent_spell_effects(self, class_name: str, spell_id: str, rank: int) -> list[str]:
+        """What one talent at `rank` does to spells, in its own terms ("cast time -0.5 s: Frostbolt")."""
+        from .spells import PROPERTY_OPS, describe_amount
+        catalogue, mods, book = self.spell_model()
+        out = []
+        for m in mods:
+            if m.spell_id != spell_id or m.class_name != class_name or not m.clean or m.op not in PROPERTY_OPS or rank not in m.by_rank:
+                continue
+            prop = PROPERTY_OPS[m.op]
+            spells_of_class = catalogue.by_class.get(class_name, {})
+            unit = book.base(spells_of_class[m.matched[0]], 60).cost_unit if prop == "cost" and m.matched else ""
+            spells = ", ".join(m.matched[:3]) + (f" and {len(m.matched) - 3} more" if len(m.matched) > 3 else "")
+            out.append(f"{prop} {describe_amount(prop, unit, m.by_rank[rank], m.flat)}: {spells}")
+        return out
+
+    def applied_spell_effects(self, tree: ClassTree, alloc: dict[str, int]) -> set[tuple[str, int]]:
+        """(talent label, effect index) of spell modifiers the Spells section applies."""
+        from .spells import PROPERTY_OPS
+        _, mods, _ = self.spell_model()
+        labels = {n.spell_id: self.label(n) for n in tree.nodes.values() if n.entries}
+        return {(labels[m.spell_id], m.effect_index) for m in mods
+                if m.spell_id in labels and m.clean and m.op in PROPERTY_OPS and m.by_rank}
 
     def spell_audit(self) -> list[str]:
         """The spell model's audit (spells.py): the summary, then the modifiers whose text and data

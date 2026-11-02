@@ -58,9 +58,9 @@ Hunter	Rapid Killing	0	cooldown	flat	-120000	Rapid Fire	Rapid Fire, Fire spells	
 Hunter	Improved Arcane Shot	0	cooldown	flat	-1500	Arcane Shot	Arcane Shot, Arcane spells	
 Hunter	Mortal Shots	0	critical strike bonus	percent	30	Arcane Shot, Auto Shot, Chimera Shot - Serpent, Concussive Shot, Multi-Shot, Scatter Shot, Serpent Sting, Sniper Shot, Volley		
 Hunter	Barrage	0	damage or healing	percent	10	Multi-Shot, Volley	Multi-Shot, Volley	
-Hunter	Barrage	1	periodic damage or healing	percent			Multi-Shot, Volley	reaches no spell the character casts itself; its mask matches no spell at all
+Hunter	Barrage	1	periodic damage or healing	percent			Multi-Shot, Volley	no value per rank in the data (changes particular spells, not the character sheet); reaches no spell the character casts itself; its mask matches no spell at all
 Hunter	Improved Serpent Sting	0	periodic damage or healing	percent	10	Chimera Shot - Serpent, Serpent Sting	Serpent Sting	the mask also reaches Chimera Shot - Serpent, which the text does not name
-Hunter	Improved Serpent Sting	1	damage or healing	percent		Chimera Shot - Serpent, Serpent Sting	Serpent Sting	the mask also reaches Chimera Shot - Serpent, which the text does not name
+Hunter	Improved Serpent Sting	1	damage or healing	percent		Chimera Shot - Serpent, Serpent Sting	Serpent Sting	no value per rank in the data (changes particular spells, not the character sheet); the mask also reaches Chimera Shot - Serpent, which the text does not name
 Hunter	Improved Tracking	0	op 12	flat	5	Track Beasts, Track Demons, Track Dragonkin, Track Elementals, Track Giants, Track Hidden, Track Humanoids, Track Undead		op 12: changes the spell's own effect amounts; valued with the spells' effects (phase 4)
 Hunter	Savage Strikes	0	critical strike chance	flat	4	Counterattack, Flanking Strike, Mongoose Bite, Raptor Strike, Strider Kick, Wing Clip		
 Hunter	Clever Traps	0	duration	percent	30		Explosive Trap, Frost Trap, Frost spells	reaches no spell the character casts itself; it reaches Freezing Trap, Frost Trap, OLDFrost Trap Effect (pet abilities, poisons, totem or weapon effects: modelled later); the text names Frost Trap but no modifier of the talent reaches it
@@ -261,7 +261,7 @@ Warrior	Improved Overpower	0	critical strike chance	flat	50	Overpower	Overpower
 Warrior	Impale	0	critical strike bonus	percent	20	Bloodthirst, Cleave, Concussion Blow, Devastate, Execute, Hamstring, Heroic Strike, Intercept, Mocking Blow, Mortal Strike, Overpower, Pummel, Quick Strike, Raging Blow, Rend, Retaliation, Revenge, Shield Bash, Shield Slam, Shockwave, Slam, Spearing Strike, Sunder Armor, Thunder Clap, Victory Rush, Whirlwind		
 Warrior	Improved Slam	0	cast time	flat	-500	Slam	Slam	
 Warrior	Improved Slam	1	global cooldown	flat	-500	Slam	Slam	
-Warrior	Improved Slam	2	cooldown	flat		Slam	Slam	
+Warrior	Improved Slam	2	cooldown	flat		Slam	Slam	no value per rank in the data (changes particular spells, not the character sheet)
 Warrior	Booming Voice	0	radius	percent	50	Battle Shout, Challenging Shout, Demoralizing Shout, Intimidating Shout		op 6 (radius), but the text does not say so
 Warrior	Booming Voice	1	cost	percent	-25	Battle Shout, Challenging Shout, Demoralizing Shout, Intimidating Shout		
 Warrior	Raging Blows	1	cost	flat	-30	Cleave, Whirlwind	Cleave, Whirlwind	

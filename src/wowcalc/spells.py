@@ -98,6 +98,13 @@ class SpellModifier:
         return not self.problems
 
 
+def _rows(ds: Dataset, table: str, columns: set[str]) -> list[dict]:
+    """The table's rows, or none if the build lacks the table or these columns."""
+    if not ds.has_table(table) or not columns <= set(ds.columns(table)):
+        return []
+    return ds.rows(table)
+
+
 def _u32(value) -> int:
     return _int(value) & 0xFFFFFFFF
 
@@ -116,14 +123,15 @@ class Catalogue:
 
     @classmethod
     def build(cls, ds: Dataset, model: TreeModel, book: EffectBook) -> "Catalogue":
-        names = {r["ID"]: r["Name_lang"] for r in ds.rows("SpellName")}
+        names = {r["ID"]: r["Name_lang"] for r in _rows(ds, "SpellName", {"ID", "Name_lang"})}
         options = {}
-        for r in ds.rows("SpellClassOptions"):
+        for r in _rows(ds, "SpellClassOptions", {"SpellID", "SpellClassSet", "SpellClassMask_0", "SpellClassMask_1",
+                                                  "SpellClassMask_2", "SpellClassMask_3"}):
             options[r["SpellID"]] = (r["SpellClassSet"], tuple(_u32(r[f"SpellClassMask_{i}"]) for i in range(4)))
         school_names = book.schools
-        school_mask = {r["SpellID"]: _int(r.get("SchoolMask")) for r in ds.rows("SpellMisc")}
+        school_mask = {r["SpellID"]: _int(r.get("SchoolMask")) for r in _rows(ds, "SpellMisc", {"SpellID"})}
         learnable: dict[str, dict[str, str]] = defaultdict(dict)   # class -> spell id -> source
-        for r in ds.rows("SkillLineAbility"):
+        for r in _rows(ds, "SkillLineAbility", {"Spell", "ClassMask"}):
             bits = _int(r.get("ClassMask"))
             for class_name, bit in CLASS_BITS.items():
                 if bits & bit:
@@ -176,7 +184,7 @@ def effect_text(text: str, index: int) -> str:
 def resolve(ds: Dataset, model: TreeModel, book: EffectBook, catalogue: Catalogue | None = None) -> list[SpellModifier]:
     """Every spell modifier on a placed talent, with the spells it reaches and what the text says."""
     catalogue = catalogue or Catalogue.build(ds, model, book)
-    spell_names = {r["ID"]: r["Name_lang"] for r in ds.rows("SpellName")}
+    spell_names = {r["ID"]: r["Name_lang"] for r in _rows(ds, "SpellName", {"ID", "Name_lang"})}
     out = []
     for tree in sorted(model.trees.values(), key=lambda t: t.class_name):
         spells = catalogue.by_class.get(tree.class_name, {})
@@ -214,6 +222,8 @@ def resolve(ds: Dataset, model: TreeModel, book: EffectBook, catalogue: Catalogu
                     problems.append(f"op {op}: what it changes is not established from talent texts yet")
                 elif not any(w in checked for w in OP_WORDS[op][1]):
                     problems.append(f"op {op} ({OP_WORDS[op][0]}), but the text does not say so")
+                if not e.by_rank:
+                    problems.append(f"no value per rank in the data ({e.note or 'no scaling data'})")
                 if not family:
                     problems.append("the talent spell has no spell family (SpellClassOptions)")
                 elif not matched:
@@ -238,6 +248,136 @@ def resolve(ds: Dataset, model: TreeModel, book: EffectBook, catalogue: Catalogu
     return out
 
 
+# ---- phase 2: what the talents do to each spell's cost, cast time, cooldown, duration and range
+
+# Op -> the property it changes. Times are milliseconds, range yards, costs in the table's units
+# (rage in tenths: Heroic Strike 150 = 15 rage, and Improved Heroic Strike -10 = -1 rage).
+PROPERTY_OPS = {14: "cost", 10: "cast time", 11: "cooldown", 21: "global cooldown", 1: "duration", 5: "range"}
+POWER_TYPES = {0: ("mana", 1), 1: ("rage", 10), 3: ("energy", 1), 2: ("focus", 1), 6: ("runic power", 10)}
+
+
+@dataclass(frozen=True)
+class SpellBase:
+    """One spell's properties at the highest rank the level allows. None: the spell has none."""
+    name: str
+    spell_id: str
+    level: int
+    cost: float | None = None
+    cost_unit: str = ""          # "mana", "rage", "energy", or "% of base mana"
+    cast_time: float | None = None       # milliseconds
+    cooldown: float | None = None
+    global_cooldown: float | None = None
+    duration: float | None = None
+    range: float | None = None           # yards
+
+
+@dataclass(frozen=True)
+class SpellChange:
+    spell: str
+    prop: str                    # a PROPERTY_OPS value
+    base: float
+    value: float
+    unit: str
+    by: tuple[tuple[str, str], ...]   # (talent, what it does: "-0.5 s", "-15%")
+
+
+class SpellBook:
+    """Base properties of the class spells, read once."""
+
+    def __init__(self, ds: Dataset):
+        self.levels = {r["SpellID"]: _int(r.get("SpellLevel")) or _int(r.get("BaseLevel")) for r in _rows(ds, "SpellLevels", {"SpellID"})}
+        self.power: dict[str, dict] = {}
+        for r in _rows(ds, "SpellPower", {"SpellID", "ManaCost"}):
+            if r["SpellID"] not in self.power or _int(r.get("OrderIndex")) < _int(self.power[r["SpellID"]].get("OrderIndex")):
+                self.power[r["SpellID"]] = r
+        self.misc = {r["SpellID"]: r for r in _rows(ds, "SpellMisc", {"SpellID"})}
+        self.cast = {r["ID"]: _int(r["Base"]) for r in _rows(ds, "SpellCastTimes", {"ID", "Base"})}
+        self.cooldowns = {r["SpellID"]: r for r in _rows(ds, "SpellCooldowns", {"SpellID"})}
+        self.durations = {r["ID"]: _int(r["Duration"]) for r in _rows(ds, "SpellDuration", {"ID", "Duration"})}
+        self.ranges = {r["ID"]: float(r["RangeMax_0"] or 0) for r in _rows(ds, "SpellRange", {"ID", "RangeMax_0"})}
+
+    def base(self, spell: ClassSpell, level: int) -> SpellBase:
+        ranks = [(self.levels.get(sid, 0), _int(sid), sid) for sid in spell.spell_ids]
+        usable = [r for r in ranks if r[0] <= level] or [min(ranks)]
+        lv, _, sid = max(usable)
+        misc = self.misc.get(sid, {})
+        cost, unit = None, ""
+        pw = self.power.get(sid)
+        if pw is not None:
+            if _int(pw.get("PowerCostPct")):
+                cost, unit = float(pw["PowerCostPct"]), "% of base mana"
+            elif _int(pw.get("ManaCost")):
+                name, scale = POWER_TYPES.get(_int(pw.get("PowerType")), (f"power type {pw.get('PowerType')}", 1))
+                cost, unit = _int(pw["ManaCost"]) / scale, name
+        cast = self.cast.get(misc.get("CastingTimeIndex", ""))
+        cd = self.cooldowns.get(sid, {})
+        recovery = max(_int(cd.get("RecoveryTime")), _int(cd.get("CategoryRecoveryTime")))
+        duration = self.durations.get(misc.get("DurationIndex", ""))
+        rng = self.ranges.get(misc.get("RangeIndex", ""))
+        return SpellBase(spell.name, sid, lv, cost, unit, float(cast) if cast is not None else None,
+                         float(recovery) if recovery else None, float(_int(cd.get("StartRecoveryTime"))) if cd.get("StartRecoveryTime") else None,
+                         float(duration) if duration and duration > 0 else None, rng if rng else None)
+
+
+def _scaled(prop: str, unit: str, value: float) -> float:
+    """A modifier's flat value in the property's display units (rage modifiers are in tenths)."""
+    if prop == "cost" and unit in ("rage", "runic power"):
+        return value / 10
+    return value
+
+
+def describe_amount(prop: str, unit: str, value: float, flat: bool) -> str:
+    if not flat:
+        return f"{value:+g}%"
+    if prop in ("cast time", "cooldown", "global cooldown", "duration"):
+        return f"{value / 1000:+g} s"
+    if prop == "range":
+        return f"{value:+g} yd"
+    return f"{_scaled(prop, unit, value):+g} {unit}"
+
+
+def spell_changes(mods: list[SpellModifier], catalogue: Catalogue, book: SpellBook, class_name: str, level: int,
+                  ranks: dict[str, int]) -> list[SpellChange]:
+    """What the talents (talent spell id -> ranks) do to the class's spells: (base + flat) x (1 + sum of
+    percents), per spell and property. Only modifiers that agree with their text are applied. The
+    order and how percents combine are not checked in game (the plan's open questions)."""
+    parts: dict[tuple[str, str], list[tuple[str, float, bool]]] = defaultdict(list)
+    for m in mods:
+        r = ranks.get(m.spell_id, 0)
+        if m.class_name != class_name or not r or not m.clean or m.op not in PROPERTY_OPS or r not in m.by_rank:
+            continue
+        for spell in m.matched:
+            parts[(spell, PROPERTY_OPS[m.op])].append((m.talent, m.by_rank[r], m.flat))
+    spells = catalogue.by_class.get(class_name, {})
+    out = []
+    for (name, prop), items in sorted(parts.items()):
+        base = book.base(spells[name], level)
+        attr = prop.replace(" ", "_")
+        start = getattr(base, attr)
+        if start is None:
+            continue
+        unit = base.cost_unit if prop == "cost" else ""
+        flat = sum(_scaled(prop, unit, v) for _, v, is_flat in items if is_flat)
+        pct = sum(v for _, v, is_flat in items if not is_flat)
+        value = max(0.0, (start + flat) * (1 + pct / 100))
+        if value == start:
+            continue
+        out.append(SpellChange(name, prop, start, value, unit,
+                               tuple((t, describe_amount(prop, unit, v, f)) for t, v, f in items)))
+    return out
+
+
+def format_value(prop: str, unit: str, value: float) -> str:
+    if prop in ("cast time", "cooldown", "global cooldown", "duration"):
+        seconds = value / 1000
+        if seconds >= 120:
+            return f"{seconds / 60:g} min"
+        return f"{round(seconds, 2):g} s"
+    if prop == "range":
+        return f"{round(value, 1):g} yd"
+    return f"{round(value, 1):g}{'%' if unit.startswith('%') else ''} {unit.removeprefix('% ')}".strip()
+
+
 AUDIT_HEADER = ("class", "talent", "effect", "op", "flat_or_percent", "top_rank_value", "spells_reached", "text_names", "problems")
 
 
@@ -255,6 +395,7 @@ PROBLEM_KINDS = (
     ("casts itself", "reaches only pet, poison, totem or weapon spells (later)"),
     ("matches no spell", "the mask matches no spell"),
     ("no spell family", "the talent has no spell family"),
+    ("no value per rank", "no value per rank in the data"),
     ("no modifier of the talent", "the text names a spell no modifier reaches"),
     ("spells, but the mask", "reaches spells outside the school the text names"),
     ("which the text does not name", "reaches spells the text does not name"),
