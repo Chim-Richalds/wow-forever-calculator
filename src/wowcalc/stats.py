@@ -50,7 +50,7 @@ from .basestats import BaseStatTable
 from .perlevel import mana_total
 from .rates import RateTable, StatEffects
 from .sheetbase import SheetBase, SheetBaseError
-from .effects import AP_FROM_STAT, ARMOR_FROM_STAT, OTHER_KINDS, SHEET_ADD, SHEET_FIGURES, SP_FROM_STAT, STAT_PERCENT, EffectBook, TalentEffect, describe_other
+from .effects import AP_FROM_STAT, ARMOR_FROM_STAT, OTHER_KINDS, SHEET_ADD, SHEET_FIGURES, SP_FROM_STAT, STAT_PERCENT, EffectBook, TalentEffect, describe_other, describe_requirement
 from .trees import Node
 
 # Where each sheet figure's base lives in the sheet-figures file: (section, label).
@@ -192,6 +192,13 @@ class NotModelled:
 
 
 @dataclass(frozen=True)
+class Inactive:
+    label: str  # the talent
+    text: str   # what it would give ("Threat (all schools)")
+    needs: str  # "Wearing a shield and In Defensive Stance"
+
+
+@dataclass(frozen=True)
 class OtherEffect:
     label: str  # the talent
     kind: str
@@ -216,6 +223,8 @@ class Sheet:
     # Decoded effects that are not sheet figures (threat, damage done or taken, crowd control
     # durations), one per effect and not summed: how several combine is not checked in game.
     other_effects: list["OtherEffect"] = field(default_factory=list)
+    # Valued effects that do not count now because their situation does not hold.
+    inactive: list["Inactive"] = field(default_factory=list)
 
 
 def build_sheet(
@@ -228,8 +237,12 @@ def build_sheet(
     sheet_base: SheetBase | None = None,
     rates: RateTable | None = None,
     shield: bool = False,
+    conditions: Iterable[str] = (),
 ) -> Sheet:
+    """`conditions`: the situations that hold (CONDITIONS keys); `shield` adds "shield"."""
     base = table.at(class_name, race_name, level)  # KeyError / ValueError for a bad request
+    active = set(conditions) | ({"shield"} if shield else set())
+    inactive: list[Inactive] = []
     adjustments = dict(adjustments or {})
     unknown = sorted(set(adjustments) - set(ADJUSTABLE))
     if unknown:
@@ -247,6 +260,10 @@ def build_sheet(
             continue
         parts: list[tuple[int, str, str]] = []
         for effect in talent.effects:
+            if effect.modelled and talent.ranks in effect.by_rank and any((key in active) != wanted for key, wanted in effect.requires):
+                inactive.append(Inactive(talent.label, describe_other(effect.kind, effect.what) if effect.kind in OTHER_KINDS else effect.kind,
+                                         describe_requirement(effect.requires)))
+                continue
             if effect.modelled and talent.ranks in effect.by_rank:
                 value = effect.by_rank[talent.ranks]
                 if effect.kind == STAT_PERCENT:
@@ -382,7 +399,7 @@ def build_sheet(
     if sp_parts["spell_power"] or sp_parts["healing"]:
         notes.append("spell power and healing from a stat: the amount is rounded down; the game's rounding has not been checked")
     return Sheet(class_name, race_name, level, lines, figures, attack, armor_line, spell_power, healing, block_value, not_modelled, notes,
-                 other_effects)
+                 other_effects, inactive)
 
 
 def _armor(rates: RateTable | None, level: int, lines: dict[str, StatLine], adjustments, panel_armor, rates_applied: bool,

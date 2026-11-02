@@ -32,7 +32,7 @@ from .rates import RatesError, load_rates
 from .sheetbase import SheetBaseError, load_sheet_base
 from .specs import SpecError, load_spec_names, name_trees
 from .dataset import Dataset
-from .effects import STAT_PERCENT, EffectBook, render_tooltip
+from .effects import CONDITIONS, STAT_PERCENT, EffectBook, render_tooltip
 from .fetch import TABLES
 from .stats import SHEET_STATS, apply_percents, build_sheet, ranked
 from .trees import ClassTree, Node, TreeModel, load_model
@@ -153,6 +153,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--adjust", action="append", default=[], metavar="STAT=AMOUNT",
                     help="stats or armor you add by hand, e.g. agility=20 or armor=1500 (armor on your gear)")
     ap.add_argument("--shield", action="store_true", help="the character wears a shield (shows block)")
+    ap.add_argument("--condition", action="append", default=[], choices=sorted(CONDITIONS),
+                    help="a situation that holds, for talents that depend on one (repeatable)")
     ap.add_argument("--attacker-level", type=int, help="with --shield: also show block chance against an attacker of this level")
     ap.add_argument("--vs-player", action="store_true", help="the attacker is a player (0.2%% per level instead of 0.5%% for a mob)")
     ap.add_argument("--out", type=Path, help="unmodelled: write the list to this file")
@@ -257,7 +259,7 @@ def main(argv: list[str] | None = None) -> int:
         allocation[node.id] = ranks
         talents.append(ranked(book, node, names.get(node.spell_id, node.spell_id), ranks))
     try:
-        sheet = build_sheet(table, tree.class_name, args.race, args.level, talents, adjust, sheet_base, rates, args.shield)
+        sheet = build_sheet(table, tree.class_name, args.race, args.level, talents, adjust, sheet_base, rates, args.shield, args.condition)
     except (KeyError, ValueError) as exc:
         print(f"ERROR: {exc.args[0] if exc.args else exc}")
         return 2
@@ -334,6 +336,8 @@ def main(argv: list[str] | None = None) -> int:
         print(f"{'block value':12} {sheet.block_value_from_strength:>8}  (from Strength only; the shield's own block value is not included)")
     for o in sheet.other_effects:
         print(f"{'other':12} {float(o.percent):>+7g}%  {o.text}, from {o.label}")
+    for i in sheet.inactive:
+        print(f"{'not counted':12} {i.label} ({i.text}): needs {i.needs}")
     for note in [sheet_base_note, rates_note, *sheet.notes]:
         if note:
             print(f"\nNOTE: {note}")

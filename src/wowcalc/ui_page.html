@@ -155,6 +155,7 @@ h3.sub { font-size: 15px; margin: 18px 0 6px; }
   <label class="field">Race <select id="race"></select></label>
   <label class="field">Level <input id="level" type="number" min="1" max="60" value="60"></label>
   <label class="check"><input id="shield" type="checkbox"> Wearing a shield</label>
+  <span id="conditions" style="display:contents"></span>
   <label class="field" id="attackerField" hidden>Attacker level <input id="attacker" type="number" min="1" max="70"></label>
   <label class="check" id="playerField" hidden><input id="vsplayer" type="checkbox"> Attacker is a player</label>
   <span class="spacer"></span>
@@ -223,7 +224,7 @@ const keysIn = (objs) => {
 };
 
 const S = { meta: null, tree: null, nodes: new Map(), cls: null, race: null, alloc: {}, adjust: {}, result: null, tab: "sheet",
-  mode: "now", sort: null, seq: 0, timer: null, status: null, updating: false };
+  mode: "now", sort: null, seq: 0, timer: null, status: null, updating: false, conditions: new Set() };
 
 async function api(method, path, body) {
   const res = await fetch(path, { method, headers: body ? { "Content-Type": "application/json" } : {}, body: body ? JSON.stringify(body) : undefined });
@@ -333,9 +334,20 @@ async function pickClass(cls, reset) {
   if (reset) { S.alloc = {}; }
   S.tree = await api("GET", "/api/tree/" + encodeURIComponent(cls));
   S.nodes = new Map(S.tree.nodes.map((n) => [n.id, n]));
+  renderConditions();
   $("treetitle").textContent = cls + " talents";
   drawTree();
   await evaluate();
+}
+// Situations this class's talents depend on (stance, weapon, imbue): one checkbox each.
+function renderConditions() {
+  const offered = S.tree.conditions || [];
+  S.conditions = new Set([...S.conditions].filter((k) => offered.some((c) => c.key === k)));
+  $("conditions").innerHTML = offered.map((c) => `<label class="check"><input type="checkbox" data-cond="${esc(c.key)}"${S.conditions.has(c.key) ? " checked" : ""}> ${esc(c.label)}</label>`).join("");
+  $("conditions").querySelectorAll("[data-cond]").forEach((el) => el.addEventListener("change", () => {
+    if (el.checked) S.conditions.add(el.dataset.cond); else S.conditions.delete(el.dataset.cond);
+    queue();
+  }));
 }
 function syncShield() {
   const on = $("shield").checked;
@@ -345,7 +357,8 @@ function queue() { clearTimeout(S.timer); S.timer = setTimeout(evaluate, 120); }
 
 function request() {
   return { class: S.cls, race: S.race, level: Number($("level").value), alloc: S.alloc, adjust: S.adjust,
-    shield: $("shield").checked, attacker_level: $("attacker").value === "" ? null : Number($("attacker").value), vs_player: $("vsplayer").checked };
+    shield: $("shield").checked, attacker_level: $("attacker").value === "" ? null : Number($("attacker").value), vs_player: $("vsplayer").checked,
+    conditions: [...S.conditions] };
 }
 async function evaluate() {
   const mine = ++S.seq;
@@ -566,6 +579,7 @@ function renderSheet() {
   if (ar.base != null && ar.damage_reduction != null) side.push(`Damage reduction against your own level: <strong>${fmt(ar.damage_reduction)}%</strong>`);
   if (sh.block_value != null) side.push(`Block value from Strength: <strong>${sh.block_value}</strong> (the shield's own value is not included)`);
   for (const o of sh.other_effects || []) side.push(`${esc(o.text)}: <strong>${signed(o.percent)}%</strong> (${esc(o.label)})`);
+  for (const i of sh.inactive || []) side.push(`${esc(i.label)} (${esc(i.text)}) is not counted: needs <em>${esc(i.needs)}</em>`);
   if (sh.block_against) side.push(`Block chance against a level ${sh.block_against.level} ${sh.block_against.player ? "player" : "mob"}: <strong>${fmt(sh.block_against.chance)}%</strong>`);
   const focused = document.activeElement && ["armorgear", "spellgear", "healinggear"].includes(document.activeElement.id) ? document.activeElement.id : null;
   const keep = !!focused;
@@ -678,7 +692,7 @@ async function loadBuild() {
   if (!name) { toast("Type or pick the name of a saved build."); return; }
   try {
     const b = await api("GET", "/api/builds/" + encodeURIComponent(name));
-    S.race = b.race; S.alloc = b.alloc || {}; S.adjust = b.adjust || {};
+    S.race = b.race; S.alloc = b.alloc || {}; S.adjust = b.adjust || {}; S.conditions = new Set(b.conditions || []);
     $("level").value = b.level; $("shield").checked = !!b.shield; $("attacker").value = b.attacker_level ?? ""; $("vsplayer").checked = !!b.vs_player;
     syncShield();
     document.querySelectorAll("[data-adj]").forEach((el) => { el.value = S.adjust[el.dataset.adj] || 0; });

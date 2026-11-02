@@ -27,11 +27,12 @@ Principles that apply to everything below: data-driven, versioned, traceable, ne
 
 ## Modelling more talents  [offline]
 
-The full list is `docs/unmodelled_effects.tsv` (regenerate it after each change and each new build: `python -m wowcalc.talentinfo unmodelled --out docs/unmodelled_effects.tsv`). Of 468 talents, 45 are fully modelled and 20 partly (build 1.60.1.70707-hf202610311059, 2026-11-02). What is left, by type:
+The full list is `docs/unmodelled_effects.tsv` (regenerate it after each change and each new build: `python -m wowcalc.talentinfo unmodelled --out docs/unmodelled_effects.tsv`). Of 468 talents, 52 are fully modelled and 20 partly (build 1.60.1.70707-hf202610311059, 2026-11-02). What is left, by type:
 
 - [ ] Auras decoded for the sheet but still conditional: 54, 290, 55, 49, 47, 51 (abilities with a duration, a single form).
 - [ ] What is not valued on 1.60.1.70707-hf202610311059 (694 effects): 181 belong to abilities and forms (85 talents; kind `ability`, need a combat model), 275 change particular spells, 180 are scripts, and 58 are undecoded auras on passive talents (most common: 332 x13, 79 x6, 122 x3, 231 x3; 332 are single-spell changes such as Improved Slam, 79 and 10 the equipment- or state-dependent ones). Read the tooltips first; never assume the meaning from the aura number.
-- [ ] Damage done, threat and damage taken that depend on equipment (Weapon and Wand Specializations, Bastion, Defiance) or a state (Lone Wolf, Instrument of Law, Spirit Weapons): need gear and state inputs.
+- [x] Situational damage and threat: the page has a box per situation a class's talents need (shield, two-handed weapon, Defensive Stance, Rockbiter Weapon); effects that need one are listed as "not counted: needs ..." until it is set. Weapon-scoped bonuses ("damage with wands / ranged weapons / two-handed melee weapons") are shown with that scope. A condition at the end of a sentence covers the sentence's earlier values unless they have their own (fixes Paladin Two-Handed Weapon Specialization, whose damage was counted without the weapon).
+- [ ] Still not counted for lack of data: Lone Wolf (its text shows the script effect's 20%, not the damage aura's), Sharpened Claws and Furious Precision (no rank values). Forms and an active pet would need inputs too.
 - [x] The passive-spell check (SpellMisc) also guards the sheet decoders. On 1.60.1.70707 all 55 counted sheet effects are on passive spells, so nothing changed.
 - [ ] Spell modifiers (auras 107 and 108, about 300 effects): they change particular spells (cost, damage, cast time), not the sheet. Needs a different engine and a model of the spells.
 - [ ] Scripts (auras 4, 42, 109, 190 effects): the data holds numbers only; the tooltip says what they mean.

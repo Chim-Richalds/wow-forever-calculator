@@ -14,7 +14,7 @@ from fixtures import TempCase  # noqa: E402
 from basestats_fixtures import row, tsv, warrior  # noqa: E402
 from wowcalc.basestats import parse_base_stats  # noqa: E402
 from wowcalc.dataset import Dataset  # noqa: E402
-from wowcalc.effects import AP_FROM_STAT, ARMOR_FROM_STAT, CC_DURATION, THREAT, SP_FROM_STAT, SHEET_ADD, SCRIPT, SPELL_MODIFIER, STAT_PERCENT, UNSUPPORTED, EffectBook, TalentEffect  # noqa: E402
+from wowcalc.effects import AP_FROM_STAT, ARMOR_FROM_STAT, CC_DURATION, DAMAGE_DONE, THREAT, SP_FROM_STAT, SHEET_ADD, SCRIPT, SPELL_MODIFIER, STAT_PERCENT, UNSUPPORTED, EffectBook, TalentEffect  # noqa: E402
 from fractions import Fraction as F  # noqa: E402
 from wowcalc.derived import ArmorRule, AssumedRules, PoolRule  # noqa: E402
 from wowcalc.rates import AttackPowerRule, Interval, RateTable  # noqa: E402
@@ -114,6 +114,18 @@ class SheetTests(unittest.TestCase):
                           ("Silent Resolve", CC_DURATION, "Duration of stunned effects on you", Decimal("-10.0"))])
         self.assertEqual(sheet.not_modelled, [])
         self.assertEqual({s: l.total for s, l in sheet.lines.items()}, {s: l.total for s, l in self.sheet([]).lines.items()})
+
+    def test_a_situational_effect_counts_only_in_its_situation(self):
+        bastion = TalentEffect("s", 0, 79, DAMAGE_DONE, (), {5: 10.0}, figures=("Physical",), what="Physical", requires=(("shield", True),))
+        spirit = TalentEffect("s", 0, 10, THREAT, (), {1: -30.0}, figures=("Physical",), what="all schools", requires=(("rockbiter", False),))
+        talents = [RankedTalent("n", "s", "Bastion", 5, (bastion,)), RankedTalent("m", "s", "Spirit Weapons", 1, (spirit,))]
+        sheet = build_sheet(priest_table(), "Priest", "Human", 60, talents)
+        self.assertEqual([o.label for o in sheet.other_effects], ["Spirit Weapons"])
+        self.assertEqual([(i.label, i.needs) for i in sheet.inactive], [("Bastion", "Wearing a shield")])
+        sheet = build_sheet(priest_table(), "Priest", "Human", 60, talents, shield=True, conditions=["rockbiter"])
+        self.assertEqual([o.label for o in sheet.other_effects], ["Bastion"])
+        self.assertEqual([(i.label, i.needs) for i in sheet.inactive], [("Spirit Weapons", "Rockbiter Weapon not active")])
+        self.assertEqual(sheet.not_modelled, [])
 
     def test_health_and_mana_pass_through_and_can_be_adjusted(self):
         sheet = self.sheet([], adjustments={"health": 100})

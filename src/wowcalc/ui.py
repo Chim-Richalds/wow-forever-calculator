@@ -37,7 +37,7 @@ from urllib.parse import unquote, urlsplit
 from .allocation import can_add, can_remove, check, spent
 from .basestats import load_base_stats
 from .dataset import Dataset
-from .effects import EffectBook, render_tooltip
+from .effects import CONDITIONS, EffectBook, render_tooltip
 from .fetch import TABLES
 from .icons import IconCache, icon_ids
 from .rates import RatesError, load_rates
@@ -110,6 +110,7 @@ class Request:
     attacker_level: int | None
     vs_player: bool
     values: bool
+    conditions: tuple[str, ...] = ()  # situations that hold (effects.CONDITIONS keys)
 
 
 class BuildStore:
@@ -300,6 +301,9 @@ class Workbench:
             })
         return {
             "class": tree.class_name, "grid": 600, "nodes": nodes, "specs": self.specs_of(tree)[0],
+            # Situations this class's talents depend on (the shield has its own box), for the page's checkboxes.
+            "conditions": [{"key": k, "label": CONDITIONS[k][0]} for k in CONDITIONS
+                           if k != "shield" and any(k == key for n in tree.nodes.values() for e in self.effects_of(n) for key, _ in e.requires)],
             "edges": [{"from": e.left, "to": e.right} for e in tree.edges],
             "cost_per_rank": tree.cost_per_rank,
             "anomalies": tree.anomalies,
@@ -342,8 +346,14 @@ class Workbench:
                 adjust[key] = value
         attacker = body.get("attacker_level")
         attacker = None if attacker in (None, "") else self._int(attacker, "attacker level")
+        conditions_in = body.get("conditions", [])
+        if not isinstance(conditions_in, list) or not all(isinstance(c, str) for c in conditions_in):
+            raise UiError(400, "conditions must be a list of names")
+        unknown = sorted(set(conditions_in) - set(CONDITIONS))
+        if unknown:
+            raise UiError(400, f"unknown condition {unknown[0]!r}; choose from {', '.join(CONDITIONS)}")
         return Request(tree.class_name, race, level, alloc, adjust, bool(body.get("shield")), attacker,
-                       bool(body.get("vs_player")), bool(body.get("values", True)))
+                       bool(body.get("vs_player")), bool(body.get("values", True)), tuple(sorted(set(conditions_in))))
 
     @staticmethod
     def _int(value, what: str) -> int:
@@ -364,7 +374,7 @@ class Workbench:
                    for n, r in sorted(alloc.items()) if r > 0]
         try:
             return build_sheet(self.stats, req.class_name, req.race, req.level, talents, req.adjust,
-                               self.sheet_base, self.rates, req.shield)
+                               self.sheet_base, self.rates, req.shield, req.conditions)
         except (KeyError, ValueError) as exc:
             raise UiError(400, str(exc.args[0]) if exc.args else str(exc)) from exc
 
@@ -436,6 +446,7 @@ class Workbench:
             "healing": self.power_json(sheet.healing),
             "block_value": sheet.block_value_from_strength,
             "notes": list(sheet.notes),
+            "inactive": [{"label": i.label, "text": i.text, "needs": i.needs} for i in sheet.inactive],
             "other_effects": [{"label": o.label, "kind": o.kind, "text": o.text, "percent": num(o.percent)} for o in sheet.other_effects],
             "not_modelled": [{"label": n.label, "ranks": n.ranks, "parts": [{"effect": i, "kind": k, "why": w} for i, k, w in n.parts]}
                              for n in sheet.not_modelled],
@@ -526,7 +537,7 @@ class Workbench:
         req = self.parse({**body, "values": False})
         self.store.put(name, {"class": req.class_name, "race": req.race, "level": req.level, "alloc": req.alloc,
                               "adjust": req.adjust, "shield": req.shield, "attacker_level": req.attacker_level,
-                              "vs_player": req.vs_player, "build": self.build, "saved": _stamp()})
+                              "vs_player": req.vs_player, "conditions": list(req.conditions), "build": self.build, "saved": _stamp()})
         return {"saved": name}
 
     def load_saved(self, name: str) -> dict:

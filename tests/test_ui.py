@@ -348,6 +348,17 @@ class EvaluateTests(WorkbenchCase):
         self.assertEqual(Workbench.difference(alone, Workbench.metrics(sheet())), {"other:threat:Threat (Frost)": -30})  # absent is 0
         self.assertEqual(Workbench.difference({"intellect": 61}, {}), {})   # a sheet figure absent on one side stays unknown
 
+    def test_conditions_are_checked_and_saved(self):
+        with self.assertRaises(UiError) as ctx:
+            self.ev(conditions=["levitating"])
+        self.assertIn("unknown condition", ctx.exception.message)
+        with self.assertRaises(UiError):
+            self.ev(conditions="shield")
+        self.assertIn("inactive", self.ev(conditions=["defensive_stance"])["sheet"])
+        self.bench.save("c", {"class": "Mage", "race": "Human", "level": 60, "alloc": {}, "conditions": ["rockbiter", "rockbiter"]})
+        self.assertEqual(self.bench.load_saved("c")["conditions"], ["rockbiter"])
+        self.assertEqual(self.bench.tree("Mage")["conditions"], [])       # no Mage talent in the fixture depends on one
+
     def test_values_can_be_switched_off(self):
         self.assertNotIn("values", self.ev(values=False))
 

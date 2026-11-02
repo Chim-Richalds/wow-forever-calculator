@@ -153,6 +153,7 @@ class TalentEffect:
     note: str = ""
     figures: tuple[str, ...] = ()  # sheet_add: the sheet figures it raises; sp_from_stat: spell_power or healing; cc_duration: the mechanic's name; threat/damage_*: school names (stats holds the source stat for ap_from_stat and sp_from_stat)
     what: str = ""  # OTHER_KINDS: what it applies to, for display ("stunned", "Frost", "all magic schools")
+    requires: tuple[tuple[str, bool], ...] = ()  # (CONDITIONS key, must hold): counted only in that situation
 
     @property
     def modelled(self) -> bool:
@@ -269,9 +270,9 @@ class EffectBook:
         values, values_note = self._values(node, definition, index, _float(row.get("EffectBasePointsF")))
 
         def make(kind: str, note: str = "", stats: tuple[str, ...] = (), keep_values: bool = True,
-                 figures: tuple[str, ...] = (), what: str = "") -> TalentEffect:
+                 figures: tuple[str, ...] = (), what: str = "", requires: tuple = ()) -> TalentEffect:
             return TalentEffect(spell, index, aura, kind, stats, dict(values) if keep_values else {},
-                                note or values_note, figures, what)
+                                note or values_note, figures, what, requires)
 
         if aura == AURA_REGEN_WHILE_CASTING:
             if not values:
@@ -362,11 +363,13 @@ class EffectBook:
         found = effect_phrase(self.text.get(spell, ""), index)
         if found is None:
             return refuse("the talent text does not show this effect's value")
-        phrase, segment, verb = found
-        problems = phrase_problems(kind, phrase, segment, verb, schools, set(self.schools.values()), values)
+        phrase, segment, verb, tail = found
+        problems = phrase_problems(kind, phrase, segment, verb, schools, set(self.schools.values()), values, tail)
         if problems:
             return refuse("; ".join(problems))
-        return make(kind, "", figures=schools, what=schools_label(schools, set(self.schools.values())))
+        _, requires, scope, _ = situation(segment, tail)
+        label = schools_label(schools, set(self.schools.values()))
+        return make(kind, "", figures=schools, what=f"{scope}, {label}" if scope else label, requires=requires)
 
     def _decode_mechanic_duration(self, row: dict, make, values: dict[int, float], values_note: str) -> TalentEffect:
         mechanic = _int(row.get("EffectMiscValue_0"), -1)
@@ -439,7 +442,7 @@ def condition_in(description: str, keywords: tuple[str, ...] = ()) -> str:
 _PLACEHOLDER = re.compile(r"\$[sm](\d)")
 _SENTENCES = re.compile(r"(?<=[.!?])\s+")
 _VERB = re.compile(r"\b(increas|improv|reduc|decreas|lower)\w*", re.I)
-_EQUIPMENT = re.compile(r"\b(wands?|weapons?|shields?)\b", re.I)
+_EQUIPMENT = re.compile(r"\b(wands?|weapons?|shields?|daggers?|maces?|swords?|axes?|fist weapons?|staff|staves|polearms?|bows?|guns?|crossbows?|thrown|off-?hand)\b", re.I)
 _STANCE_OR_FORM = re.compile(r"\bin [\w ]*?\b(stance|form)\b", re.I)
 _TAKEN = re.compile(r"\btak(e|en)\b", re.I)
 KIND_LABEL = {THREAT: "threat", DAMAGE_DONE: "damage done", DAMAGE_TAKEN: "damage taken", CC_DURATION: "duration"}
@@ -473,13 +476,14 @@ def schools_label(schools: tuple[str, ...], all_names: set[str]) -> str:
     return ", ".join(schools)
 
 
-def effect_phrase(text: str, index: int) -> tuple[str, str, str] | None:
+def effect_phrase(text: str, index: int) -> tuple[str, str, str, str] | None:
     """The words in the description that go with effect `index` (shown as $s<index+1> or $m<index+1>).
 
-    Returns (phrase, segment, verb): the segment is the sentence from the previous other
+    Returns (phrase, segment, verb, tail): the segment is the sentence from the previous other
     effect's value to the next one; the phrase runs from the last verb before this value up
-    to it ("reduces the threat caused by your Frost spells by "). None if the text does not
-    show this effect's value."""
+    to it ("reduces the threat caused by your Frost spells by "); the tail is what follows the
+    sentence's last value when that value is another effect's ("" otherwise). None if the text
+    does not show this effect's value."""
     for sentence in _SENTENCES.split(text):
         marks = list(_PLACEHOLDER.finditer(sentence))
         mine = [m for m in marks if int(m.group(1)) == index + 1]
@@ -492,12 +496,72 @@ def effect_phrase(text: str, index: int) -> tuple[str, str, str] | None:
         lead = sentence[start:m.start()]
         verbs = list(_VERB.finditer(lead))
         phrase = lead[verbs[-1].start():] if verbs else lead
-        return phrase, sentence[start:end], (verbs[-1].group(1).lower() if verbs else "")
+        tail = sentence[marks[-1].end():] if marks[-1].start() > m.end() else ""
+        return phrase, sentence[start:end], (verbs[-1].group(1).lower() if verbs else ""), tail
     return None
 
 
+# Situations a talent's text makes a bonus depend on, each tied to an input the person sets:
+# key -> (label when it must hold, label when it must not).
+CONDITIONS = {
+    "shield": ("Wearing a shield", "Not wearing a shield"),
+    "two_hand": ("Two-handed weapon equipped", "No two-handed weapon"),
+    "defensive_stance": ("In Defensive Stance", "Not in Defensive Stance"),
+    "rockbiter": ("Rockbiter Weapon active", "Rockbiter Weapon not active"),
+}
+# The exact wording that maps to each one (checked against the talents that use it).
+_CONDITION_PHRASES = [
+    (re.compile(r"\s*while a shield is equipped", re.I), "shield", True),           # Bastion, Defiance
+    (re.compile(r"\s*while a two-handed melee weapon is equipped", re.I), "two_hand", True),   # Two-Handed Weapon Specialization (Paladin)
+    (re.compile(r"\s*in defensive stance", re.I), "defensive_stance", True),         # Defiance
+    (re.compile(r"\s*while rockbiter weapon is not active", re.I), "rockbiter", False),   # Spirit Weapons
+    (re.compile(r"\s*while rockbiter weapon is active", re.I), "rockbiter", True),
+]
+# "Damage with X": which attacks a bonus covers, not a situation; shown in the label.
+_SCOPE_PHRASES = [
+    (re.compile(r"\s*with (?:your )?wands", re.I), "with wands"),
+    (re.compile(r"\s*with ranged weapons", re.I), "with ranged weapons"),
+    (re.compile(r"\s*with two-handed melee weapons", re.I), "with two-handed melee weapons"),
+    (re.compile(r"\s*with one-handed melee weapons", re.I), "with one-handed melee weapons"),
+]
+
+
+def describe_requirement(requires: tuple[tuple[str, bool], ...]) -> str:
+    return " and ".join(CONDITIONS[key][0 if wanted else 1] for key, wanted in requires)
+
+
+def _has_condition(text: str) -> bool:
+    return bool(condition_in(text) or _STANCE_OR_FORM.search(text) or _EQUIPMENT.search(text)
+                or any(rx.search(text) for rx, _, _ in _CONDITION_PHRASES))
+
+
+def situation(segment: str, tail: str = "") -> tuple[str, tuple[tuple[str, bool], ...], str, list[str]]:
+    """(text left after known conditions and scopes are taken out, requirements, scope, problems).
+
+    A condition at the end of a sentence ("..., and reduces threat by $m2% while a two-handed
+    weapon is equipped") also covers the earlier values of that sentence, unless their own part
+    of the text already has a condition."""
+    text = segment if _has_condition(segment) or not tail else segment + " " + tail
+    requires: dict[str, bool] = {}
+    problems = []
+    for rx, key, wanted in _CONDITION_PHRASES:
+        if rx.search(text):
+            if requires.get(key, wanted) != wanted:
+                problems.append(f"the text both requires and excludes '{CONDITIONS[key][0]}'")
+            requires[key] = wanted
+            text = rx.sub("", text)
+    scopes = []
+    for rx, label in _SCOPE_PHRASES:
+        if rx.search(text):
+            scopes.append(label)
+            text = rx.sub("", text)
+    if len(scopes) > 1:
+        problems.append("the text names more than one kind of weapon")
+    return text, tuple(sorted(requires.items())), (scopes[0] if scopes else ""), problems
+
+
 def phrase_problems(kind: str, phrase: str, segment: str, verb: str, schools: tuple[str, ...],
-                    all_names: set[str], values: dict[int, float]) -> list[str]:
+                    all_names: set[str], values: dict[int, float], tail: str = "") -> list[str]:
     """Why the text does not back this reading of the data (empty: it does)."""
     out = []
     low = phrase.lower()
@@ -507,6 +571,8 @@ def phrase_problems(kind: str, phrase: str, segment: str, verb: str, schools: tu
         out.append("the text next to the value is not about damage done")
     if kind == DAMAGE_TAKEN and ("damage" not in low or not _TAKEN.search(low)):
         out.append("the text next to the value is not about damage taken")
+    segment, _, _, situation_problems = situation(segment, tail)
+    out.extend(situation_problems)
     reason = condition_in(segment)
     if reason:
         out.append(f"not always on: {reason}")
