@@ -49,30 +49,30 @@ Hunter	Improved Mend Pet	1	cost	percent	-20	Mend Pet
 Hunter	Ferocity	0	op 3	flat	10	Summon Hawk		op 3: changes the spell's own effect amounts; valued with the spells' effects (phase 4)	
 Hunter	Bestial Discipline	0	op 8	flat	20			op 8: changes the spell's own effect amounts; valued with the spells' effects (phase 4); reaches no spell the character casts itself; it reaches Tamed Pet Passive (DND) (pet abilities, poisons, totem or weapon effects: modelled later)	
 Hunter	Frenzy	0	proc chance	flat	100			reaches no spell the character casts itself; it reaches Tamed Pet Passive (DND) (pet abilities, poisons, totem or weapon effects: modelled later)	
-Hunter	Hawk Eye	0	range	flat	6	Arcane Shot, Auto Shot, Concussive Shot, Distracting Shot, Multi-Shot, Scatter Shot, Scorpid Sting, Serpent Sting, Sniper Shot, Summon Hawk, Tranquilizing Shot, Viper Sting, Volley			
+Hunter	Hawk Eye	0	range	flat	6	Aimed Shot, Arcane Shot, Auto Shot, Concussive Shot, Distracting Shot, Multi-Shot, Scatter Shot, Scorpid Sting, Serpent Sting, Sniper Shot, Summon Hawk, Tranquilizing Shot, Viper Sting, Volley			
 Hunter	Improved Stings	0	periodic damage or healing	percent	20	Serpent Sting	Serpent Sting, Viper Sting		
 Hunter	Improved Stings	1	cooldown	flat	-6000	Viper Sting	Scorpid Sting, Viper Sting		
 Hunter	Improved Stings	2	duration	flat	45000	Scorpid Sting	Scorpid Sting		
-Hunter	Efficiency	0	cost	percent	-15	Arcane Shot, Concussive Shot, Counterattack, Distracting Shot, Mongoose Bite, Multi-Shot, Raptor Strike, Scatter Shot, Scorpid Sting, Serpent Sting, Sniper Shot, Strider Kick, Summon Hawk, Tranquilizing Shot, Viper Sting, Volley, Wing Clip			the mask also reaches Counterattack, Mongoose Bite, Multi-Shot, Raptor Strike, Strider Kick, Summon Hawk, Volley, Wing Clip, which the text does not name
+Hunter	Efficiency	0	cost	percent	-15	Aimed Shot, Arcane Shot, Concussive Shot, Counterattack, Distracting Shot, Lacerate, Mongoose Bite, Multi-Shot, Raptor Strike, Scatter Shot, Scorpid Sting, Serpent Sting, Sniper Shot, Strider Kick, Summon Hawk, Tranquilizing Shot, Viper Sting, Volley, Wing Clip			the mask also reaches Counterattack, Lacerate, Mongoose Bite, Multi-Shot, Raptor Strike, Strider Kick, Summon Hawk, Volley, Wing Clip, which the text does not name
 Hunter	Rapid Killing	0	cooldown	flat	-120000	Rapid Fire	Rapid Fire		
 Hunter	Improved Arcane Shot	0	cooldown	flat	-1500	Arcane Shot	Arcane Shot		
-Hunter	Mortal Shots	0	critical strike bonus	percent	30	Arcane Shot, Auto Shot, Concussive Shot, Multi-Shot, Scatter Shot, Serpent Sting, Sniper Shot, Volley			
+Hunter	Mortal Shots	0	critical strike bonus	percent	30	Aimed Shot, Arcane Shot, Auto Shot, Concussive Shot, Multi-Shot, Scatter Shot, Serpent Sting, Sniper Shot, Volley			
 Hunter	Improved Serpent Sting	0	periodic damage or healing	percent	10	Serpent Sting	Serpent Sting		
 Hunter	Improved Serpent Sting	1	damage or healing	percent		Serpent Sting	Serpent Sting	no value per rank in the data (changes particular spells, not the character sheet)	
-Hunter	Barrage	0	damage or healing	percent	10	Multi-Shot, Volley	Multi-Shot, Volley		
-Hunter	Barrage	1	periodic damage or healing	percent			Multi-Shot, Volley	no value per rank in the data (changes particular spells, not the character sheet); reaches no spell the character casts itself; its mask matches no spell at all	
+Hunter	Barrage	0	damage or healing	percent	10	Aimed Shot, Multi-Shot, Volley	Aimed Shot, Multi-Shot, Volley		
+Hunter	Barrage	1	periodic damage or healing	percent			Aimed Shot, Multi-Shot, Volley	no value per rank in the data (changes particular spells, not the character sheet); reaches no spell the character casts itself; its mask matches no spell at all	
 Hunter	Improved Tracking	0	op 12	flat	5	Track Beasts, Track Demons, Track Dragonkin, Track Elementals, Track Giants, Track Hidden, Track Humanoids, Track Undead		op 12: changes the spell's own effect amounts; valued with the spells' effects (phase 4)	the mask also reaches Track Demons, Track Dragonkin, Track Elementals, Track Giants, Track Hidden, Track Humanoids, Track Undead, which the text does not name
-Hunter	Savage Strikes	0	critical strike chance	flat	4	Counterattack, Mongoose Bite, Raptor Strike, Strider Kick, Wing Clip			
+Hunter	Savage Strikes	0	critical strike chance	flat	4	Counterattack, Lacerate, Mongoose Bite, Raptor Strike, Strider Kick, Wing Clip			
 Hunter	Clever Traps	0	duration	percent	30		Explosive Trap, Frost Trap	reaches no spell the character casts itself; it reaches Freezing Trap, Frost Trap, OLDFrost Trap Effect (pet abilities, poisons, totem or weapon effects: modelled later)	
 Hunter	Clever Traps	1	op 8	percent	30	Explosive Trap, Immolation Trap	Explosive Trap	op 8: changes the spell's own effect amounts; valued with the spells' effects (phase 4)	
 Hunter	Survival Tactics	0	hit chance	flat	10	Explosive Trap, Feign Death, Immolation Trap	Feign Death		
-Hunter	Predator's Edge	0	critical strike bonus	percent	30	Counterattack, Mongoose Bite, Raptor Strike, Strider Kick, Wing Clip			
+Hunter	Predator's Edge	0	critical strike bonus	percent	30	Counterattack, Lacerate, Mongoose Bite, Raptor Strike, Strider Kick, Wing Clip			
 Hunter	Resourcefulness	0	cost	percent	-60	Counterattack, Explosive Trap, Freezing Trap, Frost Trap, Immolation Trap, Mongoose Bite, Raptor Strike, Strider Kick, Wing Clip			the mask also reaches Counterattack, Mongoose Bite, Raptor Strike, Strider Kick, Wing Clip, which the text does not name
 Hunter	Survivalist's Discipline	0	cooldown	percent	-40	Deterrence, Explosive Trap, Freezing Trap, Frost Trap, Immolation Trap	Deterrence		
 Mage	Improved Channeling	0	pushback	percent	100	Arcane Missiles	Arcane Blast, Arcane Missiles, Arcane Wrath		
 Mage	Improved Channeling	1	pushback	percent	70	Arcane Blast, Arcane Wrath	Arcane Blast, Arcane Wrath		
 Mage	Arcane Subtlety	0	threat	percent	-30	Arcane Blast, Arcane Explosion, Arcane Missiles, Counterspell, Polymorph, Polymorph: Cow	Arcane spells		
-Mage	Arcane Geometry	0	range	flat	6	Amplify Magic, Arcane Blast, Arcane Brilliance, Arcane Intellect, Arcane Missiles, Arcane Wrath, Conjure Food, Conjure Mana Agate, Conjure Mana Citrine, Conjure Mana Jade, Conjure Mana Ruby, Conjure Water, Counterspell, Dampen Magic, Fire Vulnerability, Polymorph, Polymorph: Cow, Portal: Darnassus, Portal: Ironforge, Portal: Orgrimmar, Portal: Stormwind, Portal: Thunder Bluff, Portal: Undercity, Remove Lesser Curse, Slow Fall, Teleport: Dalaran, Teleport: Darnassus, Teleport: Ironforge, Teleport: Orgrimmar, Teleport: Stormwind, Teleport: Thunder Bluff, Teleport: Undercity	Arcane spells		the text says Arcane spells, but the mask also reaches Fire Vulnerability
+Mage	Arcane Geometry	0	range	flat	6	Amplify Magic, Arcane Blast, Arcane Brilliance, Arcane Intellect, Arcane Missiles, Arcane Wrath, Conjure Food, Conjure Mana Agate, Conjure Mana Citrine, Conjure Mana Jade, Conjure Mana Ruby, Conjure Water, Counterspell, Dampen Magic, Polymorph, Polymorph: Cow, Portal: Darnassus, Portal: Ironforge, Portal: Orgrimmar, Portal: Stormwind, Portal: Thunder Bluff, Portal: Undercity, Remove Lesser Curse, Slow Fall, Teleport: Dalaran, Teleport: Darnassus, Teleport: Ironforge, Teleport: Orgrimmar, Teleport: Stormwind, Teleport: Thunder Bluff, Teleport: Undercity	Arcane spells		
 Mage	Arcane Impact	0	critical strike chance	flat	6	Arcane Blast, Arcane Explosion, Arcane Wrath	Arcane spells		
 Mage	Arcane Shielding	0	op 27	percent	-33	Mana Shield	Mage Armor, Mana Shield	op 27: what it changes is not established from talent texts yet	
 Mage	Arcane Shielding	1	op 3	percent	50	Mage Armor	Mage Armor	op 3: changes the spell's own effect amounts; valued with the spells' effects (phase 4)	
@@ -94,8 +94,8 @@ Mage	Frost Warding	2	op 3	percent	20	Frost Ward, Ice Barrier	Frost Ward, Ice Bar
 Mage	Improved Frostbolt	0	cast time	flat	-500	Frostbolt	Frostbolt, Frost spells		
 Mage	Ice Shards	0	critical strike bonus	percent	100	Blizzard, Cone of Cold, Frost Nova, Frostbolt, Frostfire Bolt, Ice Lance	Frost spells		
 Mage	Improved Frost Nova	0	cooldown	flat	-4000	Frost Nova	Frost Nova		
-Mage	Permafrost	0	duration	percent	33	Chilled, Cone of Cold, Frostbolt, Frostfire Bolt			
-Mage	Permafrost	1	op 3	flat	-10	Chilled, Cone of Cold, Frostbolt, Frostfire Bolt		op 3: changes the spell's own effect amounts; valued with the spells' effects (phase 4)	
+Mage	Permafrost	0	duration	percent	33	Cone of Cold, Frostbolt, Frostfire Bolt			
+Mage	Permafrost	1	op 3	flat	-10	Cone of Cold, Frostbolt, Frostfire Bolt		op 3: changes the spell's own effect amounts; valued with the spells' effects (phase 4)	
 Mage	Frost Channeling	0	cost	percent	-15	Blizzard, Cone of Cold, Frost Armor, Frost Nova, Frost Ward, Frostbolt, Frostfire Bolt, Ice Armor, Ice Barrier, Ice Block, Ice Lance	Frost spells		
 Mage	Arctic Reach	0	range	percent	20	Blizzard, Frostbolt, Ice Lance	Blizzard, Cone of Cold, Frost Nova, Frostbolt, Ice Lance, Frost spells		
 Mage	Arctic Reach	1	radius	percent	20	Cone of Cold, Frost Nova	Blizzard, Cone of Cold, Frost Nova, Frostbolt, Ice Lance, Frost spells		
@@ -124,7 +124,7 @@ Paladin	Champion of the Light	1	cast time	flat	-1000	Hammer of Wrath	Hammer of W
 Paladin	Unsealed Wrath	0	cost	percent	0	Seal of Command, Seal of Fury, Seal of Justice, Seal of Light, Seal of Righteousness, Seal of Wisdom, Seal of the Crusader		op 14 (cost), but the text does not say so	
 Priest	Twin Disciplines	0	damage or healing	percent	5	Chastise, Contingency Plan, Desperate Prayer, Divine Grace, Holy Nova, Penance, Prayer of Mending, Prayer of Spirit, Shadow Word: Death, Shadowguard, Touch of Weakness			
 Priest	Twin Disciplines	1	periodic damage or healing	percent	5	Contingency Plan, Devouring Plague, Mind Flay, Prayer of Spirit, Renew, Shadow Word: Pain, Starshards			
-Priest	Holy Precision	0	hit chance	flat	18	Abolish Disease, Confounding Flash, Cure Disease, Dispel Magic, Divine Spirit, Elune's Grace, Fear Ward, Feedback, Hex of Weakness, Holy Fire, Holy Nova, Levitate, Lightwell, Mind Soothe, Penance, Power Infusion, Prayer of Spirit, Resurrection, Shackle Undead, Shadowfiend, Shadowform, Shadowguard, Silence, Smite, Touch of Weakness, Vampiric Embrace	Holy spells		the text says Holy spells, but the mask also reaches Feedback, Hex of Weakness, Mind Soothe, Shadowfiend, Shadowform, Shadowguard, Silence, Touch of Weakness, Vampiric Embrace
+Priest	Holy Precision	0	hit chance	flat	18	Abolish Disease, Confounding Flash, Cure Disease, Dispel Magic, Divine Spirit, Elune's Grace, Fear Ward, Feedback, Hex of Weakness, Holy Fire, Holy Nova, Levitate, Mind Soothe, Penance, Power Infusion, Prayer of Spirit, Resurrection, Shackle Undead, Shadowform, Shadowguard, Silence, Smite, Touch of Weakness, Vampiric Embrace	Holy spells		the text says Holy spells, but the mask also reaches Feedback, Hex of Weakness, Mind Soothe, Shadowform, Shadowguard, Silence, Touch of Weakness, Vampiric Embrace
 Priest	Mental Agility	0	cost	percent	-10	Abolish Disease, Chastise, Confounding Flash, Contingency Plan, Cure Disease, Devouring Plague, Dispel Magic, Divine Spirit, Elune's Grace, Fade, Fear Ward, Feedback, Hex of Weakness, Holy Fire, Holy Nova, Inner Fire, Levitate, Mind Soothe, Power Infusion, Power Word: Fortitude, Power Word: Shield, Prayer of Fortitude, Prayer of Mending, Prayer of Shadow Protection, Prayer of Spirit, Psychic Scream, Renew, Shadow Protection, Shadow Word: Pain, Shadowform, Shadowguard, Silence, Smite, Touch of Weakness, Vampiric Embrace	Holy Fire, Smite		the mask also reaches Abolish Disease, Chastise, Confounding Flash, Contingency Plan, Cure Disease, Devouring Plague, Dispel Magic, Divine Spirit, Elune's Grace, Fade, Fear Ward, Feedback, Hex of Weakness, Holy Nova, Levitate, Mind Soothe, Power Infusion, Power Word: Fortitude, Power Word: Shield, Prayer of Fortitude, Prayer of Mending, Prayer of Shadow Protection, Prayer of Spirit, Psychic Scream, Renew, Shadow Protection, Shadow Word: Pain, Shadowform, Shadowguard, Silence, Touch of Weakness, Vampiric Embrace, which the text does not name
 Priest	Improved Power Word: Shield	0	op 3	percent	20	Power Word: Shield	Power Word: Shield	op 3: changes the spell's own effect amounts; valued with the spells' effects (phase 4)	
 Priest	Improved Inner Fire	0	op 8	percent	45	Inner Fire	Inner Fire	op 8: changes the spell's own effect amounts; valued with the spells' effects (phase 4)	
@@ -132,14 +132,14 @@ Priest	Improved Inner Fire	1	charges	flat	12	Inner Fire
 Priest	Improved Mana Burn	0	cast time	flat	-1000	Blessed Recovery, Mana Burn	Mana Burn		the mask also reaches Blessed Recovery, which the text does not name
 Priest	Soul Warding	0	cooldown	flat	-4000	Power Word: Shield	Power Word: Shield		
 Priest	Soul Warding	1	cost	percent	-15	Power Word: Shield			
-Priest	Twilight Focus	0	pushback	percent	70	Binding Heal, Blessed Recovery, Confounding Flash, Flash Heal, Greater Heal, Heal, Holy Fire, Lesser Heal, Mana Burn, Mind Blast, Mind Control, Mind Flay, Penance, Prayer of Healing, Resurrection, Smite, Starshards			
+Priest	Twilight Focus	0	pushback	percent	70	Blessed Recovery, Confounding Flash, Flash Heal, Greater Heal, Heal, Holy Fire, Lesser Heal, Mana Burn, Mind Blast, Mind Control, Mind Flay, Penance, Prayer of Healing, Resurrection, Smite, Starshards			
 Priest	Improved Renew	0	periodic damage or healing	percent	15	Renew	Renew		
-Priest	Holy Specialization	0	critical strike chance	flat	5	Binding Heal, Desperate Prayer, Divine Grace, Flash Heal, Greater Heal, Heal, Holy Fire, Holy Nova, Lesser Heal, Penance, Prayer of Healing, Prayer of Mending, Renew, Smite	Holy spells		
+Priest	Holy Specialization	0	critical strike chance	flat	5	Desperate Prayer, Divine Grace, Flash Heal, Greater Heal, Heal, Holy Fire, Holy Nova, Lesser Heal, Penance, Prayer of Healing, Prayer of Mending, Renew, Smite	Holy spells		
 Priest	Divine Fury	0	cast time	flat	-500	Greater Heal, Heal, Holy Fire, Smite	Greater Heal, Heal, Holy Fire, Smite		
 Priest	Holy Reach	0	range	percent	20	Holy Fire, Smite	Holy Fire, Holy Nova, Prayer of Healing, Smite		
 Priest	Holy Reach	1	radius	percent	20	Holy Nova, Prayer of Healing	Holy Fire, Holy Nova, Prayer of Healing, Smite		
 Priest	Improved Healing	0	cost	percent	-15	Greater Heal, Heal, Lesser Heal, Penance, Prayer of Mending	Greater Heal, Heal, Lesser Heal, Penance, Prayer of Mending		
-Priest	Spiritual Healing	0	damage or healing	percent	10	Binding Heal, Contingency Plan, Desperate Prayer, Divine Grace, Flash Heal, Greater Heal, Heal, Holy Nova, Lesser Heal, Penance, Prayer of Healing, Prayer of Mending, Prayer of Spirit			
+Priest	Spiritual Healing	0	damage or healing	percent	10	Contingency Plan, Desperate Prayer, Divine Grace, Flash Heal, Greater Heal, Heal, Holy Nova, Lesser Heal, Penance, Prayer of Healing, Prayer of Mending, Prayer of Spirit			
 Priest	Spiritual Healing	1	periodic damage or healing	percent	10	Renew			
 Priest	Shadow Focus	0	hit chance	flat	5	Devouring Plague, Hex of Weakness, Mind Blast, Mind Control, Mind Flay, Mind Soothe, Mind Vision, Psychic Scream, Shadow Word: Death, Shadow Word: Pain, Shadowguard, Silence, Touch of Weakness, Vampiric Embrace	Shadow spells		
 Priest	Improved Mind Blast	0	cooldown	flat	-2500	Mind Blast	Mind Blast		
@@ -213,7 +213,7 @@ Shaman	Purification	0	damage or healing	percent	10	Chain Heal, Healing Wave, Les
 Shaman	Purification	1	periodic damage or healing	percent	10	Riptide			
 Warlock	Improved Corruption	0	cast time	flat	-2000	Corruption	Corruption		
 Warlock	Improved Corruption	1	periodic damage or healing	percent	10	Corruption			
-Warlock	Grim Reach	0	range	percent	20	Bane of Agony, Bane of Doom, Corruption, Curse of Exhaustion, Curse of Recklessness, Curse of Tongues, Curse of Weakness, Death Coil, Drain Life, Drain Mana, Drain Soul, Fear, Howl of Terror, Siphon Life, Wrack			
+Warlock	Grim Reach	0	range	percent	20	Bane of Agony, Bane of Doom, Corruption, Curse of Exhaustion, Curse of Recklessness, Curse of Tongues, Curse of Weakness, Curse of the Elements, Death Coil, Drain Life, Drain Mana, Drain Soul, Fear, Howl of Terror, Siphon Life, Wrack			
 Warlock	Improved Drains	0	periodic damage or healing	percent	20	Drain Life, Drain Soul	Drain Life, Drain Mana, Drain Soul		
 Warlock	Improved Drains	1	op 3	percent	20	Drain Mana	Drain Life, Drain Mana, Drain Soul	op 3: changes the spell's own effect amounts; valued with the spells' effects (phase 4)	
 Warlock	Improved Bane of Agony	0	periodic damage or healing	percent	10	Bane of Agony	Bane of Agony		

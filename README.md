@@ -38,6 +38,10 @@ PYTHONPATH=src python3 -m wowcalc.icons import FOLDER --talent-names   # images 
 PYTHONPATH=src python3 -m wowcalc.icons status
 ```
 
+## Class spells
+
+Each class's spells are its base spellbook (`data/external/spellbooks.tsv`, from wowhandbook.com, which describes WoW Forever) plus its talents. The client also carries spells WoW Forever does not use (Season of Discovery runes, old poison ranks); those are left out. Edit the file if a class's spellbook changes.
+
 ## Tree backgrounds
 
 One image per specialization behind its tree, from Wowpedia's original-style talent backgrounds (game art, kept in `data/backgrounds/`, not in git). The wiki's image host refuses automated downloads, so save them in a browser and import the folder:

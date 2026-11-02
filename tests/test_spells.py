@@ -158,6 +158,15 @@ class RealDataTests(unittest.TestCase):
             self.assertIn(name, druid)
         self.assertIn("Shadow Word: Death", self.catalogue.by_class["Priest"])   # named by the talent Early Demise
 
+    def test_the_spellbook_reference_decides_the_class_spells(self):
+        hunter, rogue, priest = (self.catalogue.by_class[c] for c in ("Hunter", "Rogue", "Priest"))
+        self.assertIn("Aimed Shot", hunter)               # missed by the class lookup, found by name
+        self.assertNotIn("Black Arrow", hunter)           # not in the Forever spellbook, not a talent
+        self.assertNotIn("Deadly Poison II", rogue)       # old ranks of poisons
+        self.assertNotIn("Binding Heal", priest)          # replaced by the talent Holy Binding
+        self.assertNotIn("Frost Blast", self.catalogue.by_class["Mage"])   # removed in 70707
+        self.assertIn("Pyroblast", self.catalogue.by_class["Mage"])        # a talent ability
+
     def test_every_modifier_is_resolved(self):
         self.assertGreater(len(self.mods), 250)
         self.assertGreater(sum(m.clean for m in self.mods), len(self.mods) // 2)

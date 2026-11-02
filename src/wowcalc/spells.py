@@ -21,7 +21,7 @@ import argparse
 import csv
 import io
 import re
-from collections import defaultdict
+from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -109,6 +109,23 @@ class SpellModifier:
         return not self.problems
 
 
+PET_GROUPS = frozenset({"Felhunter", "Imp", "Succubus", "Voidwalker"})   # spellbook groups that are pet abilities
+
+
+def load_spellbooks(path: Path) -> dict[str, set[str]]:
+    """class -> spell names in its base spellbook (data/external/spellbooks.tsv), pets' abilities left
+    out. {} if the file is missing."""
+    out: dict[str, set[str]] = defaultdict(set)
+    try:
+        with Path(path).open(encoding="utf-8", newline="") as handle:
+            for row in csv.DictReader(handle, delimiter="\t"):
+                if row.get("class") and row.get("spell") and row.get("group") not in PET_GROUPS:
+                    out[row["class"].strip()].add(row["spell"].strip())
+    except OSError:
+        return {}
+    return dict(out)
+
+
 def _rows(ds: Dataset, table: str, columns: set[str]) -> list[dict]:
     """The table's rows, or none if the build lacks the table or these columns."""
     if not ds.has_table(table) or not columns <= set(ds.columns(table)):
@@ -133,7 +150,12 @@ class Catalogue:
     names: dict[str, str] = field(default_factory=dict)
 
     @classmethod
-    def build(cls, ds: Dataset, model: TreeModel, book: EffectBook) -> "Catalogue":
+    def build(cls, ds: Dataset, model: TreeModel, book: EffectBook, spellbooks: dict[str, set[str]] | None = None) -> "Catalogue":
+        """`spellbooks`: class -> the names in its base spellbook. By default read from
+        data/external/spellbooks.tsv next to the dataset; without it, rune abilities are left out by
+        their acquire method only."""
+        if spellbooks is None:
+            spellbooks = load_spellbooks(Path(ds.directory).parents[1] / "external" / "spellbooks.tsv")
         names = {r["ID"]: r["Name_lang"] for r in _rows(ds, "SpellName", {"ID", "Name_lang"})}
         options = {}
         for r in _rows(ds, "SpellClassOptions", {"SpellID", "SpellClassSet", "SpellClassMask_0", "SpellClassMask_1",
@@ -170,6 +192,30 @@ class Catalogue:
                 for entry in node.entries:
                     if book.passive.get(entry.spell_id) is False:
                         learnable[tree.class_name].setdefault(entry.spell_id, "talent")
+        # With a spellbook, a class's spells are its spellbook plus its talents: anything else the client
+        # lists (old ranks of poisons, wands, rune leftovers, spells Forever replaced) is left out, and a
+        # spellbook spell the class lookup misses (Aimed Shot, Evocation) is found by name in the class's
+        # spell family.
+        by_name: dict[str, list[str]] = defaultdict(list)
+        for sid, name in names.items():
+            by_name[name].append(sid)
+        for tree in model.trees.values():
+            known = spellbooks.get(tree.class_name)
+            if not known:
+                continue
+            talents = {names.get(e.spell_id) for n in tree.nodes.values() for e in n.entries}
+            spells = learnable[tree.class_name]
+            for sid in list(spells):
+                if spells[sid] != "talent" and names.get(sid) not in known and names.get(sid) not in talents:
+                    del spells[sid]
+            families = Counter(options[e.spell_id][0] for n in tree.nodes.values() for e in n.entries if e.spell_id in options)
+            if families:
+                family = families.most_common(1)[0][0]
+                have = {names.get(sid) for sid in spells}
+                for name in known - have:
+                    for sid in by_name.get(name, []):
+                        if sid in options and options[sid][0] == family:
+                            spells.setdefault(sid, "trainer")
         out = cls(family_of={sid: fam for sid, (fam, _) in options.items()},
                   family_spells=[(sid, fam, mask) for sid, (fam, mask) in options.items()], names=names)
         for class_name, spells in learnable.items():

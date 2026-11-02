@@ -1,0 +1,7 @@
+{
+  "source": "https://wowhandbook.com/classes/<class>/#spellbook",
+  "describes": "WoW Forever client 1.60.1.70685 (per the site)",
+  "retrieved": "2026-11-02",
+  "note": "Base spellbook (trainer and starting spells) per class; talent abilities are not listed and come from the talent trees. Warlock groups Felhunter, Imp, Succubus and Voidwalker are pet abilities.",
+  "changes": ["Mage Frost Blast left out: removed from the Mage spellbook in 1.60.1.70707 (wowforevertalents.com patch notes, 30 October 2026)"]
+}

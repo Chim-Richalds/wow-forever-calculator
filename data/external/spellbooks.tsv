@@ -1,0 +1,403 @@
+class	group	spell	learned_at
+Warrior	Arms	Battle Stance	1
+Warrior	Arms	Heroic Strike	1
+Warrior	Arms	Charge	4
+Warrior	Arms	Rend	4
+Warrior	Arms	Thunder Clap	6
+Warrior	Arms	Hamstring	8
+Warrior	Arms	Overpower	12
+Warrior	Arms	Mocking Blow	16
+Warrior	Arms	Retaliation	20
+Warrior	Arms	Victory Rush	20
+Warrior	Fury	Battle Shout	1
+Warrior	Fury	Demoralizing Shout	14
+Warrior	Fury	Cleave	20
+Warrior	Fury	Slam	20
+Warrior	Fury	Intimidating Shout	22
+Warrior	Fury	Execute	24
+Warrior	Fury	Challenging Shout	26
+Warrior	Fury	Berserker Rage	30
+Warrior	Fury	Berserker Stance	30
+Warrior	Fury	Intercept	30
+Warrior	Fury	Whirlwind	36
+Warrior	Fury	Pummel	38
+Warrior	Fury	Recklessness	50
+Warrior	Protection	Bloodrage	10
+Warrior	Protection	Defensive Stance	10
+Warrior	Protection	Sunder Armor	10
+Warrior	Protection	Taunt	10
+Warrior	Protection	Shield Bash	12
+Warrior	Protection	Revenge	14
+Warrior	Protection	Shield Block	16
+Warrior	Protection	Disarm	18
+Warrior	Protection	Shield Wall	28
+Mage	Arcane	Arcane Intellect	1
+Mage	Arcane	Conjure Water	4
+Mage	Arcane	Conjure Food	6
+Mage	Arcane	Arcane Missiles	8
+Mage	Arcane	Polymorph	8
+Mage	Arcane	Dampen Magic	12
+Mage	Arcane	Slow Fall	12
+Mage	Arcane	Arcane Explosion	14
+Mage	Arcane	Amplify Magic	18
+Mage	Arcane	Remove Lesser Curse	18
+Mage	Arcane	Blink	20
+Mage	Arcane	Evocation	20
+Mage	Arcane	Mana Shield	20
+Mage	Arcane	Teleport: Ironforge	20
+Mage	Arcane	Teleport: Orgrimmar	20
+Mage	Arcane	Teleport: Stormwind	20
+Mage	Arcane	Teleport: Undercity	20
+Mage	Arcane	Counterspell	24
+Mage	Arcane	Conjure Mana Agate	28
+Mage	Arcane	Teleport: Darnassus	30
+Mage	Arcane	Teleport: Thunder Bluff	30
+Mage	Arcane	Mage Armor	34
+Mage	Arcane	Conjure Mana Jade	38
+Mage	Arcane	Portal: Ironforge	40
+Mage	Arcane	Portal: Orgrimmar	40
+Mage	Arcane	Portal: Stormwind	40
+Mage	Arcane	Portal: Undercity	40
+Mage	Arcane	Conjure Mana Citrine	48
+Mage	Arcane	Portal: Darnassus	50
+Mage	Arcane	Portal: Thunder Bluff	50
+Mage	Arcane	Teleport: Dalaran	50
+Mage	Arcane	Arcane Brilliance	56
+Mage	Arcane	Conjure Mana Ruby	58
+Mage	Arcane	Polymorph: Cow	60
+Mage	Fire	Fireball	1
+Mage	Fire	Fire Blast	6
+Mage	Fire	Flamestrike	16
+Mage	Fire	Fire Ward	20
+Mage	Fire	Scorch	22
+Mage	Fire	Frostfire Bolt	40
+Mage	Frost	Frost Armor	1
+Mage	Frost	Frostbolt	4
+Mage	Frost	Frost Nova	10
+Mage	Frost	Blizzard	20
+Mage	Frost	Frost Ward	22
+Mage	Frost	Cone of Cold	26
+Mage	Frost	Ice Armor	30
+Druid	Balance	Wrath	1
+Druid	Balance	Moonfire	4
+Druid	Balance	Thorns	6
+Druid	Balance	Entangling Roots	8
+Druid	Balance	Nature's Grasp	10
+Druid	Balance	Teleport: Moonglade	10
+Druid	Balance	Faerie Fire	18
+Druid	Balance	Hibernate	18
+Druid	Balance	Starfire	20
+Druid	Balance	Soothe Animal	22
+Druid	Balance	Hurricane	40
+Druid	Balance	Barkskin	44
+Druid	Feral Combat	Frenzied Regeneration	36
+Druid	Feral Combat	Bear Form	10
+Druid	Feral Combat	Demoralizing Roar	10
+Druid	Feral Combat	Growl	10
+Druid	Feral Combat	Maul	10
+Druid	Feral Combat	Bash	14
+Druid	Feral Combat	Aquatic Form	16
+Druid	Feral Combat	Swipe	16
+Druid	Feral Combat	Cat Form	20
+Druid	Feral Combat	Claw	20
+Druid	Feral Combat	Prowl	20
+Druid	Feral Combat	Rip	20
+Druid	Feral Combat	Shred	20
+Druid	Feral Combat	Rake	24
+Druid	Feral Combat	Dash	26
+Druid	Feral Combat	Challenging Roar	28
+Druid	Feral Combat	Cower	28
+Druid	Feral Combat	Travel Form	30
+Druid	Feral Combat	Ferocious Bite	32
+Druid	Feral Combat	Ravage	32
+Druid	Feral Combat	Track Humanoids	32
+Druid	Feral Combat	Pounce	36
+Druid	Feral Combat	Dire Bear Form	40
+Druid	Feral Combat	Lacerate	42
+Druid	Restoration	Healing Touch	1
+Druid	Restoration	Mark of the Wild	1
+Druid	Restoration	Rejuvenation	4
+Druid	Restoration	Regrowth	12
+Druid	Restoration	Revive	12
+Druid	Restoration	Cure Poison	14
+Druid	Restoration	Rebirth	20
+Druid	Restoration	Remove Curse	24
+Druid	Restoration	Abolish Poison	26
+Druid	Restoration	Tranquility	30
+Druid	Restoration	Innervate	40
+Druid	Restoration	Gift of the Wild	50
+Hunter	Beast Mastery	Aspect of the Monkey	4
+Hunter	Beast Mastery	Aspect of the Hawk	10
+Hunter	Beast Mastery	Call Pet	10
+Hunter	Beast Mastery	Dismiss Pet	10
+Hunter	Beast Mastery	Feed Pet	10
+Hunter	Beast Mastery	Revive Pet	10
+Hunter	Beast Mastery	Tame Beast	10
+Hunter	Beast Mastery	Mend Pet	12
+Hunter	Beast Mastery	Eagle Eye	14
+Hunter	Beast Mastery	Eyes of the Beast	14
+Hunter	Beast Mastery	Scare Beast	14
+Hunter	Beast Mastery	Aspect of the Cheetah	20
+Hunter	Beast Mastery	Beast Lore	24
+Hunter	Beast Mastery	Aspect of the Beast	30
+Hunter	Beast Mastery	Aspect of the Pack	40
+Hunter	Beast Mastery	Aspect of the Wild	46
+Hunter	Beast Mastery	Tranquilizing Shot	60
+Hunter	Marksmanship	Auto Shot	1
+Hunter	Marksmanship	Serpent Sting	4
+Hunter	Marksmanship	Arcane Shot	6
+Hunter	Marksmanship	Hunter's Mark	6
+Hunter	Marksmanship	Concussive Shot	8
+Hunter	Marksmanship	Distracting Shot	12
+Hunter	Marksmanship	Multi-Shot	18
+Hunter	Marksmanship	Aimed Shot	20
+Hunter	Marksmanship	Scorpid Sting	22
+Hunter	Marksmanship	Rapid Fire	26
+Hunter	Marksmanship	Enchanted Flare	32
+Hunter	Marksmanship	Flare	32
+Hunter	Marksmanship	Viper Sting	36
+Hunter	Marksmanship	Volley	40
+Hunter	Survival	Raptor Strike	1
+Hunter	Survival	Track Beasts	1
+Hunter	Survival	Track Humanoids	10
+Hunter	Survival	Wing Clip	12
+Hunter	Survival	Immolation Trap	16
+Hunter	Survival	Mongoose Bite	16
+Hunter	Survival	Track Undead	18
+Hunter	Survival	Disengage	20
+Hunter	Survival	Freezing Trap	20
+Hunter	Survival	Track Hidden	24
+Hunter	Survival	Track Elementals	26
+Hunter	Survival	Frost Trap	28
+Hunter	Survival	Feign Death	30
+Hunter	Survival	Lacerate	30
+Hunter	Survival	Track Demons	32
+Hunter	Survival	Explosive Trap	34
+Hunter	Survival	Track Giants	40
+Hunter	Survival	Track Dragonkin	50
+Paladin	Holy	Sense Undead	1
+Paladin	Holy	Holy Light	1
+Paladin	Holy	Seal of Righteousness	1
+Paladin	Holy	Purify	8
+Paladin	Holy	Lay on Hands	10
+Paladin	Holy	Redemption	12
+Paladin	Holy	Blessing of Wisdom	14
+Paladin	Holy	Consecration	20
+Paladin	Holy	Exorcism	20
+Paladin	Holy	Flash of Light	20
+Paladin	Holy	Turn Undead	24
+Paladin	Holy	Seal of Light	30
+Paladin	Holy	Seal of Wisdom	38
+Paladin	Holy	Blessing of Light	40
+Paladin	Holy	Cleanse	42
+Paladin	Holy	Hammer of Wrath	44
+Paladin	Holy	Holy Wrath	50
+Paladin	Holy	Greater Blessing of Wisdom	54
+Paladin	Holy	Greater Blessing of Light	60
+Paladin	Protection	Devotion Aura	1
+Paladin	Protection	Divine Protection	6
+Paladin	Protection	Hammer of Justice	8
+Paladin	Protection	Blessing of Protection	10
+Paladin	Protection	Seal of Fury	10
+Paladin	Protection	Righteous Fury	16
+Paladin	Protection	Blessing of Freedom	18
+Paladin	Protection	Blessing of Kings	20
+Paladin	Protection	Concentration Aura	22
+Paladin	Protection	Seal of Justice	22
+Paladin	Protection	Revoke	26
+Paladin	Protection	Salvation	26
+Paladin	Protection	Shadow Resistance Aura	28
+Paladin	Protection	Divine Intervention	30
+Paladin	Protection	Frost Resistance Aura	32
+Paladin	Protection	Divine Shield	34
+Paladin	Protection	Fire Resistance Aura	36
+Paladin	Protection	Hammer of the Righteous	40
+Paladin	Protection	Blessing of Sacrifice	46
+Paladin	Protection	Greater Blessing of Kings	60
+Paladin	Protection	Mass Salvation	60
+Paladin	Retribution	Blessing of Might	4
+Paladin	Retribution	Judgement	4
+Paladin	Retribution	Holy Strike	6
+Paladin	Retribution	Seal of the Crusader	6
+Paladin	Retribution	Retribution Aura	16
+Paladin	Retribution	Greater Blessing of Might	52
+Priest	Discipline	Power Word: Fortitude	1
+Priest	Discipline	Power Word: Shield	6
+Priest	Discipline	Confounding Flash	10
+Priest	Discipline	Starshards	10
+Priest	Discipline	Inner Fire	12
+Priest	Discipline	Dispel Magic	18
+Priest	Discipline	Contingency Plan	20
+Priest	Discipline	Elune's Grace	20
+Priest	Discipline	Feedback	20
+Priest	Discipline	Shackle Undead	20
+Priest	Discipline	Mana Burn	24
+Priest	Discipline	Divine Spirit	30
+Priest	Discipline	Levitate	34
+Priest	Discipline	Prayer of Fortitude	48
+Priest	Discipline	Prayer of Spirit	60
+Priest	Holy	Lesser Heal	1
+Priest	Holy	Smite	1
+Priest	Holy	Renew	8
+Priest	Holy	Desperate Prayer	10
+Priest	Holy	Divine Grace	10
+Priest	Holy	Resurrection	10
+Priest	Holy	Cure Disease	14
+Priest	Holy	Heal	16
+Priest	Holy	Chastise	20
+Priest	Holy	Fear Ward	20
+Priest	Holy	Flash Heal	20
+Priest	Holy	Holy Fire	20
+Priest	Holy	Prayer of Healing	30
+Priest	Holy	Abolish Disease	32
+Priest	Holy	Greater Heal	40
+Priest	Shadow Magic	Shadow Word: Pain	4
+Priest	Shadow Magic	Fade	8
+Priest	Shadow Magic	Hex of Weakness	10
+Priest	Shadow Magic	Mind Blast	10
+Priest	Shadow Magic	Touch of Weakness	10
+Priest	Shadow Magic	Psychic Scream	14
+Priest	Shadow Magic	Dark Sacrifice	20
+Priest	Shadow Magic	Devouring Plague	20
+Priest	Shadow Magic	Mind Soothe	20
+Priest	Shadow Magic	Shadowguard	20
+Priest	Shadow Magic	Mind Vision	22
+Priest	Shadow Magic	Mind Control	30
+Priest	Shadow Magic	Shadow Protection	30
+Priest	Shadow Magic	Shadow Word: Death	32
+Priest	Shadow Magic	Prayer of Shadow Protection	56
+Rogue	Assassination	Eviscerate	1
+Rogue	Assassination	Slice and Dice	10
+Rogue	Assassination	Expose Armor	14
+Rogue	Assassination	Garrote	14
+Rogue	Assassination	Ambush	18
+Rogue	Assassination	Rupture	20
+Rogue	Assassination	Cheap Shot	26
+Rogue	Assassination	Kidney Shot	30
+Rogue	Combat	Sinister Strike	1
+Rogue	Combat	Backstab	4
+Rogue	Combat	Gouge	6
+Rogue	Combat	Evasion	8
+Rogue	Combat	Sprint	10
+Rogue	Combat	Kick	12
+Rogue	Combat	Feint	16
+Rogue	Subtlety	Stealth	1
+Rogue	Subtlety	Pick Pocket	4
+Rogue	Subtlety	Sap	10
+Rogue	Subtlety	Distract	22
+Rogue	Subtlety	Vanish	22
+Rogue	Subtlety	Disarm Trap	30
+Rogue	Subtlety	Blind	34
+Rogue	Poisons	Crippling Poison	20
+Rogue	Poisons	Instant Poison	20
+Rogue	Poisons	Mind-numbing Poison	24
+Rogue	Poisons	Deadly Poison	30
+Rogue	Poisons	Wound Poison	32
+Rogue	Poisons	Occult Poison II	60
+Shaman	Elemental Combat	Lightning Bolt	1
+Shaman	Elemental Combat	Earth Shock	4
+Shaman	Elemental Combat	Earthbind Totem	6
+Shaman	Elemental Combat	Stoneclaw Totem	8
+Shaman	Elemental Combat	Flame Shock	10
+Shaman	Elemental Combat	Searing Totem	10
+Shaman	Elemental Combat	Fire Nova	12
+Shaman	Elemental Combat	Purge	12
+Shaman	Elemental Combat	Call of the Elements	20
+Shaman	Elemental Combat	Frost Shock	20
+Shaman	Elemental Combat	Magma Totem	26
+Shaman	Elemental Combat	Call of the Ancestors	30
+Shaman	Elemental Combat	Chain Lightning	32
+Shaman	Elemental Combat	Call of the Spirits	40
+Shaman	Enhancement	Rockbiter Weapon	1
+Shaman	Enhancement	Stoneskin Totem	4
+Shaman	Enhancement	Lightning Shield	8
+Shaman	Enhancement	Flametongue Weapon	10
+Shaman	Enhancement	Strength of Earth Totem	10
+Shaman	Enhancement	Frostbrand Weapon	20
+Shaman	Enhancement	Ghost Wolf	20
+Shaman	Enhancement	Totemic Projection	22
+Shaman	Enhancement	Water Breathing	22
+Shaman	Enhancement	Frost Resistance Totem	24
+Shaman	Enhancement	Far Sight	26
+Shaman	Enhancement	Fire Resistance Totem	28
+Shaman	Enhancement	Flametongue Totem	28
+Shaman	Enhancement	Water Walking	28
+Shaman	Enhancement	Astral Recall	30
+Shaman	Enhancement	Grounding Totem	30
+Shaman	Enhancement	Nature Resistance Totem	30
+Shaman	Enhancement	Windfury Weapon	30
+Shaman	Enhancement	Windfury Totem	32
+Shaman	Enhancement	Sentry Totem	34
+Shaman	Enhancement	Windwall Totem	36
+Shaman	Enhancement	Grace of Air Totem	42
+Shaman	Restoration	Healing Wave	1
+Shaman	Restoration	Ancestral Spirit	12
+Shaman	Restoration	Cure Poison	16
+Shaman	Restoration	Tremor Totem	18
+Shaman	Restoration	Healing Stream Totem	20
+Shaman	Restoration	Lesser Healing Wave	20
+Shaman	Restoration	Cure Disease	22
+Shaman	Restoration	Poison Cleansing Totem	22
+Shaman	Restoration	Mana Spring Totem	26
+Shaman	Restoration	Reincarnation	30
+Shaman	Restoration	Disease Cleansing Totem	38
+Shaman	Restoration	Chain Heal	40
+Warlock	Affliction	Corruption	4
+Warlock	Affliction	Curse of Weakness	4
+Warlock	Affliction	Life Tap	6
+Warlock	Affliction	Bane of Agony	8
+Warlock	Affliction	Fear	8
+Warlock	Affliction	Drain Soul	10
+Warlock	Affliction	Curse of Recklessness	14
+Warlock	Affliction	Drain Life	14
+Warlock	Affliction	Curse of the Elements	20
+Warlock	Affliction	Drain Mana	24
+Warlock	Affliction	Curse of Tongues	26
+Warlock	Affliction	Howl of Terror	40
+Warlock	Affliction	Death Coil	42
+Warlock	Affliction	Bane of Doom	60
+Warlock	Demonology	Demon Skin	1
+Warlock	Demonology	Summon Imp	1
+Warlock	Demonology	Create Healthstone	10
+Warlock	Demonology	Summon Voidwalker	10
+Warlock	Demonology	Health Funnel	12
+Warlock	Demonology	Unending Breath	16
+Warlock	Demonology	Create Soulstone	18
+Warlock	Demonology	Demon Armor	20
+Warlock	Demonology	Ritual of Summoning	20
+Warlock	Demonology	Summon Incubus	20
+Warlock	Demonology	Summon Succubus	20
+Warlock	Demonology	Eye of Kilrogg	22
+Warlock	Demonology	Sense Demons	24
+Warlock	Demonology	Detect Invisibility	26
+Warlock	Demonology	Banish	28
+Warlock	Demonology	Create Firestone	28
+Warlock	Demonology	Subjugate Demon	30
+Warlock	Demonology	Summon Felhunter	30
+Warlock	Demonology	Shadow Ward	32
+Warlock	Demonology	Create Spellstone	36
+Warlock	Demonology	Inferno	50
+Warlock	Demonology	Portal of Summoning	60
+Warlock	Demonology	Ritual of Doom	60
+Warlock	Destruction	Immolate	1
+Warlock	Destruction	Shadow Bolt	1
+Warlock	Destruction	Searing Pain	18
+Warlock	Destruction	Rain of Fire	20
+Warlock	Destruction	Hellfire	30
+Warlock	Destruction	Soul Fire	48
+Warlock	Felhunter	Devour Magic	30
+Warlock	Felhunter	Tainted Blood	32
+Warlock	Felhunter	Spell Lock	36
+Warlock	Felhunter	Paranoia	42
+Warlock	Imp	Firebolt	1
+Warlock	Imp	Blood Pact	4
+Warlock	Imp	Phase Shift	12
+Warlock	Imp	Fire Shield	14
+Warlock	Succubus	Lash of Pain	20
+Warlock	Succubus	Soothing Kiss	22
+Warlock	Succubus	Seduction	26
+Warlock	Succubus	Lesser Invisibility	32
+Warlock	Voidwalker	Torment	10
+Warlock	Voidwalker	Sacrifice	16
+Warlock	Voidwalker	Consume Shadows	18
+Warlock	Voidwalker	Suffering	24
