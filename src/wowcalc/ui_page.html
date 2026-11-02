@@ -77,11 +77,15 @@ section.card { background: var(--panel); border: 1px solid var(--rule); border-r
 
 #treewrap { overflow: auto; max-height: 76vh; background: var(--panel-2); border-radius: var(--radius); border: 1px solid var(--rule); }
 #tree { margin: 16px; }
-.specs { display: flex; flex-wrap: wrap; gap: 20px 36px; justify-content: center; }
+/* The specialization trees share the panel in equal columns (a third each when it is wide enough for
+   three), so every tree and its background art take the same space. */
+.specs { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 12px; }
+.spec { min-width: 0; padding: 10px 10px 14px; border-radius: var(--radius); }
+.spec .canvas { margin: 0 auto; }
 .spec h3 { font-size: 15px; margin-bottom: 6px; border-bottom: 1px solid var(--rule); padding-bottom: 4px; display: flex; justify-content: space-between; }
 .canvas { position: relative; }
 /* Specialization art behind a tree, under a wash of the panel colour so names stay readable in both themes. */
-.canvas.art { background: linear-gradient(var(--veil), var(--veil)), var(--art) center top / cover no-repeat; border-radius: var(--radius); }
+.spec.art { background: linear-gradient(var(--veil), var(--veil)), var(--art) center top / cover no-repeat; }
 .canvas svg { position: absolute; inset: 0; pointer-events: none; }
 .canvas line { stroke: var(--rule); stroke-width: 3; }
 .node { position: absolute; width: 76px; display: flex; flex-direction: column; align-items: center; gap: 3px; background: none; border: 0; padding: 0; text-align: center; }
@@ -413,7 +417,7 @@ function drawTree() {
     box.innerHTML = `<h3><span>${esc((S.tree.specs && S.tree.specs[key]) || `Tree ${i + 1}`)}</span> <span class="num tiny" data-spent></span></h3>`;
     const canvas = document.createElement("div"); canvas.className = "canvas"; canvas.style.width = width + "px"; canvas.style.height = height + "px";
     const art = S.tree.backgrounds && S.tree.backgrounds[key];
-    if (art) { canvas.classList.add("art"); canvas.style.setProperty("--art", `url("${art}")`); }
+    if (art) { box.classList.add("art"); box.style.setProperty("--art", `url("${art}")`); }
     const ids = new Set(members.map((n) => n.id));
     let svg = `<svg width="${width}" height="${height}" aria-hidden="true">`;
     for (const e of S.tree.edges) {
