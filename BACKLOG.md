@@ -25,10 +25,10 @@ Principles that apply to everything below: data-driven, versioned, traceable, ne
 
 ## Modelling more talents  [offline]
 
-The full list is `docs/unmodelled_effects.tsv` (regenerate it after each change and each new build: `python -m wowcalc.talentinfo unmodelled --out docs/unmodelled_effects.tsv`). Of 467 talents, 43 are fully modelled and 17 partly (build 1.60.1.70707, 2026-11-01). What is left, by type:
+The full list is `docs/unmodelled_effects.tsv` (regenerate it after each change and each new build: `python -m wowcalc.talentinfo unmodelled --out docs/unmodelled_effects.tsv`). Of 468 talents, 43 are fully modelled and 19 partly (build 1.60.1.70707-hf202610311059, 2026-11-02). What is left, by type:
 
 - [ ] Auras decoded for the sheet but still conditional: 54, 290, 55, 49, 47, 51 (abilities with a duration, a single form).
-- [ ] What is not valued on 1.60.1.70707 (693 effects): 185 belong to abilities and forms (86 talents; kind `ability`, need a combat model), 274 change particular spells, 178 are scripts, and only 56 are undecoded auras on passive talents (332 x10 single-spell changes such as Improved Slam; 79 x8 and 10 x3 are the equipment- or state-dependent ones; the rest are one to three each). Read the tooltips first; never assume the meaning from the aura number.
+- [ ] What is not valued on 1.60.1.70707-hf202610311059 (694 effects): 181 belong to abilities and forms (85 talents; kind `ability`, need a combat model), 275 change particular spells, 180 are scripts, and 58 are undecoded auras on passive talents (most common: 332 x13, 79 x6, 122 x3, 231 x3; 332 are single-spell changes such as Improved Slam, 79 and 10 the equipment- or state-dependent ones). Read the tooltips first; never assume the meaning from the aura number.
 - [ ] Damage done, threat and damage taken that depend on equipment (Weapon and Wand Specializations, Bastion, Defiance) or a state (Lone Wolf, Instrument of Law, Spirit Weapons): need gear and state inputs.
 - [x] The passive-spell check (SpellMisc) also guards the sheet decoders. On 1.60.1.70707 all 55 counted sheet effects are on passive spells, so nothing changed.
 - [ ] Spell modifiers (auras 107 and 108, about 300 effects): they change particular spells (cost, damage, cast time), not the sheet. Needs a different engine and a model of the spells.
