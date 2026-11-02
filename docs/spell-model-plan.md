@@ -41,7 +41,7 @@ Checked on the installed build, not assumed:
 
 Each phase ships on its own and leaves the calculator working.
 
-1. **Catalogue and matching** (small–medium). Fetch the tables, build the per-class catalogue, resolve every modifier to its spells, write the audit report. No change to values yet. Tells us how many of the 275 can be matched cleanly.
+1. **Catalogue and matching** (small–medium). **Done 2026-11-02:** `src/wowcalc/spells.py`, `python -m wowcalc.spells audit`, the Data tab check, `docs/spell-modifier-audit.tsv`. Result on 1.60.1.70707 with hotfixes: 176 of 275 modifiers agree with their text; 39 change a spell's own effect amounts (phase 4); 29 reach only pet, poison, totem or weapon spells (later); 47 disagree with their text in some way and are listed for review. Ops established from the texts: 0, 1, 2, 4, 5, 6, 7, 9, 10, 11, 14, 15, 16, 18, 21, 22; 3, 8 and 12 change effect amounts. Fetch the tables, build the per-class catalogue, resolve every modifier to its spells, write the audit report. No change to values yet. Tells us how many of the 275 can be matched cleanly.
 2. **Simple properties** (medium). Cost, cast time, cooldown, global cooldown, range, radius, duration: numbers in, numbers out. Spells section and per-spell talent values.
 3. **Damage-side properties** (medium). Crit chance, crit damage bonus, damage and periodic damage percents, shown as bonuses per spell (not yet damage numbers).
 4. **Base damage numbers** (later, optional). Effect base values and how they scale with level and spell power; this is where the combat model starts.

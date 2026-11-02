@@ -521,12 +521,30 @@ class Workbench:
             add("Character panel figures", problems_in(self.sheet_base))
         if self.rates is not None:
             add("Fitted stat rates", list(self.rates.problems))
+        add("Spell modifiers (talents that change spells)", self.spell_audit())
         out = {"build": self.build, "checks": checks, "notes": self.load_notes, "confidence": [
             {"item": a, "status": b, "detail": c} for a, b, c in CONFIDENCE]}
         out["icons"] = self.icon_summary()
         if self.rates is not None:
             out["references"] = {k: v for k, v in self.rates.references.items() if k in ("source", "build", "status")}
         return out
+
+    def spell_audit(self) -> list[str]:
+        """The spell model's audit (spells.py): the summary, then the modifiers whose text and data
+        disagree. Those in later phases (pets and procs, effect amounts) are counted, not listed."""
+        if not hasattr(self, "_spell_audit"):
+            from .spells import resolve, summary
+            try:
+                mods = resolve(self.ds, self.model, self.book)
+            except (KeyError, ValueError) as exc:
+                self._spell_audit = [f"the spell audit could not run: {exc}"]
+                return self._spell_audit
+            later = ("phase 4", "casts itself")
+            listed = [f"{m.class_name} {m.talent} (effect {m.effect_index}, {m.op_name}): " + "; ".join(m.problems)
+                      for m in mods if m.problems and not all(any(w in p for w in later) for p in m.problems)]
+            pointer = "Full list: docs/spell-modifier-audit.tsv (python -m wowcalc.spells audit --out docs/spell-modifier-audit.tsv)"
+            self._spell_audit = summary(mods) + [pointer] + listed if listed else []
+        return self._spell_audit
 
     def icon_summary(self) -> dict:
         wanted: set[str] = set()

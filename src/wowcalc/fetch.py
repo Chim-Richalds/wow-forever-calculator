@@ -78,6 +78,16 @@ EXTENDED_TABLES: tuple[str, ...] = (
     "SpellMechanic",  # names of crowd control types (stunned, fleeing), for aura 232 talents
     "Resistances",  # names of the damage schools (bit 1 << ID of a school mask)
     "SpellMisc",  # spell flags (passive or not) and icon IDs
+    # The spell model (docs/spell-model-plan.md): which spells a class has, and their base properties.
+    "SpellClassOptions",  # each spell's family and class mask, which talent modifiers match against
+    "SkillLineAbility",  # the spells a class can learn
+    "SpellLevels",
+    "SpellPower",  # costs
+    "SpellCastTimes",
+    "SpellCooldowns",
+    "SpellDuration",
+    "SpellRange",
+    "SpellCategories",  # global cooldown category
 )
 
 TABLES: tuple[str, ...] = BASE_TABLES + EXTENDED_TABLES

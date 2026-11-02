@@ -64,6 +64,15 @@ REQUIRED_COLUMNS: dict[str, frozenset[str]] = {
     "SpellMechanic": frozenset({"ID", "StateName_lang"}),
     "Resistances": frozenset({"ID", "Name_lang"}),
     "SpellMisc": frozenset({"SpellID", "Attributes_0"}),
+    "SpellClassOptions": frozenset({"SpellID", "SpellClassSet", "SpellClassMask_0", "SpellClassMask_1", "SpellClassMask_2", "SpellClassMask_3"}),
+    "SkillLineAbility": frozenset({"Spell", "SkillLine", "ClassMask"}),
+    "SpellLevels": frozenset({"SpellID", "SpellLevel", "BaseLevel"}),
+    "SpellPower": frozenset({"SpellID", "ManaCost", "PowerCostPct", "PowerType"}),
+    "SpellCastTimes": frozenset({"ID", "Base"}),
+    "SpellCooldowns": frozenset({"SpellID", "RecoveryTime", "CategoryRecoveryTime", "StartRecoveryTime"}),
+    "SpellDuration": frozenset({"ID", "Duration"}),
+    "SpellRange": frozenset({"ID", "RangeMax_0"}),
+    "SpellCategories": frozenset({"SpellID", "StartRecoveryCategory"}),
 }
 
 # Issue codes that block regardless of what the baseline looked like.

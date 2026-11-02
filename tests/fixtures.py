@@ -86,6 +86,16 @@ def base_tables():
                             ["2", "Fire", "0", "0"], ["3", "Nature", "0", "0"], ["4", "Frost", "0", "0"], ["5", "Shadow", "0", "0"],
                             ["6", "Arcane", "0", "0"]),
         "SpellMisc": rows(["ID", "Attributes_0", "SpellIconFileDataID", "SpellID"], ["1", "464", "0", "5000"]),
+        "SpellClassOptions": rows(["ID", "SpellID", "SpellClassSet", "SpellClassMask_0", "SpellClassMask_1", "SpellClassMask_2", "SpellClassMask_3"],
+                                  ["1", "5000", "3", "1", "0", "0", "0"]),
+        "SkillLineAbility": rows(["ID", "SkillLine", "Spell", "ClassMask"], ["1", "6", "5000", "128"]),
+        "SpellLevels": rows(["ID", "SpellID", "BaseLevel", "SpellLevel", "MaxLevel"], ["1", "5000", "1", "1", "0"]),
+        "SpellPower": rows(["ID", "SpellID", "ManaCost", "PowerCostPct", "PowerType"], ["1", "5000", "30", "0", "0"]),
+        "SpellCastTimes": rows(["ID", "Base", "Minimum"], ["1", "0", "0"], ["5", "3000", "0"]),
+        "SpellCooldowns": rows(["ID", "SpellID", "RecoveryTime", "CategoryRecoveryTime", "StartRecoveryTime"], ["1", "5000", "0", "0", "1500"]),
+        "SpellDuration": rows(["ID", "Duration", "MaxDuration"], ["1", "10000", "10000"]),
+        "SpellRange": rows(["ID", "DisplayName_lang", "RangeMin_0", "RangeMax_0"], ["1", "Self", "0", "0"], ["4", "Long", "0", "30"]),
+        "SpellCategories": rows(["ID", "SpellID", "Category", "StartRecoveryCategory"], ["1", "5000", "0", "133"]),
     }
 
 

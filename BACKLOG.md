@@ -35,7 +35,8 @@ The full list is `docs/unmodelled_effects.tsv` (regenerate it after each change 
 - [x] Situational damage and threat: the page has a box per situation a class's talents need (shield, two-handed weapon, Defensive Stance, Rockbiter Weapon); effects that need one are listed as "not counted: needs ..." until it is set. Weapon-scoped bonuses ("damage with wands / ranged weapons / two-handed melee weapons") are shown with that scope. A condition at the end of a sentence covers the sentence's earlier values unless they have their own (fixes Paladin Two-Handed Weapon Specialization, whose damage was counted without the weapon).
 - [ ] Still not counted for lack of data: Lone Wolf (its text shows the script effect's 20%, not the damage aura's), Sharpened Claws and Furious Precision (no rank values). Forms and an active pet would need inputs too.
 - [x] The passive-spell check (SpellMisc) also guards the sheet decoders. On 1.60.1.70707 all 55 counted sheet effects are on passive spells, so nothing changed.
-- [ ] Spell modifiers (auras 107 and 108, about 300 effects): they change particular spells (cost, damage, cast time), not the sheet. Needs a different engine and a model of the spells.
+- [ ] Spell modifiers (auras 107 and 108, 275 effects on 200 talents): the spell model, `docs/spell-model-plan.md`. Phase 1 (catalogue, matching, audit) done; phase 2 (cost, cast time, cooldown, range, duration below the stat sheet) next.
+- [ ] Review the 47 spell modifiers whose data and text disagree (`docs/spell-modifier-audit.tsv`, also in the Data tab), e.g. Arcane Instability's op 22 value that the text calls crit chance. Some will need an in-game check.
 - [ ] Scripts (auras 4, 42, 109, 190 effects): the data holds numbers only; the tooltip says what they mean.
 - [ ] Instant effects (no aura, 74).
 - [ ] Hunter Bestial Discipline: the pet Focus part.
