@@ -12,7 +12,8 @@ publishes and checked to be a PNG before it is kept.
     python -m wowcalc.backgrounds fetch           # download through the wiki's API (its image host may refuse)
     python -m wowcalc.backgrounds status
 
-Files are matched by name: "Talents background - mage Frost.png", "Talents_background_-_mage_Frost.png"
+Files are matched by name (and accepted as PNG or WebP by their contents: browsers get WebP from
+the wiki even when the name says .png): "Talents background - mage Frost.png", "Talents_background_-_mage_Frost.png"
 or simply "mage frost.png" all give Mage / Frost.
 """
 
@@ -33,6 +34,16 @@ WIKI_API = "https://wowpedia.fandom.com/api.php"
 CATEGORY = "Category:Talents_interface_backgrounds"
 TITLE = re.compile(r"^File:Talents background - (?P<cls>[a-z ]+?) (?P<spec>[A-Z][A-Za-z ]+)\.png$")
 PNG_MAGIC = b"\x89PNG\r\n\x1a\n"
+TYPES = {"png": "image/png", "webp": "image/webp"}   # the wiki's image host sends WebP to browsers, under a .png name
+
+
+def sniff(body: bytes) -> str | None:
+    """'png', 'webp' or None, from the file's first bytes (not its name)."""
+    if body.startswith(PNG_MAGIC):
+        return "png"
+    if body[:4] == b"RIFF" and body[8:12] == b"WEBP":
+        return "webp"
+    return None
 MAX_BYTES = 2_000_000
 
 
@@ -40,9 +51,9 @@ class BackgroundError(Exception):
     pass
 
 
-def file_name(class_name: str, spec: str) -> str:
-    """'Druid', 'Feral Combat' -> 'druid-feral-combat.png'."""
-    return re.sub(r"[^a-z0-9]+", "-", f"{class_name} {spec}".lower()).strip("-") + ".png"
+def file_name(class_name: str, spec: str, kind: str = "png") -> str:
+    """'Druid', 'Feral Combat' -> 'druid-feral-combat.png' (or .webp)."""
+    return re.sub(r"[^a-z0-9]+", "-", f"{class_name} {spec}".lower()).strip("-") + "." + kind
 
 
 class BackgroundCache:
@@ -56,21 +67,33 @@ class BackgroundCache:
         except (OSError, ValueError):
             return {}
 
-    def has(self, class_name: str, spec: str) -> bool:
-        return (self.dir / file_name(class_name, spec)).is_file()
+    def stored(self, class_name: str, spec: str) -> str | None:
+        """The cached file name for this specialization, whichever image type it is, or None."""
+        for kind in TYPES:
+            if (self.dir / file_name(class_name, spec, kind)).is_file():
+                return file_name(class_name, spec, kind)
+        return None
 
-    def read(self, name: str) -> bytes | None:
-        """The cached file `name` (as file_name builds it), or None. Rejects anything else."""
-        if not re.fullmatch(r"[a-z0-9-]+\.png", name):
+    def has(self, class_name: str, spec: str) -> bool:
+        return self.stored(class_name, spec) is not None
+
+    def read(self, name: str) -> tuple[bytes, str] | None:
+        """(the cached file `name`, its media type), or None. Rejects any other name."""
+        match = re.fullmatch(r"[a-z0-9-]+\.(png|webp)", name)
+        if not match:
             return None
         path = self.dir / name
-        return path.read_bytes() if path.is_file() else None
+        return (path.read_bytes(), TYPES[match.group(1)]) if path.is_file() else None
 
     def add(self, class_name: str, spec: str, body: bytes, source: str) -> str:
-        if not body.startswith(PNG_MAGIC):
-            raise BackgroundError(f"{class_name} {spec}: not a PNG image")
+        kind = sniff(body)
+        if kind is None:
+            raise BackgroundError(f"{class_name} {spec}: not a PNG or WebP image")
         self.dir.mkdir(parents=True, exist_ok=True)
-        name = file_name(class_name, spec)
+        for other in TYPES:       # one image per specialization: drop one of another type
+            if other != kind:
+                (self.dir / file_name(class_name, spec, other)).unlink(missing_ok=True)
+        name = file_name(class_name, spec, kind)
         tmp = self.dir / (name + ".tmp")
         tmp.write_bytes(body)
         os.replace(tmp, self.dir / name)
@@ -138,7 +161,7 @@ def import_folder(cache: BackgroundCache, folder: Path, specs: list[tuple[str, s
     wanted = {_words(f"{c} {s}"): (c, s) for c, s in specs}
     added, skipped = [], []
     for path in sorted(folder.iterdir()):
-        if not path.is_file() or path.suffix.lower() != ".png":
+        if not path.is_file() or path.suffix.lower() not in (".png", ".webp"):
             continue
         name = _words(path.stem).removeprefix("talents background ").strip()
         hits = [cs for key, cs in wanted.items() if name == key or name.endswith(" " + key)]

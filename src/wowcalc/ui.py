@@ -40,7 +40,6 @@ from .dataset import Dataset
 from .effects import CONDITIONS, EffectBook, render_tooltip
 from .fetch import TABLES
 from .backgrounds import BackgroundCache
-from .backgrounds import file_name as background_file
 from .icons import IconCache, icon_ids
 from .rates import RatesError, load_rates
 from .specs import SpecError, load_spec_names, name_trees
@@ -305,7 +304,7 @@ class Workbench:
         return {
             "class": tree.class_name, "grid": 600, "nodes": nodes, "specs": self.specs_of(tree)[0],
             # one background image per specialization tree, when it is cached (backgrounds.py)
-            "backgrounds": [f"/backgrounds/{background_file(tree.class_name, spec)}" if spec and self.backgrounds.has(tree.class_name, spec) else None
+            "backgrounds": [f"/backgrounds/{self.backgrounds.stored(tree.class_name, spec)}" if spec and self.backgrounds.has(tree.class_name, spec) else None
                             for spec in self.specs_of(tree)[0]],
             # Situations this class's talents depend on (the shield has its own box), for the page's checkboxes.
             "conditions": [{"key": k, "label": CONDITIONS[k][0]} for k in CONDITIONS
@@ -724,7 +723,7 @@ def make_handler(bench: Workbench, updater: "UpdateJob | None" = None):
                     found = current["bench"].backgrounds.read(url.path[len("/backgrounds/"):])
                     if found is None:
                         raise UiError(404, "no such background")
-                    return self._send(200, found, "image/png")
+                    return self._send(200, found[0], found[1])
                 if method == "GET" and url.path.startswith("/icons/"):
                     found = current["bench"].icons.read(url.path[len("/icons/"):])
                     if found is None:
