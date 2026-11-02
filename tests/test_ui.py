@@ -338,7 +338,7 @@ class EvaluateTests(WorkbenchCase):
         def sheet(*others):
             empty = SimpleNamespace(total=None)
             return SimpleNamespace(lines={s: empty for s in ("health", "mana") + SHEET_STATS}, figures={}, attack_power=empty,
-                                   armor=empty, spell_power=empty, healing=empty, other_effects=list(others))
+                                   armor=empty, spell_power=empty, healing=empty, ranged_attack_power=empty, other_effects=list(others))
         a = OtherEffect("Frost Channeling", "threat", "Threat (Frost)", Decimal("-30"))
         b = OtherEffect("Other", "threat", "Threat (Frost)", Decimal("-10"))
         both, without = Workbench.metrics(sheet(a, b)), Workbench.metrics(sheet(b))

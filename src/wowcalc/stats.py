@@ -50,7 +50,7 @@ from .basestats import BaseStatTable
 from .perlevel import mana_total
 from .rates import RateTable, StatEffects
 from .sheetbase import SheetBase, SheetBaseError
-from .effects import AP_FROM_STAT, ARMOR_FROM_STAT, OTHER_KINDS, SHEET_ADD, SHEET_FIGURES, SP_FROM_STAT, STAT_PERCENT, EffectBook, TalentEffect, describe_other, describe_requirement
+from .effects import AP_FROM_STAT, ARMOR_FROM_STAT, RAP_FROM_STAT, OTHER_KINDS, SHEET_ADD, SHEET_FIGURES, SP_FROM_STAT, STAT_PERCENT, EffectBook, TalentEffect, describe_other, describe_requirement
 from .trees import Node
 
 # Where each sheet figure's base lives in the sheet-figures file: (section, label).
@@ -63,6 +63,7 @@ FIGURE_SOURCE = {
     "parry": ("defense", "Parry Chance"),
 }
 ATTACK_POWER_SOURCE = ("melee", "Attack Power")
+RANGED_ATTACK_POWER_SOURCE = ("ranged", "Ranged Attack Power")
 ARMOR_SOURCE = ("defense", "Armor")
 SPELL_POWER_SOURCE = ("spell", "Spell Damage")
 HEALING_SOURCE = ("spell", "Healing")
@@ -150,6 +151,25 @@ class AttackPowerLine:
 
 
 @dataclass(frozen=True)
+class RangedAttackPowerLine:
+    """Ranged Attack Power: the panel's figure (or the class's fitted rule where no panel was read),
+    plus extra Agility/Strength at the rule's rates, plus talents that give a share of a stat."""
+    base: int | None = None
+    from_talent_stats: int = 0
+    from_adjustments: int = 0
+    bonus: int = 0
+    contributions: tuple[tuple[str, str, Decimal], ...] = ()  # (talent label, source stat, percent)
+
+    @property
+    def total(self) -> int | None:
+        return None if self.base is None else self.base + self.from_talent_stats + self.from_adjustments + self.bonus
+
+    @property
+    def talent_total(self) -> int:
+        return self.from_talent_stats + self.bonus
+
+
+@dataclass(frozen=True)
 class ArmorLine:
     """Armor and the damage reduction it gives against an attacker of your own level."""
     base: int | None          # the panel's armor without talents or adjustments
@@ -225,6 +245,7 @@ class Sheet:
     other_effects: list["OtherEffect"] = field(default_factory=list)
     # Valued effects that do not count now because their situation does not hold.
     inactive: list["Inactive"] = field(default_factory=list)
+    ranged_attack_power: RangedAttackPowerLine = field(default_factory=RangedAttackPowerLine)
 
 
 def build_sheet(
@@ -249,6 +270,7 @@ def build_sheet(
         raise ValueError(f"cannot adjust {', '.join(map(repr, unknown))}; choose from {', '.join(ADJUSTABLE)}")
     contributions: dict[str, list[tuple[str, float]]] = {s: [] for s in ("health", "mana") + SHEET_STATS}
     armor_parts: list[tuple[str, str, Decimal]] = []
+    rap_parts: list[tuple[str, str, Decimal]] = []
     not_modelled: list[NotModelled] = []
     figure_parts: dict[str, list[tuple[str, Decimal]]] = {f: [] for f in SHEET_FIGURES}
     ap_parts: list[tuple[str, str, Decimal]] = []
@@ -276,6 +298,8 @@ def build_sheet(
                     ap_parts.append((talent.label, effect.stats[0], Decimal(str(value))))
                 elif effect.kind == ARMOR_FROM_STAT:
                     armor_parts.append((talent.label, effect.stats[0], Decimal(str(value))))
+                elif effect.kind == RAP_FROM_STAT:
+                    rap_parts.append((talent.label, effect.stats[0], Decimal(str(value))))
                 elif effect.kind == SP_FROM_STAT:
                     sp_parts[effect.figures[0]].append((talent.label, effect.stats[0], Decimal(str(value))))
                 elif effect.kind in OTHER_KINDS:
@@ -398,8 +422,9 @@ def build_sheet(
     healing = _spell_power(sp_parts["healing"], lines, heal_base, int(adjustments.get("healing", 0)))
     if sp_parts["spell_power"] or sp_parts["healing"]:
         notes.append("spell power and healing from a stat: the amount is rounded down; the game's rounding has not been checked")
+    ranged = _ranged_attack_power(rates, class_name, level, lines, panel_value(RANGED_ATTACK_POWER_SOURCE), rap_parts, notes)
     return Sheet(class_name, race_name, level, lines, figures, attack, armor_line, spell_power, healing, block_value, not_modelled, notes,
-                 other_effects, inactive)
+                 other_effects, inactive, ranged)
 
 
 def _armor(rates: RateTable | None, level: int, lines: dict[str, StatLine], adjustments, panel_armor, rates_applied: bool,
@@ -502,6 +527,31 @@ def _stat_effects(rates: RateTable, class_name: str, level: int, lines: dict[str
     best_t, err_t = rates.effects(class_name, d_talents["strength"], d_talents["agility"], d_talents["intellect"], level)
     best_a, err_a = rates.effects(class_name, d_adjust["strength"], d_adjust["agility"], d_adjust["intellect"], level)
     return best_t, best_a, err_t + err_a
+
+
+def _ranged_attack_power(rates: RateTable | None, class_name: str, level: int, lines: dict[str, StatLine], panel_rap,
+                         parts: list[tuple[str, str, Decimal]], notes: list[str]) -> RangedAttackPowerLine:
+    rule = None if rates is None else rates.ranged_attack_power.get(class_name)
+    strength, agility = lines["strength"], lines["agility"]
+    base = None if panel_rap is None else int(panel_rap)
+    if base is None and rule is not None and strength.base is not None and agility.base is not None:
+        base = rule.at(strength.base, agility.base, level)
+        notes.append(f"ranged attack power at level {level} is computed from the fitted rule (no panel reading at this level)"
+                     + ("" if strength.base_exact and agility.base_exact else " and ESTIMATED base stats"))
+    if base is None:
+        return RangedAttackPowerLine(contributions=tuple(parts))
+    from_talents = from_adjust = 0
+    if rule is not None:
+        d_str = (strength.talent_change or 0) if strength.total is not None else 0
+        d_agi = (agility.talent_change or 0) if agility.total is not None else 0
+        from_talents = rule.per_strength * d_str + rule.per_agility * d_agi
+        from_adjust = rule.per_strength * strength.adjustment + rule.per_agility * agility.adjustment
+    elif any(l.talent_change or l.adjustment for l in (strength, agility)):
+        notes.append("ranged attack power: no fitted rule for this class, so extra Strength or Agility does not change it")
+    bonus = _attack_power(parts, lines).bonus
+    if parts:
+        notes.append("ranged attack power from a stat: the amount is rounded down; the game's rounding has not been checked")
+    return RangedAttackPowerLine(base, from_talents, from_adjust, bonus, tuple(parts))
 
 
 def _attack_power(parts: list[tuple[str, str, Decimal]], lines: dict[str, StatLine]) -> AttackPowerLine:

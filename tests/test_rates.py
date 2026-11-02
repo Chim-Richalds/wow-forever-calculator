@@ -466,5 +466,39 @@ class RealDataTests(unittest.TestCase):
         self.assertIn(F(1, 53), self.table.agility["Hunter"])
 
 
+
+class RangedAttackPowerFitTests(unittest.TestCase):
+    """fit_ranged_attack_power on small stand-ins for the base-stat and panel tables."""
+
+    def fit(self, readings):
+        from types import SimpleNamespace as NS
+        from wowcalc.rates import RANGED_ATTACK_POWER, fit_ranged_attack_power
+        # readings: (race, level, strength, agility, ranged AP)
+        stats = NS(combos=lambda: sorted({("Hunter", r[0]) for r in readings}),
+                   at=lambda c, race, lv: next({"strength": NS(value=r[2], exact=True), "agility": NS(value=r[3], exact=True)}
+                                              for r in readings if r[0] == race and r[1] == lv))
+        panel = NS(levels=lambda c, race: [r[1] for r in readings if r[0] == race],
+                   at=lambda c, race, lv: {RANGED_ATTACK_POWER: NS(value=next(r[4] for r in readings if r[0] == race and r[1] == lv))})
+        problems = []
+        return fit_ranged_attack_power(stats, panel, problems), problems
+
+    def test_the_hunter_readings_give_two_per_agility_and_two_per_level(self):
+        rules, problems = self.fit([("Human", 1, 22, 19, 30), ("Human", 60, 57, 121, 352),
+                                    ("Night Elf", 1, 17, 28, 48), ("Night Elf", 60, 52, 130, 370), ("Tauren", 60, 60, 120, 350)])
+        r = rules["Hunter"]
+        self.assertEqual((r.per_agility, r.per_strength, r.per_level, r.constant, r.readings, r.ambiguous), (2, 0, 2, -10, 5, False))
+        self.assertEqual((r.at(57, 121, 60), problems), (352, []))
+
+    def test_one_level_cannot_fix_the_level_term(self):
+        rules, problems = self.fit([("Human", 60, 57, 121, 352), ("Night Elf", 60, 52, 130, 370)])
+        self.assertEqual(rules, {})
+        self.assertIn("one level only", problems[0])
+
+    def test_readings_no_whole_number_rule_explains_are_reported(self):
+        rules, problems = self.fit([("Human", 1, 22, 19, 30), ("Human", 60, 57, 121, 352), ("Night Elf", 60, 52, 130, 371)])
+        self.assertEqual(rules, {})
+        self.assertIn("no whole-number rule", problems[0])
+
+
 if __name__ == "__main__":
     unittest.main()

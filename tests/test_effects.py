@@ -12,7 +12,7 @@ from effect_fixtures import ACTIVE, add_curve, add_effect, write_effects  # noqa
 from fixtures import TempCase  # noqa: E402
 from wowcalc.dataset import Dataset  # noqa: E402
 from wowcalc.effects import (  # noqa: E402
-    ABILITY, ALL_STATS, AP_FROM_STAT, ARMOR_FROM_STAT, CC_DURATION, DAMAGE_DONE, DAMAGE_TAKEN, THREAT, SP_FROM_STAT, SCRIPT, condition_in, SHEET_ADD, SPELL_MODIFIER, STAT_PERCENT, UNSUPPORTED, EffectBook, TalentEffect, decode_stats,
+    ABILITY, ALL_STATS, AP_FROM_STAT, ARMOR_FROM_STAT, RAP_FROM_STAT, CC_DURATION, DAMAGE_DONE, DAMAGE_TAKEN, THREAT, SP_FROM_STAT, SCRIPT, condition_in, SHEET_ADD, SPELL_MODIFIER, STAT_PERCENT, UNSUPPORTED, EffectBook, TalentEffect, decode_stats,
     render_tooltip, decode_schools, effect_phrase, schools_label,
 )
 from wowcalc.fetch import TABLES  # noqa: E402
@@ -336,6 +336,19 @@ class ConditionalDecodeTests(DecodeCase):
         e = self.one(m)
         self.assertEqual(e.kind, UNSUPPORTED)
         self.assertIn("does not say so", e.note)
+
+    def test_ranged_attack_power_from_a_stat(self):
+        def m(text):
+            def mutate(t):
+                add_effect(t, 1, aura=580, misc0=3, misc1=0)
+                add_curve(t, 1, 0, (20, 40))
+                for spell in t["Spell"][1]:
+                    if spell["ID"] == "3001":
+                        spell["Description_lang"] = text
+            return mutate
+        e = self.one(m("Increases your Attack Power by $s1% of your Intellect."))
+        self.assertEqual((e.kind, e.stats, e.by_rank), (RAP_FROM_STAT, ("intellect",), {1: 20.0, 2: 40.0}))
+        self.assertEqual(self.one(m("Increases your Attack Power by $s1% of your Agility.")).kind, UNSUPPORTED)
 
     def test_a_sheet_bonus_on_an_ability_is_refused(self):
         def mutate(t):

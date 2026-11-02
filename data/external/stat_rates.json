@@ -6999,6 +6999,16 @@
   "racial_dodge": {
     "Night Elf": "1"
   },
+  "ranged_attack_power": {
+    "Hunter": [
+      2,
+      0,
+      2,
+      -10,
+      16,
+      false
+    ]
+  },
   "references": {
     "attack_power_overrides": [
       "Mage: panel fit 2 per Strength + 0 per Agility, replaced by 1 + 0 (reference)",

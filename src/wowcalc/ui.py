@@ -389,6 +389,8 @@ class Workbench:
                 out[name] = fig.total
         if sheet.attack_power.total is not None:
             out["attack_power"] = sheet.attack_power.total
+        if sheet.ranged_attack_power.total is not None:
+            out["ranged_attack_power"] = sheet.ranged_attack_power.total
         if sheet.armor.total is not None:
             out["armor"] = sheet.armor.total
         for name in ("spell_power", "healing"):
@@ -438,6 +440,9 @@ class Workbench:
         arm = sheet.armor
         out = {
             "lines": lines, "figures": figures,
+            "ranged_attack_power": {"base": sheet.ranged_attack_power.base, "talents": sheet.ranged_attack_power.talent_total,
+                                    "adjust": sheet.ranged_attack_power.from_adjustments, "total": sheet.ranged_attack_power.total,
+                                    "from": [[label, stat, num(p)] for label, stat, p in sheet.ranged_attack_power.contributions]},
             "attack_power": {"base": ap.base, "talents": ap.talent_total, "adjust": ap.from_adjustments, "total": ap.total,
                              "from": [[label, stat, num(p)] for label, stat, p in ap.contributions]},
             "armor": {"base": arm.base, "talents": arm.talent_total, "adjust": arm.from_adjustments, "gear": arm.item_armor,

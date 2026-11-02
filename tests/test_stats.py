@@ -14,7 +14,7 @@ from fixtures import TempCase  # noqa: E402
 from basestats_fixtures import row, tsv, warrior  # noqa: E402
 from wowcalc.basestats import parse_base_stats  # noqa: E402
 from wowcalc.dataset import Dataset  # noqa: E402
-from wowcalc.effects import AP_FROM_STAT, ARMOR_FROM_STAT, CC_DURATION, DAMAGE_DONE, THREAT, SP_FROM_STAT, SHEET_ADD, SCRIPT, SPELL_MODIFIER, STAT_PERCENT, UNSUPPORTED, EffectBook, TalentEffect  # noqa: E402
+from wowcalc.effects import AP_FROM_STAT, ARMOR_FROM_STAT, RAP_FROM_STAT, CC_DURATION, DAMAGE_DONE, THREAT, SP_FROM_STAT, SHEET_ADD, SCRIPT, SPELL_MODIFIER, STAT_PERCENT, UNSUPPORTED, EffectBook, TalentEffect  # noqa: E402
 from fractions import Fraction as F  # noqa: E402
 from wowcalc.derived import ArmorRule, AssumedRules, PoolRule  # noqa: E402
 from wowcalc.rates import AttackPowerRule, Interval, RateTable  # noqa: E402
@@ -582,6 +582,28 @@ class ResourceTests(unittest.TestCase):
         table = parse_base_stats(tsv(row("Druid", "Tauren", l60=(self.HEALTH, self.MANA, 70, 60, 60, 100, 60))))
         sheet = build_sheet(table, "Druid", "Tauren", 60, [], None, None, full_rates())
         self.assertEqual((sheet.armor.base, sheet.armor.total, sheet.armor.damage_reduction), (None, None, None))
+
+    # ---- ranged attack power
+    def hunter(self, talents=(), adjustments=None, level=60, reading=True):
+        from wowcalc.rates import RangedAttackPowerRule
+        table = parse_base_stats(tsv(row("Hunter", "Tauren", l1=(70, 60, 25, 18, 22, 20, 25), l60=(self.HEALTH, self.MANA, 60, 120, 60, 100, 60))))
+        rows = [["Hunter", "Tauren", "60", "melee", "Attack Power", "100", ""]] + ([["Hunter", "Tauren", "60", "ranged", "Ranged Attack Power", "350", ""]] if reading else [])
+        rates = full_rates()
+        rates.ranged_attack_power = {"Hunter": RangedAttackPowerRule(2, 0, 2, -10, 16)}
+        return build_sheet(table, "Hunter", "Tauren", level, list(talents), adjustments, SheetBase([dict(zip(HEADER, r)) for r in rows]), rates)
+
+    def test_ranged_attack_power_from_the_panel_with_agility_and_careful_aim(self):
+        aim = RankedTalent("n", "s", "Careful Aim", 5, (TalentEffect("s", 0, 580, RAP_FROM_STAT, ("intellect",), {5: 100.0}),))
+        sheet = self.hunter([aim, stat_talent("Lightning Reflexes", "agility", 3, 5)], {"agility": 10})
+        r, agility_from_talent = sheet.ranged_attack_power, sheet.lines["agility"].talent_change   # 15% of (120 + 10)
+        self.assertEqual((r.base, r.from_adjustments, r.bonus, r.from_talent_stats), (350, 20, 100, 2 * agility_from_talent))
+        self.assertEqual(r.total, 350 + 20 + 100 + 2 * agility_from_talent)
+
+    def test_ranged_attack_power_without_a_reading_comes_from_the_rule(self):
+        sheet = self.hunter(level=1)
+        self.assertEqual(sheet.ranged_attack_power.base, 2 * 18 + 2 * 1 - 10)
+        self.assertTrue(any("fitted rule" in n for n in sheet.notes))
+        self.assertIsNone(self.druid().ranged_attack_power.base)       # no rule, no reading: no row
 
     # ---- health and mana
     def test_extra_stamina_raises_health_by_ten_times_the_race_factor(self):

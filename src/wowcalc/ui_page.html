@@ -211,10 +211,10 @@ const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const LABEL = { strength: "Strength", agility: "Agility", stamina: "Stamina", intellect: "Intellect", spirit: "Spirit", health: "Health", mana: "Mana",
   melee_crit: "Melee crit", spell_crit: "Spell crit", melee_hit: "Melee hit", spell_hit: "Spell hit", dodge: "Dodge", parry: "Parry", block: "Block", casting_regen: "Mana regen while casting",
-  attack_power: "Attack power", armor: "Armor", spell_power: "Spell power", healing: "Healing" };
+  attack_power: "Attack power", ranged_attack_power: "Ranged attack power", armor: "Armor", spell_power: "Spell power", healing: "Healing" };
 const PERCENT = new Set(["melee_crit", "spell_crit", "melee_hit", "spell_hit", "dodge", "parry", "block", "casting_regen"]);
 const STATS = ["health", "mana", "strength", "agility", "stamina", "intellect", "spirit"];
-const ORDER = [...STATS, "melee_crit", "spell_crit", "melee_hit", "spell_hit", "dodge", "parry", "block", "casting_regen", "attack_power", "armor", "spell_power", "healing"];
+const ORDER = [...STATS, "melee_crit", "spell_crit", "melee_hit", "spell_hit", "dodge", "parry", "block", "casting_regen", "attack_power", "ranged_attack_power", "armor", "spell_power", "healing"];
 // Effects beside the sheet come as "other:<kind>:<text>" keys, after the fixed ones.
 const isOther = (k) => k.startsWith("other:");
 const labelOf = (k) => (isOther(k) ? k.split(":").slice(2).join(":") : LABEL[k]);
@@ -584,6 +584,8 @@ function renderSheet() {
   }
   const ap = sh.attack_power;
   if (ap.base != null || ap.talents || ap.adjust) f += `<tr><td>Attack power</td><td class="num">${ap.base ?? "–"}</td><td class="num">${ap.talents ? signed(ap.talents) : ""}</td><td class="num">${ap.adjust ? signed(ap.adjust) : ""}</td><td class="num"><strong>${ap.total ?? "–"}</strong></td></tr>`;
+  const rap = sh.ranged_attack_power;
+  if (rap && rap.base != null) f += `<tr><td title="${rap.from && rap.from.length ? esc(rap.from.map((c) => `${c[0]} (${fmt(c[2])}% of ${c[1]})`).join(", ")) : "Ranged attack power"}">Ranged attack power</td><td class="num">${rap.base}</td><td class="num">${rap.talents ? signed(rap.talents) : ""}</td><td class="num">${rap.adjust ? signed(rap.adjust) : ""}</td><td class="num"><strong>${rap.total ?? "–"}</strong></td></tr>`;
   const ar = sh.armor;
   if (ar.base != null) f += `<tr><td>Armor</td><td class="num">${ar.base}</td><td class="num">${ar.talents ? signed(ar.talents) : ""}</td><td class="num"><input class="adj num" id="armorgear" type="number" aria-label="Armor on your gear" value="${S.adjust.armor || 0}" title="Armor from your gear"></td><td class="num"><strong>${ar.total}</strong></td></tr>`;
   f += "</tbody></table>";

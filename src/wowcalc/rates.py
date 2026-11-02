@@ -47,6 +47,7 @@ MELEE_CRIT = ("melee", "Crit Chance")
 SPELL_CRIT = ("spell", "Spell Crit")
 DODGE = ("defense", "Dodge Chance")
 ATTACK_POWER = ("melee", "Attack Power")
+RANGED_ATTACK_POWER = ("ranged", "Ranged Attack Power")
 ARMOR = ("defense", "Armor")
 DAMAGE_REDUCTION = ("defense", "Damage Reduction")
 # Identical at levels 1 and 60 in every class/race row of the panel, so copied to other levels.
@@ -108,6 +109,21 @@ class AttackPowerRule:
 
 
 @dataclass(frozen=True)
+class RangedAttackPowerRule:
+    """Ranged attack power = per_agility x Agility + per_strength x Strength + per_level x level + constant,
+    in whole numbers, fitted to every panel reading of the class at every level (none left over)."""
+    per_agility: int
+    per_strength: int
+    per_level: int
+    constant: int
+    readings: int = 0
+    ambiguous: bool = False
+
+    def at(self, strength: int, agility: int, level: int) -> int:
+        return self.per_agility * agility + self.per_strength * strength + self.per_level * level + self.constant
+
+
+@dataclass(frozen=True)
 class StatEffects:
     """What a change in stats does to the panel. Percent points, or attack power."""
     melee_crit: Fraction
@@ -140,6 +156,7 @@ class RateTable:
     attack_power_points: dict[str, tuple[int, int]] = field(default_factory=dict)
     references: dict = field(default_factory=dict)
     client: ClientModel | None = None   # the client's per-level rates, tied to the panel (perlevel.py)
+    ranged_attack_power: dict[str, RangedAttackPowerRule] = field(default_factory=dict)
 
     def covers(self, class_name: str, level: int) -> bool:
         """Can stat changes be turned into crit, dodge and attack power at this level?"""
@@ -230,6 +247,8 @@ class RateTable:
             "agility_points": {c: str(v) for c, v in sorted(self.agility_points.items())},
             "intellect_points": {c: str(v) for c, v in sorted(self.intellect_points.items())},
             "attack_power_points": {c: list(v) for c, v in sorted(self.attack_power_points.items())},
+            "ranged_attack_power": {c: [r.per_agility, r.per_strength, r.per_level, r.constant, r.readings, r.ambiguous]
+                                    for c, r in sorted(self.ranged_attack_power.items())},
             "client": None if self.client is None else self.client.to_json(),
             "references": self.references,
             "problems": self.problems,
@@ -257,6 +276,8 @@ class RateTable:
             table.agility_points = {c: Fraction(v) for c, v in data.get("agility_points", {}).items()}
             table.intellect_points = {c: Fraction(v) for c, v in data.get("intellect_points", {}).items()}
             table.attack_power_points = {c: (int(a), int(b)) for c, (a, b) in data.get("attack_power_points", {}).items()}
+            table.ranged_attack_power = {c: RangedAttackPowerRule(int(a), int(b), int(p), int(k), int(n), bool(amb))
+                                         for c, (a, b, p, k, n, amb) in data.get("ranged_attack_power", {}).items()}
             table.references = dict(data.get("references", {}))
             table.client = ClientModel.from_json(data["client"]) if data.get("client") else None
         except (KeyError, TypeError, ValueError, ZeroDivisionError) as exc:
@@ -429,6 +450,7 @@ def fit_rates(stats: BaseStatTable, panel: SheetBase, level: int = LEVEL, expect
                 if agility.exact and agility.value is not None and armor != table.armor.per_agility * agility.value:
                     table.problems.append(f"{race} {cls} (level {lv}): armor {armor} but {table.armor.per_agility} x Agility is "
                                           f"{table.armor.per_agility * agility.value}; the base stat Agility-L{lv} may be wrong (armor suggests {armor / table.armor.per_agility:g})")
+    table.ranged_attack_power = fit_ranged_attack_power(stats, panel, table.problems)
     table.health = fit_pool(rows, "stamina", "health", table.problems, "health")
     table.mana = fit_pool(rows, "intellect", "mana", table.problems, "mana")
     if expected is not None:
@@ -437,6 +459,40 @@ def fit_rates(stats: BaseStatTable, panel: SheetBase, level: int = LEVEL, expect
         factors = {} if table.mana is None else table.mana.race_factors
         table.client = fit_client(expected, by_level, table.racial_dodge, table.attack_power, table.problems, factors)
     return table
+
+
+def fit_ranged_attack_power(stats: BaseStatTable, panel: SheetBase, problems: list[str]) -> dict[str, RangedAttackPowerRule]:
+    """Per class with ranged attack power on its panel: the whole-number rule (0..3 per Agility,
+    Strength and level) with one constant that reproduces every reading, at every level. Needs two
+    levels to fix the level term; uses only exact (not estimated) base stats."""
+    points: dict[str, list[tuple[int, int, int, Fraction]]] = {}
+    for cls, race in stats.combos():
+        for lv in panel.levels(cls, race):
+            figs = panel.at(cls, race, lv)
+            if RANGED_ATTACK_POWER not in figs:
+                continue
+            base = stats.at(cls, race, lv)
+            if not (base["strength"].exact and base["agility"].exact) or base["agility"].value is None:
+                continue
+            points.setdefault(cls, []).append((base["strength"].value, base["agility"].value, lv, Fraction(str(figs[RANGED_ATTACK_POWER].value))))
+    out = {}
+    for cls, pts in sorted(points.items()):
+        if len({p[2] for p in pts}) < 2:
+            problems.append(f"{cls}: ranged attack power read at one level only; the level term cannot be fitted")
+            continue
+        found = []
+        for b in range(4):
+            for lv_k in range(4):
+                for a in range(4):
+                    constants = {p[3] - a * p[1] - b * p[0] - lv_k * p[2] for p in pts}
+                    if len(constants) == 1 and next(iter(constants)).denominator == 1:
+                        found.append((b, lv_k, a, int(next(iter(constants)))))
+        if not found:
+            problems.append(f"{cls}: no whole-number rule reproduces every ranged attack power reading")
+            continue
+        b, lv_k, a, k = min(found)
+        out[cls] = RangedAttackPowerRule(a, b, lv_k, k, len(pts), ambiguous=len(found) > 1)
+    return out
 
 
 def _fit_attack_power(mine: list[dict]) -> AttackPowerRule | None:
@@ -478,6 +534,9 @@ def describe(table: RateTable) -> list[str]:
         note = f"   (reference; the panel fit {per_point(r.per_strength, r.per_agility)})" if used != (r.per_strength, r.per_agility) else ""
         lines.append(f"    {cls:8} {per_point(*used)} {r.constant:+d}" + note
                      + ("   (more than one rule fits; simplest kept)" if r.ambiguous else ""))
+    for cls, r in sorted(table.ranged_attack_power.items()):
+        lines.append(f"  Ranged attack power, {cls}: {r.per_agility} per Agility" + (f" + {r.per_strength} per Strength" if r.per_strength else "")
+                     + f" + {r.per_level} per level {r.constant:+d}   (all {r.readings} panel readings)" + ("   (more than one rule fits; simplest kept)" if r.ambiguous else ""))
     if table.armor is not None:
         lines.append(f"  Armor: {table.armor.per_agility} per Agility; damage reduction = armor / (armor + 85 x level + 400), worst gap to the panel {float(table.armor.worst_dr_error):.5f}")
     for label, rule in (("Health", table.health), ("Mana", table.mana)):

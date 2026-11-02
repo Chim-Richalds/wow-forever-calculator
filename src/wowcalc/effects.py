@@ -33,6 +33,9 @@ which effects it cannot:
   (health)         Improved Reincarnation). Kept as a percent of total health, applied after health
                    is built from Stamina. EffectMiscValue_0 is 0 on one and 1 on the other; its
                    meaning is not known (both texts say the same). Rounding NOT checked in game.
+  rap_from_stat    aura 580: ranged Attack Power equal to N% of <stat> (EffectMiscValue_0 is the stat
+                   index, as for aura 598). Careful Aim carries both: 598 for melee, 580 for ranged,
+                   with one text ("Attack Power by N% of your Intellect"), which must name the stat.
   armor_from_stat  aura 268: "Increases your Armor by N% of your <stat>" (Arcane Resilience).
                    EffectMiscValue_0 is the stat index (3 = Intellect, as for aura 598); the text
                    must name armor. Rounded down; NOT checked in game.
@@ -105,6 +108,7 @@ SHEET_ADD_AURAS = {
 }
 AURA_AP_FROM_STAT = 598
 AURA_HEALTH_PERCENT = 133
+AURA_RAP_FROM_STAT = 580
 AURA_ARMOR_FROM_STAT = 268
 AURA_REGEN_WHILE_CASTING = 134
 AURA_MECHANIC_DURATION = 232
@@ -132,12 +136,13 @@ STAT_PERCENT, SPELL_MODIFIER, SCRIPT, UNSUPPORTED = "stat_percent", "spell_modif
 SHEET_ADD, AP_FROM_STAT = "sheet_add", "ap_from_stat"
 SP_FROM_STAT = "sp_from_stat"
 ARMOR_FROM_STAT = "armor_from_stat"
+RAP_FROM_STAT = "rap_from_stat"
 CC_DURATION = "cc_duration"
 ABILITY = "ability"  # an effect of a spell the game does not flag as passive
 THREAT, DAMAGE_DONE, DAMAGE_TAKEN = "threat", "damage_done", "damage_taken"
 SCHOOL_KINDS = {10: THREAT, 79: DAMAGE_DONE, 87: DAMAGE_TAKEN}  # aura -> kind; all three carry a school mask
 OTHER_KINDS = frozenset({CC_DURATION, THREAT, DAMAGE_DONE, DAMAGE_TAKEN})  # decoded, but not sheet figures
-MODELLED_KINDS = frozenset({STAT_PERCENT, SHEET_ADD, AP_FROM_STAT, SP_FROM_STAT, ARMOR_FROM_STAT}) | OTHER_KINDS
+MODELLED_KINDS = frozenset({STAT_PERCENT, SHEET_ADD, AP_FROM_STAT, SP_FROM_STAT, ARMOR_FROM_STAT, RAP_FROM_STAT}) | OTHER_KINDS
 SPELL_ATTR0_PASSIVE = 0x40
 TARGET_CASTER = 1
 
@@ -157,7 +162,7 @@ class TalentEffect:
 
     @property
     def modelled(self) -> bool:
-        if self.kind in (STAT_PERCENT, AP_FROM_STAT, SP_FROM_STAT, ARMOR_FROM_STAT):
+        if self.kind in (STAT_PERCENT, AP_FROM_STAT, SP_FROM_STAT, ARMOR_FROM_STAT, RAP_FROM_STAT):
             return bool(self.stats) and bool(self.by_rank)
         return (self.kind == SHEET_ADD or self.kind in OTHER_KINDS) and bool(self.figures) and bool(self.by_rank)
 
@@ -295,6 +300,16 @@ class EffectBook:
             if not values:
                 return make(UNSUPPORTED, values_note, keep_values=False)
             return make(STAT_PERCENT, "", ("health",))
+        if aura == AURA_RAP_FROM_STAT:
+            misc0 = _int(row.get("EffectMiscValue_0"), -2)
+            text = self.text.get(spell, "").lower()
+            if misc0 not in STAT_INDEX:
+                return make(UNSUPPORTED, f"unknown source stat {row.get('EffectMiscValue_0')!r}", keep_values=False)
+            if "attack power" not in text or STAT_INDEX[misc0] not in text:
+                return make(UNSUPPORTED, f"ranged attack power from {STAT_INDEX[misc0]}, but the text does not say so", keep_values=False)
+            if not values:
+                return make(UNSUPPORTED, values_note, keep_values=False)
+            return make(RAP_FROM_STAT, "", (STAT_INDEX[misc0],))
         if aura == AURA_ARMOR_FROM_STAT:
             misc0 = _int(row.get("EffectMiscValue_0"), -2)
             text = self.text.get(spell, "").lower()

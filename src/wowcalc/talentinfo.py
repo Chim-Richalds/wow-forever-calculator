@@ -306,6 +306,13 @@ def main(argv: list[str] | None = None) -> int:
         if ap.from_talent_stats:
             why.append(f"extra Strength/Agility {ap.from_talent_stats:+d}")
         print(f"{'attack power':12} {base:>8} {talents_part:>8} {adjust_part:>8} {total:>8}" + ("  <- " + ", ".join(why) if why else ""))
+    rap = sheet.ranged_attack_power
+    if rap.base is not None:
+        why = [f"{label} ({float(pct):g}% of {stat})" for label, stat, pct in rap.contributions]
+        if rap.from_talent_stats:
+            why.append(f"extra Strength/Agility {rap.from_talent_stats:+d}")
+        print(f"{'ranged AP':12} {rap.base:>8} {(f'{rap.talent_total:+d}' if rap.talent_total else ''):>8} "
+              f"{(f'{rap.from_adjustments:+d}' if rap.from_adjustments else ''):>8} {rap.total:>8}" + ("  <- " + ", ".join(why) if why else ""))
     for name, line in (("spell power", sheet.spell_power), ("healing", sheet.healing)):
         if line.base is not None and (line.contributions or line.item):
             why = [f"{label} ({float(pct):g}% of {stat})" for label, stat, pct in line.contributions]
