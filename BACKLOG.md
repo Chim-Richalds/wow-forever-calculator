@@ -21,11 +21,13 @@ Principles that apply to everything below: data-driven, versioned, traceable, ne
 - [ ] **Iron Will.** The text says it reduces Stun and Fear durations by up to 15%. The data says charmed (+3 .. +15, which looks like Classic's resist chance) and stunned (no rank values). Check the stun and fear durations with 0 and 5 ranks. Left unsupported until then.
 - [ ] **Stacking of threat, damage and crowd control percents.** Each is listed per talent, not summed. Check how two combine (added or multiplied), e.g. Naturalist with Moonfury on a Nature spell.
 - [ ] **Silent Resolve threat schools.** The text says "your spells"; the data says Holy and Shadow only. Check threat on a non-Holy, non-Shadow spell if a Priest has one.
+- [ ] **Total health percent** (Survivalist, Improved Reincarnation): the calculator applies it after Stamina and gear and rounds down. Check health with 0 and 5 ranks of Survivalist, with and without gear Stamina.
+- [ ] **Armor from Intellect** (Arcane Resilience): 25/50/75% of Intellect, rounded down. Check armor at 0 and 3 ranks with an Intellect total that is not a multiple of 4.
 - [ ] **Hit and spell hit.** The Hit row merges melee and spell hit when they are equal. Confirm with a talent that raises only one of them.
 
 ## Modelling more talents  [offline]
 
-The full list is `docs/unmodelled_effects.tsv` (regenerate it after each change and each new build: `python -m wowcalc.talentinfo unmodelled --out docs/unmodelled_effects.tsv`). Of 468 talents, 43 are fully modelled and 19 partly (build 1.60.1.70707-hf202610311059, 2026-11-02). What is left, by type:
+The full list is `docs/unmodelled_effects.tsv` (regenerate it after each change and each new build: `python -m wowcalc.talentinfo unmodelled --out docs/unmodelled_effects.tsv`). Of 468 talents, 45 are fully modelled and 20 partly (build 1.60.1.70707-hf202610311059, 2026-11-02). What is left, by type:
 
 - [ ] Auras decoded for the sheet but still conditional: 54, 290, 55, 49, 47, 51 (abilities with a duration, a single form).
 - [ ] What is not valued on 1.60.1.70707-hf202610311059 (694 effects): 181 belong to abilities and forms (85 talents; kind `ability`, need a combat model), 275 change particular spells, 180 are scripts, and 58 are undecoded auras on passive talents (most common: 332 x13, 79 x6, 122 x3, 231 x3; 332 are single-spell changes such as Improved Slam, 79 and 10 the equipment- or state-dependent ones). Read the tooltips first; never assume the meaning from the aura number.
@@ -35,6 +37,7 @@ The full list is `docs/unmodelled_effects.tsv` (regenerate it after each change 
 - [ ] Scripts (auras 4, 42, 109, 190 effects): the data holds numbers only; the tooltip says what they mean.
 - [ ] Instant effects (no aura, 74).
 - [ ] Hunter Bestial Discipline: the pet Focus part.
+- [ ] Careful Aim's aura 580 is the ranged half of its attack power from Intellect (aura 598, the melee half, is valued). Needs a ranged attack power row.
 - [x] Spell damage restricted to some schools (aura 174 with a mask other than all magic schools): no talent has one on 1.60.1.70707-hf202610311059. The decoder refuses it with the reason if one appears; model it then (the school names come from Resistances, as for threat and damage).
 
 ## Interface  [offline]

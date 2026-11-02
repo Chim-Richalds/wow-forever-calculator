@@ -430,7 +430,7 @@ class Workbench:
             "lines": lines, "figures": figures,
             "attack_power": {"base": ap.base, "talents": ap.talent_total, "adjust": ap.from_adjustments, "total": ap.total,
                              "from": [[label, stat, num(p)] for label, stat, p in ap.contributions]},
-            "armor": {"base": arm.base, "talents": arm.from_talent_stats, "adjust": arm.from_adjustments, "gear": arm.item_armor,
+            "armor": {"base": arm.base, "talents": arm.talent_total, "adjust": arm.from_adjustments, "gear": arm.item_armor,
                       "total": arm.total, "damage_reduction": num(arm.damage_reduction)},
             "spell_power": self.power_json(sheet.spell_power),
             "healing": self.power_json(sheet.healing),

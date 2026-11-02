@@ -313,6 +313,8 @@ def main(argv: list[str] | None = None) -> int:
         parts = [f"{arm.base} base"]
         if arm.from_talent_stats:
             parts.append(f"{arm.from_talent_stats:+d} from the talents' extra Agility")
+        if arm.from_stat_talents:
+            parts.append(f"{arm.from_stat_talents:+d} from " + ", ".join(f"{label} ({float(p):g}% of {stat})" for label, stat, p in arm.stat_contributions))
         if arm.from_adjustments:
             parts.append(f"{arm.from_adjustments:+d} from adjusted Agility")
         if arm.item_armor:

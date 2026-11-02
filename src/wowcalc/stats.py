@@ -50,7 +50,7 @@ from .basestats import BaseStatTable
 from .perlevel import mana_total
 from .rates import RateTable, StatEffects
 from .sheetbase import SheetBase, SheetBaseError
-from .effects import AP_FROM_STAT, OTHER_KINDS, SHEET_ADD, SHEET_FIGURES, SP_FROM_STAT, STAT_PERCENT, EffectBook, TalentEffect, describe_other
+from .effects import AP_FROM_STAT, ARMOR_FROM_STAT, OTHER_KINDS, SHEET_ADD, SHEET_FIGURES, SP_FROM_STAT, STAT_PERCENT, EffectBook, TalentEffect, describe_other
 from .trees import Node
 
 # Where each sheet figure's base lives in the sheet-figures file: (section, label).
@@ -157,12 +157,18 @@ class ArmorLine:
     from_adjustments: int     # extra Agility from adjustments x armor per Agility
     item_armor: int           # armor you added by hand (--adjust armor=N), e.g. the armor on your gear
     damage_reduction: Decimal | None  # percent, from the total
+    from_stat_talents: int = 0  # talents that give armor as a percent of a stat (rounded down; not checked in game)
+    stat_contributions: tuple[tuple[str, str, Decimal], ...] = ()  # (talent label, source stat, percent)
+
+    @property
+    def talent_total(self) -> int:
+        return self.from_talent_stats + self.from_stat_talents
 
     @property
     def total(self) -> int | None:
         if self.base is None:
             return None
-        return self.base + self.from_talent_stats + self.from_adjustments + self.item_armor
+        return self.base + self.from_talent_stats + self.from_stat_talents + self.from_adjustments + self.item_armor
 
 
 @dataclass(frozen=True)
@@ -228,7 +234,8 @@ def build_sheet(
     unknown = sorted(set(adjustments) - set(ADJUSTABLE))
     if unknown:
         raise ValueError(f"cannot adjust {', '.join(map(repr, unknown))}; choose from {', '.join(ADJUSTABLE)}")
-    contributions: dict[str, list[tuple[str, float]]] = {s: [] for s in SHEET_STATS}
+    contributions: dict[str, list[tuple[str, float]]] = {s: [] for s in ("health", "mana") + SHEET_STATS}
+    armor_parts: list[tuple[str, str, Decimal]] = []
     not_modelled: list[NotModelled] = []
     figure_parts: dict[str, list[tuple[str, Decimal]]] = {f: [] for f in SHEET_FIGURES}
     ap_parts: list[tuple[str, str, Decimal]] = []
@@ -250,6 +257,8 @@ def build_sheet(
                         figure_parts[figure].append((talent.label, Decimal(str(value))))
                 elif effect.kind == AP_FROM_STAT:
                     ap_parts.append((talent.label, effect.stats[0], Decimal(str(value))))
+                elif effect.kind == ARMOR_FROM_STAT:
+                    armor_parts.append((talent.label, effect.stats[0], Decimal(str(value))))
                 elif effect.kind == SP_FROM_STAT:
                     sp_parts[effect.figures[0]].append((talent.label, effect.stats[0], Decimal(str(value))))
                 elif effect.kind in OTHER_KINDS:
@@ -352,6 +361,11 @@ def build_sheet(
     armor_line = _armor(rates, level, lines, adjustments, panel_value(ARMOR_SOURCE), from_talents is not None,
                         rates is not None and rates.covers(class_name, level))
     _apply_pools(rates, class_name, race_name, level, lines, adjustments, notes)
+    armor_line = _armor_from_stats(armor_line, armor_parts, lines, rates, level)
+    if armor_parts:
+        notes.append("armor from a stat: the amount is rounded down; the game's rounding has not been checked")
+    if lines["health"].contributions:
+        notes.append("total health percent: applied to health after Stamina and gear, rounded down; not checked in game")
     block_value = None
     if shield and rates is not None and class_name in rates.assumed.shield_classes and lines["strength"].total is not None:
         block_value = lines["strength"].total // rates.assumed.strength_per_block_value
@@ -388,6 +402,27 @@ def _armor(rates: RateTable | None, level: int, lines: dict[str, StatLine], adju
     return ArmorLine(int(panel_armor), from_talents, from_adjust, item, _as_decimal(rates.armor.damage_reduction(total, level)))
 
 
+def _armor_from_stats(line: ArmorLine, parts: list[tuple[str, str, Decimal]], lines: dict[str, StatLine],
+                      rates: RateTable | None, level: int) -> ArmorLine:
+    """Add armor from talents that give a percent of a stat: floor(stat total x summed percent / 100) per stat."""
+    if not parts:
+        return line
+    by_stat: dict[str, Decimal] = {}
+    for _, stat, pct in parts:
+        by_stat[stat] = by_stat.get(stat, Decimal(0)) + pct
+    extra = 0
+    for stat, pct in by_stat.items():
+        total = lines[stat].total
+        if total is None:
+            return line   # the stat is unknown, so the armor it gives is too
+        extra += math.floor(Decimal(total) * pct / 100)
+    added = ArmorLine(line.base, line.from_talent_stats, line.from_adjustments, line.item_armor, None, extra, tuple(parts))
+    dr = None
+    if added.total is not None and rates is not None and rates.armor is not None:
+        dr = _as_decimal(rates.armor.damage_reduction(added.total, level))
+    return ArmorLine(line.base, line.from_talent_stats, line.from_adjustments, line.item_armor, dr, extra, tuple(parts))
+
+
 def _as_decimal(value) -> Decimal:
     return Decimal(value.numerator) / Decimal(value.denominator)
 
@@ -407,7 +442,7 @@ def _apply_pools(rates: RateTable | None, class_name: str, race: str, level: int
         if rule.total(class_name, race, source.base) != line.base:
             notes.append(f"the {pool} rule does not reproduce the base {pool} of a {race} {class_name}; extra {stat} does not change it")
             continue
-        total = rule.total(class_name, race, source.total) + line.adjustment
+        total = apply_percents(rule.total(class_name, race, source.total) + line.adjustment, [p for _, p in line.contributions])
         lines[pool] = StatLine(pool, line.base, line.base_exact, line.adjustment, line.contributions, total)
 
 

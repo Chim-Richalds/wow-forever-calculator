@@ -12,7 +12,7 @@ from effect_fixtures import ACTIVE, add_curve, add_effect, write_effects  # noqa
 from fixtures import TempCase  # noqa: E402
 from wowcalc.dataset import Dataset  # noqa: E402
 from wowcalc.effects import (  # noqa: E402
-    ABILITY, ALL_STATS, AP_FROM_STAT, CC_DURATION, DAMAGE_DONE, DAMAGE_TAKEN, THREAT, SP_FROM_STAT, SCRIPT, condition_in, SHEET_ADD, SPELL_MODIFIER, STAT_PERCENT, UNSUPPORTED, EffectBook, TalentEffect, decode_stats,
+    ABILITY, ALL_STATS, AP_FROM_STAT, ARMOR_FROM_STAT, CC_DURATION, DAMAGE_DONE, DAMAGE_TAKEN, THREAT, SP_FROM_STAT, SCRIPT, condition_in, SHEET_ADD, SPELL_MODIFIER, STAT_PERCENT, UNSUPPORTED, EffectBook, TalentEffect, decode_stats,
     render_tooltip, decode_schools, effect_phrase, schools_label,
 )
 from wowcalc.fetch import TABLES  # noqa: E402
@@ -308,6 +308,34 @@ class ConditionalDecodeTests(DecodeCase):
     def test_block_and_melee_crit_are_decoded(self):
         self.assertEqual(self.with_text("Increases your chance to Block by 2%.", aura=51).figures, ("block",))
         self.assertEqual(self.with_text("Improves melee critical strikes by 2%.", aura=52).figures, ("melee_crit",))
+
+    def test_a_total_health_percent(self):
+        e = self.with_text("Increases your total Health by $s1%.", aura=133)
+        self.assertEqual((e.kind, e.stats, e.by_rank), (STAT_PERCENT, ("health",), {1: 2.0, 2: 4.0}))
+        self.assertEqual(self.with_text("Increases your total Mana by $s1%.", aura=133).kind, UNSUPPORTED)
+
+    def test_armor_from_a_stat(self):
+        def mutate(text, stat=3):
+            def m(t):
+                add_effect(t, 1, aura=268, misc0=stat, misc1=0)
+                add_curve(t, 1, 0, (25, 50))
+                for spell in t["Spell"][1]:
+                    if spell["ID"] == "3001":
+                        spell["Description_lang"] = text
+            return m
+        e = self.one(mutate("Increases your Armor by an amount equal to $s1% of your Intellect."))
+        self.assertEqual((e.kind, e.stats, e.by_rank, e.modelled), (ARMOR_FROM_STAT, ("intellect",), {1: 25.0, 2: 50.0}, True))
+
+    def test_armor_from_a_stat_the_text_does_not_name_is_refused(self):
+        def m(t):
+            add_effect(t, 1, aura=268, misc0=3, misc1=0)
+            add_curve(t, 1, 0, (25, 50))
+            for spell in t["Spell"][1]:
+                if spell["ID"] == "3001":
+                    spell["Description_lang"] = "Increases your Armor by an amount equal to $s1% of your Spirit."
+        e = self.one(m)
+        self.assertEqual(e.kind, UNSUPPORTED)
+        self.assertIn("does not say so", e.note)
 
     def test_a_sheet_bonus_on_an_ability_is_refused(self):
         def mutate(t):

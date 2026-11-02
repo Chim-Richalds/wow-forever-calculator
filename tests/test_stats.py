@@ -14,7 +14,7 @@ from fixtures import TempCase  # noqa: E402
 from basestats_fixtures import row, tsv, warrior  # noqa: E402
 from wowcalc.basestats import parse_base_stats  # noqa: E402
 from wowcalc.dataset import Dataset  # noqa: E402
-from wowcalc.effects import AP_FROM_STAT, CC_DURATION, THREAT, SP_FROM_STAT, SHEET_ADD, SCRIPT, SPELL_MODIFIER, STAT_PERCENT, UNSUPPORTED, EffectBook, TalentEffect  # noqa: E402
+from wowcalc.effects import AP_FROM_STAT, ARMOR_FROM_STAT, CC_DURATION, THREAT, SP_FROM_STAT, SHEET_ADD, SCRIPT, SPELL_MODIFIER, STAT_PERCENT, UNSUPPORTED, EffectBook, TalentEffect  # noqa: E402
 from fractions import Fraction as F  # noqa: E402
 from wowcalc.derived import ArmorRule, AssumedRules, PoolRule  # noqa: E402
 from wowcalc.rates import AttackPowerRule, Interval, RateTable  # noqa: E402
@@ -585,6 +585,21 @@ class ResourceTests(unittest.TestCase):
     def test_extra_intellect_raises_mana_by_fifteen(self):
         sheet = self.druid([stat_talent("Arcane Mind", "intellect", 2, 5)])  # 100 -> 110
         self.assertEqual(sheet.lines["mana"].total, 500 + 15 * 110)
+
+    def test_a_total_health_percent_applies_after_stamina_and_gear(self):
+        # Survivalist: +10% total health, on top of health from Stamina (60 + 30) and 100 from gear
+        sheet = self.druid([stat_talent("Survivalist", "health", 2, 5)], {"stamina": 30, "health": 100})
+        self.assertEqual(sheet.lines["health"].total, ((900 + 10 * 90) * 21 // 20 + 100) * 11 // 10)
+        self.assertTrue(any("total health percent" in n for n in sheet.notes))
+
+    def test_armor_from_a_percent_of_a_stat(self):
+        # Arcane Resilience rank 3: 75% of Intellect (100) -> +75 armor, rounded down
+        talent = RankedTalent("n", "s", "Arcane Resilience", 3, (TalentEffect("s", 0, 268, ARMOR_FROM_STAT, ("intellect",), {3: 75.0}),))
+        a = self.druid([talent]).armor
+        self.assertEqual((a.from_stat_talents, a.talent_total, a.total), (75, 75, 120 + 75))
+        self.assertEqual(round(a.damage_reduction, 4), round(Decimal(100 * 195) / (195 + 85 * 60 + 400), 4))
+        talent = RankedTalent("n", "s", "Arcane Resilience", 1, (TalentEffect("s", 0, 268, ARMOR_FROM_STAT, ("intellect",), {1: 25.5}),))
+        self.assertEqual(self.druid([talent], rates=None).armor.total, 120 + 25)   # 25.5 -> 25; also without rates
 
     def test_a_manual_health_adjustment_is_added_after_the_rule(self):
         self.assertEqual(self.druid(adjustments={"health": 100}).lines["health"].total, self.HEALTH + 100)

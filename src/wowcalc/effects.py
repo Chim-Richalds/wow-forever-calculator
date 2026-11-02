@@ -29,6 +29,13 @@ which effects it cannot:
                    "while casting" in the text IS the figure, so the usual always-on test is not
                    applied to it. It says nothing about how much mana that is: that needs the
                    Spirit-to-regeneration formula, which is not in the data we hold.
+  stat_percent     aura 133 too: "Increases your total/maximum Health by N%" (Survivalist,
+  (health)         Improved Reincarnation). Kept as a percent of total health, applied after health
+                   is built from Stamina. EffectMiscValue_0 is 0 on one and 1 on the other; its
+                   meaning is not known (both texts say the same). Rounding NOT checked in game.
+  armor_from_stat  aura 268: "Increases your Armor by N% of your <stat>" (Arcane Resilience).
+                   EffectMiscValue_0 is the stat index (3 = Intellect, as for aura 598); the text
+                   must name armor. Rounded down; NOT checked in game.
   sp_from_stat     aura 174 (spell damage) and 175 (healing): "up to N% of your <stat>".
                    Aura 175 names the stat in EffectMiscValue_0 and aura 174 in
                    EffectMiscValue_1 (3 = Intellect, 4 = Spirit; read against the tooltips
@@ -97,6 +104,8 @@ SHEET_ADD_AURAS = {
     290: ("melee_crit", "spell_crit"),
 }
 AURA_AP_FROM_STAT = 598
+AURA_HEALTH_PERCENT = 133
+AURA_ARMOR_FROM_STAT = 268
 AURA_REGEN_WHILE_CASTING = 134
 AURA_MECHANIC_DURATION = 232
 # SpellMechanic ID -> words a talent's text uses for it. Checked against the six talents that
@@ -122,12 +131,13 @@ ALL_STATS = tuple(STAT_BITS.values())
 STAT_PERCENT, SPELL_MODIFIER, SCRIPT, UNSUPPORTED = "stat_percent", "spell_modifier", "script", "unsupported"
 SHEET_ADD, AP_FROM_STAT = "sheet_add", "ap_from_stat"
 SP_FROM_STAT = "sp_from_stat"
+ARMOR_FROM_STAT = "armor_from_stat"
 CC_DURATION = "cc_duration"
 ABILITY = "ability"  # an effect of a spell the game does not flag as passive
 THREAT, DAMAGE_DONE, DAMAGE_TAKEN = "threat", "damage_done", "damage_taken"
 SCHOOL_KINDS = {10: THREAT, 79: DAMAGE_DONE, 87: DAMAGE_TAKEN}  # aura -> kind; all three carry a school mask
 OTHER_KINDS = frozenset({CC_DURATION, THREAT, DAMAGE_DONE, DAMAGE_TAKEN})  # decoded, but not sheet figures
-MODELLED_KINDS = frozenset({STAT_PERCENT, SHEET_ADD, AP_FROM_STAT, SP_FROM_STAT}) | OTHER_KINDS
+MODELLED_KINDS = frozenset({STAT_PERCENT, SHEET_ADD, AP_FROM_STAT, SP_FROM_STAT, ARMOR_FROM_STAT}) | OTHER_KINDS
 SPELL_ATTR0_PASSIVE = 0x40
 TARGET_CASTER = 1
 
@@ -146,7 +156,7 @@ class TalentEffect:
 
     @property
     def modelled(self) -> bool:
-        if self.kind in (STAT_PERCENT, AP_FROM_STAT, SP_FROM_STAT):
+        if self.kind in (STAT_PERCENT, AP_FROM_STAT, SP_FROM_STAT, ARMOR_FROM_STAT):
             return bool(self.stats) and bool(self.by_rank)
         return (self.kind == SHEET_ADD or self.kind in OTHER_KINDS) and bool(self.figures) and bool(self.by_rank)
 
@@ -275,6 +285,28 @@ class EffectBook:
             if not values:
                 return make(UNSUPPORTED, values_note, keep_values=False)
             return make(SHEET_ADD, "", figures=SHEET_ADD_AURAS[aura])
+        if aura == AURA_HEALTH_PERCENT:
+            reason = condition_in(self.text.get(spell, ""), ("health",))
+            if reason:
+                return make(UNSUPPORTED, f"not always on: {reason}", keep_values=False)
+            if "health" not in self.text.get(spell, "").lower():
+                return make(UNSUPPORTED, "aura 133 but the text does not mention health", keep_values=False)
+            if not values:
+                return make(UNSUPPORTED, values_note, keep_values=False)
+            return make(STAT_PERCENT, "", ("health",))
+        if aura == AURA_ARMOR_FROM_STAT:
+            misc0 = _int(row.get("EffectMiscValue_0"), -2)
+            text = self.text.get(spell, "").lower()
+            if misc0 not in STAT_INDEX:
+                return make(UNSUPPORTED, f"unknown source stat {row.get('EffectMiscValue_0')!r}", keep_values=False)
+            if "armor" not in text or STAT_INDEX[misc0] not in text:
+                return make(UNSUPPORTED, f"armor from {STAT_INDEX[misc0]}, but the text does not say so", keep_values=False)
+            reason = condition_in(self.text.get(spell, ""), ("armor",))
+            if reason:
+                return make(UNSUPPORTED, f"not always on: {reason}", keep_values=False)
+            if not values:
+                return make(UNSUPPORTED, values_note, keep_values=False)
+            return make(ARMOR_FROM_STAT, "", (STAT_INDEX[misc0],))
         if aura == AURA_AP_FROM_STAT:
             misc0 = _int(row.get("EffectMiscValue_0"), -2)
             if misc0 not in STAT_INDEX:
