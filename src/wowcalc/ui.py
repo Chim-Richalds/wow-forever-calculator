@@ -40,6 +40,9 @@ from .dataset import Dataset
 from .effects import CONDITIONS, EffectBook, render_tooltip
 from .fetch import TABLES
 from .backgrounds import BackgroundCache
+from .combat import ASSUMPTIONS as COMBAT_ASSUMPTIONS
+from .combat import TARGETS, CombatBook
+from .combat import spell_numbers as combat_numbers
 from .icons import IconCache, icon_ids
 from .rates import RatesError, load_rates
 from .specs import SpecError, load_spec_names, name_trees
@@ -112,6 +115,7 @@ class Request:
     vs_player: bool
     values: bool
     conditions: tuple[str, ...] = ()  # situations that hold (effects.CONDITIONS keys)
+    target: str = "same"              # combat.TARGETS key: a target of your level, or a boss
 
 
 class BuildStore:
@@ -357,8 +361,11 @@ class Workbench:
         unknown = sorted(set(conditions_in) - set(CONDITIONS))
         if unknown:
             raise UiError(400, f"unknown condition {unknown[0]!r}; choose from {', '.join(CONDITIONS)}")
+        target = body.get("target", "same")
+        if target not in TARGETS:
+            raise UiError(400, f"target must be one of {', '.join(TARGETS)}")
         return Request(tree.class_name, race, level, alloc, adjust, bool(body.get("shield")), attacker,
-                       bool(body.get("vs_player")), bool(body.get("values", True)), tuple(sorted(set(conditions_in))))
+                       bool(body.get("vs_player")), bool(body.get("values", True)), tuple(sorted(set(conditions_in))), target)
 
     @staticmethod
     def _int(value, what: str) -> int:
@@ -490,6 +497,9 @@ class Workbench:
             "sheet": self.sheet_json(sheet, req),
             "spells": self.spell_rows(req, tree, req.alloc),
         }
+        numbers, skipped = self.spell_numbers(req, tree, req.alloc, sheet)
+        out["spell_numbers"] = {"target": TARGETS[req.target].label, "rows": [self.number_json(n) for n in numbers],
+                                "not_calculated": skipped, "assumptions": list(COMBAT_ASSUMPTIONS)}
         applied = self.applied_spell_effects(tree, req.alloc)
         out["sheet"]["not_modelled"] = [
             {**n, "parts": [p for p in n["parts"] if (n["label"], p["effect"]) not in applied]} for n in out["sheet"]["not_modelled"]]
@@ -507,6 +517,8 @@ class Workbench:
                 continue
             ranks = req.alloc.get(node.id, 0)
             row = {"id": node.id, "name": self.label(node), "ranks": ranks, "max": node.max_ranks, "now": {}, "next": {},
+                   "damage_now": self.spell_value(req, tree, req.alloc, {k: v for k, v in req.alloc.items() if k != node.id}) if ranks else [],
+                   "damage_next": self.spell_value(req, tree, {**req.alloc, node.id: ranks + 1}, req.alloc) if ranks < node.max_ranks and spell_effects else [],
                    "spells_now": self.talent_spell_effects(tree.class_name, node.spell_id, ranks) if ranks else [],
                    "spells_next": self.talent_spell_effects(tree.class_name, node.spell_id, ranks + 1) if ranks < node.max_ranks else []}
             if ranks:
@@ -565,6 +577,47 @@ class Workbench:
                  for b in spell_bonuses(mods, req.class_name, ranks)]
         return sorted(rows, key=lambda r: (r["spell"], r["base"] == "", r["prop"]))
 
+    def spell_numbers(self, req: Request, tree: ClassTree, alloc: dict[str, int], sheet: Sheet):
+        """Per-cast damage and healing (combat.py) for this build, with the sheet's spell power, crit and hit."""
+        from .spells import spell_changes
+        catalogue, mods, book = self.spell_model()
+        if not hasattr(self, "_combat"):
+            self._combat = CombatBook(self.ds, book)
+        ranks = {tree.nodes[n].spell_id: r for n, r in alloc.items() if r}
+        changes = {(c.spell, c.prop): c.value for c in spell_changes(mods, catalogue, book, req.class_name, req.level, ranks)}
+        def total(fig):
+            f = sheet.figures.get(fig)
+            return float(f.total) if f is not None and f.total is not None else 0.0
+        return combat_numbers(self._combat, catalogue.by_class.get(req.class_name, {}), mods, req.class_name, req.level, ranks,
+                              float(sheet.spell_power.total or 0), float(sheet.healing.total or 0), total("spell_crit"),
+                              total("spell_hit"), TARGETS[req.target], changes)
+
+    @staticmethod
+    def number_json(n) -> dict:
+        return {"spell": n.spell, "kind": n.kind, "min": round(n.direct_min), "max": round(n.direct_max),
+                "over_time": round(n.periodic_total), "ticks": n.ticks, "crit": round(n.crit_chance, 2), "hit": round(n.hit_chance, 2),
+                "expected": round(n.expected), "per_second": None if n.per_second is None else round(n.per_second, 1),
+                "per_cost": None if n.per_cost is None else round(n.per_cost, 2), "cost_unit": n.cost_unit}
+
+    def spell_value(self, req: Request, tree: ClassTree, with_alloc: dict[str, int], without_alloc: dict[str, int]) -> list[str]:
+        """How a talent changes expected damage or healing per cast, spell by spell ("Fireball +12 per cast (+2.3%)")."""
+        a, _ = self.spell_numbers(req, tree, with_alloc, self.sheet_for(req, with_alloc))
+        b, _ = self.spell_numbers(req, tree, without_alloc, self.sheet_for(req, without_alloc))
+        before = {n.spell: n for n in b}
+        out = []
+        for n in a:
+            old = before.get(n.spell)
+            if old is None:
+                continue
+            if round(n.expected) != round(old.expected):
+                pct = f" ({(n.expected - old.expected) / old.expected * 100:+.1f}%)" if old.expected else ""
+                out.append(f"{n.spell} {n.expected - old.expected:+.0f} {n.kind} per cast{pct}")
+            elif n.per_second and old.per_second and round(n.per_second) != round(old.per_second):
+                # same per cast, but faster (or cheaper): say what it does per second of casting
+                pct = f" ({(n.per_second - old.per_second) / old.per_second * 100:+.1f}%)"
+                out.append(f"{n.spell} {n.per_second - old.per_second:+.0f} {n.kind} per second of casting{pct}")
+        return out
+
     def talent_spell_effects(self, class_name: str, spell_id: str, rank: int) -> list[str]:
         """What one talent at `rank` does to spells, in its own terms ("cast time -0.5 s: Frostbolt")."""
         from .spells import BONUS_OPS, PROPERTY_OPS, applies, describe_amount
@@ -620,7 +673,8 @@ class Workbench:
         req = self.parse({**body, "values": False})
         self.store.put(name, {"class": req.class_name, "race": req.race, "level": req.level, "alloc": req.alloc,
                               "adjust": req.adjust, "shield": req.shield, "attacker_level": req.attacker_level,
-                              "vs_player": req.vs_player, "conditions": list(req.conditions), "build": self.build, "saved": _stamp()})
+                              "vs_player": req.vs_player, "conditions": list(req.conditions), "target": req.target,
+                              "build": self.build, "saved": _stamp()})
         return {"saved": name}
 
     def load_saved(self, name: str) -> dict:

@@ -1,6 +1,6 @@
 # Combat model: plan (spell model phase 4 and beyond)
 
-Status: proposal for review (2026-11-02). Nothing below is built yet.
+Status: agreed 2026-11-02. Phase 1 now, then review.
 
 ## Why
 
@@ -50,13 +50,13 @@ Every number keeps its provenance: from the data, from an assumed rule (and whic
 
 ## Phases
 
-1. **Per-cast spell numbers** (medium): steps 1-2 for spells (not weapon attacks). Shown in the stat sheet's spell section and the Talent values tab.
+1. **Per-cast spell numbers** (medium): **Done 2026-11-02** (`src/wowcalc/combat.py`): direct, over-time, channelled and triggered damage and healing per cast, per second of casting and per point of cost, against a same-level target or a boss; each talent's change in the Talent values tab. Ground effects (Blizzard), scripted damage and attack-power spells are listed as not calculated yet. steps 1-2 for spells (not weapon attacks). Shown in the stat sheet's spell section and the Talent values tab.
 2. **Weapon attacks** (medium): step 3.
 3. **Character rate** (medium): step 4.
 4. **Simulation** (large, later).
 
-## Decisions I need
+## Decisions
 
-1. **Assumed combat rules:** use the original game's published rules, clearly labelled as assumed until checked in game (recommended), or show only numbers that need no such rule (per-cast amounts before hit and crit)?
-2. **Default target:** a boss (level 63, higher miss chance) or a target of your own level?
-3. **Scope now:** phase 1 only, then review? (recommended)
+1. Combat rules: the original game's published rules, labelled "assumed" wherever they are used until a reading checks them.
+2. Target: two choices on the page, a target of your own level and a boss (your level + 3).
+3. Scope: phase 1 (per-cast spell numbers), then review.

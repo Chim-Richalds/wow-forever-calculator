@@ -25,6 +25,7 @@ Principles that apply to everything below: data-driven, versioned, traceable, ne
 - [ ] **Ranged attack power from Intellect** (Careful Aim): rounded down like the melee half. Check the panel at 0 and 5 ranks with an Intellect total that is not a multiple of 5.
 - [ ] **Armor from Intellect** (Arcane Resilience): 25/50/75% of Intellect, rounded down. Check armor at 0 and 3 ranks with an Intellect total that is not a multiple of 4.
 - [ ] **Spell changes: stacking and rounding.** Two talents changing one spell property: are percents added or multiplied, and is the flat amount applied first? How are costs and times rounded? (E.g. Frost Channeling on Cone of Cold: 555 x 0.85 = 471.75 mana.)
+- [ ] **Combat rules (assumed, 2026-11-02):** spell crit 150%; spell miss 4% / 5% / 6% / 17% at +0 / +1 / +2 / +3 levels (min 1%); per-level growth capped at the spell's max level; damage over time does not crit; triggered hits (Arcane Missiles) crit. Check one of each on a target dummy and a boss: e.g. Frostbolt's range with no gear against the Spells table.
 - [ ] **Hit and spell hit.** The Hit row merges melee and spell hit when they are equal. Confirm with a talent that raises only one of them.
 
 ## Modelling more talents  [offline]
@@ -63,6 +64,10 @@ Goal: less code saying the same thing, with no loss of coverage of real behaviou
 - [x] **Stray files at the repo root.** Removed (two exact copies, and `icon_ids.txt`, which `python -m wowcalc.icons list` regenerates).
 - [x] **Compiled files in git.** Untracked.
 - [x] **Rate fit summary.** Prints the attack power rule in use, with the panel fit as a note.
+
+## Combat model  [offline]
+
+- [ ] Phase 1 review, then phase 2 (weapon attacks: weapon inputs, white hits, Heroic Strike, Sinister Strike). Not yet calculated in phase 1: ground effects (Blizzard), scripted damage, attack-power spells (`docs/combat-model-plan.md`).
 
 ## Talent tree data checks  [offline, then servers]
 
