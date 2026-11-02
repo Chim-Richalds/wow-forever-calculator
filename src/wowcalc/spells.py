@@ -109,17 +109,14 @@ class SpellModifier:
         return not self.problems
 
 
-PET_GROUPS = frozenset({"Felhunter", "Imp", "Succubus", "Voidwalker"})   # spellbook groups that are pet abilities
-
-
 def load_spellbooks(path: Path) -> dict[str, set[str]]:
-    """class -> spell names in its base spellbook (data/external/spellbooks.tsv), pets' abilities left
-    out. {} if the file is missing."""
+    """class -> spell names in its spellbook (data/external/spellbooks.tsv), without the rows flagged
+    'removed' (spells WoW Forever took out). {} if the file is missing."""
     out: dict[str, set[str]] = defaultdict(set)
     try:
         with Path(path).open(encoding="utf-8", newline="") as handle:
             for row in csv.DictReader(handle, delimiter="\t"):
-                if row.get("class") and row.get("spell") and row.get("group") not in PET_GROUPS:
+                if row.get("class") and row.get("spell") and "removed" not in (row.get("flags") or "").split():
                     out[row["class"].strip()].add(row["spell"].strip())
     except OSError:
         return {}

@@ -71,8 +71,8 @@ Hunter	Resourcefulness	0	cost	percent	-60	Counterattack, Explosive Trap, Freezin
 Hunter	Survivalist's Discipline	0	cooldown	percent	-40	Deterrence, Explosive Trap, Freezing Trap, Frost Trap, Immolation Trap	Deterrence		
 Mage	Improved Channeling	0	pushback	percent	100	Arcane Missiles	Arcane Blast, Arcane Missiles, Arcane Wrath		
 Mage	Improved Channeling	1	pushback	percent	70	Arcane Blast, Arcane Wrath	Arcane Blast, Arcane Wrath		
-Mage	Arcane Subtlety	0	threat	percent	-30	Arcane Blast, Arcane Explosion, Arcane Missiles, Counterspell, Polymorph, Polymorph: Cow	Arcane spells		
-Mage	Arcane Geometry	0	range	flat	6	Amplify Magic, Arcane Blast, Arcane Brilliance, Arcane Intellect, Arcane Missiles, Arcane Wrath, Conjure Food, Conjure Mana Agate, Conjure Mana Citrine, Conjure Mana Jade, Conjure Mana Ruby, Conjure Water, Counterspell, Dampen Magic, Polymorph, Polymorph: Cow, Portal: Darnassus, Portal: Ironforge, Portal: Orgrimmar, Portal: Stormwind, Portal: Thunder Bluff, Portal: Undercity, Remove Lesser Curse, Slow Fall, Teleport: Dalaran, Teleport: Darnassus, Teleport: Ironforge, Teleport: Orgrimmar, Teleport: Stormwind, Teleport: Thunder Bluff, Teleport: Undercity	Arcane spells		
+Mage	Arcane Subtlety	0	threat	percent	-30	Arcane Blast, Arcane Explosion, Arcane Missiles, Counterspell, Polymorph	Arcane spells		
+Mage	Arcane Geometry	0	range	flat	6	Amplify Magic, Arcane Blast, Arcane Brilliance, Arcane Intellect, Arcane Missiles, Arcane Wrath, Conjure Food, Conjure Mana Agate, Conjure Mana Citrine, Conjure Mana Jade, Conjure Mana Ruby, Conjure Water, Counterspell, Dampen Magic, Polymorph, Portal: Darnassus, Portal: Ironforge, Portal: Orgrimmar, Portal: Stormwind, Portal: Thunder Bluff, Portal: Undercity, Remove Lesser Curse, Slow Fall, Teleport: Dalaran, Teleport: Darnassus, Teleport: Ironforge, Teleport: Orgrimmar, Teleport: Stormwind, Teleport: Thunder Bluff, Teleport: Undercity	Arcane spells		
 Mage	Arcane Impact	0	critical strike chance	flat	6	Arcane Blast, Arcane Explosion, Arcane Wrath	Arcane spells		
 Mage	Arcane Shielding	0	op 27	percent	-33	Mana Shield	Mage Armor, Mana Shield	op 27: what it changes is not established from talent texts yet	
 Mage	Arcane Shielding	1	op 3	percent	50	Mage Armor	Mage Armor	op 3: changes the spell's own effect amounts; valued with the spells' effects (phase 4)	
@@ -115,7 +115,7 @@ Paladin	Improved Hammer of Justice	0	cooldown	flat	-15000	Hammer of Justice	Hamm
 Paladin	Improved Righteous Fury	0	op 12	flat	-9	Righteous Fury	Righteous Fury	op 12: changes the spell's own effect amounts; valued with the spells' effects (phase 4)	
 Paladin	Iron Creed	0	threat	percent	30	Holy Strike	Holy Strike		
 Paladin	Shieldsworn	0	cooldown	flat	-4000	Holy Strike	Holy Strike		
-Paladin	Benediction	0	cost	percent	-10	Blessing of Freedom, Blessing of Kings, Blessing of Might, Blessing of Protection, Blessing of Sacrifice, Blessing of Wisdom, Cleanse, Consecration, Divine Protection, Divine Shield, Exorcism, Greater Blessing of Kings, Greater Blessing of Might, Greater Blessing of Wisdom, Hammer of Justice, Holy Shield, Holy Shock, Holy Strike, Judgement, Purify, Repentance, Retribution Aura, Righteous Fury, Seal of Command, Seal of Fury, Seal of Justice, Seal of Light, Seal of Righteousness, Seal of Wisdom, Seal of the Crusader, Templar's Bulwark			
+Paladin	Benediction	0	cost	percent	-10	Blessing of Freedom, Blessing of Might, Blessing of Protection, Blessing of Sacrifice, Blessing of Wisdom, Cleanse, Consecration, Divine Protection, Divine Shield, Exorcism, Greater Blessing of Kings, Greater Blessing of Might, Greater Blessing of Wisdom, Hammer of Justice, Holy Shield, Holy Shock, Holy Strike, Judgement, Purify, Repentance, Retribution Aura, Righteous Fury, Seal of Command, Seal of Fury, Seal of Justice, Seal of Light, Seal of Righteousness, Seal of Wisdom, Seal of the Crusader, Templar's Bulwark			
 Paladin	Improved Judgement	0	cooldown	flat	-2000	Judgement	Judgement		
 Paladin	Sacred Arbiter	0	damage or healing	percent	20	Holy Strike	Holy Strike, Judgement		the text names Judgement but no modifier of the talent reaches it
 Paladin	Turn Evil	0	cast time	flat	-1000	Turn Undead	Turn Undead		
@@ -132,14 +132,14 @@ Priest	Improved Inner Fire	1	charges	flat	12	Inner Fire
 Priest	Improved Mana Burn	0	cast time	flat	-1000	Blessed Recovery, Mana Burn	Mana Burn		the mask also reaches Blessed Recovery, which the text does not name
 Priest	Soul Warding	0	cooldown	flat	-4000	Power Word: Shield	Power Word: Shield		
 Priest	Soul Warding	1	cost	percent	-15	Power Word: Shield			
-Priest	Twilight Focus	0	pushback	percent	70	Blessed Recovery, Confounding Flash, Flash Heal, Greater Heal, Heal, Holy Fire, Lesser Heal, Mana Burn, Mind Blast, Mind Control, Mind Flay, Penance, Prayer of Healing, Resurrection, Smite, Starshards			
+Priest	Twilight Focus	0	pushback	percent	70	Binding Heal, Blessed Recovery, Confounding Flash, Flash Heal, Greater Heal, Heal, Holy Fire, Lesser Heal, Mana Burn, Mind Blast, Mind Control, Mind Flay, Penance, Prayer of Healing, Resurrection, Smite, Starshards			
 Priest	Improved Renew	0	periodic damage or healing	percent	15	Renew	Renew		
-Priest	Holy Specialization	0	critical strike chance	flat	5	Desperate Prayer, Divine Grace, Flash Heal, Greater Heal, Heal, Holy Fire, Holy Nova, Lesser Heal, Penance, Prayer of Healing, Prayer of Mending, Renew, Smite	Holy spells		
+Priest	Holy Specialization	0	critical strike chance	flat	5	Binding Heal, Desperate Prayer, Divine Grace, Flash Heal, Greater Heal, Heal, Holy Fire, Holy Nova, Lesser Heal, Penance, Prayer of Healing, Prayer of Mending, Renew, Smite	Holy spells		
 Priest	Divine Fury	0	cast time	flat	-500	Greater Heal, Heal, Holy Fire, Smite	Greater Heal, Heal, Holy Fire, Smite		
 Priest	Holy Reach	0	range	percent	20	Holy Fire, Smite	Holy Fire, Holy Nova, Prayer of Healing, Smite		
 Priest	Holy Reach	1	radius	percent	20	Holy Nova, Prayer of Healing	Holy Fire, Holy Nova, Prayer of Healing, Smite		
 Priest	Improved Healing	0	cost	percent	-15	Greater Heal, Heal, Lesser Heal, Penance, Prayer of Mending	Greater Heal, Heal, Lesser Heal, Penance, Prayer of Mending		
-Priest	Spiritual Healing	0	damage or healing	percent	10	Contingency Plan, Desperate Prayer, Divine Grace, Flash Heal, Greater Heal, Heal, Holy Nova, Lesser Heal, Penance, Prayer of Healing, Prayer of Mending, Prayer of Spirit			
+Priest	Spiritual Healing	0	damage or healing	percent	10	Binding Heal, Contingency Plan, Desperate Prayer, Divine Grace, Flash Heal, Greater Heal, Heal, Holy Nova, Lesser Heal, Penance, Prayer of Healing, Prayer of Mending, Prayer of Spirit			
 Priest	Spiritual Healing	1	periodic damage or healing	percent	10	Renew			
 Priest	Shadow Focus	0	hit chance	flat	5	Devouring Plague, Hex of Weakness, Mind Blast, Mind Control, Mind Flay, Mind Soothe, Mind Vision, Psychic Scream, Shadow Word: Death, Shadow Word: Pain, Shadowguard, Silence, Touch of Weakness, Vampiric Embrace	Shadow spells		
 Priest	Improved Mind Blast	0	cooldown	flat	-2500	Mind Blast	Mind Blast		

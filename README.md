@@ -40,7 +40,7 @@ PYTHONPATH=src python3 -m wowcalc.icons status
 
 ## Class spells
 
-Each class's spells are its base spellbook (`data/external/spellbooks.tsv`, from wowhandbook.com, which describes WoW Forever) plus its talents. The client also carries spells WoW Forever does not use (Season of Discovery runes, old poison ranks); those are left out. Edit the file if a class's spellbook changes.
+Each class's spells are its spellbook (`data/external/spellbooks.tsv`, from wowforevertalents.com/abilities, which follows the current Forever build and its hotfixes) plus its talents. Rows flagged `removed` are ignored. The client also carries spells WoW Forever does not use (Season of Discovery runes, old poison ranks); those are left out. Edit the file if a class's spellbook changes.
 
 ## Tree backgrounds
 
