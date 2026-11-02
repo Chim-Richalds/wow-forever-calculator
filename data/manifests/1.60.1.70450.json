@@ -728,6 +728,224 @@
       "status": "downloaded-needs-validation",
       "addedAfterInstall": true,
       "addedAt": "2026-11-01T10:31:27.904849+00:00"
+    },
+    "SpellClassOptions": {
+      "url": "https://wago.tools/db2/SpellClassOptions/csv?build=1.60.1.70450&useHotfixes=1",
+      "file": "data/raw/1.60.1.70450/SpellClassOptions.csv",
+      "sha256": "a48c2e99802695e20c0705d288a5381da9eceae4d086a3c221b5c5a8e28192c9",
+      "bytes": 167423,
+      "columns": [
+        "ID",
+        "SpellID",
+        "ModalNextSpell",
+        "SpellClassSet",
+        "SpellClassMask_0",
+        "SpellClassMask_1",
+        "SpellClassMask_2",
+        "SpellClassMask_3"
+      ],
+      "rows": 6085,
+      "malformedRows": 0,
+      "duplicateHeaders": [],
+      "contentType": "text/csv; charset=UTF-8",
+      "status": "downloaded-needs-validation",
+      "addedAfterInstall": true,
+      "addedAt": "2026-11-02T17:14:18.448890+00:00"
+    },
+    "SkillLineAbility": {
+      "url": "https://wago.tools/db2/SkillLineAbility/csv?build=1.60.1.70450&useHotfixes=1",
+      "file": "data/raw/1.60.1.70450/SkillLineAbility.csv",
+      "sha256": "df6018b459f851bdee27edfc74d2f45678177cba50aeed4bf12bc9d5fa4973e4",
+      "bytes": 407449,
+      "columns": [
+        "AbilityVerb_lang",
+        "AbilityAllVerb_lang",
+        "ID",
+        "SkillLine",
+        "Spell",
+        "MinSkillLineRank",
+        "ClassMask",
+        "SupercedesSpell",
+        "AcquireMethod",
+        "TrivialSkillLineRankHigh",
+        "TrivialSkillLineRankLow",
+        "Flags",
+        "NumSkillUps",
+        "UniqueBit",
+        "TradeSkillCategoryID",
+        "SkillupSkillLineID",
+        "Field_5_5_4_67090_014_0",
+        "Field_5_5_4_67090_014_1",
+        "RaceMasks_0",
+        "RaceMasks_1"
+      ],
+      "rows": 7853,
+      "malformedRows": 0,
+      "duplicateHeaders": [],
+      "contentType": "text/csv; charset=UTF-8",
+      "status": "downloaded-needs-validation",
+      "addedAfterInstall": true,
+      "addedAt": "2026-11-02T17:14:18.448890+00:00"
+    },
+    "SpellLevels": {
+      "url": "https://wago.tools/db2/SpellLevels/csv?build=1.60.1.70450&useHotfixes=1",
+      "file": "data/raw/1.60.1.70450/SpellLevels.csv",
+      "sha256": "4412f55c213be60da5a9aa7a04f3395cbdc4c4cf5d4774c396859d8936db21d7",
+      "bytes": 313012,
+      "columns": [
+        "ID",
+        "DifficultyID",
+        "MaxLevel",
+        "MaxPassiveAuraLevel",
+        "BaseLevel",
+        "SpellLevel",
+        "SpellID"
+      ],
+      "rows": 12960,
+      "malformedRows": 0,
+      "duplicateHeaders": [],
+      "contentType": "text/csv; charset=UTF-8",
+      "status": "downloaded-needs-validation",
+      "addedAfterInstall": true,
+      "addedAt": "2026-11-02T17:14:18.448890+00:00"
+    },
+    "SpellPower": {
+      "url": "https://wago.tools/db2/SpellPower/csv?build=1.60.1.70450&useHotfixes=1",
+      "file": "data/raw/1.60.1.70450/SpellPower.csv",
+      "sha256": "2d8f3c1e23eb301cd90428df0e88f8c0bef49dd9b252d8f59f622f782baef727",
+      "bytes": 139744,
+      "columns": [
+        "ID",
+        "OrderIndex",
+        "ManaCost",
+        "ManaCostPerLevel",
+        "ManaPerSecond",
+        "PowerDisplayID",
+        "AltPowerBarID",
+        "PowerCostPct",
+        "PowerCostMaxPct",
+        "OptionalCostPct",
+        "PowerPctPerSecond",
+        "PowerType",
+        "RequiredAuraSpellID",
+        "OptionalCost",
+        "SpellID"
+      ],
+      "rows": 3462,
+      "malformedRows": 0,
+      "duplicateHeaders": [],
+      "contentType": "text/csv; charset=UTF-8",
+      "status": "downloaded-needs-validation",
+      "addedAfterInstall": true,
+      "addedAt": "2026-11-02T17:14:18.448890+00:00"
+    },
+    "SpellCastTimes": {
+      "url": "https://wago.tools/db2/SpellCastTimes/csv?build=1.60.1.70450&useHotfixes=1",
+      "file": "data/raw/1.60.1.70450/SpellCastTimes.csv",
+      "sha256": "f94e1e3a3495d11af875fd7b007124fdd660a19ba626bc1de00a609da81f25d8",
+      "bytes": 982,
+      "columns": [
+        "ID",
+        "Base",
+        "Minimum"
+      ],
+      "rows": 72,
+      "malformedRows": 0,
+      "duplicateHeaders": [],
+      "contentType": "text/csv; charset=UTF-8",
+      "status": "downloaded-needs-validation",
+      "addedAfterInstall": true,
+      "addedAt": "2026-11-02T17:14:18.448890+00:00"
+    },
+    "SpellCooldowns": {
+      "url": "https://wago.tools/db2/SpellCooldowns/csv?build=1.60.1.70450&useHotfixes=1",
+      "file": "data/raw/1.60.1.70450/SpellCooldowns.csv",
+      "sha256": "cc09724f2a49c0e13b9431b2bd40f7a611e2a37bc67d92613c6ff479d005784c",
+      "bytes": 119335,
+      "columns": [
+        "ID",
+        "DifficultyID",
+        "CategoryRecoveryTime",
+        "RecoveryTime",
+        "StartRecoveryTime",
+        "AuraSpellID",
+        "SpellID"
+      ],
+      "rows": 4499,
+      "malformedRows": 0,
+      "duplicateHeaders": [],
+      "contentType": "text/csv; charset=UTF-8",
+      "status": "downloaded-needs-validation",
+      "addedAfterInstall": true,
+      "addedAt": "2026-11-02T17:14:18.448890+00:00"
+    },
+    "SpellDuration": {
+      "url": "https://wago.tools/db2/SpellDuration/csv?build=1.60.1.70450&useHotfixes=1",
+      "file": "data/raw/1.60.1.70450/SpellDuration.csv",
+      "sha256": "19a2eb874399e5fbe9c67bf482dd9e619bc13b055cb2fcf52b32ec9366af5394",
+      "bytes": 2516,
+      "columns": [
+        "ID",
+        "Duration",
+        "MaxDuration",
+        "DurationPerResource"
+      ],
+      "rows": 134,
+      "malformedRows": 0,
+      "duplicateHeaders": [],
+      "contentType": "text/csv; charset=UTF-8",
+      "status": "downloaded-needs-validation",
+      "addedAfterInstall": true,
+      "addedAt": "2026-11-02T17:14:18.448890+00:00"
+    },
+    "SpellRange": {
+      "url": "https://wago.tools/db2/SpellRange/csv?build=1.60.1.70450&useHotfixes=1",
+      "file": "data/raw/1.60.1.70450/SpellRange.csv",
+      "sha256": "30734ead3acfb44c57737ed7c9f8ff2feafda2fbffa291711d4c4afef989b1b3",
+      "bytes": 2736,
+      "columns": [
+        "ID",
+        "DisplayName_lang",
+        "DisplayNameShort_lang",
+        "Flags",
+        "RangeMin_0",
+        "RangeMin_1",
+        "RangeMax_0",
+        "RangeMax_1"
+      ],
+      "rows": 61,
+      "malformedRows": 0,
+      "duplicateHeaders": [],
+      "contentType": "text/csv; charset=UTF-8",
+      "status": "downloaded-needs-validation",
+      "addedAfterInstall": true,
+      "addedAt": "2026-11-02T17:14:18.448890+00:00"
+    },
+    "SpellCategories": {
+      "url": "https://wago.tools/db2/SpellCategories/csv?build=1.60.1.70450&useHotfixes=1",
+      "file": "data/raw/1.60.1.70450/SpellCategories.csv",
+      "sha256": "fe3fe0d3a01a93aff1c4bb5e3359625ef1b93988002a319c83517363507f20f1",
+      "bytes": 340021,
+      "columns": [
+        "ID",
+        "DifficultyID",
+        "Category",
+        "DefenseType",
+        "DiminishType",
+        "DispelType",
+        "Mechanic",
+        "PreventionType",
+        "StartRecoveryCategory",
+        "ChargeCategory",
+        "SpellID"
+      ],
+      "rows": 10672,
+      "malformedRows": 0,
+      "duplicateHeaders": [],
+      "contentType": "text/csv; charset=UTF-8",
+      "status": "downloaded-needs-validation",
+      "addedAfterInstall": true,
+      "addedAt": "2026-11-02T17:14:18.448890+00:00"
     }
   },
   "failures": [],
@@ -771,6 +989,20 @@
       "at": "2026-11-01T10:31:27.904849+00:00",
       "tables": [
         "Resistances"
+      ]
+    },
+    {
+      "at": "2026-11-02T17:14:18.448890+00:00",
+      "tables": [
+        "SpellClassOptions",
+        "SkillLineAbility",
+        "SpellLevels",
+        "SpellPower",
+        "SpellCastTimes",
+        "SpellCooldowns",
+        "SpellDuration",
+        "SpellRange",
+        "SpellCategories"
       ]
     }
   ]
