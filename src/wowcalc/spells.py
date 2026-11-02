@@ -30,6 +30,7 @@ from .dataset import as_int as _int
 from .effects import SPELL_MODIFIER, EffectBook
 from .trees import TreeModel
 
+RUNE_ACQUIRE_METHOD = "3"   # SkillLineAbility.AcquireMethod of Season of Discovery rune abilities
 CLASS_BITS = {"Warrior": 1, "Paladin": 2, "Hunter": 4, "Rogue": 8, "Priest": 16, "Shaman": 64, "Mage": 128,
               "Warlock": 256, "Druid": 1024}
 AURA_FLAT, AURA_PERCENT = 107, 108
@@ -141,11 +142,29 @@ class Catalogue:
         school_names = book.schools
         school_mask = {r["SpellID"]: _int(r.get("SchoolMask")) for r in _rows(ds, "SpellMisc", {"SpellID"})}
         learnable: dict[str, dict[str, str]] = defaultdict(dict)   # class -> spell id -> source
+        rune_only: dict[str, set[str]] = defaultdict(set)            # class -> spell names listed only as rune abilities
+        methods: dict[tuple[str, str], set[str]] = defaultdict(set)  # (class, spell name) -> AcquireMethod values
         for r in _rows(ds, "SkillLineAbility", {"Spell", "ClassMask"}):
             bits = _int(r.get("ClassMask"))
             for class_name, bit in CLASS_BITS.items():
                 if bits & bit:
                     learnable[class_name][r["Spell"]] = "trainer"
+                    methods[(class_name, names.get(r["Spell"], r["Spell"]))].add(str(r.get("AcquireMethod") or "0"))
+        # The client also carries Season of Discovery rune abilities (AcquireMethod 3: Starsurge, Lifebloom,
+        # Living Bomb ...), which WoW Forever does not teach. A spell listed only that way is left out unless
+        # a talent of the class names it in its text (Early Demise: Shadow Word: Death).
+        for (class_name, name), ways in methods.items():
+            if ways == {RUNE_ACQUIRE_METHOD}:
+                rune_only[class_name].add(name)
+        talent_text: dict[str, str] = defaultdict(str)
+        for tree in model.trees.values():
+            for node in tree.nodes.values():
+                for entry in node.entries:
+                    talent_text[tree.class_name] += " " + book.text.get(entry.spell_id, "")
+        for class_name, spells in learnable.items():
+            for sid in [s for s in spells if names.get(s, s) in rune_only[class_name]]:
+                if not re.search(rf"\b{re.escape(names.get(sid, sid))}\b", talent_text[class_name]):
+                    del spells[sid]
         for tree in model.trees.values():
             for node in tree.nodes.values():
                 for entry in node.entries:

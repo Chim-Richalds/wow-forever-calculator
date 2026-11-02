@@ -150,6 +150,14 @@ class RealDataTests(unittest.TestCase):
         corruption = self.mod("Improved Corruption")
         self.assertTrue(corruption.clean)
 
+    def test_rune_abilities_from_another_version_are_left_out(self):
+        druid = self.catalogue.by_class["Druid"]
+        for name in ("Starsurge", "Lifebloom", "Sunfire", "Nourish"):     # only listed as Season of Discovery runes
+            self.assertNotIn(name, druid)
+        for name in ("Starfire", "Wrath", "Moonfire"):
+            self.assertIn(name, druid)
+        self.assertIn("Shadow Word: Death", self.catalogue.by_class["Priest"])   # named by the talent Early Demise
+
     def test_every_modifier_is_resolved(self):
         self.assertGreater(len(self.mods), 250)
         self.assertGreater(sum(m.clean for m in self.mods), len(self.mods) // 2)
