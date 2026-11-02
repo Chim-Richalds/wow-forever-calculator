@@ -18,7 +18,7 @@ published rules) and labelled wherever they are used; see ASSUMPTIONS.
 from __future__ import annotations
 
 from collections import defaultdict
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 
 from .dataset import Dataset
 from .dataset import as_int as _int
@@ -77,6 +77,7 @@ class SpellNumbers:
     per_cost: float | None = None     # expected per point of the spell's cost
     cost_unit: str = ""
     power_part: float = 0.0       # how much of the average comes from spell or healing power
+    replaces_swing: bool = False  # a next-swing ability (Heroic Strike): each use takes the place of a main-hand swing
 
 
 def _amount(row: dict, level: int, levels: dict) -> float:
@@ -355,6 +356,7 @@ def weapon_numbers(combat: CombatBook, spells: dict[str, ClassSpell], mods: list
         time = weapon.speed if auto or next_swing else max(cast, gcd, 1000) / 1000
         cost = changes.get((name, "cost"), base.cost) if base.cost_unit and not base.cost_unit.startswith("%") else None
         power = ranged_attack_power if is_ranged else attack_power
-        out.append(row(name, base.spell_id, weapon, power, pct, flat, normalized and not auto, bonuses.get(name, {}),
-                       auto, is_ranged, time, cost, base.cost_unit))
+        n = row(name, base.spell_id, weapon, power, pct, flat, normalized and not auto, bonuses.get(name, {}),
+                auto, is_ranged, time, cost, base.cost_unit)
+        out.append(replace(n, replaces_swing=next_swing and not auto and not is_ranged))
     return out, skipped

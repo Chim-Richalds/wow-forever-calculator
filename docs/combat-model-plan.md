@@ -52,7 +52,7 @@ Every number keeps its provenance: from the data, from an assumed rule (and whic
 
 1. **Per-cast spell numbers** (medium): **Done 2026-11-02** (`src/wowcalc/combat.py`): direct, over-time, channelled and triggered damage and healing per cast, per second of casting and per point of cost, against a same-level target or a boss; each talent's change in the Talent values tab. Ground effects (Blizzard), scripted damage and attack-power spells are listed as not calculated yet. steps 1-2 for spells (not weapon attacks). Shown in the stat sheet's spell section and the Talent values tab.
 2. **Weapon attacks** (medium): step 3. **Done 2026-11-02:** main-hand and ranged weapon inputs; white swings, Auto Shot and every ability with weapon damage (normal, normalized and percent), with the melee/ranged hit table, glancing blows and 200% crits (assumed rules, listed on the page). Physical abilities without weapon damage use the attack table at their base amount. Not yet: off-hand and dual wield, feral form attacks, attack-power scaling held in game code (Bloodthirst), combo-point finishers beyond one point.
-3. **Character rate** (medium): step 4.
+3. **Character rate** (medium): step 4. **Done 2026-11-02:** uses per minute per ability in the damage table (saved with builds); white swings and Auto Shot count at weapon speed, less the swings Heroic Strike and Cleave take; damage and healing per second, seconds of casting a minute (warned above 60); each talent's change to your damage or healing per second in the Talent values tab. A faster ability adds only when you raise its uses (no rotation is guessed).
 4. **Simulation** (large, later).
 
 ## Decisions

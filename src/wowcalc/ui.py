@@ -117,6 +117,7 @@ class Request:
     conditions: tuple[str, ...] = ()  # situations that hold (effects.CONDITIONS keys)
     target: str = "same"              # combat.TARGETS key: a target of your level, or a boss
     weapons: tuple = ()               # ((slot, Weapon), ...): "main" and/or "ranged"
+    rotation: tuple = ()              # ((ability name, uses per minute), ...): for damage and healing per second
 
 
 class BuildStore:
@@ -389,9 +390,22 @@ class Workbench:
             if not (0 <= lo <= hi <= 10000 and 0.5 <= speed <= 6):
                 raise UiError(400, f"{slot} weapon: damage must be 0 to 10000 (min no more than max) and speed 0.5 to 6 seconds")
             weapons.append((slot, Weapon(lo, hi, speed, kind)))
+        rotation_in = body.get("rotation") or {}
+        if not isinstance(rotation_in, dict):
+            raise UiError(400, "rotation must map ability names to uses per minute")
+        rotation = []
+        for name, uses in sorted(rotation_in.items()):
+            try:
+                uses = float(uses)
+            except (TypeError, ValueError):
+                raise UiError(400, f"rotation: uses per minute of {name!r} must be a number") from None
+            if not (0 <= uses <= 600) or not isinstance(name, str) or len(name) > 80:
+                raise UiError(400, f"rotation: uses per minute of {name!r} must be 0 to 600")
+            if uses:
+                rotation.append((name, uses))
         return Request(tree.class_name, race, level, alloc, adjust, bool(body.get("shield")), attacker,
                        bool(body.get("vs_player")), bool(body.get("values", True)), tuple(sorted(set(conditions_in))), target,
-                       tuple(weapons))
+                       tuple(weapons), tuple(rotation))
 
     @staticmethod
     def _int(value, what: str) -> int:
@@ -524,6 +538,7 @@ class Workbench:
             "spells": self.spell_rows(req, tree, req.alloc),
         }
         numbers, skipped = self.spell_numbers(req, tree, req.alloc, sheet)
+        out["rate"] = self.rate(req, numbers)
         out["spell_numbers"] = {"target": TARGETS[req.target].label, "rows": [self.number_json(n) for n in numbers],
                                 "not_calculated": skipped, "assumptions": list(COMBAT_ASSUMPTIONS) + list(WEAPON_ASSUMPTIONS)}
         applied = self.applied_spell_effects(tree, req.alloc)
@@ -648,12 +663,43 @@ class Workbench:
                 "expected": round(n.expected), "per_second": None if n.per_second is None else round(n.per_second, 1),
                 "per_cost": None if n.per_cost is None else round(n.per_cost, 2), "cost_unit": n.cost_unit}
 
+    @staticmethod
+    def rate(req: Request, numbers) -> dict:
+        """Damage and healing per second from how often each ability is used (the rotation). White swings and
+        Auto Shot count at their own speed unless the rotation says otherwise. busy: seconds of casting a minute."""
+        uses = dict(req.rotation)
+        replaced = sum(uses.get(n.spell, 0) for n in numbers if getattr(n, "replaces_swing", False))
+        dps = hps = busy = 0.0
+        used = []
+        for n in numbers:
+            per_minute = uses.get(n.spell)
+            if per_minute is None and (n.spell.startswith("Melee swing") or n.spell == "Auto Shot") and n.per_second:
+                per_minute = 60 * n.per_second / n.expected if n.expected else 0
+                if n.spell == "Melee swing (main hand)":   # Heroic Strike and Cleave take the place of swings
+                    per_minute = max(0.0, per_minute - replaced)
+            if not per_minute:
+                continue
+            amount = n.expected * per_minute / 60
+            if n.kind == "healing":
+                hps += amount
+            else:
+                dps += amount
+            if not (n.spell.startswith("Melee swing") or n.spell == "Auto Shot" or getattr(n, "replaces_swing", False)) and n.per_second:
+                busy += per_minute * n.expected / n.per_second   # seconds each use takes
+            used.append(n.spell)
+        return {"dps": round(dps, 1), "hps": round(hps, 1), "busy": round(busy, 1), "used": used}
+
     def spell_value(self, req: Request, tree: ClassTree, with_alloc: dict[str, int], without_alloc: dict[str, int]) -> list[str]:
-        """How a talent changes expected damage or healing per cast, spell by spell ("Fireball +12 per cast (+2.3%)")."""
+        """How a talent changes your damage or healing per second (with your rotation), then per cast, spell by
+        spell ("Fireball +12 per cast (+2.3%)")."""
         a, _ = self.spell_numbers(req, tree, with_alloc, self.sheet_for(req, with_alloc))
         b, _ = self.spell_numbers(req, tree, without_alloc, self.sheet_for(req, without_alloc))
         before = {n.spell: n for n in b}
         out = []
+        ra, rb = self.rate(req, a), self.rate(req, b)
+        for key, label in (("dps", "damage"), ("hps", "healing")):
+            if rb[key] and round(ra[key] - rb[key], 1):
+                out.append(f"Your {label} per second {_delta(ra[key] - rb[key])} ({(ra[key] - rb[key]) / rb[key] * 100:+.1f}%)")
         for n in a:
             old = before.get(n.spell)
             if old is None:
@@ -724,6 +770,7 @@ class Workbench:
                               "adjust": req.adjust, "shield": req.shield, "attacker_level": req.attacker_level,
                               "vs_player": req.vs_player, "conditions": list(req.conditions), "target": req.target,
                               "weapons": {slot: {"min": w.min, "max": w.max, "speed": w.speed, "kind": w.kind} for slot, w in req.weapons},
+                              "rotation": dict(req.rotation),
                               "build": self.build, "saved": _stamp()})
         return {"saved": name}
 

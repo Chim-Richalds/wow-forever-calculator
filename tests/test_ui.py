@@ -374,6 +374,25 @@ class EvaluateTests(WorkbenchCase):
                               "weapons": {"main": {"min": 10, "max": 20, "speed": 2.0, "kind": "dagger"}}})
         self.assertEqual(self.bench.load_saved("w")["weapons"]["main"]["kind"], "dagger")
 
+    def test_rate_from_the_rotation(self):
+        from types import SimpleNamespace as NS
+        from wowcalc.ui import Request
+        nums = [NS(spell="Melee swing (main hand)", kind="damage", expected=300.0, per_second=100.0),
+                NS(spell="Mortal Strike", kind="damage", expected=600.0, per_second=400.0),
+                NS(spell="Heal", kind="healing", expected=1200.0, per_second=400.0)]
+        req = Request("Warrior", "Human", 60, {}, {}, False, None, False, True, (), "same", (), (("Mortal Strike", 6.0), ("Heal", 3.0)))
+        r = Workbench.rate(req, nums)
+        self.assertEqual((r["dps"], r["hps"]), (100.0 + 60.0, 60.0))           # the swing at its own speed, plus 6 x 600 / 60
+        self.assertEqual(r["busy"], 6 * 1.5 + 3 * 3.0)                          # Mortal Strike 1.5 s a use, Heal 3 s
+        nums.append(NS(spell="Heroic Strike", kind="damage", expected=500.0, per_second=500 / 3.0, replaces_swing=True))
+        req = Request("Warrior", "Human", 60, {}, {}, False, None, False, True, (), "same", (), (("Heroic Strike", 4.0),))
+        r = Workbench.rate(req, nums)                   # 20 swings a minute, 4 of them become Heroic Strikes
+        self.assertEqual((r["dps"], r["busy"]), (round((16 * 300 + 4 * 500) / 60, 1), 0.0))
+        with self.assertRaises(UiError):
+            self.ev(rotation={"Fireball": -1})
+        with self.assertRaises(UiError):
+            self.ev(rotation=["Fireball"])
+
     def test_values_can_be_switched_off(self):
         self.assertNotIn("values", self.ev(values=False))
 
