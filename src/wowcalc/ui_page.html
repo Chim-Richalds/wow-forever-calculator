@@ -617,8 +617,8 @@ function renderSpellChanges() {
   const rows = (S.result && S.result.spells) || [];
   $("spellhead").hidden = !rows.length;
   $("spellchanges").innerHTML = rows.length ? `<div style="overflow-x:auto"><table><thead><tr><th>Spell</th><th>Property</th><th class="num">Base</th><th class="num">With talents</th></tr></thead><tbody>${
-    rows.map((r) => `<tr><td>${esc(r.spell)}</td><td>${esc(r.prop)}</td><td class="num">${esc(r.base)}</td><td class="num" title="${esc(r.by.map((b) => `${b[0]}: ${b[1]}`).join(", "))}"><strong>${esc(r.value)}</strong></td></tr>`).join("")
-  }</tbody></table></div><p class="tiny">From the highest rank your level allows. Several talents on one property: flat amounts are added, then the percents (added together) are applied. That order and the game's rounding have not been checked in game. Hover a value to see which talents changed it.</p>` : "";
+    rows.map((r) => `<tr><td>${esc(r.spell)}</td><td>${esc(r.prop)}</td><td class="num">${r.base ? esc(r.base) : "–"}</td><td class="num" title="${esc(r.by.map((b) => `${b[0]}: ${b[1]}`).join(", "))}"><strong>${esc(r.value)}</strong></td></tr>`).join("")
+  }</tbody></table></div><p class="tiny">From the highest rank your level allows. Several talents on one property: flat amounts are added, then the percents (added together) are applied. Bonuses (damage, crit, threat…) have no base here yet and show the talents' total. How the game combines several talents, and its rounding, have not been checked in game. Hover a value to see which talents changed it.</p>` : "";
 }
 
 function renderValues() {

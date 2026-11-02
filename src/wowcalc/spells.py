@@ -327,7 +327,7 @@ def _scaled(prop: str, unit: str, value: float) -> float:
 
 
 def describe_amount(prop: str, unit: str, value: float, flat: bool) -> str:
-    if not flat:
+    if not flat or prop in ("critical strike chance", "hit chance"):
         return f"{value:+g}%"
     if prop in ("cast time", "cooldown", "global cooldown", "duration"):
         return f"{value / 1000:+g} s"
@@ -376,6 +376,52 @@ def format_value(prop: str, unit: str, value: float) -> str:
     if prop == "range":
         return f"{round(value, 1):g} yd"
     return f"{round(value, 1):g}{'%' if unit.startswith('%') else ''} {unit.removeprefix('% ')}".strip()
+
+
+# ---- phase 3: bonuses the talents give each spell (no base value yet: damage numbers are phase 4)
+
+# Op -> (bonus, applied as a flat amount?). Every talent using these ops stores them in this one form
+# (crit and hit chance as percentage points, the rest as percents); the other form is not applied.
+BONUS_OPS: dict[int, tuple[str, bool]] = {
+    0: ("damage or healing", False),
+    22: ("periodic damage or healing", False),
+    7: ("critical strike chance", True),
+    15: ("critical strike bonus", False),
+    16: ("hit chance", True),
+    2: ("threat", False),
+    9: ("chance not to lose casting time", False),
+}
+
+
+def applies(m: SpellModifier) -> bool:
+    """Is this modifier applied by phases 2-3? It must agree with its text and have values."""
+    if not (m.clean and m.by_rank):
+        return False
+    if m.op in PROPERTY_OPS:
+        return True
+    return m.op in BONUS_OPS and m.flat == BONUS_OPS[m.op][1]
+
+
+@dataclass(frozen=True)
+class SpellBonus:
+    spell: str
+    bonus: str
+    total: float                       # percent (or percentage points for chances)
+    by: tuple[tuple[str, str], ...]    # (talent, "+6%")
+
+
+def spell_bonuses(mods: list[SpellModifier], class_name: str, ranks: dict[str, int]) -> list[SpellBonus]:
+    """Per spell and bonus, the talents' amounts added together (how the game combines them is not
+    checked in game)."""
+    parts: dict[tuple[str, str], list[tuple[str, float]]] = defaultdict(list)
+    for m in mods:
+        r = ranks.get(m.spell_id, 0)
+        if m.class_name != class_name or not r or m.op not in BONUS_OPS or not applies(m) or r not in m.by_rank:
+            continue
+        for spell in m.matched:
+            parts[(spell, BONUS_OPS[m.op][0])].append((m.talent, m.by_rank[r]))
+    return [SpellBonus(spell, bonus, sum(v for _, v in items), tuple((t, f"{v:+g}%") for t, v in items))
+            for (spell, bonus), items in sorted(parts.items()) if sum(v for _, v in items)]
 
 
 AUDIT_HEADER = ("class", "talent", "effect", "op", "flat_or_percent", "top_rank_value", "spells_reached", "text_names", "problems")

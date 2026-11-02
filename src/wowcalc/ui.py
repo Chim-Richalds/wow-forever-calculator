@@ -547,22 +547,26 @@ class Workbench:
         return self._spell_model
 
     def spell_rows(self, req: Request, tree: ClassTree, alloc: dict[str, int]) -> list[dict]:
-        from .spells import format_value, spell_changes
+        """Spells the talents change: properties (base and with talents), then bonuses (no base yet)."""
+        from .spells import format_value, spell_bonuses, spell_changes
         catalogue, mods, book = self.spell_model()
         ranks = {tree.nodes[n].spell_id: r for n, r in alloc.items() if r}
-        return [{"spell": c.spell, "prop": c.prop, "base": format_value(c.prop, c.unit, c.base), "value": format_value(c.prop, c.unit, c.value),
+        rows = [{"spell": c.spell, "prop": c.prop, "base": format_value(c.prop, c.unit, c.base), "value": format_value(c.prop, c.unit, c.value),
                  "by": [list(b) for b in c.by]}
                 for c in spell_changes(mods, catalogue, book, req.class_name, req.level, ranks)]
+        rows += [{"spell": b.spell, "prop": b.bonus, "base": "", "value": f"{b.total:+g}%", "by": [list(x) for x in b.by]}
+                 for b in spell_bonuses(mods, req.class_name, ranks)]
+        return sorted(rows, key=lambda r: (r["spell"], r["base"] == "", r["prop"]))
 
     def talent_spell_effects(self, class_name: str, spell_id: str, rank: int) -> list[str]:
         """What one talent at `rank` does to spells, in its own terms ("cast time -0.5 s: Frostbolt")."""
-        from .spells import PROPERTY_OPS, describe_amount
+        from .spells import BONUS_OPS, PROPERTY_OPS, applies, describe_amount
         catalogue, mods, book = self.spell_model()
         out = []
         for m in mods:
-            if m.spell_id != spell_id or m.class_name != class_name or not m.clean or m.op not in PROPERTY_OPS or rank not in m.by_rank:
+            if m.spell_id != spell_id or m.class_name != class_name or not applies(m) or rank not in m.by_rank:
                 continue
-            prop = PROPERTY_OPS[m.op]
+            prop = PROPERTY_OPS[m.op] if m.op in PROPERTY_OPS else BONUS_OPS[m.op][0]
             spells_of_class = catalogue.by_class.get(class_name, {})
             unit = book.base(spells_of_class[m.matched[0]], 60).cost_unit if prop == "cost" and m.matched else ""
             spells = ", ".join(m.matched[:3]) + (f" and {len(m.matched) - 3} more" if len(m.matched) > 3 else "")
@@ -571,11 +575,10 @@ class Workbench:
 
     def applied_spell_effects(self, tree: ClassTree, alloc: dict[str, int]) -> set[tuple[str, int]]:
         """(talent label, effect index) of spell modifiers the Spells section applies."""
-        from .spells import PROPERTY_OPS
+        from .spells import applies
         _, mods, _ = self.spell_model()
         labels = {n.spell_id: self.label(n) for n in tree.nodes.values() if n.entries}
-        return {(labels[m.spell_id], m.effect_index) for m in mods
-                if m.spell_id in labels and m.clean and m.op in PROPERTY_OPS and m.by_rank}
+        return {(labels[m.spell_id], m.effect_index) for m in mods if m.spell_id in labels and applies(m)}
 
     def spell_audit(self) -> list[str]:
         """The spell model's audit (spells.py): the summary, then the modifiers whose text and data

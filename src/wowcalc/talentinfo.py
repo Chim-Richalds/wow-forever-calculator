@@ -184,8 +184,8 @@ def main(argv: list[str] | None = None) -> int:
         except SpecError as exc:
             print(f"WARNING: no specialization names: {exc}")
             spec_names = {}
-        from .spells import PROPERTY_OPS, resolve
-        applied = {(m.spell_id, m.effect_index) for m in resolve(ds, model, book) if m.clean and m.op in PROPERTY_OPS and m.by_rank}
+        from .spells import applies, resolve
+        applied = {(m.spell_id, m.effect_index) for m in resolve(ds, model, book) if applies(m)}
         rows = unmodelled_rows(model, book, names, spells, spec_names, applied)
         buf = io.StringIO()
         writer = csv.writer(buf, delimiter="\t")
@@ -347,16 +347,22 @@ def main(argv: list[str] | None = None) -> int:
         print(f"{'other':12} {float(o.percent):>+7g}%  {o.text}, from {o.label}")
     for i in sheet.inactive:
         print(f"{'not counted':12} {i.label} ({i.text}): needs {i.needs}")
-    from .spells import PROPERTY_OPS, Catalogue, SpellBook, format_value, resolve, spell_changes
+    from .spells import Catalogue, SpellBook, applies, format_value, resolve, spell_bonuses, spell_changes
     catalogue = Catalogue.build(ds, model, book)
     mods = resolve(ds, model, book, catalogue)
-    applied = {(m.talent, m.effect_index) for m in mods if m.clean and m.op in PROPERTY_OPS and m.by_rank}
-    changes = spell_changes(mods, catalogue, SpellBook(ds), tree.class_name, args.level, {t.spell_id: t.ranks for t in talents})
+    applied = {(m.talent, m.effect_index) for m in mods if applies(m)}
+    ranks_now = {t.spell_id: t.ranks for t in talents}
+    changes = spell_changes(mods, catalogue, SpellBook(ds), tree.class_name, args.level, ranks_now)
+    bonuses = spell_bonuses(mods, tree.class_name, ranks_now)
     if changes:
         print("\nSpells changed by these talents (flat amounts added, then percents; order and rounding not checked in game):")
         for c in changes:
             print(f"  {c.spell:24} {c.prop:16} {format_value(c.prop, c.unit, c.base):>14} -> {format_value(c.prop, c.unit, c.value):14}"
                   f"  ({', '.join(f'{t} {a}' for t, a in c.by)})")
+    if bonuses:
+        print("\nSpell bonuses from these talents (several on one bonus are added; not checked in game):")
+        for x in bonuses:
+            print(f"  {x.spell:24} {x.bonus:32} {x.total:+g}%  ({', '.join(f'{t} {a}' for t, a in x.by)})")
     for note in [sheet_base_note, rates_note, *sheet.notes]:
         if note:
             print(f"\nNOTE: {note}")

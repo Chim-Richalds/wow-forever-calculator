@@ -11,7 +11,10 @@ sys.path.insert(0, str(REPO / "src"))
 from wowcalc.dataset import Dataset  # noqa: E402
 from wowcalc.effects import EffectBook  # noqa: E402
 from wowcalc.fetch import TABLES  # noqa: E402
-from wowcalc.spells import Catalogue, ClassSpell, SpellBook, describe_amount, effect_text, format_value, problem_kind, resolve, spell_changes  # noqa: E402
+from wowcalc.spells import (  # noqa: E402
+    Catalogue, ClassSpell, SpellBook, SpellModifier, applies, describe_amount, effect_text, format_value, problem_kind, resolve,
+    spell_bonuses, spell_changes,
+)
 from wowcalc.trees import load_model  # noqa: E402
 
 
@@ -34,6 +37,21 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(format_value("cooldown", "", 180000), "3 min")
         self.assertEqual(format_value("cast time", "", 2500), "2.5 s")
         self.assertEqual(format_value("cost", "% of base mana", 10.2), "10.2% of base mana")
+
+
+class AppliesTests(unittest.TestCase):
+    def mod(self, op, flat, problems=(), by_rank=None):
+        return SpellModifier("Mage", "T", "1", 0, op, flat, {1: 2.0} if by_rank is None else by_rank, ("Fireball",), (), (), problems)
+
+    def test_only_clean_modifiers_with_values_in_the_expected_form(self):
+        self.assertTrue(applies(self.mod(7, True)))          # crit chance: percentage points
+        self.assertFalse(applies(self.mod(7, False)))        # crit chance as a percent: not the form the talents use
+        self.assertTrue(applies(self.mod(0, False)))         # damage: percent
+        self.assertFalse(applies(self.mod(0, True)))         # flat damage: not applied
+        self.assertTrue(applies(self.mod(10, True)))         # cast time: either form is a property change
+        self.assertFalse(applies(self.mod(10, True, problems=("x",))))
+        self.assertFalse(applies(self.mod(10, True, by_rank={})))
+        self.assertFalse(applies(self.mod(3, False)))        # effect amounts: phase 4
 
 
 class ReachTests(unittest.TestCase):
@@ -110,6 +128,14 @@ class RealDataTests(unittest.TestCase):
         mage = self.changes("Mage", Frost_Channeling=3)
         self.assertEqual(mage[("Frostbolt", "cost")][1], mage[("Frostbolt", "cost")][0] * 0.85)
         self.assertNotIn(("Fireball", "cost"), mage)
+
+    def test_bonuses_add_up_per_spell(self):
+        crit = self.mod("Critical Mass")
+        ids = {m.talent: m.spell_id for m in self.mods}
+        bonuses = {(b.spell, b.bonus): b.total for b in spell_bonuses(self.mods, "Mage", {ids["Critical Mass"]: 1, ids["Ice Shards"]: 1})}
+        self.assertEqual(bonuses[("Fireball", "critical strike chance")], crit.by_rank[1])
+        self.assertIn(("Frostbolt", "critical strike bonus"), bonuses)
+        self.assertNotIn(("Frostbolt", "critical strike chance"), bonuses)
 
     def test_every_modifier_is_resolved(self):
         self.assertGreater(len(self.mods), 250)
