@@ -359,6 +359,18 @@ class EvaluateTests(WorkbenchCase):
         self.assertEqual(self.bench.load_saved("c")["conditions"], ["rockbiter"])
         self.assertEqual(self.bench.tree("Mage")["conditions"], [])       # no Mage talent in the fixture depends on one
 
+    def test_weapons_are_checked_and_saved(self):
+        bad = ({"main": {"min": 10, "max": 5, "speed": 2}}, {"main": {"min": 1, "max": 5, "speed": 2, "kind": "ranged"}},
+               {"offhand": {"min": 1, "max": 5, "speed": 2}}, {"main": {"min": "x", "max": 5, "speed": 2}}, [1])
+        for weapons in bad:
+            with self.assertRaises(UiError, msg=str(weapons)):
+                self.ev(weapons=weapons)
+        r = self.ev(weapons={"main": {"min": 10, "max": 20, "speed": 2.0, "kind": "dagger"}})
+        self.assertIn("Melee swing (main hand)", [x["spell"] for x in r["spell_numbers"]["rows"]])
+        self.bench.save("w", {"class": "Mage", "race": "Human", "level": 60, "alloc": {},
+                              "weapons": {"main": {"min": 10, "max": 20, "speed": 2.0, "kind": "dagger"}}})
+        self.assertEqual(self.bench.load_saved("w")["weapons"]["main"]["kind"], "dagger")
+
     def test_values_can_be_switched_off(self):
         self.assertNotIn("values", self.ev(values=False))
 

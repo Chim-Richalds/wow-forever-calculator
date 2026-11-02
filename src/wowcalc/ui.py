@@ -41,7 +41,7 @@ from .effects import CONDITIONS, EffectBook, render_tooltip
 from .fetch import TABLES
 from .backgrounds import BackgroundCache
 from .combat import ASSUMPTIONS as COMBAT_ASSUMPTIONS
-from .combat import TARGETS, CombatBook
+from .combat import NORMALIZED_SPEED, TARGETS, WEAPON_ASSUMPTIONS, CombatBook, Weapon, weapon_numbers
 from .combat import spell_numbers as combat_numbers
 from .icons import IconCache, icon_ids
 from .rates import RatesError, load_rates
@@ -116,6 +116,7 @@ class Request:
     values: bool
     conditions: tuple[str, ...] = ()  # situations that hold (effects.CONDITIONS keys)
     target: str = "same"              # combat.TARGETS key: a target of your level, or a boss
+    weapons: tuple = ()               # ((slot, Weapon), ...): "main" and/or "ranged"
 
 
 class BuildStore:
@@ -364,8 +365,30 @@ class Workbench:
         target = body.get("target", "same")
         if target not in TARGETS:
             raise UiError(400, f"target must be one of {', '.join(TARGETS)}")
+        weapons_in = body.get("weapons") or {}
+        if not isinstance(weapons_in, dict):
+            raise UiError(400, "weapons must map 'main' and 'ranged' to a weapon")
+        weapons = []
+        for slot, w in sorted(weapons_in.items()):
+            if slot not in ("main", "ranged"):
+                raise UiError(400, f"unknown weapon slot {slot!r}; use main or ranged")
+            if not w:
+                continue
+            if not isinstance(w, dict):
+                raise UiError(400, f"{slot} weapon must be an object with min, max, speed and kind")
+            try:
+                lo, hi, speed = float(w.get("min")), float(w.get("max")), float(w.get("speed"))
+            except (TypeError, ValueError):
+                raise UiError(400, f"{slot} weapon needs numbers for min, max and speed") from None
+            kind = "ranged" if slot == "ranged" else w.get("kind", "one-hand")
+            if kind not in NORMALIZED_SPEED or (slot == "main" and kind == "ranged"):
+                raise UiError(400, f"main-hand weapon kind must be one of one-hand, two-hand, dagger")
+            if not (0 <= lo <= hi <= 10000 and 0.5 <= speed <= 6):
+                raise UiError(400, f"{slot} weapon: damage must be 0 to 10000 (min no more than max) and speed 0.5 to 6 seconds")
+            weapons.append((slot, Weapon(lo, hi, speed, kind)))
         return Request(tree.class_name, race, level, alloc, adjust, bool(body.get("shield")), attacker,
-                       bool(body.get("vs_player")), bool(body.get("values", True)), tuple(sorted(set(conditions_in))), target)
+                       bool(body.get("vs_player")), bool(body.get("values", True)), tuple(sorted(set(conditions_in))), target,
+                       tuple(weapons))
 
     @staticmethod
     def _int(value, what: str) -> int:
@@ -499,7 +522,7 @@ class Workbench:
         }
         numbers, skipped = self.spell_numbers(req, tree, req.alloc, sheet)
         out["spell_numbers"] = {"target": TARGETS[req.target].label, "rows": [self.number_json(n) for n in numbers],
-                                "not_calculated": skipped, "assumptions": list(COMBAT_ASSUMPTIONS)}
+                                "not_calculated": skipped, "assumptions": list(COMBAT_ASSUMPTIONS) + list(WEAPON_ASSUMPTIONS)}
         applied = self.applied_spell_effects(tree, req.alloc)
         out["sheet"]["not_modelled"] = [
             {**n, "parts": [p for p in n["parts"] if (n["label"], p["effect"]) not in applied]} for n in out["sheet"]["not_modelled"]]
@@ -588,9 +611,19 @@ class Workbench:
         def total(fig):
             f = sheet.figures.get(fig)
             return float(f.total) if f is not None and f.total is not None else 0.0
-        return combat_numbers(self._combat, catalogue.by_class.get(req.class_name, {}), mods, req.class_name, req.level, ranks,
-                              float(sheet.spell_power.total or 0), float(sheet.healing.total or 0), total("spell_crit"),
-                              total("spell_hit"), TARGETS[req.target], changes)
+        spells = catalogue.by_class.get(req.class_name, {})
+        rows, skipped = combat_numbers(self._combat, spells, mods, req.class_name, req.level, ranks,
+                                       float(sheet.spell_power.total or 0), float(sheet.healing.total or 0), total("spell_crit"),
+                                       total("spell_hit"), TARGETS[req.target], changes, total("melee_crit"), total("melee_hit"))
+        weapons = dict(req.weapons)
+        melee_hit = total("melee_hit")
+        w_rows, w_skipped = weapon_numbers(self._combat, spells, mods, req.class_name, req.level, ranks,
+                                           float(sheet.attack_power.total or 0), float(sheet.ranged_attack_power.total or 0),
+                                           total("melee_crit"), melee_hit, TARGETS[req.target], changes,
+                                           weapons.get("main"), weapons.get("ranged"))
+        weapon_names = {n.spell for n in w_rows} | {w.split(" (")[0] for w in w_skipped}
+        skipped = [n for n in skipped if n not in weapon_names] + w_skipped
+        return sorted(rows + w_rows, key=lambda n: n.spell), skipped
 
     @staticmethod
     def number_json(n) -> dict:
@@ -674,6 +707,7 @@ class Workbench:
         self.store.put(name, {"class": req.class_name, "race": req.race, "level": req.level, "alloc": req.alloc,
                               "adjust": req.adjust, "shield": req.shield, "attacker_level": req.attacker_level,
                               "vs_player": req.vs_player, "conditions": list(req.conditions), "target": req.target,
+                              "weapons": {slot: {"min": w.min, "max": w.max, "speed": w.speed, "kind": w.kind} for slot, w in req.weapons},
                               "build": self.build, "saved": _stamp()})
         return {"saved": name}
 

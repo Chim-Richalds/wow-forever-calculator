@@ -82,6 +82,8 @@ section.card { background: var(--panel); border: 1px solid var(--rule); border-r
 .specs { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 12px; }
 .spec { min-width: 0; padding: 10px 10px 14px; border-radius: var(--radius); }
 .spec .canvas { margin: 0 auto; }
+.weapons { display: grid; grid-template-columns: auto repeat(4, minmax(64px, 1fr)); gap: 6px 8px; align-items: center; margin: 4px 0 10px; font-size: 13px; }
+.weapons input, .weapons select { width: 100%; min-width: 0; }
 .spec h3 { font-size: 15px; margin-bottom: 6px; border-bottom: 1px solid var(--rule); padding-bottom: 4px; display: flex; justify-content: space-between; }
 .canvas { position: relative; }
 /* Specialization art behind a tree, under a wash of the panel colour so names stay readable in both themes. */
@@ -231,7 +233,7 @@ const keysIn = (objs) => {
 };
 
 const S = { meta: null, tree: null, nodes: new Map(), cls: null, race: null, alloc: {}, adjust: {}, result: null, tab: "sheet",
-  mode: "now", sort: null, seq: 0, timer: null, status: null, updating: false, conditions: new Set(), target: "same" };
+  mode: "now", sort: null, seq: 0, timer: null, status: null, updating: false, conditions: new Set(), target: "same", weapons: {} };
 
 async function api(method, path, body) {
   const res = await fetch(path, { method, headers: body ? { "Content-Type": "application/json" } : {}, body: body ? JSON.stringify(body) : undefined });
@@ -344,6 +346,7 @@ async function pickClass(cls, reset) {
   S.tree = await api("GET", "/api/tree/" + encodeURIComponent(cls));
   S.nodes = new Map(S.tree.nodes.map((n) => [n.id, n]));
   renderConditions();
+  renderWeapons();
   $("treetitle").textContent = cls + " talents";
   drawTree();
   await evaluate();
@@ -380,7 +383,7 @@ function validAlloc() {
 function request() {
   return { class: S.cls, race: S.race, level: Number($("level").value), alloc: validAlloc(), adjust: S.adjust,
     shield: $("shield").checked, attacker_level: $("attacker").value === "" ? null : Number($("attacker").value), vs_player: $("vsplayer").checked,
-    conditions: [...S.conditions], target: S.target };
+    conditions: [...S.conditions], target: S.target, weapons: validWeapons() };
 }
 async function evaluate() {
   const mine = ++S.seq;
@@ -551,7 +554,7 @@ function buildSheetSkeleton() {
     <table aria-label="Base stats"><thead><tr><th>Stat</th><th>Base</th><th>Gear and buffs</th><th>Talents</th><th>Total</th></tr></thead><tbody>${rows}</tbody></table>
     <h3 class="sub">Combat figures</h3><div id="figures"></div>
     <h3 class="sub" id="spellhead" hidden>Spells changed by your talents</h3><div id="spellchanges"></div>
-    <h3 class="sub" id="dmghead" hidden>Spell damage and healing</h3><div id="spelldamage"></div>
+    <h3 class="sub">Damage and healing</h3><div id="weaponbox"></div><div id="spelldamage"></div>
     <ul class="notes" id="notes"></ul>
     <h3 class="sub" id="nmhead" hidden>Not valued by the calculator</h3><div id="notmodelled" class="tiny"></div>`;
   $("pane-sheet").addEventListener("input", (ev) => {
@@ -635,11 +638,36 @@ function renderSpellChanges() {
 }
 
 // Damage and healing per cast (combat.py), against a target of your level or a boss.
+// Weapons you hold (for white hits and weapon abilities): drawn once per class or loaded build, so typing
+// is not interrupted by the page redrawing.
+const WEAPON_KINDS = [["one-hand", "One-hand"], ["two-hand", "Two-hand"], ["dagger", "Dagger"]];
+function validWeapons() {
+  const out = {};
+  for (const [slot, w] of Object.entries(S.weapons)) {
+    const lo = Number(w.min), hi = Number(w.max), sp = Number(w.speed);
+    if (w.min !== "" && w.max !== "" && w.speed !== "" && lo >= 0 && hi >= lo && sp >= 0.5 && sp <= 6)
+      out[slot] = { min: lo, max: hi, speed: sp, kind: slot === "ranged" ? "ranged" : (w.kind || "one-hand") };
+  }
+  return out;
+}
+function renderWeapons() {
+  const field = (slot, key, label, step) => `<input type="number" min="0" step="${step}" data-wslot="${slot}" data-wkey="${key}" aria-label="${label}" placeholder="${label}" value="${esc((S.weapons[slot] || {})[key] ?? "")}">`;
+  const kind = (S.weapons.main || {}).kind || "one-hand";
+  $("weaponbox").innerHTML = `<div class="weapons">
+    <span>Main hand</span>${field("main", "min", "Min damage", 1)}${field("main", "max", "Max damage", 1)}${field("main", "speed", "Speed (s)", 0.1)}
+    <select data-wslot="main" data-wkey="kind" aria-label="Weapon type">${WEAPON_KINDS.map(([k, l]) => `<option value="${k}"${k === kind ? " selected" : ""}>${l}</option>`).join("")}</select>
+    <span>Ranged</span>${field("ranged", "min", "Min damage", 1)}${field("ranged", "max", "Max damage", 1)}${field("ranged", "speed", "Speed (s)", 0.1)}<span></span>
+  </div>`;
+  $("weaponbox").querySelectorAll("[data-wslot]").forEach((el) => el.addEventListener(el.tagName === "SELECT" ? "change" : "input", () => {
+    const slot = el.dataset.wslot;
+    S.weapons[slot] = { ...(S.weapons[slot] || {}), [el.dataset.wkey]: el.value };
+    queue();
+  }));
+}
 function renderSpellDamage() {
   const d = S.result && S.result.spell_numbers;
   const rows = (d && d.rows) || [];
-  $("dmghead").hidden = !rows.length;
-  if (!rows.length) { $("spelldamage").innerHTML = ""; return; }
+  if (!d) { $("spelldamage").innerHTML = ""; return; }
   const n = (v) => (v == null ? "–" : fmt(v));
   const seg = `<div class="seg" role="group" aria-label="Target">${[["same", "Same level"], ["boss", "Boss"]].map(([k, l]) =>
     `<button type="button" data-target="${k}" aria-pressed="${S.target === k}">${l}</button>`).join("")}</div>`;
@@ -648,7 +676,7 @@ function renderSpellDamage() {
     + `<td class="num">${r.over_time ? `${n(r.over_time)} <span class="tiny">(${r.ticks} ticks)</span>` : "–"}</td>`
     + `<td class="num">${n(r.per_second)}</td><td class="num">${r.per_cost == null ? "–" : `${fmt(r.per_cost)} <span class="tiny">/${esc(r.cost_unit)}</span>`}</td>`
     + `<td class="num tiny">${r.kind === "damage" ? `${fmt(r.hit)}% hit, ` : ""}${r.crit ? `${fmt(r.crit)}% crit` : ""}</td></tr>`).join("");
-  $("spelldamage").innerHTML = `${seg}<p class="hint">Expected ${"damage or healing"} per cast against ${esc(d.target)}, with your spell power, crit and hit and the talents above.</p>
+  $("spelldamage").innerHTML = `${seg}<p class="hint">Expected damage or healing per cast against ${esc(d.target)}, with your spell and attack power, crit and hit, your weapons and the talents above.${rows.some((r) => r.spell.startsWith("Melee swing")) ? "" : " Enter a weapon above for white hits and weapon abilities."}</p>
     <div style="overflow-x:auto"><table><thead><tr><th>Spell</th><th class="num">Per cast</th><th class="num">Range</th><th class="num">Over time</th><th class="num">Per second</th><th class="num">Per cost</th><th class="num">Chances</th></tr></thead><tbody>${body}</tbody></table></div>
     <details class="tiny"><summary>Assumed rules (not checked in game yet)</summary><ul class="notes" style="color:inherit">${d.assumptions.map((a) => `<li>${esc(a)}</li>`).join("")}</ul></details>
     ${d.not_calculated.length ? `<p class="tiny">Not calculated yet: ${d.not_calculated.map(esc).join(", ")}.</p>` : ""}`;
@@ -765,7 +793,7 @@ async function loadBuild() {
   if (!name) { toast("Type or pick the name of a saved build."); return; }
   try {
     const b = await api("GET", "/api/builds/" + encodeURIComponent(name));
-    S.race = b.race; S.alloc = b.alloc || {}; S.adjust = b.adjust || {}; S.conditions = new Set(b.conditions || []); S.target = b.target || S.target;
+    S.race = b.race; S.alloc = b.alloc || {}; S.adjust = b.adjust || {}; S.conditions = new Set(b.conditions || []); S.target = b.target || S.target; S.weapons = b.weapons || {};
     $("level").value = b.level; $("shield").checked = !!b.shield; $("attacker").value = b.attacker_level ?? ""; $("vsplayer").checked = !!b.vs_player;
     syncShield();
     document.querySelectorAll("[data-adj]").forEach((el) => { el.value = S.adjust[el.dataset.adj] || 0; });

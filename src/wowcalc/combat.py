@@ -43,6 +43,9 @@ ASSUMPTIONS = (
     "talent 'damage or healing' bonuses apply to direct amounts, 'periodic' bonuses to ticks",
     "the hits a channel triggers (Arcane Missiles' missiles) can crit, and take the channel's talent bonuses",
     "partial resists and the target's armor are not counted",
+    "physical abilities without weapon damage (Bloodthirst, Hamstring, Rend, Eviscerate) and Hunter shots such as Arcane Shot "
+    "count their base amount only (finishers at one combo point): any attack-power scaling is in the game's code, not its data; "
+    "they use the melee or ranged hit table and 200% crits",
 )
 
 
@@ -147,13 +150,17 @@ class CombatBook:
 
     def numbers(self, spell: ClassSpell, level: int, spell_power: float, healing_power: float, spell_crit: float,
                 spell_hit: float, target: Target, bonuses: dict[str, float], cast_time: float | None,
-                global_cooldown: float | None, cost: float | None, cost_unit: str) -> SpellNumbers | None:
-        """`bonuses`: this spell's talent bonuses by BONUS_OPS name (percent or percentage points)."""
+                global_cooldown: float | None, cost: float | None, cost_unit: str,
+                attack: tuple[float, float, bool] | None = None) -> SpellNumbers | None:
+        """`bonuses`: this spell's talent bonuses by BONUS_OPS name (percent or percentage points).
+        `attack`: (melee crit, melee hit, ranged) for an attack rather than a spell (a physical ability, or
+        any ability of a Warrior, Rogue or Hunter): the melee or ranged hit table and 200% crits apply, and
+        spell power does not."""
         base = self.book.base(spell, level)
         healing = self._parts(base.spell_id, level, 0, 0)
         if healing is None:
             return None
-        power = healing_power if healing[0] == "healing" else spell_power
+        power = 0.0 if attack else healing_power if healing[0] == "healing" else spell_power
         kind, lo, hi, d_power, tick, t_power, ticks, trig = self._parts(base.spell_id, level, power)
         direct = 1 + bonuses.get("damage or healing", 0) / 100
         periodic = 1 + bonuses.get("periodic damage or healing", 0) / 100
@@ -168,7 +175,17 @@ class CombatBook:
             miss = SPELL_MISS_BY_LEVEL.get(max(0, min(3, target.level_difference)), SPELL_MISS_BY_LEVEL[3])
             hit = 100 - max(SPELL_MISS_MINIMUM, miss - spell_hit - bonuses.get("hit chance", 0))
         average_direct = (lo + hi) / 2
-        expected = ((average_direct + triggered) * (1 + crit / 100 * (multiplier - 1)) + total_ticks) * hit / 100
+        if attack and kind == "damage":
+            a_crit, a_hit, a_ranged = attack
+            miss, dodge, _, _, crit = _hit_table(target, a_hit + bonuses.get("hit chance", 0),
+                                                 (a_crit + bonuses.get("critical strike chance", 0)) if lo or hi else 0.0,
+                                                 a_ranged, white=False)
+            multiplier = 1 + (MELEE_CRIT_MULTIPLIER - 1) * (1 + bonuses.get("critical strike bonus", 0) / 100)
+            hit = 100 - miss - dodge
+            expected = (average_direct * ((hit - crit) + crit * multiplier) / 100 + triggered * hit / 100
+                        + total_ticks * hit / 100)
+        else:
+            expected = ((average_direct + triggered) * (1 + crit / 100 * (multiplier - 1)) + total_ticks) * hit / 100
         channel = _int(self.book.misc.get(base.spell_id, {}).get("Attributes_1")) & CHANNELED
         duration = self.book.durations.get(self.book.misc.get(base.spell_id, {}).get("DurationIndex", ""), 0)
         # time the spell takes you: a channel's length, else the cast time or the global cooldown (at least 1 s)
@@ -180,7 +197,8 @@ class CombatBook:
 
 def spell_numbers(combat: CombatBook, spells: dict[str, ClassSpell], mods: list[SpellModifier], class_name: str, level: int,
                   ranks: dict[str, int], spell_power: float, healing_power: float, spell_crit: float, spell_hit: float,
-                  target: Target, changes: dict[tuple[str, str], float]) -> tuple[list[SpellNumbers], list[str]]:
+                  target: Target, changes: dict[tuple[str, str], float], melee_crit: float = 0.0,
+                  melee_hit: float = 0.0) -> tuple[list[SpellNumbers], list[str]]:
     """Numbers for every class spell the level allows that deals damage or heals. `changes` holds the
     talent-changed cast time, global cooldown and cost per (spell, property) from spells.spell_changes.
     Returns (numbers, names of spells whose damage or healing is not calculated yet)."""
@@ -200,12 +218,131 @@ def spell_numbers(combat: CombatBook, spells: dict[str, ClassSpell], mods: list[
                     (AURA_PERIODIC_DAMAGE, AURA_PERIODIC_HEAL, AURA_PERIODIC_LEECH, AURA_PERIODIC_TRIGGER))
                    for r in combat.effects.get(base.spell_id, [])):
             continue
+        attack = None
+        if class_name in ATTACK_CLASSES or set(spell.schools) == {"Physical"}:
+            attack = (melee_crit, melee_hit, bool(base.range and base.range > RANGED_MIN_YARDS))
         n = combat.numbers(spell, level, spell_power, healing_power, spell_crit, spell_hit, target, bonuses.get(name, {}),
                            changes.get((name, "cast time"), base.cast_time), changes.get((name, "global cooldown"), base.global_cooldown),
                            changes.get((name, "cost"), base.cost) if base.cost_unit and not base.cost_unit.startswith("%") else None,
-                           base.cost_unit)
+                           base.cost_unit, attack)
         if n is None or (n.direct_max == 0 and n.periodic_total == 0):
             skipped.append(name)
         else:
             out.append(n)
+    return out, skipped
+
+
+# ---- phase 2: weapon attacks (docs/combat-model-plan.md)
+
+EFFECT_WEAPON_NOSCHOOL, EFFECT_WEAPON, EFFECT_WEAPON_NORMALIZED, EFFECT_WEAPON_PERCENT = 17, 58, 121, 31
+WEAPON_EFFECTS = frozenset({EFFECT_WEAPON_NOSCHOOL, EFFECT_WEAPON, EFFECT_WEAPON_NORMALIZED, EFFECT_WEAPON_PERCENT})
+NORMALIZED_SPEED = {"one-hand": 2.4, "two-hand": 3.3, "dagger": 1.7, "ranged": 2.8}   # seconds (ASSUMED)
+MELEE_CRIT_MULTIPLIER = 2.0
+MELEE_MISS_BY_LEVEL = {0: 5.0, 1: 5.5, 2: 6.0, 3: 8.0}
+DODGE_BY_LEVEL = {0: 5.0, 1: 5.5, 2: 6.0, 3: 6.5}
+GLANCE_BY_LEVEL = {0: (10.0, 5.0), 1: (20.0, 15.0), 2: (30.0, 25.0), 3: (40.0, 35.0)}   # (% of white hits, % less damage)
+CRIT_SUPPRESSION_PER_LEVEL = 1.0
+RANGED_MIN_YARDS = 8
+ATTACK_CLASSES = frozenset({"Warrior", "Rogue", "Hunter"})   # their abilities are attacks, not spells           # a weapon ability with a longer range uses the ranged weapon
+WEAPON_ASSUMPTIONS = (
+    "weapon damage from attack power: the weapon's damage + attack power / 14 x its speed (ranged attack power for ranged attacks)",
+    "normalized abilities use 2.4 s for one-hand weapons, 3.3 s for two-hand, 1.7 s for daggers, 2.8 s for ranged",
+    "'N% weapon damage' applies to the weapon part; the ability's flat amount is added after (as the tooltips read)",
+    "melee and ranged crits do 200% (talent crit bonuses raise the extra 100%); ranged crit chance is taken as your melee crit",
+    "melee miss 5% against your level, 8% against a boss (less hit); dodge 5% / 6.5%; ranged attacks are not dodged; "
+    "you attack from behind (no parry or block); crit 1% lower per level the target is above you",
+    "white hits glance: 10% of them for 5% less against your level, 40% for 35% less against a boss",
+    "abilities with no cast time and no global cooldown (Heroic Strike, Cleave, Raptor Strike) replace a swing: "
+    "their 'per second' is per weapon swing; feral form attacks (Claw, Shred, Maul) are not calculated yet",
+)
+
+
+@dataclass(frozen=True)
+class Weapon:
+    min: float
+    max: float
+    speed: float        # seconds
+    kind: str           # a NORMALIZED_SPEED key
+
+    @property
+    def average(self) -> float:
+        return (self.min + self.max) / 2
+
+
+def _hit_table(target: Target, hit: float, crit: float, ranged: bool, white: bool) -> tuple[float, float, float, float, float]:
+    """(miss, dodge, glance chance, glance reduction, crit) in percent, one roll (ASSUMED rules)."""
+    d = max(0, min(3, target.level_difference))
+    miss = max(0.0, MELEE_MISS_BY_LEVEL[d] - hit)
+    dodge = 0.0 if ranged else DODGE_BY_LEVEL[d]
+    glance, glance_less = GLANCE_BY_LEVEL[d] if white and not ranged else (0.0, 0.0)
+    crit = max(0.0, min(100.0 - miss - dodge - glance, crit - CRIT_SUPPRESSION_PER_LEVEL * d))
+    return miss, dodge, glance, glance_less, crit
+
+
+def weapon_numbers(combat: CombatBook, spells: dict[str, ClassSpell], mods: list[SpellModifier], class_name: str, level: int,
+                   ranks: dict[str, int], attack_power: float, ranged_attack_power: float, crit: float, hit: float,
+                   target: Target, changes: dict[tuple[str, str], float], main: Weapon | None,
+                   ranged: Weapon | None) -> tuple[list[SpellNumbers], list[str]]:
+    """Weapon attacks: the white swing with the main-hand weapon, and every class ability with weapon damage.
+    Returns (numbers, names not calculated, with the reason in brackets)."""
+    bonuses: dict[str, dict[str, float]] = defaultdict(lambda: defaultdict(float))
+    for m in mods:
+        r = ranks.get(m.spell_id, 0)
+        if m.class_name == class_name and r and m.op in BONUS_OPS and applies(m) and r in m.by_rank:
+            for name in m.matched:
+                bonuses[name][BONUS_OPS[m.op][0]] += m.by_rank[r]
+
+    def row(name, spell_id, weapon, power, pct, flat, normalized, extra, white, is_ranged, time, cost, cost_unit):
+        speed = NORMALIZED_SPEED[weapon.kind] if normalized else weapon.speed
+        part = power / 14 * speed
+        lo = (weapon.min + part) * pct + flat
+        hi = (weapon.max + part) * pct + flat
+        damage = 1 + extra.get("damage or healing", 0) / 100
+        lo, hi = lo * damage, hi * damage
+        multiplier = 1 + (MELEE_CRIT_MULTIPLIER - 1) * (1 + extra.get("critical strike bonus", 0) / 100)
+        miss, dodge, glance, glance_less, c = _hit_table(target, hit + extra.get("hit chance", 0),
+                                                         crit + extra.get("critical strike chance", 0), is_ranged, white)
+        average = (lo + hi) / 2
+        normal = 100 - miss - dodge - glance - c
+        expected = average * (normal + glance * (1 - glance_less / 100) + c * multiplier) / 100
+        return SpellNumbers(name, spell_id, "damage", lo, hi, 0.0, 0, 0.0, c, multiplier, 100 - miss - dodge, expected,
+                            expected / time if time else None, expected / cost if cost else None, cost_unit,
+                            part * pct * damage)
+
+    out, skipped = [], []
+    if main is not None:
+        out.append(row("Melee swing (main hand)", "", main, attack_power, 1.0, 0.0, False, {}, True, False, main.speed, None, ""))
+    for name, spell in sorted(spells.items()):
+        base = combat.book.base(spell, level)
+        if base.level > level:
+            continue
+        rows = combat.effects.get(base.spell_id, [])
+        weapon_rows = [r for r in rows if _int(r.get("Effect")) in WEAPON_EFFECTS]
+        if not weapon_rows:
+            continue
+        if class_name == "Druid":
+            skipped.append(f"{name} (feral form attack)")
+            continue
+        is_ranged = bool(base.range and base.range > RANGED_MIN_YARDS)
+        weapon = ranged if is_ranged else main
+        if weapon is None:
+            skipped.append(f"{name} (enter your {'ranged' if is_ranged else 'main-hand'} weapon)")
+            continue
+        pct, flat, normalized = 1.0, 0.0, False
+        for r in weapon_rows:
+            effect = _int(r.get("Effect"))
+            if effect == EFFECT_WEAPON_PERCENT:
+                pct *= _amount(r, level, combat.levels) / 100
+            else:
+                flat += _amount(r, level, combat.levels)
+                normalized = normalized or effect == EFFECT_WEAPON_NORMALIZED
+        auto = name == "Auto Shot"
+        cast = changes.get((name, "cast time"), base.cast_time) or 0
+        gcd = changes.get((name, "global cooldown"), base.global_cooldown) or 0
+        next_swing = not cast and not gcd   # Heroic Strike, Cleave, Raptor Strike: they replace a swing
+        time = weapon.speed if auto or next_swing else max(cast, gcd, 1000) / 1000
+        cost = changes.get((name, "cost"), base.cost) if base.cost_unit and not base.cost_unit.startswith("%") else None
+        power = ranged_attack_power if is_ranged else attack_power
+        out.append(row(name, base.spell_id, weapon, power, pct, flat, normalized and not auto, bonuses.get(name, {}),
+                       auto, is_ranged, time, cost, base.cost_unit))
     return out, skipped
