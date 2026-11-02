@@ -593,6 +593,8 @@ class Workbench:
             later = ("phase 4", "casts itself")
             listed = [f"{m.class_name} {m.talent} (effect {m.effect_index}, {m.op_name}): " + "; ".join(m.problems)
                       for m in mods if m.problems and not all(any(w in p for w in later) for p in m.problems)]
+            listed += [f"Note, {m.class_name} {m.talent} (effect {m.effect_index}, {m.op_name}): " + "; ".join(m.notes)
+                       for m in mods if m.notes]
             pointer = "Full list: docs/spell-modifier-audit.tsv (python -m wowcalc.spells audit --out docs/spell-modifier-audit.tsv)"
             self._spell_audit = summary(mods) + [pointer] + listed if listed else []
         return self._spell_audit

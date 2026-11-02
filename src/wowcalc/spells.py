@@ -37,10 +37,10 @@ AURA_FLAT, AURA_PERCENT = 107, 108
 # Modifier op -> (name, words a talent's text uses for it). Each is backed by talents whose text says so
 # (examples in brackets); an op missing here is reported as not established.
 OP_WORDS: dict[int, tuple[str, tuple[str, ...]]] = {
-    0: ("damage or healing", ("damage", "healing", "heal")),               # Improved Cone of Cold
+    0: ("damage or healing", ("damage", "healing", "heal")),               # Improved Cone of Cold ("amount healed": Spiritual Healing)
     1: ("duration", ("duration", "lasts", "last ")),                        # Permafrost
     5: ("range", ("range",)),                                               # Arctic Reach
-    6: ("radius", ("radius",)),                                             # Arctic Reach
+    6: ("radius", ("radius", "area of effect")),                            # Arctic Reach, Booming Voice
     7: ("critical strike chance", ("critical strike chance", "chance to critically", "crit")),   # Critical Mass
     10: ("cast time", ("cast time", "casting time")),                       # Improved Frostbolt
     11: ("cooldown", ("cooldown",)),                                        # Improved Frost Nova
@@ -52,8 +52,14 @@ OP_WORDS: dict[int, tuple[str, tuple[str, ...]]] = {
     9: ("pushback", ("not lose casting time",)),                            # Burning Soul, Spiritual Focus (10 of 10)
     16: ("hit chance", ("chance to hit",)),                                 # Holy Precision, Survival Tactics (4 of 4)
     18: ("proc chance", ("chance",)),                                       # Deadly Aspects, Frenzy, Improved Poisons
-    22: ("periodic damage or healing", ("periodic", "damage", "healing", "effect")),   # Genesis, Improved Rejuvenation
+    22: ("periodic damage or healing", ("periodic", "damage", "healing", "healed", "effect")),   # Genesis, Improved Renew
 }
+# Words that name one property only (not "damage", "chance" or "effect", which many texts use).
+SPECIFIC_WORDS = frozenset({"critical strike chance", "chance to critically", "cast time", "casting time", "cooldown", "cost",
+                            "range", "radius", "area of effect", "duration", "threat", "critical strike damage",
+                            "critical strike bonus", "global cooldown", "chance to hit", "not lose casting time", "charges",
+                            "periodic"})
+
 # Ops that change a spell's own effect amounts (Frost Armor's armor, Inner Fire's armor, a pet's
 # health). Their wording follows the spell, so they are valued with the spells' effects (phase 4).
 EFFECT_AMOUNT_OPS = frozenset({3, 8, 12})
@@ -88,6 +94,10 @@ class SpellModifier:
     named: tuple[str, ...]       # catalogue spell names the text mentions
     schools_named: tuple[str, ...]
     problems: tuple[str, ...] = ()
+    # Where the text and the spells reached differ (extra spells, another school, a spell named but not
+    # reached). The mask is how the game applies the talent, so these do not stop it being applied;
+    # they are listed for review.
+    notes: tuple[str, ...] = ()
 
     @property
     def op_name(self) -> str:
@@ -181,6 +191,32 @@ def effect_text(text: str, index: int) -> str:
     return ""
 
 
+def _sentence_of(text: str, index: int) -> str:
+    """The whole sentence that shows effect `index`'s value ("" if none does)."""
+    for sentence in _SENTENCES.split(text):
+        if any(int(m.group(1)) == index + 1 for m in _VALUE.finditer(sentence)):
+            return sentence
+    return ""
+
+
+def _last_word(name: str) -> str:
+    return name.split()[-1].lower().rstrip("s")
+
+
+def _family_words(text_lower: str, spells: dict) -> set[str]:
+    """Words the text uses for a family of the class's spells ("your Shock spells", "your Trap
+    abilities", "your Shouts"): a word that ends at least two spell names (Earth Shock, Frost Shock)."""
+    endings: dict[str, int] = defaultdict(int)
+    for name in spells:
+        endings[_last_word(name)] += 1
+    used = {w.rstrip("s") for w in re.findall(r"[a-z]{4,}", text_lower)}
+    return {w for w, n in endings.items() if n >= 2 and w in used}
+
+
+def _in_family(name: str, words: set[str]) -> bool:
+    return _last_word(name) in words
+
+
 def resolve(ds: Dataset, model: TreeModel, book: EffectBook, catalogue: Catalogue | None = None) -> list[SpellModifier]:
     """Every spell modifier on a placed talent, with the spells it reaches and what the text says."""
     catalogue = catalogue or Catalogue.build(ds, model, book)
@@ -212,8 +248,13 @@ def resolve(ds: Dataset, model: TreeModel, book: EffectBook, catalogue: Catalogu
                 row, matched, mask = reached_by[e.effect_index]
                 part = effect_text(text, e.effect_index).lower()
                 checked = part or whole          # an effect whose value the text does not show is checked against all of it
+                sentence = _sentence_of(text, e.effect_index).lower() or whole
                 named = tuple(sorted(n for n in spells if re.search(rf"\b{re.escape(n.lower())}\b", checked)))
-                schools = tuple(s for s, w in SCHOOL_WORDS.items() if re.search(rf"\b{w}\b", checked))
+                # school words inside a spell's name ("Rapid Fire", "Arcane Wrath") are not a school
+                bare = checked
+                for n in sorted(spells, key=len, reverse=True):
+                    bare = re.sub(rf"\b{re.escape(n.lower())}\b", " ", bare)
+                schools = tuple(s for s, w in SCHOOL_WORDS.items() if re.search(rf"\b{w}\b", bare))
                 op = _int(row.get("EffectMiscValue_0"), -1)
                 problems = []
                 if op in EFFECT_AMOUNT_OPS:
@@ -221,7 +262,15 @@ def resolve(ds: Dataset, model: TreeModel, book: EffectBook, catalogue: Catalogu
                 elif op not in OP_WORDS:
                     problems.append(f"op {op}: what it changes is not established from talent texts yet")
                 elif not any(w in checked for w in OP_WORDS[op][1]):
-                    problems.append(f"op {op} ({OP_WORDS[op][0]}), but the text does not say so")
+                    # The value's own part of the text does not name the property. If it plainly names
+                    # another one, that is a conflict; otherwise the property may be named earlier in
+                    # the sentence ("Increases the duration of X by $s1 sec, Y by $s2 sec").
+                    other = sorted({name for o, (name, words) in OP_WORDS.items() if o != op
+                                    for w in words if w in SPECIFIC_WORDS and w in checked})
+                    if other:
+                        problems.append(f"op {op} ({OP_WORDS[op][0]}), but the text next to the value says {', '.join(other)}")
+                    elif not any(w in sentence for w in OP_WORDS[op][1]):
+                        problems.append(f"op {op} ({OP_WORDS[op][0]}), but the text does not say so")
                 if not e.by_rank:
                     problems.append(f"no value per rank in the data ({e.note or 'no scaling data'})")
                 if not family:
@@ -231,20 +280,24 @@ def resolve(ds: Dataset, model: TreeModel, book: EffectBook, catalogue: Catalogu
                     problems.append("reaches no spell the character casts itself" + (
                         f"; it reaches {', '.join(other[:5])}{' ...' if len(other) > 5 else ''} (pet abilities, poisons, totem or weapon effects: modelled later)"
                         if other else "; its mask matches no spell at all"))
-                missing = sorted(set(named) - talent_reached)
-                if missing:
-                    problems.append("the text names " + ", ".join(missing) + " but no modifier of the talent reaches it")
-                if schools and matched:
-                    off = [n for n in matched if not set(spells[n].schools) & set(schools)]
-                    if off:
-                        problems.append(f"the text says {'/'.join(schools)} spells, but the mask also reaches " + ", ".join(off))
-                elif talent_named and matched:
-                    extra = sorted(set(matched) - talent_named)
-                    if extra:
-                        problems.append("the mask also reaches " + ", ".join(extra) + ", which the text does not name")
+                notes = []
+                if matched:   # spell-set differences only matter for an effect that reaches castable spells
+                    missing = sorted(set(named) - talent_reached)
+                    if missing:
+                        notes.append("the text names " + ", ".join(missing) + " but no modifier of the talent reaches it")
+                    families = _family_words(whole, spells)
+                    if schools:
+                        off = [n for n in matched if not set(spells[n].schools) & set(schools) and n not in talent_named
+                               and not _in_family(n, families)]
+                        if off:
+                            notes.append(f"the text says {'/'.join(schools)} spells, but the mask also reaches " + ", ".join(off))
+                    elif talent_named or families:
+                        extra = sorted(n for n in set(matched) - talent_named if not _in_family(n, families))
+                        if extra:
+                            notes.append("the mask also reaches " + ", ".join(extra) + ", which the text does not name")
                 out.append(SpellModifier(tree.class_name, spell_names.get(node.spell_id, node.spell_id), node.spell_id,
                                          e.effect_index, op, e.aura == AURA_FLAT, dict(e.by_rank), matched, named, schools,
-                                         tuple(problems)))
+                                         tuple(problems), tuple(notes)))
     return out
 
 
@@ -424,13 +477,13 @@ def spell_bonuses(mods: list[SpellModifier], class_name: str, ranks: dict[str, i
             for (spell, bonus), items in sorted(parts.items()) if sum(v for _, v in items)]
 
 
-AUDIT_HEADER = ("class", "talent", "effect", "op", "flat_or_percent", "top_rank_value", "spells_reached", "text_names", "problems")
+AUDIT_HEADER = ("class", "talent", "effect", "op", "flat_or_percent", "top_rank_value", "spells_reached", "text_names", "problems", "notes")
 
 
 def audit_rows(mods: list[SpellModifier]) -> list[tuple]:
     return [(m.class_name, m.talent, m.effect_index, m.op_name, "flat" if m.flat else "percent",
              f"{m.by_rank[max(m.by_rank)]:g}" if m.by_rank else "", ", ".join(m.matched),
-             ", ".join(m.named + tuple(f"{s} spells" for s in m.schools_named)), "; ".join(m.problems)) for m in mods]
+             ", ".join(m.named + tuple(f"{s} spells" for s in m.schools_named)), "; ".join(m.problems), "; ".join(m.notes)) for m in mods]
 
 
 # Audit problem -> a short heading, matched on a phrase in the problem text.
@@ -438,6 +491,7 @@ PROBLEM_KINDS = (
     ("valued with the spells' effects", "changes the spell's own effect amounts (phase 4)"),
     ("not established", "what the op changes is not established yet"),
     ("does not say so", "the text does not name what the op changes"),
+    ("the text next to the value says", "the text names another property next to the value"),
     ("casts itself", "reaches only pet, poison, totem or weapon spells (later)"),
     ("matches no spell", "the mask matches no spell"),
     ("no spell family", "the talent has no spell family"),
@@ -462,6 +516,9 @@ def summary(mods: list[SpellModifier]) -> list[str]:
             kinds[problem_kind(p)] += 1
     for k, n in sorted(kinds.items(), key=lambda x: -x[1]):
         lines.append(f"  {n:4}  {k}")
+    noted = sum(bool(m.notes) for m in mods)
+    if noted:
+        lines.append(f"  and {noted} applied with a note: the spells reached differ from the text (listed for review)")
     return lines
 
 

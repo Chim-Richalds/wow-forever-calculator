@@ -110,7 +110,7 @@ class RealDataTests(unittest.TestCase):
         # Arcane Instability's second value is "critical strike chance" in the text, but op 22 in the data
         m = self.mod("Arcane Instability", 1)
         self.assertEqual(m.op, 22)
-        self.assertTrue(any("does not say so" in p for p in m.problems))
+        self.assertTrue(any("next to the value says critical strike chance" in p for p in m.problems), m.problems)
 
     def changes(self, class_name, **talents):
         ids = {m.talent: m.spell_id for m in self.mods}
@@ -136,6 +136,19 @@ class RealDataTests(unittest.TestCase):
         self.assertEqual(bonuses[("Fireball", "critical strike chance")], crit.by_rank[1])
         self.assertIn(("Frostbolt", "critical strike bonus"), bonuses)
         self.assertNotIn(("Frostbolt", "critical strike chance"), bonuses)
+
+    def test_a_school_word_inside_a_spell_name_is_not_a_school(self):
+        for talent in ("Rapid Killing", "Improved Inner Fire"):     # "Rapid Fire", "Inner Fire"
+            for m in self.mods:
+                if m.talent == talent:
+                    self.assertNotIn("Fire", m.schools_named, talent)
+
+    def test_spell_set_differences_are_notes_not_problems(self):
+        convection = self.mod("Convection")       # "your Shock, Lightning Bolt ... spells": Shock names a family
+        self.assertEqual(convection.problems, ())
+        self.assertFalse(any("Earth Shock" in n for n in convection.notes))
+        corruption = self.mod("Improved Corruption")
+        self.assertTrue(corruption.clean)
 
     def test_every_modifier_is_resolved(self):
         self.assertGreater(len(self.mods), 250)
