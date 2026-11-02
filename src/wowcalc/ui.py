@@ -308,6 +308,7 @@ class Workbench:
             })
         return {
             "class": tree.class_name, "grid": 600, "nodes": nodes, "specs": self.specs_of(tree)[0],
+            "dual_wield": tree.class_name in self.dual_wield_classes(),
             # one background image per specialization tree, when it is cached (backgrounds.py)
             "backgrounds": [f"/backgrounds/{self.backgrounds.stored(tree.class_name, spec)}" if spec and self.backgrounds.has(tree.class_name, spec) else None
                             for spec in self.specs_of(tree)[0]],
@@ -370,8 +371,10 @@ class Workbench:
             raise UiError(400, "weapons must map 'main' and 'ranged' to a weapon")
         weapons = []
         for slot, w in sorted(weapons_in.items()):
-            if slot not in ("main", "ranged"):
-                raise UiError(400, f"unknown weapon slot {slot!r}; use main or ranged")
+            if slot not in ("main", "off", "ranged"):
+                raise UiError(400, f"unknown weapon slot {slot!r}; use main, off or ranged")
+            if slot == "off" and tree.class_name not in self.dual_wield_classes():
+                raise UiError(400, f"{tree.class_name} cannot dual wield")
             if not w:
                 continue
             if not isinstance(w, dict):
@@ -381,8 +384,8 @@ class Workbench:
             except (TypeError, ValueError):
                 raise UiError(400, f"{slot} weapon needs numbers for min, max and speed") from None
             kind = "ranged" if slot == "ranged" else w.get("kind", "one-hand")
-            if kind not in NORMALIZED_SPEED or (slot == "main" and kind == "ranged"):
-                raise UiError(400, f"main-hand weapon kind must be one of one-hand, two-hand, dagger")
+            if kind not in NORMALIZED_SPEED or (slot == "main" and kind == "ranged") or (slot == "off" and kind not in ("one-hand", "dagger")):
+                raise UiError(400, "main-hand weapon kind must be one-hand, two-hand or dagger; off-hand one-hand or dagger")
             if not (0 <= lo <= hi <= 10000 and 0.5 <= speed <= 6):
                 raise UiError(400, f"{slot} weapon: damage must be 0 to 10000 (min no more than max) and speed 0.5 to 6 seconds")
             weapons.append((slot, Weapon(lo, hi, speed, kind)))
@@ -600,6 +603,18 @@ class Workbench:
                  for b in spell_bonuses(mods, req.class_name, ranks)]
         return sorted(rows, key=lambda r: (r["spell"], r["base"] == "", r["prop"]))
 
+    def dual_wield_classes(self) -> set[str]:
+        """Classes that learn Dual Wield in WoW Forever (SkillLineAbility; rune-only rows do not count)."""
+        if not hasattr(self, "_dual_wield"):
+            from .spells import CLASS_BITS, RUNE_ACQUIRE_METHOD
+            ids = {sid for sid, name in self.names.items() if name == "Dual Wield"}
+            self._dual_wield = set()
+            if self.ds.has_table("SkillLineAbility") and {"Spell", "ClassMask"} <= set(self.ds.columns("SkillLineAbility")):
+                for r in self.ds.rows("SkillLineAbility"):
+                    if r["Spell"] in ids and str(r.get("AcquireMethod") or "0") != RUNE_ACQUIRE_METHOD:
+                        self._dual_wield |= {c for c, bit in CLASS_BITS.items() if int(r["ClassMask"] or 0) & bit}
+        return self._dual_wield
+
     def spell_numbers(self, req: Request, tree: ClassTree, alloc: dict[str, int], sheet: Sheet):
         """Per-cast damage and healing (combat.py) for this build, with the sheet's spell power, crit and hit."""
         from .spells import spell_changes
@@ -620,7 +635,7 @@ class Workbench:
         w_rows, w_skipped = weapon_numbers(self._combat, spells, mods, req.class_name, req.level, ranks,
                                            float(sheet.attack_power.total or 0), float(sheet.ranged_attack_power.total or 0),
                                            total("melee_crit"), melee_hit, TARGETS[req.target], changes,
-                                           weapons.get("main"), weapons.get("ranged"))
+                                           weapons.get("main"), weapons.get("ranged"), weapons.get("off"))
         weapon_names = {n.spell for n in w_rows} | {w.split(" (")[0] for w in w_skipped}
         skipped = [n for n in skipped if n not in weapon_names] + w_skipped
         return sorted(rows + w_rows, key=lambda n: n.spell), skipped

@@ -365,6 +365,9 @@ class EvaluateTests(WorkbenchCase):
         for weapons in bad:
             with self.assertRaises(UiError, msg=str(weapons)):
                 self.ev(weapons=weapons)
+        with self.assertRaises(UiError):                      # the fixture's Mage cannot dual wield
+            self.ev(weapons={"off": {"min": 10, "max": 20, "speed": 2.0, "kind": "dagger"}})
+        self.assertFalse(self.bench.tree("Mage")["dual_wield"])
         r = self.ev(weapons={"main": {"min": 10, "max": 20, "speed": 2.0, "kind": "dagger"}})
         self.assertIn("Melee swing (main hand)", [x["spell"] for x in r["spell_numbers"]["rows"]])
         self.bench.save("w", {"class": "Mage", "race": "Human", "level": 60, "alloc": {},

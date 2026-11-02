@@ -26,7 +26,7 @@ Principles that apply to everything below: data-driven, versioned, traceable, ne
 - [ ] **Armor from Intellect** (Arcane Resilience): 25/50/75% of Intellect, rounded down. Check armor at 0 and 3 ranks with an Intellect total that is not a multiple of 4.
 - [ ] **Spell changes: stacking and rounding.** Two talents changing one spell property: are percents added or multiplied, and is the flat amount applied first? How are costs and times rounded? (E.g. Frost Channeling on Cone of Cold: 555 x 0.85 = 471.75 mana.)
 - [ ] **Combat rules (assumed, 2026-11-02):** spell crit 150%; spell miss 4% / 5% / 6% / 17% at +0 / +1 / +2 / +3 levels (min 1%); per-level growth capped at the spell's max level; damage over time does not crit; triggered hits (Arcane Missiles) crit. Check one of each on a target dummy and a boss: e.g. Frostbolt's range with no gear against the Spells table.
-- [ ] **Melee rules (assumed, 2026-11-02):** miss 5% / 8% (boss), dodge 5% / 6.5%, glancing 10% for -5% / 40% for -35%, crit 200% and 1% lower per level above you, AP / 14 x speed, normalized speeds 2.4 / 3.3 / 1.7 / 2.8. Check a white hit and Mortal Strike on a target dummy with a known weapon and attack power.
+- [ ] **Melee rules (assumed, 2026-11-02):** miss 5% / 8% (boss), dodge 5% / 6.5%, glancing 10% for -5% / 40% for -35%, crit 200% and 1% lower per level above you, AP / 14 x speed, normalized speeds 2.4 / 3.3 / 1.7 / 2.8, off hand 50% damage and +19% white miss while dual wielding. Check a white hit and Mortal Strike on a target dummy with a known weapon and attack power.
 - [ ] **Hit and spell hit.** The Hit row merges melee and spell hit when they are equal. Confirm with a talent that raises only one of them.
 
 ## Modelling more talents  [offline]
@@ -69,7 +69,7 @@ Goal: less code saying the same thing, with no loss of coverage of real behaviou
 ## Combat model  [offline]
 
 - [x] Phases 1 (spells) and 2 (weapon attacks) done (`docs/combat-model-plan.md`).
-- [ ] Not calculated yet: ground effects (Blizzard), off-hand and dual wield, feral form attacks (Claw, Shred, Maul: form damage), attack-power scaling held in game code (Bloodthirst, Eviscerate per combo point), pet damage.
+- [ ] Not calculated yet: ground effects (Blizzard), the Dual Wield Specialization talent, feral form attacks (Claw, Shred, Maul: form damage), attack-power scaling held in game code (Bloodthirst, Eviscerate per combo point), pet damage.
 - [ ] Phase 3: a whole-character rate from how often you use each ability.
 
 ## Talent tree data checks  [offline, then servers]

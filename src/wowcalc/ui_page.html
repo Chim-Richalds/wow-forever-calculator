@@ -82,6 +82,8 @@ section.card { background: var(--panel); border: 1px solid var(--rule); border-r
 .specs { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 12px; }
 .spec { min-width: 0; padding: 10px 10px 14px; border-radius: var(--radius); }
 .spec .canvas { margin: 0 auto; }
+.weaponmenu { margin: 0 0 12px; border: 1px solid var(--rule); border-radius: var(--radius); padding: 6px 10px; background: var(--panel-2); }
+.weaponmenu summary { cursor: pointer; font-weight: 600; }
 .weapons { display: grid; grid-template-columns: auto repeat(4, minmax(64px, 1fr)); gap: 6px 8px; align-items: center; margin: 4px 0 10px; font-size: 13px; }
 .weapons input, .weapons select { width: 100%; min-width: 0; }
 .spec h3 { font-size: 15px; margin-bottom: 6px; border-bottom: 1px solid var(--rule); padding-bottom: 4px; display: flex; justify-content: space-between; }
@@ -551,10 +553,11 @@ function buildSheetSkeleton() {
   let rows = "";
   for (const k of STATS) rows += `<tr id="row-${k}"><td>${LABEL[k]}</td><td class="num b"></td><td><input class="adj num" type="number" data-adj="${k}" aria-label="Extra ${LABEL[k]} from gear and buffs" value="0"></td><td class="num t"></td><td class="num total"></td></tr>`;
   $("pane-sheet").innerHTML = `
+    <details class="weaponmenu" id="weaponmenu"><summary>Weapons</summary><div id="weaponbox"></div></details>
     <table aria-label="Base stats"><thead><tr><th>Stat</th><th>Base</th><th>Gear and buffs</th><th>Talents</th><th>Total</th></tr></thead><tbody>${rows}</tbody></table>
     <h3 class="sub">Combat figures</h3><div id="figures"></div>
     <h3 class="sub" id="spellhead" hidden>Spells changed by your talents</h3><div id="spellchanges"></div>
-    <h3 class="sub">Damage and healing</h3><div id="weaponbox"></div><div id="spelldamage"></div>
+    <h3 class="sub">Damage and healing</h3><div id="spelldamage"></div>
     <ul class="notes" id="notes"></ul>
     <h3 class="sub" id="nmhead" hidden>Not valued by the calculator</h3><div id="notmodelled" class="tiny"></div>`;
   $("pane-sheet").addEventListener("input", (ev) => {
@@ -646,7 +649,7 @@ function validWeapons() {
   for (const [slot, w] of Object.entries(S.weapons)) {
     const lo = Number(w.min), hi = Number(w.max), sp = Number(w.speed);
     if (w.min !== "" && w.max !== "" && w.speed !== "" && lo >= 0 && hi >= lo && sp >= 0.5 && sp <= 6)
-      out[slot] = { min: lo, max: hi, speed: sp, kind: slot === "ranged" ? "ranged" : (w.kind || "one-hand") };
+      if (slot !== "off" || (S.tree && S.tree.dual_wield)) out[slot] = { min: lo, max: hi, speed: sp, kind: slot === "ranged" ? "ranged" : (w.kind || "one-hand") };
   }
   return out;
 }
@@ -656,6 +659,8 @@ function renderWeapons() {
   $("weaponbox").innerHTML = `<div class="weapons">
     <span>Main hand</span>${field("main", "min", "Min damage", 1)}${field("main", "max", "Max damage", 1)}${field("main", "speed", "Speed (s)", 0.1)}
     <select data-wslot="main" data-wkey="kind" aria-label="Weapon type">${WEAPON_KINDS.map(([k, l]) => `<option value="${k}"${k === kind ? " selected" : ""}>${l}</option>`).join("")}</select>
+    ${S.tree && S.tree.dual_wield ? `<span>Off hand</span>${field("off", "min", "Min damage", 1)}${field("off", "max", "Max damage", 1)}${field("off", "speed", "Speed (s)", 0.1)}
+    <select data-wslot="off" data-wkey="kind" aria-label="Off-hand weapon type">${WEAPON_KINDS.filter(([k]) => k !== "two-hand").map(([k, l]) => `<option value="${k}"${k === ((S.weapons.off || {}).kind || "one-hand") ? " selected" : ""}>${l}</option>`).join("")}</select>` : ""}
     <span>Ranged</span>${field("ranged", "min", "Min damage", 1)}${field("ranged", "max", "Max damage", 1)}${field("ranged", "speed", "Speed (s)", 0.1)}<span></span>
   </div>`;
   $("weaponbox").querySelectorAll("[data-wslot]").forEach((el) => el.addEventListener(el.tagName === "SELECT" ? "change" : "input", () => {
@@ -676,7 +681,7 @@ function renderSpellDamage() {
     + `<td class="num">${r.over_time ? `${n(r.over_time)} <span class="tiny">(${r.ticks} ticks)</span>` : "–"}</td>`
     + `<td class="num">${n(r.per_second)}</td><td class="num">${r.per_cost == null ? "–" : `${fmt(r.per_cost)} <span class="tiny">/${esc(r.cost_unit)}</span>`}</td>`
     + `<td class="num tiny">${r.kind === "damage" ? `${fmt(r.hit)}% hit, ` : ""}${r.crit ? `${fmt(r.crit)}% crit` : ""}</td></tr>`).join("");
-  $("spelldamage").innerHTML = `${seg}<p class="hint">Expected damage or healing per cast against ${esc(d.target)}, with your spell and attack power, crit and hit, your weapons and the talents above.${rows.some((r) => r.spell.startsWith("Melee swing")) ? "" : " Enter a weapon above for white hits and weapon abilities."}</p>
+  $("spelldamage").innerHTML = `${seg}<p class="hint">Expected damage or healing per cast against ${esc(d.target)}, with your spell and attack power, crit and hit, your weapons and the talents above.${rows.some((r) => r.spell.startsWith("Melee swing")) ? "" : " Enter your weapons under Weapons, above the stat sheet, for white hits and weapon abilities."}</p>
     <div style="overflow-x:auto"><table><thead><tr><th>Spell</th><th class="num">Per cast</th><th class="num">Range</th><th class="num">Over time</th><th class="num">Per second</th><th class="num">Per cost</th><th class="num">Chances</th></tr></thead><tbody>${body}</tbody></table></div>
     <details class="tiny"><summary>Assumed rules (not checked in game yet)</summary><ul class="notes" style="color:inherit">${d.assumptions.map((a) => `<li>${esc(a)}</li>`).join("")}</ul></details>
     ${d.not_calculated.length ? `<p class="tiny">Not calculated yet: ${d.not_calculated.map(esc).join(", ")}.</p>` : ""}`;

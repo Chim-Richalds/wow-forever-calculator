@@ -242,6 +242,8 @@ MELEE_MISS_BY_LEVEL = {0: 5.0, 1: 5.5, 2: 6.0, 3: 8.0}
 DODGE_BY_LEVEL = {0: 5.0, 1: 5.5, 2: 6.0, 3: 6.5}
 GLANCE_BY_LEVEL = {0: (10.0, 5.0), 1: (20.0, 15.0), 2: (30.0, 25.0), 3: (40.0, 35.0)}   # (% of white hits, % less damage)
 CRIT_SUPPRESSION_PER_LEVEL = 1.0
+OFFHAND_DAMAGE = 0.5             # off-hand white hits do half damage (ASSUMED)
+DUAL_WIELD_MISS = 19.0           # extra miss chance on white hits while dual wielding (ASSUMED)
 RANGED_MIN_YARDS = 8
 ATTACK_CLASSES = frozenset({"Warrior", "Rogue", "Hunter"})   # their abilities are attacks, not spells           # a weapon ability with a longer range uses the ranged weapon
 WEAPON_ASSUMPTIONS = (
@@ -252,6 +254,8 @@ WEAPON_ASSUMPTIONS = (
     "melee miss 5% against your level, 8% against a boss (less hit); dodge 5% / 6.5%; ranged attacks are not dodged; "
     "you attack from behind (no parry or block); crit 1% lower per level the target is above you",
     "white hits glance: 10% of them for 5% less against your level, 40% for 35% less against a boss",
+    "dual wielding: off-hand white hits do 50% damage, and white hits from either hand miss 19% more often "
+    "(special attacks do not); the Dual Wield Specialization talent is not counted yet",
     "abilities with no cast time and no global cooldown (Heroic Strike, Cleave, Raptor Strike) replace a swing: "
     "their 'per second' is per weapon swing; feral form attacks (Claw, Shred, Maul) are not calculated yet",
 )
@@ -269,10 +273,11 @@ class Weapon:
         return (self.min + self.max) / 2
 
 
-def _hit_table(target: Target, hit: float, crit: float, ranged: bool, white: bool) -> tuple[float, float, float, float, float]:
+def _hit_table(target: Target, hit: float, crit: float, ranged: bool, white: bool,
+               dual: bool = False) -> tuple[float, float, float, float, float]:
     """(miss, dodge, glance chance, glance reduction, crit) in percent, one roll (ASSUMED rules)."""
     d = max(0, min(3, target.level_difference))
-    miss = max(0.0, MELEE_MISS_BY_LEVEL[d] - hit)
+    miss = max(0.0, MELEE_MISS_BY_LEVEL[d] + (DUAL_WIELD_MISS if dual and white and not ranged else 0.0) - hit)
     dodge = 0.0 if ranged else DODGE_BY_LEVEL[d]
     glance, glance_less = GLANCE_BY_LEVEL[d] if white and not ranged else (0.0, 0.0)
     crit = max(0.0, min(100.0 - miss - dodge - glance, crit - CRIT_SUPPRESSION_PER_LEVEL * d))
@@ -282,7 +287,7 @@ def _hit_table(target: Target, hit: float, crit: float, ranged: bool, white: boo
 def weapon_numbers(combat: CombatBook, spells: dict[str, ClassSpell], mods: list[SpellModifier], class_name: str, level: int,
                    ranks: dict[str, int], attack_power: float, ranged_attack_power: float, crit: float, hit: float,
                    target: Target, changes: dict[tuple[str, str], float], main: Weapon | None,
-                   ranged: Weapon | None) -> tuple[list[SpellNumbers], list[str]]:
+                   ranged: Weapon | None, offhand: Weapon | None = None) -> tuple[list[SpellNumbers], list[str]]:
     """Weapon attacks: the white swing with the main-hand weapon, and every class ability with weapon damage.
     Returns (numbers, names not calculated, with the reason in brackets)."""
     bonuses: dict[str, dict[str, float]] = defaultdict(lambda: defaultdict(float))
@@ -291,6 +296,8 @@ def weapon_numbers(combat: CombatBook, spells: dict[str, ClassSpell], mods: list
         if m.class_name == class_name and r and m.op in BONUS_OPS and applies(m) and r in m.by_rank:
             for name in m.matched:
                 bonuses[name][BONUS_OPS[m.op][0]] += m.by_rank[r]
+
+    dual = main is not None and offhand is not None and main.kind != "two-hand"   # no off hand with a two-hander
 
     def row(name, spell_id, weapon, power, pct, flat, normalized, extra, white, is_ranged, time, cost, cost_unit):
         speed = NORMALIZED_SPEED[weapon.kind] if normalized else weapon.speed
@@ -301,7 +308,7 @@ def weapon_numbers(combat: CombatBook, spells: dict[str, ClassSpell], mods: list
         lo, hi = lo * damage, hi * damage
         multiplier = 1 + (MELEE_CRIT_MULTIPLIER - 1) * (1 + extra.get("critical strike bonus", 0) / 100)
         miss, dodge, glance, glance_less, c = _hit_table(target, hit + extra.get("hit chance", 0),
-                                                         crit + extra.get("critical strike chance", 0), is_ranged, white)
+                                                         crit + extra.get("critical strike chance", 0), is_ranged, white, dual)
         average = (lo + hi) / 2
         normal = 100 - miss - dodge - glance - c
         expected = average * (normal + glance * (1 - glance_less / 100) + c * multiplier) / 100
@@ -312,6 +319,9 @@ def weapon_numbers(combat: CombatBook, spells: dict[str, ClassSpell], mods: list
     out, skipped = [], []
     if main is not None:
         out.append(row("Melee swing (main hand)", "", main, attack_power, 1.0, 0.0, False, {}, True, False, main.speed, None, ""))
+    if dual:
+        out.append(row("Melee swing (off hand)", "", offhand, attack_power, OFFHAND_DAMAGE, 0.0, False, {}, True, False,
+                       offhand.speed, None, ""))
     for name, spell in sorted(spells.items()):
         base = combat.book.base(spell, level)
         if base.level > level:

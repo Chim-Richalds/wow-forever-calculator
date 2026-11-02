@@ -101,6 +101,19 @@ class RealDataTests(unittest.TestCase):
         _, druid = self.weapons("Druid", Weapon(150, 230, 3.5, "two-hand"))
         self.assertIn("Shred (feral form attack)", druid)
 
+    def test_dual_wield(self):
+        sword, dagger = Weapon(100, 150, 2.6, "one-hand"), Weapon(50, 90, 1.8, "dagger")
+        rows, _ = weapon_numbers(self.combat, self.catalogue.by_class["Rogue"], self.mods, "Rogue", 60, {}, 1000, 0,
+                                 0.0, 0.0, SAME_LEVEL, {}, sword, None, dagger)
+        rows = {n.spell: n for n in rows}
+        off, main = rows["Melee swing (off hand)"], rows["Melee swing (main hand)"]
+        self.assertAlmostEqual(off.direct_min, (50 + 1000 / 14 * 1.8) * 0.5, places=3)
+        self.assertEqual((main.hit_chance, off.hit_chance), (100 - 5 - 19 - 5, 100 - 5 - 19 - 5))   # white: +19% miss
+        self.assertEqual(rows["Sinister Strike"].hit_chance, 90.0)                                   # specials: not
+        two, _ = weapon_numbers(self.combat, self.catalogue.by_class["Warrior"], self.mods, "Warrior", 60, {}, 1000, 0,
+                                0.0, 0.0, SAME_LEVEL, {}, Weapon(150, 230, 3.5, "two-hand"), None, dagger)
+        self.assertNotIn("Melee swing (off hand)", {n.spell for n in two})
+
     def test_crit_raises_the_expected_amount(self):
         a, b = self.numbers("Mage")["Fireball"], self.numbers("Mage", crit=20.0)["Fireball"]
         self.assertGreater(b.expected, a.expected)
